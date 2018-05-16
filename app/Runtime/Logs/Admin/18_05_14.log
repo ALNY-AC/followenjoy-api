@@ -1,0 +1,1697 @@
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000558s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000980s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001057s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000950s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001003s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000557s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000772s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000853s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000912s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000473s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000757s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000824s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000843s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000903s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000340s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001559s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001701s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000945s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001013s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000347s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000779s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000854s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000892s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000955s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000929s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001149s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001232s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000673s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000712s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000536s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001283s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001383s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000826s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000887s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000335s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000678s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000754s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000830s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000889s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000510s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000934s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001120s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000785s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000837s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000572s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000842s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000934s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000739s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000795s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000578s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000981s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001078s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000895s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000959s ]
+
+[ 2018-05-14T14:45:23+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000739s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000934s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001003s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001030s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001114s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000704s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000798s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000881s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0011s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000912s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000976s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001219s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001303s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000965s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001040s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000809s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000882s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000847s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000899s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000626s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000826s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000903s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000784s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000841s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001268s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000814s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000889s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000714s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000768s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000561s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001006s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001100s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001006s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001067s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000507s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001072s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001234s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000833s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000896s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000552s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000472s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000516s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000834s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000892s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000698s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001414s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001497s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000840s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000901s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000472s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000550s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000638s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000760s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000813s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000657s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000721s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000717s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000754s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000080s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000793s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000936s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001013s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000843s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000882s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000530s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000878s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000956s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000935s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000994s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000754s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000684s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000791s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001030s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001101s ]
+
+[ 2018-05-14T14:45:24+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000333s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000767s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000845s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0011s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001010s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001075s ]
+
+[ 2018-05-14T14:45:40+08:00 ] 192.168.1.251 /index.php/Admin/goods/saveData
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000341s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000958s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001019s ]
+NOTIC: [2048] Declaration of Admin\Controller\GoodsController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `c_sku` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree_v` [ RunTime:0.0005s ]
+SQL: DELETE FROM `c_sku` WHERE `goods_id` = '26' [ RunTime:0.0003s ]
+SQL: DELETE FROM `c_sku_tree` WHERE `goods_id` = '26' [ RunTime:0.0003s ]
+SQL: DELETE FROM `c_sku_tree_v` WHERE `goods_id` = '26' [ RunTime:0.0003s ]
+SQL: INSERT INTO `c_sku` (`id`,`price`,`stock_num`,`purchase_price`,`earn_price`,`supplier_id`,`shop_code`,`tax`,`s1`,`s2`,`s3`,`goods_id`,`sku_id`,`add_time`,`edit_time`) VALUES ('0','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','密集补水（6片*3盒+好友共享装）','密集补水凝润面膜（单片)','致臻·深润焕采套装','26','9b0f51703ff7f3656e4dede55507935f','1526280340','1526280340'),('1','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','密集补水（6片*3盒+好友共享装）','密集补水凝润面膜（单片)','致臻·晶透沁白套装','26','e91c51d6c96906013d8ddceda5ba1127','1526280340','1526280340'),('2','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','密集补水（6片*3盒+好友共享装）','密集补水凝润面膜（单片)','致臻·敏肌舒润套装','26','8b00091cc9279fbc2a7365efe598e67c','1526280340','1526280340'),('3','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','密集补水（6片*3盒+好友共享装）','密集补水凝润面膜（单片)','致臻·奢润菁华面膜套装','26','f421d0cea0605c04241e30be56425c7d','1526280340','1526280340'),('4','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','密集补水（6片*3盒+好友共享装）','舒缓柔护凝润面膜（单片）','致臻·深润焕采套装','26','fd552f6ddb7e522ac0ac4746a292cbef','1526280340','1526280340'),('5','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','密集补水（6片*3盒+好友共享装）','舒缓柔护凝润面膜（单片）','致臻·晶透沁白套装','26','230d545ff89563569f2db7aa1cf41f56','1526280340','1526280340'),('6','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','密集补水（6片*3盒+好友共享装）','舒缓柔护凝润面膜（单片）','致臻·敏肌舒润套装','26','9ecc945459e50e19a6d157340cfae85e','1526280340','1526280340'),('7','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','密集补水（6片*3盒+好友共享装）','舒缓柔护凝润面膜（单片）','致臻·奢润菁华面膜套装','26','36191edc8378e343d5a6f7ae34b259dc','1526280340','1526280340'),('8','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','舒缓柔护（6片*3盒+好友共享装）','密集补水凝润面膜（单片)','致臻·深润焕采套装','26','d28ded46c2e7997267c08567ba613fe6','1526280340','1526280340'),('9','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','舒缓柔护（6片*3盒+好友共享装）','密集补水凝润面膜（单片)','致臻·晶透沁白套装','26','338f2ae55baafa4fa0a4d589c63363a5','1526280340','1526280340'),('10','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','舒缓柔护（6片*3盒+好友共享装）','密集补水凝润面膜（单片)','致臻·敏肌舒润套装','26','0ae3b07864a0adf122d1253bf86e1ce1','1526280340','1526280340'),('11','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','舒缓柔护（6片*3盒+好友共享装）','密集补水凝润面膜（单片)','致臻·奢润菁华面膜套装','26','767c639e08d86cab3ca110e2f2a69f1c','1526280340','1526280340'),('12','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','舒缓柔护（6片*3盒+好友共享装）','舒缓柔护凝润面膜（单片）','致臻·深润焕采套装','26','0e9783fb3308c3483b3ee5ece84fcdd5','1526280340','1526280340'),('13','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','舒缓柔护（6片*3盒+好友共享装）','舒缓柔护凝润面膜（单片）','致臻·晶透沁白套装','26','8bd2e0c784b633ce5b5968e44da33a15','1526280340','1526280340'),('14','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','舒缓柔护（6片*3盒+好友共享装）','舒缓柔护凝润面膜（单片）','致臻·敏肌舒润套装','26','72118d1857209bd1244435ac7f5c851f','1526280340','1526280340'),('15','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','舒缓柔护（6片*3盒+好友共享装）','舒缓柔护凝润面膜（单片）','致臻·奢润菁华面膜套装','26','2dc0b98afb6c84906935b7a897313f50','1526280340','1526280340'),('16','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水2盒+舒缓1盒（好友共享装）','密集补水凝润面膜（单片)','致臻·深润焕采套装','26','7fb74fcc0db21d84a240c47eca713099','1526280340','1526280340'),('17','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水2盒+舒缓1盒（好友共享装）','密集补水凝润面膜（单片)','致臻·晶透沁白套装','26','3fe0ba638a31ac8d1b95105439619c7a','1526280340','1526280340'),('18','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水2盒+舒缓1盒（好友共享装）','密集补水凝润面膜（单片)','致臻·敏肌舒润套装','26','539a90a34176f38e46059194c2fe2343','1526280340','1526280340'),('19','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水2盒+舒缓1盒（好友共享装）','密集补水凝润面膜（单片)','致臻·奢润菁华面膜套装','26','05e9fcb9e21118e35b3484cb67089c25','1526280340','1526280340'),('20','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水2盒+舒缓1盒（好友共享装）','舒缓柔护凝润面膜（单片）','致臻·深润焕采套装','26','f99b9922ef4919fb8c2e9bbff89ca585','1526280340','1526280340'),('21','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水2盒+舒缓1盒（好友共享装）','舒缓柔护凝润面膜（单片）','致臻·晶透沁白套装','26','7c12d841adb4a7bd071ff426f51442ee','1526280340','1526280340'),('22','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水2盒+舒缓1盒（好友共享装）','舒缓柔护凝润面膜（单片）','致臻·敏肌舒润套装','26','5ca991dd3c2fbddf16b067221a9e1bc2','1526280340','1526280340'),('23','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水2盒+舒缓1盒（好友共享装）','舒缓柔护凝润面膜（单片）','致臻·奢润菁华面膜套装','26','14db9d289f69dd2c192f7a2caca65e7f','1526280340','1526280340'),('24','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水1盒+舒缓2盒（好友共享装）','密集补水凝润面膜（单片)','致臻·深润焕采套装','26','12db9896f71ca7da8516faa2363a4b4f','1526280340','1526280340'),('25','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水1盒+舒缓2盒（好友共享装）','密集补水凝润面膜（单片)','致臻·晶透沁白套装','26','7733bac51a3e995a585b25781a6b4adc','1526280340','1526280340'),('26','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水1盒+舒缓2盒（好友共享装）','密集补水凝润面膜（单片)','致臻·敏肌舒润套装','26','da5a43a27b052662421340afb3a0b5f6','1526280340','1526280340'),('27','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水1盒+舒缓2盒（好友共享装）','密集补水凝润面膜（单片)','致臻·奢润菁华面膜套装','26','5b604b8aa78bd25138b3945e82217403','1526280340','1526280340'),('28','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水1盒+舒缓2盒（好友共享装）','舒缓柔护凝润面膜（单片）','致臻·深润焕采套装','26','df5fa00e78957f1ff4bad2776e463fe0','1526280340','1526280340'),('29','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水1盒+舒缓2盒（好友共享装）','舒缓柔护凝润面膜（单片）','致臻·晶透沁白套装','26','ae89d131a3cca1d84939b6065a66a5f8','1526280340','1526280340'),('30','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水1盒+舒缓2盒（好友共享装）','舒缓柔护凝润面膜（单片）','致臻·敏肌舒润套装','26','82b071b19831f95ffba55d190c9f725a','1526280340','1526280340'),('31','10','1','1','1','30bda1fa75a650074f64eb107e8d3dcc','0','0.1','补水1盒+舒缓2盒（好友共享装）','舒缓柔护凝润面膜（单片）','致臻·奢润菁华面膜套装','26','77abf8ea9047802cc25bac29e151c348','1526280340','1526280340') [ RunTime:0.0020s ]
+SQL: INSERT INTO `c_sku_tree` (`k`,`k_s`,`sku_tree_id`,`goods_id`,`add_time`,`edit_time`) VALUES ('共享面膜','s1','30238df1e1c4320a235b1ffff2f19f5c','26','1526280340','1526280340'),('体验装','s2','f19e1f93b14e82c8fcefcbecfbe4b0eb','26','1526280340','1526280340'),('致臻系列','s3','390aae17cbd1edec1f6a3f5f5d6ec2e2','26','1526280340','1526280340') [ RunTime:0.0004s ]
+SQL: INSERT INTO `c_sku_tree_v` (`id`,`name`,`v_id`,`goods_id`,`sku_tree_id`,`img_url`,`add_time`,`edit_time`) VALUES ('密集补水（6片*3盒+好友共享装）','密集补水（6片*3盒+好友共享装）','5f811e3c85597b26c80dce3b7d7e85be','26','30238df1e1c4320a235b1ffff2f19f5c','','1526280340','1526280340'),('舒缓柔护（6片*3盒+好友共享装）','舒缓柔护（6片*3盒+好友共享装）','94c2d02c303ed652a16f2c0c267a4d9e','26','30238df1e1c4320a235b1ffff2f19f5c','','1526280340','1526280340'),('补水2盒+舒缓1盒（好友共享装）','补水2盒+舒缓1盒（好友共享装）','0639192751a67967e86a004d7bae23a8','26','30238df1e1c4320a235b1ffff2f19f5c','','1526280340','1526280340'),('补水1盒+舒缓2盒（好友共享装）','补水1盒+舒缓2盒（好友共享装）','55ae0602b52d036a9b309d4b737d5431','26','30238df1e1c4320a235b1ffff2f19f5c','','1526280340','1526280340'),('密集补水凝润面膜（单片)','密集补水凝润面膜（单片)','2b475d72b7dd42961d0f25901a5bc450','26','f19e1f93b14e82c8fcefcbecfbe4b0eb','','1526280340','1526280340'),('舒缓柔护凝润面膜（单片）','舒缓柔护凝润面膜（单片）','bf962278e8c3127531d85186dbdc6022','26','f19e1f93b14e82c8fcefcbecfbe4b0eb','','1526280340','1526280340'),('致臻·深润焕采套装','致臻·深润焕采套装','a18a360fd6222bc1cf48197e2a728d29','26','390aae17cbd1edec1f6a3f5f5d6ec2e2','','1526280340','1526280340'),('致臻·晶透沁白套装','致臻·晶透沁白套装','32a6f881400a0823f483523cd1a95006','26','390aae17cbd1edec1f6a3f5f5d6ec2e2','','1526280340','1526280340'),('致臻·敏肌舒润套装','致臻·敏肌舒润套装','a175cbb4d8d3bd7bf0b666081344b8dc','26','390aae17cbd1edec1f6a3f5f5d6ec2e2','','1526280340','1526280340'),('致臻·奢润菁华面膜套装','致臻·奢润菁华面膜套装','952b24a143da50a51964b8cfea6bcd2b','26','390aae17cbd1edec1f6a3f5f5d6ec2e2','','1526280340','1526280340') [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `c_goods_img` [ RunTime:0.0006s ]
+SQL: DELETE FROM `c_goods_img` WHERE `goods_id` = '26' [ RunTime:0.0003s ]
+SQL: INSERT INTO `c_goods_img` (`img_id`,`goods_id`,`src`,`add_time`,`edit_time`,`slot`) VALUES ('6c7f85af6060551d99b2ee5c6ae9e19d','26','Public/Upload/admin2018-05-14/5af92d9d3426b.jpg','1526280340','1526280340','0') [ RunTime:0.0002s ]
+SQL: UPDATE `c_goods` SET `goods_title`='锋味茶餐厅系列（咖啡、奶茶、阿华田、麦香奶） 310g*1/盒',`goods_banner`='',`sub_title`='霆锋亲自上阵，用心专研，精心研制',`freight_id`='01a28972a8f19919569e4d52108a2f1b',`is_up`='1',`goods_class`='a9877aaf4773cf96c383300a04f46163',`sort`='0',`is_cross_border`='0',`goods_content`='<p>asdasda123213</p>',`is_unique`='0',`edit_time`='1526280340' WHERE `goods_id` = 26 [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000709s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000747s ]
+
+[ 2018-05-14T14:45:40+08:00 ] 192.168.1.251 /index.php/Admin/Class/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000507s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000721s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000788s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000840s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000895s ]
+
+[ 2018-05-14T14:45:40+08:00 ] 192.168.1.251 /index.php/Admin/class/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000502s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000653s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000712s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001131s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001220s ]
+
+[ 2018-05-14T14:45:40+08:00 ] 192.168.1.251 /index.php/Admin/goods/getList?page=1&limit=20&key=&group=goods_title&class_id=&token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000484s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000665s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000732s ]
+NOTIC: [2048] Declaration of Admin\Controller\GoodsController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php on line 71 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php on line 795 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 796 行.
+SQL: SELECT * FROM `c_goods` ORDER BY add_time desc LIMIT 0,20   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_goods_img` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '26' ORDER BY slot asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_sku` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '26'  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree_v` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '26'  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '30238df1e1c4320a235b1ffff2f19f5c'  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = 'f19e1f93b14e82c8fcefcbecfbe4b0eb'  [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '390aae17cbd1edec1f6a3f5f5d6ec2e2'  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'a9877aaf4773cf96c383300a04f46163' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = '527de4da53103e38bf8f18df9e20ab9d' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_freight` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `c_freight_area` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '25' ORDER BY slot asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '25'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '25'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'a4043abf73e6ef4aab6f4a9fdaa47b54'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'c1d4de550162aa6aca12462482475c7c'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = '4249ee9f1df051c6b31b35cc371cbd66'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'ff558e2ec95b4df1f3981cc7bb89bd7d' LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'd9ab62b0b40061303adb146e077899c9' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_goods` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001156s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001261s ]
+
+[ 2018-05-14T15:00:07+08:00 ] 192.168.1.251 /index.php/Admin/admin/getUserInfo?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000369s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000517s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000569s ]
+NOTIC: [2048] Declaration of Admin\Controller\AdminController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\AdminController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0553s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT `admin_id`,`power_group_id`,`admin_name`,`admin_head_img`,`add_time`,`edit_time` FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_power_group_props` [ RunTime:0.0149s ]
+SQL: SHOW COLUMNS FROM `c_power_group` [ RunTime:0.0440s ]
+SQL: SELECT * FROM `c_power_group` WHERE `power_group_id` = 'f97dc4bd8893887f62e1b7549a1331bd' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_power_num` [ RunTime:0.0126s ]
+SQL: SELECT * FROM `c_power_group_props` WHERE `power_group_id` = 'f97dc4bd8893887f62e1b7549a1331bd' ORDER BY add_time desc  [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '2ad71de80033e0472311b03aa7dab201' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8a66da4949af2b87a72b00c8ce49c5c3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '85046421288e5207617257ca05ed36d8' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'd0cc96407ab811ed33c620f149619de5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'ddd87ff915e96776e35de89a66ef17b5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '0f9342803d4279e6f1e3594185c577b1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9ce9d75a5c948d330c16f96905e3aff5' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '5f9dc0662a3663384b1eb69c343aed13' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c87169f20ab8969c9e92129d80d1d98e' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'ec93ffddc37e98e82188654e60fc9934' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '75456a4bdfe662413f37d9bf95f9fb2a' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '374f70bb5a46656e0a652e75a4907bc5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c81ea6af607ffa3a70ffbf112fdbb8d9' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '0b01d8972d85e299e045f48e6c25d5da' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'a5d410e770d30de0c5bd8c51a563f47c' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '664c61ba66c37fca72d2e8d22c442d82' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8a9be8f204a9cd698d3aef895a3078a0' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'f8d218b4aee0e14b3209fc8c8d5ea27c' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8de26f305b7f56b8489f4e4611b902d4' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '92e7735857ea7cb57c6420c6c81340ed' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '32d2288f691c8c9cbb60ae736cdf78d3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c2f6db29d17588b5a82310c9f182e7c5' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'e45da34641594c07d14608d8ce8a03f3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '495644099c22e872420da3c2337c4533' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '0d01a63d80d81e98b14af0f84429e2b7' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'e3b247089be4a6393ae088a6213c8a27' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c9463483a2a318edc8148311096aa8ff' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'f0cbef0f10efadee265c9608e808325d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '61bfcd4122dea42054adb2adffb6c0f4' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'cd25e076b10e30586c9ac799c28431bf' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8014184719f547dfdc0f6e655ecde13e' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'a2d469c802843f47595e0af0bbf33f73' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8eedd5d885ac9f4da851b539fc3d7f5e' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '46b30a33ce124efd1c7875fe404e8496' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9287fd6eec6c97a3da4f1db723919f86' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '13497b4b0d348e55bcee578dfe374e64' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '6f123b5a979fdc9902d57ca0ee9c80bb' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9eb8eafb425e5e7a51d067614c70d8f9' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '43500f35e6104e3b3e6f4ddc28e8b622' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '4d37d295f4fefacaa3e1bff856adc109' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '45bab7390b763c43c39f4e12a7ace352' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8e781e51064968d784368a2c9a4a7700' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'efe4e8c4deb583878fef3830cdd1bbc8' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '1582c865d71551b26077195fcab9dce8' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '75587ae95a91fc9fbf8851d0c622cb8e' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'b3151e8ad291389a42aea52ab5318b8f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9713d756605f6097092ca8bfb0aec98e' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9e13153e26929d9a8cbba3190bac732f' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '02ea22ecd1d9fe887eca48f53719f6b6' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '4a09133f8ff9c67323409b33d87455fd' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'a846894205b11c3f1f0ddf7d09eca108' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'f474b504b240977d9f3ebbee59965df9' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '5b33fb630bc408fd6acddf2c0fcd7470' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '3d390cca2a4ed6d13c48f2a7b3df30e2' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'fd6cac1aad3e23010c7b825e51f05e77' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '85651f128a9573b99c5a1db034ebcae1' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '1d4c653bc3af8ca57df4cf6a819d650f' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '434b07fdac4af10388b343370f6dcc15' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '19c29f13b7eba48f5c224d7c77b4b1a8' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'db5643d05fe02c96d86a5604ca5554c2' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '498ab511d793b829c56cd2d692128dc3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'b7dd379280e2db1db4d8a21cd3a7b8f8' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'ba48e819f24624dce301277aea0a6057' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'f2282046dad807ebec63ae265b673e40' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '201fc24ee2febdc8ff8f06f96646c498' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '53636659007f25e4d9c7e451575be05d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'd4eecb4134347f7e5f7818d7b6289ef1' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '802a94abb0062b3961068ffff76d7137' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '89ca3ea02a3063cf4feb351c81918125' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'b53502bcd8431e735c66c124656f612c' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '1c129ba203325fa27fbc1a1c261195cb' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c86d0c1f5986c72e426fd02159240dc5' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'e2760c012102ad84771f19058daaa9e6' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'b3cc2399ef007e19967b3067c5d5a548' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '3f02f9ecfadbbce6628af6e66aefab8d' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '65856f3f4e7b0c74b4b42dabcbc718e9' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '28fd33fd3febe411b1d44cfbf643716f' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '49f0c1ad3b015079dfcd8a830959d902' LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000926s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000994s ]
+
+[ 2018-05-14T15:00:07+08:00 ] 192.168.1.251 /index.php/Admin/Class/getList?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000610s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000925s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001015s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0649s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001058s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001127s ]
+
+[ 2018-05-14T15:00:07+08:00 ] 192.168.1.251 /index.php/Admin/index/isLogin?token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000472s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000942s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001018s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000874s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000928s ]
+
+[ 2018-05-14T15:00:07+08:00 ] 192.168.1.251 /index.php/Admin/goods/getList?page=1&limit=20&key=&group=goods_title&class_id=&token=c6903eadd735e58897840e430aedaf5f&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000670s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000889s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000966s ]
+NOTIC: [2048] Declaration of Admin\Controller\GoodsController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = 'c6903eadd735e58897840e430aedaf5f' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0325s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php on line 71 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php on line 795 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 796 行.
+SQL: SELECT * FROM `c_goods` ORDER BY add_time desc LIMIT 0,20   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_goods_img` [ RunTime:0.0159s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '26' ORDER BY slot asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_sku` [ RunTime:0.0076s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '26'  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree` [ RunTime:0.0093s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree_v` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '26'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '30238df1e1c4320a235b1ffff2f19f5c'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = 'f19e1f93b14e82c8fcefcbecfbe4b0eb'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '390aae17cbd1edec1f6a3f5f5d6ec2e2'  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'a9877aaf4773cf96c383300a04f46163' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = '527de4da53103e38bf8f18df9e20ab9d' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_freight` [ RunTime:0.0023s ]
+SQL: SHOW COLUMNS FROM `c_freight_area` [ RunTime:0.0149s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '25' ORDER BY slot asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '25'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '25'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'a4043abf73e6ef4aab6f4a9fdaa47b54'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'c1d4de550162aa6aca12462482475c7c'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = '4249ee9f1df051c6b31b35cc371cbd66'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'ff558e2ec95b4df1f3981cc7bb89bd7d' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'd9ab62b0b40061303adb146e077899c9' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_goods` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000838s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000902s ]
+
+[ 2018-05-14T16:43:48+08:00 ] 192.168.1.251 /index.php/Admin/admin/getUserInfo?token=86eb64ddf51a536bcf15d19898894ff1&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.012075s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015589s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015666s ]
+NOTIC: [2048] Declaration of Admin\Controller\AdminController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\AdminController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '86eb64ddf51a536bcf15d19898894ff1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0012s ]
+SQL: SELECT `admin_id`,`power_group_id`,`admin_name`,`admin_head_img`,`add_time`,`edit_time` FROM `c_admin` WHERE `admin_id` = null LIMIT 1   [ RunTime:0.0377s ]
+SQL: SHOW COLUMNS FROM `c_power_group_props` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `c_power_group` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_power_group` WHERE `power_group_id` = null LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.013760s ]
+INFO: [ app_end ] --END-- [ RunTime:0.013804s ]
+
+[ 2018-05-14T16:43:48+08:00 ] 192.168.1.251 /index.php/Admin/Class/getList?token=86eb64ddf51a536bcf15d19898894ff1&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000762s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000992s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001096s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '86eb64ddf51a536bcf15d19898894ff1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000978s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001045s ]
+
+[ 2018-05-14T16:43:48+08:00 ] 192.168.1.251 /index.php/Admin/supplier/getList?token=86eb64ddf51a536bcf15d19898894ff1&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000517s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002066s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002391s ]
+NOTIC: [2048] Declaration of Admin\Controller\SupplierController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '86eb64ddf51a536bcf15d19898894ff1' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2048] Declaration of Admin\Model\SupplierModel::create() should be compatible with Think\Model::create($data = '', $type = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 74 行.
+SQL: SHOW COLUMNS FROM `c_supplier` [ RunTime:0.0566s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php on line 25 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 26 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SupplierController.class.php 第 27 行.
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 10 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SupplierModel.class.php 第 11 行.
+SQL: SELECT * FROM `c_supplier` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_supplier` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001078s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001150s ]
+
+[ 2018-05-14T16:43:48+08:00 ] 192.168.1.251 /index.php/Admin/skuGroup/getList?token=86eb64ddf51a536bcf15d19898894ff1&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000606s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001925s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002024s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '86eb64ddf51a536bcf15d19898894ff1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_sku_group` [ RunTime:0.0421s ]
+NOTIC: [2] Missing argument 1 for Admin\Model\SkuGroupModel::getList(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\SkuGroupController.class.php on line 48 and defined D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SkuGroupModel.class.php 第 7 行.
+SQL: SHOW COLUMNS FROM `c_sku_group_prop` [ RunTime:0.0277s ]
+NOTIC: [8] Undefined variable: data D:\database\Project\working\company\cosmetics\server\app\Admin\Model\SkuGroupModel.class.php 第 12 行.
+SQL: SELECT * FROM `c_sku_group` ORDER BY add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_sku_group_prop` WHERE `sku_group_id` = 'da935ac1322b60eb96b73f91b16a7d2e' ORDER BY add_time asc  [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_sku_group_prop` WHERE `sku_group_id` = 'bfa99d173eecb11c9d80d17b4fc95e79' ORDER BY add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_group_prop` WHERE `sku_group_id` = 'f4cae781fc0016d9e02b96cffc4c6912' ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_group_prop` WHERE `sku_group_id` = 'c5e300dc2a891cae399713836643712a' ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_group_prop` WHERE `sku_group_id` = 'cf85c0b93bf3af6f74be670aec9fd870' ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_group_prop` WHERE `sku_group_id` = '84b9ede590db3118003f277102098066' ORDER BY add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_group_prop` WHERE `sku_group_id` = 'a0f1489cecad0966ec8aef22cc973b4d' ORDER BY add_time asc  [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000986s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001053s ]
+
+[ 2018-05-14T16:43:48+08:00 ] 192.168.1.251 /index.php/Admin/freight/getList?token=86eb64ddf51a536bcf15d19898894ff1&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000572s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000795s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000883s ]
+NOTIC: [2048] Declaration of Admin\Controller\FreightController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\FreightController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '86eb64ddf51a536bcf15d19898894ff1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_freight` [ RunTime:0.0016s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\FreightController.class.php on line 24 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php on line 751 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 752 行.
+NOTIC: [8] Undefined index: key D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 753 行.
+SQL: SHOW COLUMNS FROM `c_freight_area` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: page D:\database\Project\working\company\cosmetics\server\app\Admin\Model\FreightModel.class.php 第 17 行.
+NOTIC: [8] Undefined index: limit D:\database\Project\working\company\cosmetics\server\app\Admin\Model\FreightModel.class.php 第 18 行.
+SQL: SELECT * FROM `c_freight` ORDER BY add_time desc LIMIT 0,10   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = 'd3948eba0238ecfb4bfa92fe2853c880'  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = 'f751b7ba5e640e2a909d146f3fb23a8e'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = 'db55c0dabf8ed8548467ff77063014f5'  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_freight` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001089s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001160s ]
+
+[ 2018-05-14T16:43:48+08:00 ] 192.168.1.251 /index.php/Admin/goods/get?goods_id=385&token=86eb64ddf51a536bcf15d19898894ff1&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000572s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000902s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [2048] Declaration of Admin\Controller\GoodsController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '86eb64ddf51a536bcf15d19898894ff1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `c_goods` WHERE `goods_id` = 385 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `c_goods_img` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = null ORDER BY slot asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_sku` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = null  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree_v` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = null  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: goods_class D:\database\Project\working\company\cosmetics\server\app\Admin\Model\GoodsModel.class.php 第 289 行.
+SQL: SELECT * FROM `c_class` WHERE `class_id` = null LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_freight` [ RunTime:0.0021s ]
+NOTIC: [8] Undefined index: freight_id D:\database\Project\working\company\cosmetics\server\app\Admin\Model\GoodsModel.class.php 第 316 行.
+SQL: SHOW COLUMNS FROM `c_freight_area` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = null LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = null  [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001075s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001146s ]
+
+[ 2018-05-14T16:43:48+08:00 ] 192.168.1.251 /index.php/Admin/index/isLogin?token=86eb64ddf51a536bcf15d19898894ff1&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000485s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000585s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000671s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '86eb64ddf51a536bcf15d19898894ff1' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001048s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001114s ]
+
+[ 2018-05-14T16:43:49+08:00 ] 192.168.1.251 /index.php/Admin/index/getCode/0.9532626446874428
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000106s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000683s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000712s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000797s ]
+NOTIC: [2] Missing argument 1 for getCode(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\IndexController.class.php on line 92 and defined D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 98 行.
+NOTIC: [8] Undefined variable: cfg D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 100 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001028s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001113s ]
+
+[ 2018-05-14T16:44:46+08:00 ] 192.168.1.251 /index.php/Admin/index/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000390s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000664s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000744s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0004s ]
+SQL: REPLACE INTO `c_token` (`token`,`login_id`,`edit_time`) VALUES ('2421e2931b2af898343e94d8d6dad841','root','1526287486') [ RunTime:0.0543s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000747s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000779s ]
+
+[ 2018-05-14T16:44:47+08:00 ] 192.168.1.251 /index.php/Admin/admin/getUserInfo?token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000321s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000446s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000493s ]
+NOTIC: [2048] Declaration of Admin\Controller\AdminController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\AdminController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT `admin_id`,`power_group_id`,`admin_name`,`admin_head_img`,`add_time`,`edit_time` FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_power_group_props` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `c_power_group` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_power_group` WHERE `power_group_id` = 'f97dc4bd8893887f62e1b7549a1331bd' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_power_num` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `c_power_group_props` WHERE `power_group_id` = 'f97dc4bd8893887f62e1b7549a1331bd' ORDER BY add_time desc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '2ad71de80033e0472311b03aa7dab201' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8a66da4949af2b87a72b00c8ce49c5c3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '85046421288e5207617257ca05ed36d8' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'd0cc96407ab811ed33c620f149619de5' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'ddd87ff915e96776e35de89a66ef17b5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '0f9342803d4279e6f1e3594185c577b1' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9ce9d75a5c948d330c16f96905e3aff5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '5f9dc0662a3663384b1eb69c343aed13' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c87169f20ab8969c9e92129d80d1d98e' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'ec93ffddc37e98e82188654e60fc9934' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '75456a4bdfe662413f37d9bf95f9fb2a' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '374f70bb5a46656e0a652e75a4907bc5' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c81ea6af607ffa3a70ffbf112fdbb8d9' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '0b01d8972d85e299e045f48e6c25d5da' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'a5d410e770d30de0c5bd8c51a563f47c' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '664c61ba66c37fca72d2e8d22c442d82' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8a9be8f204a9cd698d3aef895a3078a0' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'f8d218b4aee0e14b3209fc8c8d5ea27c' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8de26f305b7f56b8489f4e4611b902d4' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '92e7735857ea7cb57c6420c6c81340ed' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '32d2288f691c8c9cbb60ae736cdf78d3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c2f6db29d17588b5a82310c9f182e7c5' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'e45da34641594c07d14608d8ce8a03f3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '495644099c22e872420da3c2337c4533' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '0d01a63d80d81e98b14af0f84429e2b7' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'e3b247089be4a6393ae088a6213c8a27' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c9463483a2a318edc8148311096aa8ff' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'f0cbef0f10efadee265c9608e808325d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '61bfcd4122dea42054adb2adffb6c0f4' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'cd25e076b10e30586c9ac799c28431bf' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8014184719f547dfdc0f6e655ecde13e' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'a2d469c802843f47595e0af0bbf33f73' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8eedd5d885ac9f4da851b539fc3d7f5e' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '46b30a33ce124efd1c7875fe404e8496' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9287fd6eec6c97a3da4f1db723919f86' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '13497b4b0d348e55bcee578dfe374e64' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '6f123b5a979fdc9902d57ca0ee9c80bb' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9eb8eafb425e5e7a51d067614c70d8f9' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '43500f35e6104e3b3e6f4ddc28e8b622' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '4d37d295f4fefacaa3e1bff856adc109' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '45bab7390b763c43c39f4e12a7ace352' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '8e781e51064968d784368a2c9a4a7700' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'efe4e8c4deb583878fef3830cdd1bbc8' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '1582c865d71551b26077195fcab9dce8' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '75587ae95a91fc9fbf8851d0c622cb8e' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'b3151e8ad291389a42aea52ab5318b8f' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9713d756605f6097092ca8bfb0aec98e' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '9e13153e26929d9a8cbba3190bac732f' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '02ea22ecd1d9fe887eca48f53719f6b6' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '4a09133f8ff9c67323409b33d87455fd' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'a846894205b11c3f1f0ddf7d09eca108' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'f474b504b240977d9f3ebbee59965df9' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '5b33fb630bc408fd6acddf2c0fcd7470' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '3d390cca2a4ed6d13c48f2a7b3df30e2' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'fd6cac1aad3e23010c7b825e51f05e77' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '85651f128a9573b99c5a1db034ebcae1' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '1d4c653bc3af8ca57df4cf6a819d650f' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '434b07fdac4af10388b343370f6dcc15' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '19c29f13b7eba48f5c224d7c77b4b1a8' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'db5643d05fe02c96d86a5604ca5554c2' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '498ab511d793b829c56cd2d692128dc3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'b7dd379280e2db1db4d8a21cd3a7b8f8' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'ba48e819f24624dce301277aea0a6057' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'f2282046dad807ebec63ae265b673e40' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '201fc24ee2febdc8ff8f06f96646c498' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '53636659007f25e4d9c7e451575be05d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'd4eecb4134347f7e5f7818d7b6289ef1' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '802a94abb0062b3961068ffff76d7137' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '89ca3ea02a3063cf4feb351c81918125' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'b53502bcd8431e735c66c124656f612c' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '1c129ba203325fa27fbc1a1c261195cb' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'c86d0c1f5986c72e426fd02159240dc5' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'e2760c012102ad84771f19058daaa9e6' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = 'b3cc2399ef007e19967b3067c5d5a548' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '3f02f9ecfadbbce6628af6e66aefab8d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '65856f3f4e7b0c74b4b42dabcbc718e9' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '28fd33fd3febe411b1d44cfbf643716f' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_power_num` WHERE `power_num_id` = '49f0c1ad3b015079dfcd8a830959d902' LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000729s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000785s ]
+
+[ 2018-05-14T16:44:47+08:00 ] 192.168.1.251 /index.php/Admin/Info/getIndex?token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000494s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000964s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001058s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_order` [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` WHERE `state` = 2 LIMIT 1   [ RunTime:0.0488s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` WHERE `state` = 5 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_order` WHERE ( `add_time` >= 1526140800 AND `add_time` < 1526227200  ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_order` WHERE ( `add_time` >= 1526140800 AND `add_time` < 1526227200  ) AND `state` > 1  [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000699s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000735s ]
+
+[ 2018-05-14T16:44:50+08:00 ] 192.168.1.251 /index.php/Admin/Class/getList?token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000483s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000676s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000756s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001005s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001070s ]
+
+[ 2018-05-14T16:44:50+08:00 ] 192.168.1.251 /index.php/Admin/class/getList?token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000472s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000661s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000734s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000888s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000937s ]
+
+[ 2018-05-14T16:44:50+08:00 ] 192.168.1.251 /index.php/Admin/goods/getList?page=1&limit=20&key=&group=goods_title&class_id=&token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000727s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000801s ]
+NOTIC: [2048] Declaration of Admin\Controller\GoodsController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php on line 71 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php on line 751 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 752 行.
+SQL: SELECT * FROM `c_goods` ORDER BY add_time desc LIMIT 0,20   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_goods_img` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '26' ORDER BY slot asc  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_sku` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '26'  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree_v` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '26'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '30238df1e1c4320a235b1ffff2f19f5c'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = 'f19e1f93b14e82c8fcefcbecfbe4b0eb'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '390aae17cbd1edec1f6a3f5f5d6ec2e2'  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'a9877aaf4773cf96c383300a04f46163' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = '527de4da53103e38bf8f18df9e20ab9d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_freight` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `c_freight_area` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '25' ORDER BY slot asc  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '25'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '25'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'a4043abf73e6ef4aab6f4a9fdaa47b54'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'c1d4de550162aa6aca12462482475c7c'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = '4249ee9f1df051c6b31b35cc371cbd66'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'ff558e2ec95b4df1f3981cc7bb89bd7d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'd9ab62b0b40061303adb146e077899c9' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_goods` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001047s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001125s ]
+
+[ 2018-05-14T16:44:52+08:00 ] 192.168.1.251 /index.php/Admin/class/getList?token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000710s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000788s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001018s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001076s ]
+
+[ 2018-05-14T16:44:52+08:00 ] 192.168.1.251 /index.php/Admin/goods/getList?page=1&limit=20&key=&group=goods_title&class_id=&token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000465s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000671s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000734s ]
+NOTIC: [2048] Declaration of Admin\Controller\GoodsController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0005s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php on line 71 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php on line 751 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 752 行.
+SQL: SELECT * FROM `c_goods` ORDER BY add_time desc LIMIT 0,20   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_goods_img` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '26' ORDER BY slot asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_sku` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '26'  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree_v` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '26'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '30238df1e1c4320a235b1ffff2f19f5c'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = 'f19e1f93b14e82c8fcefcbecfbe4b0eb'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '390aae17cbd1edec1f6a3f5f5d6ec2e2'  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'a9877aaf4773cf96c383300a04f46163' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = '527de4da53103e38bf8f18df9e20ab9d' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_freight` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `c_freight_area` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '25' ORDER BY slot asc  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '25'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '25'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'a4043abf73e6ef4aab6f4a9fdaa47b54'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'c1d4de550162aa6aca12462482475c7c'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = '4249ee9f1df051c6b31b35cc371cbd66'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'ff558e2ec95b4df1f3981cc7bb89bd7d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'd9ab62b0b40061303adb146e077899c9' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_goods` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001087s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001155s ]
+
+[ 2018-05-14T16:44:54+08:00 ] 192.168.1.251 /index.php/Admin/class/getList?token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000529s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000460s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000509s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000739s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000788s ]
+
+[ 2018-05-14T16:44:54+08:00 ] 192.168.1.251 /index.php/Admin/goods/getList?page=1&limit=20&key=&group=goods_title&class_id=&token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000343s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000465s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000503s ]
+NOTIC: [2048] Declaration of Admin\Controller\GoodsController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0005s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php on line 71 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php on line 751 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 752 行.
+SQL: SELECT * FROM `c_goods` ORDER BY add_time desc LIMIT 0,20   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_goods_img` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '26' ORDER BY slot asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_sku` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '26'  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree_v` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '26'  [ RunTime:0.0006s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '30238df1e1c4320a235b1ffff2f19f5c'  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = 'f19e1f93b14e82c8fcefcbecfbe4b0eb'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '390aae17cbd1edec1f6a3f5f5d6ec2e2'  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'a9877aaf4773cf96c383300a04f46163' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = '527de4da53103e38bf8f18df9e20ab9d' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_freight` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `c_freight_area` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '25' ORDER BY slot asc  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '25'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '25'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'a4043abf73e6ef4aab6f4a9fdaa47b54'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'c1d4de550162aa6aca12462482475c7c'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = '4249ee9f1df051c6b31b35cc371cbd66'  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'ff558e2ec95b4df1f3981cc7bb89bd7d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'd9ab62b0b40061303adb146e077899c9' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_goods` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001186s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001237s ]
+
+[ 2018-05-14T16:44:55+08:00 ] 192.168.1.251 /index.php/Admin/class/getList?token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000521s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000702s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000788s ]
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_class` ORDER BY sort asc,add_time asc  [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_class` LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001133s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001226s ]
+
+[ 2018-05-14T16:44:55+08:00 ] 192.168.1.251 /index.php/Admin/goods/getList?page=1&limit=20&key=&group=goods_title&class_id=&token=2421e2931b2af898343e94d8d6dad841&admin_id=root
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000634s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000882s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000966s ]
+NOTIC: [2048] Declaration of Admin\Controller\GoodsController::get() should be compatible with Think\Controller::get($name = '') D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php 第 19 行.
+SQL: SHOW COLUMNS FROM `c_token` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_token` WHERE `login_id` = 'root' AND `token` = '2421e2931b2af898343e94d8d6dad841' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_admin` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `c_admin` WHERE `admin_id` = 'root' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `c_goods` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Admin\Controller\GoodsController.class.php on line 71 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [2] Missing argument 1 for I(), called in D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php on line 751 and defined D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 271 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 273 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 278 行.
+NOTIC: [8] Undefined variable: name D:\database\Project\working\company\cosmetics\server\ThinkPHP\Common\functions.php 第 339 行.
+NOTIC: [8] Undefined index: where D:\database\Project\working\company\cosmetics\server\app\Common\Common\function.php 第 752 行.
+SQL: SELECT * FROM `c_goods` ORDER BY add_time desc LIMIT 0,20   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_goods_img` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '26' ORDER BY slot asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `c_sku` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '26'  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `c_sku_tree_v` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '26'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '30238df1e1c4320a235b1ffff2f19f5c'  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = 'f19e1f93b14e82c8fcefcbecfbe4b0eb'  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '26' AND `sku_tree_id` = '390aae17cbd1edec1f6a3f5f5d6ec2e2'  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `c_class` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'a9877aaf4773cf96c383300a04f46163' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = '527de4da53103e38bf8f18df9e20ab9d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `c_freight` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `c_freight_area` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_goods_img` WHERE `goods_id` = '25' ORDER BY slot asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `c_sku` WHERE `goods_id` = '25'  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `c_sku_tree` WHERE `goods_id` = '25'  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'a4043abf73e6ef4aab6f4a9fdaa47b54'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = 'c1d4de550162aa6aca12462482475c7c'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_sku_tree_v` WHERE `goods_id` = '25' AND `sku_tree_id` = '4249ee9f1df051c6b31b35cc371cbd66'  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'ff558e2ec95b4df1f3981cc7bb89bd7d' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `c_class` WHERE `class_id` = 'd9ab62b0b40061303adb146e077899c9' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `c_freight` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b' LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT * FROM `c_freight_area` WHERE `freight_id` = '01a28972a8f19919569e4d52108a2f1b'  [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `c_goods` LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001016s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001073s ]
+
