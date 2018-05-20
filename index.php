@@ -8,21 +8,10 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-//跨域as
+//跨域 
 $origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
 $allow_origin=[
-'http://192.168.1.251:8081',
-'http://192.168.1.251:8080',
-'http://127.0.0.1:8081',
-'http://127.0.0.1:8080',
-'http://120.78.162.200:12139',
-"http://cuelyine.cn",
-'http://cosmetics.com',
-'http://admin.cuelyine.cn',
-'http://followenjoy.cn',
-'http://admin.followenjoy.cn',
-'http://srver.followenjoy.cn',
-'http://srver2.followenjoy.cn',
+
 ];
 $is=in_array($origin, $allow_origin);
 if(in_array($origin, $allow_origin)){
