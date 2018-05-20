@@ -1,0 +1,66 @@
+<?php
+namespace Home\Model;
+use Think\Model;
+class SpecialPaperModel extends Model {
+    
+    
+    public function getList($data){
+        
+        $page   =   $data['page']?$data['page']:1;
+        $limit  =   $data['limit']?$data['limit']:10;
+        $where  =   $data['where']?$data['where']:[];
+        
+        
+        $field=[
+        'special_paper_id',
+        'special_id',
+        'paper_head',
+        'paper_title',
+        'paper_info',
+        // 'paper_content',
+        'add_time',
+        // 'edit_time',
+        ];
+        
+        $list  =  $this
+        ->order('add_time desc')
+        ->field($field)
+        ->where($where)
+        ->limit(($page-1)*$limit,$limit)
+        ->select();
+        
+        $list=toTime($list);
+        return $list;
+        
+    }
+    
+    public function getAll($data){
+        
+        $where  =   $data['where']?$data['where']:[];
+        
+        $field=[
+        'special_paper_id',
+        'special_id',
+        'paper_head',
+        'paper_title',
+        'paper_info',
+        // 'paper_content',
+        'add_time',
+        // 'edit_time',
+        ];
+        $list  =  $this
+        ->order('add_time desc')
+        ->field($field)
+        ->where($where)
+        ->select();
+        return $list;
+        
+    }
+    
+    public function get($special_paper_id){
+        $where=[];
+        $where['special_paper_id']=$special_paper_id;
+        return $this->where($where)->find();
+    }
+    
+}
