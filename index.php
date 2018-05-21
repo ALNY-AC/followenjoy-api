@@ -13,11 +13,6 @@ $origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
 $allow_origin=[
 'http://192.168.1.251:8081',
 'http://192.168.1.251:8080',
-'http://192.168.0.80:8080',
-'http://192.168.0.80:8081',
-'http://127.0.0.1:8081',
-'http://127.0.0.1:8080',
-'http://120.78.162.200:12139',
 "http://cuelyine.cn",
 'http://cosmetics.com',
 'http://admin.cuelyine.cn',
