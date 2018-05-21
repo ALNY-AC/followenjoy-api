@@ -15,30 +15,13 @@ class HomeController extends CommonController {
         
         
         // 找导航数据
-        $navList= $Nav->getList();
         $homeData=$Nav->get('0');
-        $where=[];
-        $where['type']=1;
         
-        // ===================================================================================
-        // 找消息数据
-        $data=[];
-        $data['where']=$where;
-        $msgs=$Msg->getList($data);
-        
-        // ===================================================
-        // 组成导航数据
-        for ($i=0; $i < count($navList); $i++) {
-            $nav_id=$navList[$i]['nav_id'];
-            $navList[$i]['data']=$Nav->get($nav_id);
-        }
         
         // ===================================================================================
         // 组装数据
-        $res['msgs']=$msgs;
         $res['carousel']=$carousels;
         $res['homeData']=$homeData;
-        $res['navList']=$navList;
         
         echo json_encode($res);
         

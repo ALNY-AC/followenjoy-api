@@ -5,10 +5,35 @@ class NavModel extends Model {
     
     
     public function getList($data){
+        
         $navList=$this
         ->order('add_time asc')
+        ->where('is_show = 1')
         ->select();
         return $navList;
+    }
+    
+    // 找导航对应的商品
+    public function getGoods($nav_id,$data){
+        
+        $page   =   $data['page']?$data['page']:1;
+        $limit  =   $data['limit']?$data['limit']:10;
+        
+        
+        $NavGoods=D('NavGoods');
+        $where['nav_id']=$nav_id;
+        $navs=$NavGoods->where($where)->select();
+        $ids=[];
+        foreach ($navs as $k => $v) {
+            $ids['goods_id']=$v['goods_id'];
+        }
+        
+        $where=[];
+        $where['goods_id']=['in',$ids];
+        $Goods=D('Goods');
+        $result=$Goods->getList($data,$where);
+        return $result;
+        
     }
     
     
@@ -34,6 +59,7 @@ class NavModel extends Model {
         }
         //找商品
         $NavGoods=D('NavGoods');
+        
         $where['nav_id']=$nav_id;
         $specials=$NavGoods->where($where)->select();
         

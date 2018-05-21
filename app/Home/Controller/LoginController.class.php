@@ -35,7 +35,9 @@ class LoginController extends Controller {
             $testID=[
             // '13914896237',
             // '15727304388',
-            '17621643903'
+            '17621643903',
+            "18751178711",
+            "13251603333",
             ];
             
             if(in_array($user_id,$testID)){

@@ -10,8 +10,30 @@ class GoodsModel extends Model {
     }
     
     public function getList($data=[],$where=[]){
+        
         $page   =   $data['page']?$data['page']:1;
-        $limit  =   $data['limit']?$data['limit']:20;
+        $limit  =   $data['limit']?$data['limit']:10;
+        $field  =   $data['field']?$data['field']:[];
+        
+        
+        $goodsList  =  $this
+        ->order('add_time desc')
+        ->where($where)
+        ->field($field)
+        ->limit(($page-1)*$limit,$limit)
+        ->select();
+        
+        //找 sku 和 tree
+        
+        for ($i=0; $i <count($goodsList) ; $i++) {
+            $goods              =     $goodsList[$i];
+            $goodsList[$i]      =     $this->getGoodsSku($goods);
+        }
+        
+        return $goodsList;
+        
+        
+        
         
         $field=[
         'goods_id',

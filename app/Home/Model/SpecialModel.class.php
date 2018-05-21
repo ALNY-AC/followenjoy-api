@@ -5,33 +5,33 @@ class SpecialModel extends Model {
     
     
     public function getList($data){
-        
-        $page   =   $data['page']?$data['page']:1;
-        $limit  =   $data['limit']?$data['limit']:10;
-        $where['is_small']=0;
-        $specials=$this
-        ->order('sort asc')
-        ->where($where)
-        ->limit(($page-1)*$limit,$limit)
-        ->select();
-        return $specials;
-        
-    }
-    
-    public function getSmallList($data){
-        
-        $limit  =   $data['limit']?$data['limit']:6;
         $where  =   $data['where']?$data['where']:[];
         
-        $where['is_small']=1;
+        $field=[
+        'special_id',
+        'special_title',
+        // 'special_info',
+        'special_logo',
+        'special_head',
+        'goods_type',
+        // 'add_time',
+        // 'edit_time',
+        'content_type',
+        'color',
+        'sort',
+        ];
         
-        $specials=$this
+        $list=$this
         ->order('sort asc')
+        ->field($field)
         ->where($where)
         ->limit($limit)
         ->select();
-        return $specials;
+        return $list;
+        
     }
+    
+    
     
     //获得单个，包括商品等数据
     public function get($special_id){

@@ -34,11 +34,9 @@ class SpecialController extends CommonController{
         
     }
     
-    //单独获得专题数据
-    public function getSmallList(){
-        
+    public function getList(){
         $Special=D('Special');
-        $specials=$Special->getSmallList(I());
+        $specials=$Special->getList(I());
         if($specials){
             $res['res']=count($specials);
             $res['msg']=$specials;
@@ -49,6 +47,7 @@ class SpecialController extends CommonController{
         echo json_encode($res);
         
     }
+    
     public function get(){
         $Special=D('Special');
         $specials=$Special->get(I('special_id'));
