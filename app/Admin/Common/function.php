@@ -64,6 +64,8 @@ function create_xls($data,$filename='simple.xls'){
     ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
         ->setKeywords("office 2007 openxml php")
     ->setCategory("Test result file");
+
+    
     $phpexcel->getActiveSheet()->fromArray($data);
     $phpexcel->getActiveSheet()->setTitle('Sheet1');
     $phpexcel->setActiveSheetIndex(0);

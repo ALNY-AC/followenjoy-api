@@ -22,6 +22,7 @@ class GoodsController extends CommonController{
     public function getPacket(){
         
         
+        
     }
     
     //搜索

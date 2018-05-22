@@ -208,10 +208,8 @@ class OrderModel extends Model {
             ->find();
             // 插入到数据中
             foreach ($supplier as $j => $s) {
-                // $s=!$s?'--':$s;
-                $s=str_replace(',',' ',$s);
-                $s=str_replace('，',' ',$s);
-                $s=preg_replace('/\s*/', '', $s);
+                $s=!$s===""?'--':$s;
+                $s=$s."\t";
                 $value[$j]=$s;
             }
             
@@ -241,11 +239,8 @@ class OrderModel extends Model {
             $snapshot['tax']=$snapshot['tax']/100;
             unset($snapshot['price']);
             foreach ($snapshot as $j => $s) {
-                $s=!$s?'--':$s;
-                $s=str_replace(',',' ',$s);
-                $s=str_replace('，',' ',$s);
-                $s=preg_replace('/\s*/', '', $s);
-                
+                $s=!$s===""?'--':$s;
+                $s=$s."\t";
                 $value[$j]=$s;
             }
             
@@ -271,10 +266,8 @@ class OrderModel extends Model {
             $address['address_name']=$address['name'];
             unset($address['name']);
             foreach ($address as $j => $s) {
-                $s=!$s?'--':$s;
-                $s=str_replace(',',' ',$s);
-                $s=str_replace('，',' ',$s);
-                $s=preg_replace('/\s*/', '', $s);
+                $s=!$s===""?'--':$s;
+                $s=$s."\t";
                 $value[$j]=$s;
             }
             

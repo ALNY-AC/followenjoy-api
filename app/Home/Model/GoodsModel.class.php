@@ -99,6 +99,7 @@ class GoodsModel extends Model {
     //获得一个
     public function get($goods_id,$map=['img_list','sku','tree','class','freight']){
         
+        
         $where=[];
         $where['is_up']=1;
         $where['goods_id']=$goods_id;
@@ -107,6 +108,7 @@ class GoodsModel extends Model {
         if(!$goods){
             return null;
         }
+        
         
         $goods=$this->getGoodsSku($goods,$map,true);
         $goods=toTime([$goods])[0];
@@ -209,13 +211,13 @@ class GoodsModel extends Model {
         if(in_array('class',$map)){
             $where=[];
             $where['class_id']=$goods['goods_class'];
-            $class= $this->$Class->where($where)->find();
+            $class= $this->Class->where($where)->find();
             if($class['super_id']){
                 // ===================================================================================
                 // 有上级，找上级
                 $where=[];
                 $where['class_id']=$class['super_id'];
-                $super=$this->$Class->where($where)->find();
+                $super=$this->Class->where($where)->find();
                 $class['super']=$super;
             }
             $goods['class']=$class;
