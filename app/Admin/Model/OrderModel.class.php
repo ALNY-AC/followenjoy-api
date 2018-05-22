@@ -23,11 +23,10 @@ class OrderModel extends Model {
         if($state!='all'){
             $where['state']=$state;
         }
-        $where['supplier_id']=$supplier_id;
+        $where['supplier_id']=['exp','IS NOT NULL'];
         $where['add_time'] = [['gt',$start_time],['lt',$end_time]];
         
         $orders=$this->where($where)->select();
-        
         
         $arr=[];
         foreach ($orders as $key => $order) {
@@ -53,7 +52,7 @@ class OrderModel extends Model {
         $downloads=  $Download->where($where)->select();
         
         if(!$downloads){
-            ec('没有选择订单！');
+            ec('未找到订单');
             die;
         }
         
@@ -78,7 +77,7 @@ class OrderModel extends Model {
         // ===================================================================================
         // 表格基本数据
         if(!$order_ids){
-            ec('没有选择订单！');
+            ec('没有订单');
             die;
         }
         $where=[];
@@ -100,21 +99,21 @@ class OrderModel extends Model {
         '订单创建时间',
         // ==== 供货商信息
         '供货商名',
-        '供货商公司名',
-        '供货商公司电话',
-        '供货商省份',
-        '供货商城市',
-        '供货商区县',
-        '供货商详细地址',
-        '供货商开户账户',
-        '供货商开户银行',
-        '供货商联系人信息',
-        '供货商联系人姓名',
-        '供货商固定电话',
-        '供货商手机',
-        '供货商邮件',
-        '供货商qq',
-        '供货商微信',
+        // '供货商公司名',
+        // '供货商公司电话',
+        // '供货商省份',
+        // '供货商城市',
+        // '供货商区县',
+        // '供货商详细地址',
+        // '供货商开户账户',
+        // '供货商开户银行',
+        // '供货商联系人信息',
+        // '供货商联系人姓名',
+        // '供货商固定电话',
+        // '供货商手机',
+        // '供货商邮件',
+        // '供货商qq',
+        // '供货商微信',
         // === 商品数据
         '商品ID',
         '商品标题',
@@ -136,7 +135,6 @@ class OrderModel extends Model {
         ];
         // dump($header);
         
-        $header= implode(",",$header);
         // ec($header);
         
         // ===================================================================================
@@ -190,26 +188,30 @@ class OrderModel extends Model {
             $supplier=$Supplier
             ->field([
             'supplier_name',//供货商名
-            'company_name',//公司名
-            'company_tel',//公司电话
-            'company_province',//省份
-            'company_city',//城市
-            'company_county',//区县
-            'company_address_detail',//详细地址
-            'bank_account',//开户账户
-            'bank_name',//开户银行
-            'bank_contacts',//联系人信息
-            'name',//联系人姓名
-            'telephone',//固定电话
-            'phone',//手机
-            'email',//邮件
-            'qq',//qq
-            'weixin',//微信
+            // 'company_name',//公司名
+            // 'company_tel',//公司电话
+            // 'company_province',//省份
+            // 'company_city',//城市
+            // 'company_county',//区县
+            // 'company_address_detail',//详细地址
+            // 'bank_account',//开户账户
+            // 'bank_name',//开户银行
+            // 'bank_contacts',//联系人信息
+            // 'name',//联系人姓名
+            // 'telephone',//固定电话
+            // 'phone',//手机
+            // 'email',//邮件
+            // 'qq',//qq
+            // 'weixin',//微信
             ])
             ->where($where)
             ->find();
             // 插入到数据中
             foreach ($supplier as $j => $s) {
+                // $s=!$s?'--':$s;
+                $s=str_replace(',',' ',$s);
+                $s=str_replace('，',' ',$s);
+                $s=preg_replace('/\s*/', '', $s);
                 $value[$j]=$s;
             }
             
@@ -239,6 +241,11 @@ class OrderModel extends Model {
             $snapshot['tax']=$snapshot['tax']/100;
             unset($snapshot['price']);
             foreach ($snapshot as $j => $s) {
+                $s=!$s?'--':$s;
+                $s=str_replace(',',' ',$s);
+                $s=str_replace('，',' ',$s);
+                $s=preg_replace('/\s*/', '', $s);
+                
                 $value[$j]=$s;
             }
             
@@ -264,15 +271,19 @@ class OrderModel extends Model {
             $address['address_name']=$address['name'];
             unset($address['name']);
             foreach ($address as $j => $s) {
+                $s=!$s?'--':$s;
+                $s=str_replace(',',' ',$s);
+                $s=str_replace('，',' ',$s);
+                $s=preg_replace('/\s*/', '', $s);
                 $value[$j]=$s;
             }
             
             $list[$key]=$value;
         }
         
-        // dump($list);
-        
-        create_csv($list,$header);
+        array_unshift($list,$header);
+        $fileName="订单列表";
+        create_xls($list,$fileName);
         
     }
     
