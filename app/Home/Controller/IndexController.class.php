@@ -19,7 +19,7 @@ use Think\Controller;
 class IndexController extends Controller{
     
     public function index(){
-        echo "随享季1";
+        echo "随享季12";
     }
     
     public function test(){
@@ -82,9 +82,6 @@ class IndexController extends Controller{
             
         }
         
-        
-        dump($list);
-        dump($saveArr);
         
     }
     

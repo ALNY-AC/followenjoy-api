@@ -21,18 +21,24 @@ class NavModel extends Model {
         
         
         $NavGoods=D('NavGoods');
+        $where=[];
         $where['nav_id']=$nav_id;
         $navs=$NavGoods->where($where)->select();
         $ids=[];
         foreach ($navs as $k => $v) {
-            $ids['goods_id']=$v['goods_id'];
+            $ids[]=$v['goods_id'];
         }
         
         $where=[];
         $where['goods_id']=['in',$ids];
         $Goods=D('Goods');
-        $result=$Goods->getList($data,$where);
-        return $result;
+        $list=[];
+        if($ids){
+            $list=$Goods->getList($data,$where);
+        }
+        
+        
+        return $list;
         
     }
     

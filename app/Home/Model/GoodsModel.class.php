@@ -4,9 +4,17 @@ use Think\Model;
 class GoodsModel extends Model {
     
     public  $Goods ;
+    public $SkuTree;
+    public $SkuTreeV;
+    public $Class;
+    
     
     public function _initialize (){
-        $this->Goods=M('goods');
+        
+        $this->SkuTree=D('SkuTree');
+        $this->SkuTreeV=D('SkuTreeV');
+        $this->Class=D('Class');
+        
     }
     
     public function getList($data=[],$where=[]){
@@ -15,56 +23,40 @@ class GoodsModel extends Model {
         $limit  =   $data['limit']?$data['limit']:10;
         $field  =   $data['field']?$data['field']:[];
         
-        
-        $goodsList  =  $this
-        ->order('add_time desc')
-        ->where($where)
-        ->field($field)
-        ->limit(($page-1)*$limit,$limit)
-        ->select();
-        
-        //找 sku 和 tree
-        
-        for ($i=0; $i <count($goodsList) ; $i++) {
-            $goods              =     $goodsList[$i];
-            $goodsList[$i]      =     $this->getGoodsSku($goods);
-        }
-        
-        return $goodsList;
-        
-        
-        
+        $where['is_up']=1;
         
         $field=[
         'goods_id',
         'goods_title',
         'goods_banner',
         'sub_title',
-        'freight_id',
+        // 'freight_id',
         'is_up',
-        'goods_class',
+        // 'goods_class',
         'sort',
-        'is_cross_border',
+        // 'is_cross_border',
         // 'goods_content',
-        'is_unique',
+        // 'is_unique',
         'add_time',
         // 'edit_time'
         ];
         
-        $where['is_up']=1;
-        $goodsList  =  $this
+        
+        $list  =  $this
         ->order('sort desc,add_time desc')
         ->where($where)
         ->field($field)
         ->limit(($page-1)*$limit,$limit)
         ->select();
         //找 sku 和 tree
-        for ($i=0; $i <count($goodsList) ; $i++) {
-            $goods              =     $goodsList[$i];
-            $goodsList[$i]      =     $this->getGoodsSku($goods);
+        
+        
+        for ($i=0; $i <count($list) ; $i++) {
+            $goods              =     $list[$i];
+            $list[$i]      =     $this->getGoodsSku($goods,$map=['img_list','sku','tree'],[]);
         }
         
-        return $goodsList;
+        return $list;
     }
     
     
@@ -141,8 +133,8 @@ class GoodsModel extends Model {
         $where=[];
         $where['goods_title']=['like',$keys,'AND'];
         
-        $goodsList=  $this->getList(I(),$where);
-        return $goodsList===null ? []:$goodsList;
+        $list=  $this->getList(I(),$where);
+        return $list===null ? []:$list;
         
     }
     
@@ -165,6 +157,16 @@ class GoodsModel extends Model {
             $goods['img_list']=$GoodsImg
             ->limit($limit['img_list'])
             ->where($where)
+            ->field(
+            [
+            // 'img_id',
+            'goods_id',
+            'src',
+            'slot',
+            // 'add_time',
+            // 'edit_time',
+            ]
+            )
             ->order('slot asc')
             ->select();
             $goods['goods_head']=count($goods['img_list'])>0?$goods['img_list'][0]['src']:'';
@@ -185,10 +187,7 @@ class GoodsModel extends Model {
         // 找skutree
         if(in_array('tree',$map)){
             
-            $SkuTree=D('sku_tree');
-            $SkuTreeV=D('sku_tree_v');
-            
-            $tree= $SkuTree
+            $tree= $this->SkuTree
             ->limit($limit['img_list'])
             ->where($where)
             ->order('k_s asc')
@@ -197,7 +196,7 @@ class GoodsModel extends Model {
                 //找 tree 的 v
                 $sku_tree_id=$tree[$j]['sku_tree_id'];
                 $where['sku_tree_id']=$sku_tree_id;
-                $v= $SkuTreeV->where($where)->select();
+                $v=$this->SkuTreeV->where($where)->select();
                 $tree[$j]['v']= $v;
             }
             $goods['tree']=$tree;
@@ -208,16 +207,15 @@ class GoodsModel extends Model {
         // 找分类信息
         
         if(in_array('class',$map)){
-            $Class=D('Class');
             $where=[];
             $where['class_id']=$goods['goods_class'];
-            $class=$Class->where($where)->find();
+            $class= $this->$Class->where($where)->find();
             if($class['super_id']){
                 // ===================================================================================
                 // 有上级，找上级
                 $where=[];
                 $where['class_id']=$class['super_id'];
-                $super=$Class->where($where)->find();
+                $super=$this->$Class->where($where)->find();
                 $class['super']=$super;
             }
             $goods['class']=$class;

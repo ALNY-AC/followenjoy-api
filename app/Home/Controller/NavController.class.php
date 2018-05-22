@@ -49,7 +49,7 @@ class NavController extends CommonController{
     public function getGoods(){
         $Nav=D('Nav');
         $result=$Nav->getGoods(I('nav_id'),I());
-        if($result){
+        if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{

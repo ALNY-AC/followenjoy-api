@@ -28,14 +28,14 @@ class GoodsController extends CommonController{
     public function search(){
         
         $Goods=D('Goods');
-        $goodsList  =  $Goods->search($data);
+        $list  =  $Goods->search($data);
         
-        if($goodsList!==false){
-            $res['res']=count($goodsList);
-            $res['msg']=$goodsList;
+        if($list!==false){
+            $res['res']=count($list);
+            $res['msg']=$list;
         }else{
             $res['res']=-1;
-            $res['msg']=$goodsList;
+            $res['msg']=$list;
         }
         echo json_encode($res);
     }
