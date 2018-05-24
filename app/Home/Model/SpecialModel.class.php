@@ -43,8 +43,8 @@ class SpecialModel extends Model {
         
         //获得商品、专题关联表
         $SpecialGoods=D('SpecialGoods');
-        $goodss=$SpecialGoods->where($where)->select();
-        
+        $goodss=$SpecialGoods->Distinct(true)->where($where)->select();
+
         $Goods=D('Goods');
         
         $special['goodsList']=[];
