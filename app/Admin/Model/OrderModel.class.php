@@ -86,16 +86,17 @@ class OrderModel extends Model {
         
         $list=toTime($list);
         
+        
         $header=[
         '订单号',
-        '订单交易快照id',
+        // '订单交易快照id',
         '订单买家id',
-        '订单地址id',
+        // '订单地址id',
         '订单金额',
         '订单状态',
         '订单状态信息',
         '订单支付号',
-        '订单供货商id',
+        // '订单供货商id',
         '订单创建时间',
         // ==== 供货商信息
         '供货商名',
@@ -117,7 +118,7 @@ class OrderModel extends Model {
         // === 商品数据
         '商品ID',
         '商品标题',
-        '商品skuID',
+        '商品SKU编码',
         '商品规格1',
         '商品规格2',
         '商品规格3',
@@ -130,7 +131,7 @@ class OrderModel extends Model {
         '城市',
         '区县',
         '详细地址',
-        '编号',
+        // '编号',
         '收货人姓名',
         ];
         // dump($header);
@@ -144,6 +145,8 @@ class OrderModel extends Model {
             
             
             unset($value['edit_time']);
+            unset($value['snapshot_id']);
+            unset($value['address_id']);
             
             
             // ===================================================================================
@@ -180,6 +183,7 @@ class OrderModel extends Model {
             array_insert($value,$offset+1,['state_label'=>$state_label]);
             
             
+            
             // ===================================================================================
             // 获得供货商信息
             $supplier_id=$value['supplier_id'];
@@ -209,10 +213,8 @@ class OrderModel extends Model {
             // 插入到数据中
             foreach ($supplier as $j => $s) {
                 $s=!$s===""?'--':$s;
-                $s=$s."\t";
                 $value[$j]=$s;
             }
-            
             
             // ===================================================================================
             // 快照数据
@@ -230,6 +232,7 @@ class OrderModel extends Model {
             'tax',// 税率
             'price',// 单价
             'count',// 数量
+            'amount',// 代入计算量
             ])
             ->where($where)
             ->find();
@@ -240,7 +243,6 @@ class OrderModel extends Model {
             unset($snapshot['price']);
             foreach ($snapshot as $j => $s) {
                 $s=!$s===""?'--':$s;
-                $s=$s."\t";
                 $value[$j]=$s;
             }
             
@@ -258,7 +260,7 @@ class OrderModel extends Model {
             'city',//城市
             'county',//区县
             'address_detail',//详细地址
-            'area_code',//编号
+            // 'area_code',//编号
             ])
             ->where($where)
             ->find();
@@ -267,8 +269,12 @@ class OrderModel extends Model {
             unset($address['name']);
             foreach ($address as $j => $s) {
                 $s=!$s===""?'--':$s;
-                $s=$s."\t";
                 $value[$j]=$s;
+            }
+            
+            foreach ($value as $a => $b) {
+                $b=$b."\t";
+                $value[$a]=$b;
             }
             
             $list[$key]=$value;

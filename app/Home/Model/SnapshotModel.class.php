@@ -93,7 +93,7 @@ class SnapshotModel extends Model {
             $add['earn_price']=$sku['earn_price'];
             $add['purchase_price']=$sku['purchase_price'];
             $add['shop_code']=$sku['shop_code'];
-            
+            $add['amount']=$sku['amount'];
             
             $add['user_id']=session('user_id');
             $add['count']=$count+0;

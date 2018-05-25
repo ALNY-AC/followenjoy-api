@@ -121,7 +121,6 @@ class OrderModel extends Model {
         $logistics['add_time']=time();//添加时间
         $logistics['edit_time']=time();//编辑时间
         
-        
         $data['logisticsData']=$logistics;
         
         // ===================================================================================

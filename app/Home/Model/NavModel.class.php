@@ -50,25 +50,6 @@ class NavModel extends Model {
         $where['nav_id']=$nav_id;
         $nav=$this->where($where)->find();
         
-        //找专题
-        $NavSpecial=D('NavSpecial');
-        $where['nav_id']=$nav_id;
-        $specials=$NavSpecial->where($where)->select();
-        $Special=D('Special');
-        $nav['specials']=[];
-        for ($i=0; $i < count($specials); $i++) {
-            $special_id=$specials[$i]['special_id'];
-            $where=[];
-            $where['special_id']=$special_id;
-            $special=$Special->where($where)->find();
-            $nav['specials'][]=$special;
-        }
-        //找商品
-        $NavGoods=D('NavGoods');
-        
-        $where['nav_id']=$nav_id;
-        $specials=$NavGoods->where($where)->select();
-        
         $Goods=D('Goods');
         
         

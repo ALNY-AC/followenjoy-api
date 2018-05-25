@@ -65,6 +65,8 @@ class UseController extends CommonController {
                         $img_url = 'Public/Upload/' . I('post.src') . $info['savepath'] . $info['savename'];
                     }
                     
+                    // $img_url= substr($img_url,1);
+                    
                     $result['res'] = 1;
                     $result['msg'] = [];
                     $result['msg']['info'] = '成功';

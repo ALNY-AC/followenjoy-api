@@ -13,10 +13,8 @@ class HomeController extends CommonController {
         $Nav=D('Nav');
         $Msg=D('Msg');
         
-        
         // 找导航数据
         $homeData=$Nav->get('0');
-        
         
         // ===================================================================================
         // 组装数据

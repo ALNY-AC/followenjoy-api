@@ -46,6 +46,7 @@ class BannerModel extends Model {
         $list=$this->bulider($list);
         return $list;
     }
+    
     public function del($ids){
         $where=[];
         $where['banner_id']=['in',getIds($ids)];
@@ -55,6 +56,7 @@ class BannerModel extends Model {
     public function saveData($ids,$data){
         $where=[];
         $where['banner_id']=['in',getIds($ids)];
+        unset($data['add_time']);
         return $this->where($where)->save($data);
     }
     

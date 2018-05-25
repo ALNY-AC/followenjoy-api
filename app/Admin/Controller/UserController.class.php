@@ -26,6 +26,7 @@ class UserController extends CommonController{
         $where=I('where')?I('where'):[];
         
         
+        
         $key=I('key');
         if($key){
             
@@ -176,7 +177,6 @@ class UserController extends CommonController{
         
     }
     
-    
     public function saveData(){
         $User=D('User');
         $where=[];
@@ -194,7 +194,6 @@ class UserController extends CommonController{
         }
         echo json_encode($res);
     }
-    
     
     public function save(){
         
@@ -238,7 +237,6 @@ class UserController extends CommonController{
         echo json_encode($res);
     }
     
-    
     public function del(){
         
         $User=D('User');
@@ -254,6 +252,10 @@ class UserController extends CommonController{
         
         echo json_encode($res);
     }
+    
+    
+    
+    
     
     
     

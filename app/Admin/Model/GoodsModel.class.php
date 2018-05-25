@@ -163,8 +163,8 @@ class GoodsModel extends Model {
             $goodsList[$i]      =     $this->getGoodsSku($goods);
         }
         
-        return $goodsList;
         
+        return $goodsList;
         
     }
     

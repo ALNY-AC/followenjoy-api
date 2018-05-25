@@ -142,7 +142,6 @@ class VIP{
     
     function __construct ($conf=false,$sub){
         
-        
         $this->conf=$conf;
         if($conf){
             $this->userId=$conf['userId'];
@@ -153,7 +152,6 @@ class VIP{
         $this->getVipConf();
         //初始化此用户
         $this->init();
-        
         
         if(isset($conf['isDebug'])){
             $this->setDebug($conf['isDebug']);
@@ -167,7 +165,6 @@ class VIP{
         $this->initSuper();
         
     }
-    
     
     /**
     * 获得此vip的数据
@@ -217,7 +214,6 @@ class VIP{
         if($super){
             //当上级存在
             //存在就创建一个上级的对象
-            
             $conf=[];
             $conf['userId']= $super['super_id'];
             
@@ -626,7 +622,6 @@ class VIP{
         
         //==============================================更多的流程==============================================
         //无论咋样，先看看有没有上级银牌，让上级银牌的上级得钱
-        
         
         //当前用户是一级VIP的 【邀人得钱奖】
         if($this->level==1){

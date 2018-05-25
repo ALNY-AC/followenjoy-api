@@ -152,6 +152,8 @@ class UserController extends CommonController{
         $vip->setWriteDatabase(false);
         $vipInfo=null;
         
+        $user['user_vip_level']=$user['user_vip_level']+0;
+        
         if($user['user_vip_level']>0){
             //是会员
             //初始化vip对象
@@ -164,6 +166,7 @@ class UserController extends CommonController{
         }
         $user['vipInfo']=$vipInfo;
         
+        
         if($user){
             $res['res']=1;
             $res['msg']=$user;
@@ -175,5 +178,8 @@ class UserController extends CommonController{
         echo json_encode($res);
         
     }
+
+    
+    
     
 }
