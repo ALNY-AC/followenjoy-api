@@ -41,7 +41,8 @@ class SnapshotController extends CommonController{
         $goods_id=I('goods_id');
         $sku_id=I('sku_id');
         $count=I('count');
-        $snapshot_id=$Snapshot->create($goods_id,$sku_id,$count);
+        $share_id=I('share_id');
+        $snapshot_id=$Snapshot->create($goods_id,$sku_id,$count,$share_id);
         
         if($snapshot_id){
             $res['res']=1;
@@ -54,6 +55,5 @@ class SnapshotController extends CommonController{
         echo json_encode($res);
         
     }
-    
     
 }

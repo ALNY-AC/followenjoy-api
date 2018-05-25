@@ -43,7 +43,7 @@ class SnapshotModel extends Model {
     
     
     //添加一个快照信息
-    public function create($goods_id,$sku_id,$count=1){
+    public function create($goods_id,$sku_id,$count=1,$share_id=''){
         
         $Sku=D('Sku');
         $Goods=D('goods');
@@ -60,7 +60,7 @@ class SnapshotModel extends Model {
         //如果添加过就不用再次添加
         if(!$result){
             
-            //未添加.
+            //未添加
             //==================================================================
             //取得sku
             $where=[];
@@ -89,6 +89,8 @@ class SnapshotModel extends Model {
             $add['price']=$sku['price'];
             
             $add['is_unique']=$goods['is_unique'];//是否是499商品
+            // 加分享id
+            $add['share_id']=$share_id;//share_id
             
             $add['earn_price']=$sku['earn_price'];
             $add['purchase_price']=$sku['purchase_price'];
@@ -107,7 +109,10 @@ class SnapshotModel extends Model {
             $snapshot_id=$result['snapshot_id'];
             $where=[];
             $where['snapshot_id']=$snapshot_id;
-            $this->where($where)->setInc('count',$count);
+            $save=[];
+            $save['count']=$count+0;
+            $save['share_id']=$share_id;
+            $this->where($where)->save($save);
         }
         
         return $snapshot_id;

@@ -134,7 +134,7 @@ class IndexController extends Controller{
         Vendor('VIP.VipPlus');
         
         $conf=[];
-        $conf['userId']='2';
+        $conf['userId']='10';
         $conf['isDebug']=true;
         $conf['isSave']=false;
         

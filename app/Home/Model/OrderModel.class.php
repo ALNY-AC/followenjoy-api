@@ -142,6 +142,7 @@ class OrderModel extends Model {
         $orderData['order_id']=$order_id;//订单号
         $orderData['snapshot_id']=$snapshot_id;//快照id
         $orderData['user_id']=$user_id;//买家id
+        $orderData['share_id']=$snapshot['share_id'];//分享人id
         $orderData['address_id']=$address['address_id'];//地址库id
         $orderData['price']=$price;//应付金额（计算商品总价且优惠后的价格）
         $orderData['state']=1;//状态，默认是1
@@ -185,7 +186,6 @@ class OrderModel extends Model {
         $address_id=$data['address_id'];//地址id
         $snapshot_ids=$data['snapshot_id'];//快照id数组
         $coupon_id=$data['coupon_id'];//优惠券
-        $share_id=$data['share_id'];//分享人id，499商品用，会当做上下级关联表的id用。
         // share_id
         
         // ===================================================================================
@@ -259,7 +259,6 @@ class OrderModel extends Model {
         $payData['user_id']=$user_id;// 买家id
         $payData['price']=$total;// 需要支付的金额，已经优惠后的价格，实际需要支付的价格
         $payData['state']=0;//支付状态,0：未支付，1：已支付
-        $payData['share_id']=$share_id;//分享人号
         $payData['pay_type']=$pay_type;//支付类型，1：支付宝支付，2：微信支付，3：余额支付
         $payData['add_time']=time();
         $payData['edit_time']=time();
@@ -299,7 +298,6 @@ class OrderModel extends Model {
     public function pay($pay_id){
         
         
-        
         // ===================================================================================
         // 创建模型
         $Pay=D('Pay');
@@ -325,7 +323,6 @@ class OrderModel extends Model {
         if($pay_type=='1'){
             // 支付宝
         }
-        
         
     }
     
@@ -414,6 +411,11 @@ class OrderModel extends Model {
             $where['sku_id']=$sku_id;
             $Sku->where($where)->setDec('stock_num',$count);
         }
+        
+        
+        
+        $Vip=D('Vip');
+        $Vip->销售佣金奖($pay_id);
         
         return true;
     }

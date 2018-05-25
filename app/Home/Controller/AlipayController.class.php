@@ -209,6 +209,8 @@ class AlipayController extends Controller{
                     $Sku->where($where)->setDec('stock_num',$count);
                 }
                 
+                $Vip=D('Vip');
+                $Vip->销售佣金奖($out_trade_no);
                 
             }
             echo 'success';
