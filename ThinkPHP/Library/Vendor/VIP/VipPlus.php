@@ -28,6 +28,8 @@ class VipPlus{
     public $管理奖金=0;
     public $管理奖金收益比=0;
     public $N层经理节点新增奖=0;
+    public $销售收益奖金比=0;
+    public $管理奖金收益的收益比=0;
     
     
     public function VipPlus ($conf=false,$sub){
@@ -104,6 +106,7 @@ class VipPlus{
         $this->管理奖金收益比=$this->vipConf['管理奖金收益比'];//
         $this->管理奖金收益的收益比=$this->vipConf['管理奖金收益的收益比'];//
         $this->N层经理节点新增奖=$this->vipConf['N层经理节点新增奖'];//
+        $this->销售收益奖金比=$this->vipConf['销售收益奖金比'];//
         
     }
     
@@ -179,7 +182,7 @@ class VipPlus{
             // 是会员
             
             if($this->isDebug){
-                ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  【 出货得佣金 】");
+                ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：【 出货得佣金 】");
                 ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】得到销售佣金：$佣金 ￥");
             }
             $this->money+=$佣金;
@@ -204,7 +207,7 @@ class VipPlus{
         
         if($this->isDebug){
             
-            ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  【 得佣金收益 】");
+            ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：【 得佣金收益 】");
             ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】得到佣金收益比：$this->佣金收益比");
             ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】得到佣金收益：$佣金收益 ￥");
             
@@ -212,16 +215,15 @@ class VipPlus{
         
         $this->saveMoney();
         $this->createProfit($佣金收益,'收入',"[佣金收益]:获得佣金收益 [$佣金收益] ￥");
+        
         if($this->level==2){
             // 如果是经理
             // 上级的最近的一个总监得到30%
             $super=$this->querySuper(3);
             if($super){
-                if($super->level==3){
-                    // 得到佣金收益的30%
-                    // 总监获得所有层经理的收益的返利
-                    $super->总监获得所有层经理的收益的返利($佣金收益);
-                }
+                // 得到佣金收益的30%
+                // 总监获得所有层经理的佣金收益返利（佣金收益奖金）
+                $super->总监获得所有层经理的佣金收益返利（佣金收益奖金）($佣金收益);
                 
             }
             
@@ -230,60 +232,59 @@ class VipPlus{
         
         
         if($this->level==1 && $this->getSuper()){
-            if($this->getSuper()->level>1){
-                $this->getSuper()->总监或经理得到佣金收益的返利($佣金收益);
+            if($this->getSuper()->level>=2){
+                $this->getSuper()->总监或经理得到佣金收益奖金($佣金收益);
             }
         }
         
     }
     
-    public function 总监或经理得到佣金收益的返利($佣金收益){
+    
+    
+    public function 总监或经理得到佣金收益奖金($佣金收益){
         // 佣金收益比返利比
         if($this->level>=2){
             $佣金收益的返利=$佣金收益*$this->佣金收益比返利比;
             if($this->isDebug){
                 
-                ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  【 总监或经理得到佣金收益的返利 (佣金奖金收益)】");
+                ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  【 总监课时费 】");
                 ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  该用户当前的余额：$this->money ￥");
                 ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  该用户可以得到的【 佣金收益比返利比 】：$this->佣金收益比返利比");
                 ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  该用户可以得到的【 佣金收益的返利 】：$佣金收益的返利 ￥");
-                
             }
-            $this->course_hours+= $佣金收益的返利;
-            $this->saveCourseHours();
-            $this->createProfit($佣金收益的返利,'收入',"[佣金收益的返利]:获得佣金收益的返利 [$佣金收益的返利] ￥");
+            $this->money+= $佣金收益的返利;
+            $this->saveMoney();
+            $this->createProfit($佣金收益的返利,'收入',"[佣金收益的返利]:获得佣金收益的返利(佣金收益奖) [$佣金收益的返利] ￥");
             if($this->getSuper() && $this->getSuper()->level==3){
                 // 保存到课时里
-                $this->getSuper()->总监获得所有层经理的收益的返利($佣金收益的返利);
+                $this->getSuper()->总监获得所有层经理的佣金收益返利（佣金收益奖金）($佣金收益的返利);
             }
         }
         
+        
     }
     
-    
-    public function 总监获得所有层经理的收益的返利($佣金奖金收益){
+    public function 总监获得所有层经理的佣金收益返利（佣金收益奖金）($佣金奖金收益){
         
         // 存到单独账户
         if($this->level==3){
             
             $课时费=$this->管理奖金收益的收益比*$佣金奖金收益;
-            $this->money+=$课时费;
+            $this->course_hours+=$课时费;
             
             if($this->isDebug){
                 
-                ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  【 总监获得所有层经理的收益的返利 】");
+                ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  【 总监获得所有层经理的佣金收益返利（佣金收益奖金）】");
                 ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  该用户当前的余额：$this->money ￥");
                 ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  该用户可以得到的【 管理奖金收益的收益比 】：$this->管理奖金收益的收益比 ");
                 ec(" >== 用户【$this->level | $this->vip_name | $this->userName : $this->userId 】：  该用户可以得到的【 课时费 】：$课时费 ￥");
                 
             }
             
-            $this->saveMoney();
+            $this->saveCourseHours();
             $this->createProfit($课时费,'收入',"[课时]:得到课时 [$课时费] ￥");
             
         }
-        
-        
         
     }
     
@@ -447,7 +448,7 @@ class VipPlus{
             // 有管理奖金，就要查找一下是否有人可以获得 管理奖金收益
             // 首先让同样的上级取得收益
             if($this->getSuper()->level===$this->level){
-                $this->管理奖金收益($this->管理奖金);
+                $this->getSuper()->管理奖金收益($this->管理奖金);
             }
             
         }
@@ -484,7 +485,7 @@ class VipPlus{
             if($总监){
                 // 上面有个总监
                 // 让这个总监得到 管理奖金收益的收益
-                $总监->得到经理管理奖金收益的比（课时费）($管理奖金收益);
+                $总监->总监获得所有层经理的佣金收益返利（佣金收益奖金）($管理奖金收益);
                 
                 
             }
@@ -510,6 +511,7 @@ class VipPlus{
             }
             
             $this->saveMoney();
+            // 总监获得所有层经理的佣金收益返利（佣金收益奖金）
             $this->createProfit($管理奖金收益的收益,'收入',"[管理奖金收益的收益]:得到经理管理奖金收益的比（课时费） [$管理奖金收益的收益] ￥");
             
         }

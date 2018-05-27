@@ -328,7 +328,6 @@ class OrderModel extends Model {
     
     //余额支付
     public function balancePayment($pay_id){
-        
         // ===================================================================================
         // 创建模型
         $Pay=D('Pay');
@@ -339,7 +338,6 @@ class OrderModel extends Model {
         $where=[];
         $where['pay_id']=$pay_id;
         $pay=$Pay->where($where)->find();
-        
         // ===================================================================================
         // 取得订单金额
         $price=$pay['price'];

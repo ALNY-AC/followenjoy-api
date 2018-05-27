@@ -21,8 +21,8 @@ class ProfitModel extends Model {
     public function create($data){
         $profit_id=getMd5('profit');
         $data['profit_id']=$profit_id;
-        $data['eidt_time']=time();
         $data['add_time']=time();
+        $data['edit_time']=time();
         $this->add($data);
         return $this->where(["profit_id"=>$profit_id])->find();
     }

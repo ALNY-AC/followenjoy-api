@@ -4,7 +4,7 @@ use Think\Model;
 class VipModel extends Model {
     
     public function 销售佣金奖($pay_id){
-        $vip=new \VipPlus($conf);
+        Vendor('VIP.VipPlus');
         
         $Order=D('Order');
         $Goods=D('Goods');
@@ -12,7 +12,6 @@ class VipModel extends Model {
         $Snapshot=D('Snapshot');
         // ===================================================================================
         // 找订单数据
-        
         
         
         $order=$Order->where(['pay_id'=>$pay_id])->select();
@@ -25,11 +24,11 @@ class VipModel extends Model {
         
         // ===================================================================================
         // 找快照数据
-        
+        // http://192.168.1.251:8080/#/goodsInfo?goods_id=620&share_id=13914896237
         if($snapshot_ids){
             
             $where=[];
-            $where['snapshot_id']=['in',$snapshot_id];
+            $where['snapshot_id']=['in',$snapshot_ids];
             $snapshot = $Snapshot->where($where)->select();
             
             // 取出所有的佣金
@@ -77,8 +76,6 @@ class VipModel extends Model {
                             $save['user_vip_level']=1;
                             $User->where($whereFS)->save($save);
                         }
-                        
-                        
                     }
                     
                 }
@@ -90,16 +87,17 @@ class VipModel extends Model {
     }
     
     public function 团队发展奖($邀请人的id,$被邀请人的id){
+        Vendor('VIP.VipPlus');
         
         $conf=[];
         $conf['userId']=$邀请人的id;
-        $conf['isDebug']=true;
-        $conf['isSave']=false;
+        $conf['isDebug']=false;
+        $conf['isSave']=true;
         $vip=new \VipPlus($conf);
         
         $conf['userId']=$被邀请人的id;
-        $conf['isDebug']=true;
-        $conf['isSave']=false;
+        $conf['isDebug']=false;
+        $conf['isSave']=true;
         $sub=new \VipPlus($conf);
         
         $vip->获得邀人得钱奖($sub);
