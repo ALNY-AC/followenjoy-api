@@ -261,11 +261,12 @@ class GoodsModel extends Model {
         // 找图片
         if(in_array('img_list',$map)){
             $GoodsImg=D('goods_img');
-            $goods['img_list']=$GoodsImg
+            $img_list=$GoodsImg
             ->limit($limit['img_list'])
             ->where($where)
             ->order('slot asc')
             ->select();
+            $goods['img_list']=$img_list?$img_list:[];
             $goods['goods_head']=count($goods['img_list'])>0?$goods['img_list'][0]['src']:'';
         }
         
@@ -275,8 +276,9 @@ class GoodsModel extends Model {
             $Sku=D('sku');
             $skus= $Sku
             ->where($where)
+            ->order('price asc,stock_num desc')
             ->select();
-            $goods['sku']=$skus;
+            $goods['sku']=$skus?$skus:[];
         }
         
         // ===================================================================================
@@ -285,7 +287,6 @@ class GoodsModel extends Model {
             
             $SkuTree=D('sku_tree');
             $SkuTreeV=D('sku_tree_v');
-            
             $tree= $SkuTree
             ->where($where)
             ->order('k_s asc')
@@ -308,7 +309,9 @@ class GoodsModel extends Model {
             $Class=D('Class');
             $where=[];
             $where['class_id']=$goods['goods_class'];
-            $class=$Class->where($where)->find();
+            $class=$Class
+            ->where($where)
+            ->find();
             if($class['super_id']){
                 // ===================================================================================
                 // 有上级，找上级

@@ -109,7 +109,6 @@ class GoodsModel extends Model {
             return null;
         }
         
-        
         $goods=$this->getGoodsSku($goods,$map,true);
         $goods=toTime([$goods])[0];
         //找是否收藏
@@ -120,6 +119,36 @@ class GoodsModel extends Model {
         $collection=$model->where($where)->find();
         
         $goods['is_collection']=!($collection==null);
+        
+        //判断是不是限时购商品
+        $TimeGoods=D('TimeGoods');
+        $Time=D('Time');
+        $where=[];
+        $where['goods_id'] = $goods_id;
+        
+        $timeGoods=$TimeGoods->where($where)->find();
+        $time_id=$timeGoods['time_id'];
+        
+        $where=[];
+        $where['time_id']=$time_id;
+        
+        $time=$Time
+        ->where($where)
+        ->find();
+        
+        if($time){
+            //参加了限时购商品
+            //判断过期
+            $time['qj_time']=$time['end_time']-time();
+            
+            
+            $time['end_time_text']=date('Y-m-d H:i:s',$time['end_time']);
+            $time['start_time_text']=date('Y-m-d H:i:s',$time['start_time']);
+            
+            $goods['time']=$time;
+            
+        }
+        
         
         return $goods;
     }

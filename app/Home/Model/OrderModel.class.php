@@ -349,10 +349,8 @@ class OrderModel extends Model {
         $where['user_id']=session('user_id');
         $User->where($where)->setDec('user_money',$price);
         
-        
         // ===================================================================================
         // 分销处理
-        
         
         // ===================================================================================
         // 设置订单状态
@@ -368,7 +366,6 @@ class OrderModel extends Model {
         $where['user_id']=session('user_id');
         $where['pay_id']=$pay_id;
         $this->where($where)->save($save);
-        
         
         // ===================================================================================
         // 设置支付单状态
@@ -409,8 +406,6 @@ class OrderModel extends Model {
             $where['sku_id']=$sku_id;
             $Sku->where($where)->setDec('stock_num',$count);
         }
-        
-        
         
         $Vip=D('Vip');
         $Vip->销售佣金奖($pay_id);

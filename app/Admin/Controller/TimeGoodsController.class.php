@@ -1,8 +1,8 @@
 <?php
 /**
 * +----------------------------------------------------------------------
-* 创建日期：2018年4月9日13:59:00
-* 最新修改时间：2018年4月9日13:59:00
+* 创建日期：2018年5月27日23:32:56
+* 最新修改时间：2018年5月27日23:32:56
 * +----------------------------------------------------------------------
 * https：//github.com/ALNY-AC
 * +----------------------------------------------------------------------
@@ -10,32 +10,17 @@
 * +----------------------------------------------------------------------
 * QQ:1173197065
 * +----------------------------------------------------------------------
-* #####限时购控制器#####
+* #####限时购商品控制器#####
 * @author 代码狮
 *
 */
 namespace Admin\Controller;
 use Think\Controller;
-class TimeController extends CommonController{
-    
+class TimeGoodsController extends CommonController{
     
     public function create(){
-        $Time=D('Time');
-        $result=$Time->create(I('data'));
-        if($result){
-            $res['res']=1;
-            $res['msg']=$result;
-        }else{
-            $res['res']=-1;
-            $res['msg']=$result;
-        }
-        echo json_encode($res);
-        
-    }
-    
-    public function get(){
-        $Time=D('Time');
-        $result=$Time->get(I('time_id'));
+        $TimeGoods=D('TimeGoods');
+        $result=$TimeGoods->create(I('data'));
         if($result){
             $res['res']=1;
             $res['msg']=$result;
@@ -47,12 +32,13 @@ class TimeController extends CommonController{
     }
     
     public function getList(){
-        $Time=D('Time');
+        $TimeGoods=D('TimeGoods');
+        
         $data=I();
         $data['where']=getKey();
-        $result=$Time->getList($data);
-        $res['count']=$Time->where($data['where'])->count()+0;
+        $result=$TimeGoods->getList($data);
         
+        $res['count']=$TimeGoods->where($data['where'])->count()+0;
         if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
@@ -61,12 +47,12 @@ class TimeController extends CommonController{
             $res['msg']=$result;
         }
         echo json_encode($res);
-        
     }
     
     public function getAll(){
-        $Time=D('Time');
-        $result=$Time->getAll(I());
+        $TimeGoods=D('TimeGoods');
+        $data=I();
+        $result=$TimeGoods->getAll($data);
         if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
@@ -75,27 +61,11 @@ class TimeController extends CommonController{
             $res['msg']=$result;
         }
         echo json_encode($res);
-        
-    }
-    
-    public function saveData(){
-        $Time=D('Time');
-        $result=$Time->saveData(I('time_id'),I('data'));
-        if($result!==false){
-            $res['res']=1;
-            $res['msg']=$result;
-        }else{
-            $res['res']=-1;
-            $res['msg']=$result;
-            
-        }
-        echo json_encode($res);
-        
     }
     
     public function del(){
-        $Time=D('Time');
-        $result=$Time->del(I('ids'));
+        $TimeGoods=D('TimeGoods');
+        $result=$TimeGoods->del(I('goods_id'),I('time_id'));
         if($result){
             $res['res']=1;
             $res['msg']=$result;
@@ -104,10 +74,7 @@ class TimeController extends CommonController{
             $res['msg']=$result;
         }
         echo json_encode($res);
-        
     }
-    
-    
     
     
 }

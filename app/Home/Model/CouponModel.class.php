@@ -134,7 +134,6 @@ class CouponModel extends Model {
     private function validate($coupon, $class_id, $total){
         $Class=D('Class');
         
-        
         // 先判断商品分区（类型）
         //判断是否过期或者已经使用
         if($coupon['state']==2 || $coupon['state']==0){
@@ -156,6 +155,7 @@ class CouponModel extends Model {
         }
         
         
+        
         if($coupon['class_id']!=$class_id){
             //分区不正确，直接返回0。
             // 找这个分区的上级分区，看看对不对
@@ -174,7 +174,8 @@ class CouponModel extends Model {
             }
             
         }
-        if($isClass){
+        
+        if(!$coupon['class_id'] || $isClass){
             
             // 判断是不是满减券
             if($coupon['denominations']>0){

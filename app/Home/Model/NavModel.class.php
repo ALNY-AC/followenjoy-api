@@ -37,7 +37,6 @@ class NavModel extends Model {
             $list=$Goods->getList($data,$where);
         }
         
-        
         return $list;
         
     }

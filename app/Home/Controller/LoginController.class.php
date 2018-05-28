@@ -38,6 +38,7 @@ class LoginController extends Controller {
             "18751178711",
             "13251603333",
             "15727304388",
+            "1",
             ];
             
             

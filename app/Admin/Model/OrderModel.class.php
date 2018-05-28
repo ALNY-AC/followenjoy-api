@@ -90,6 +90,7 @@ class OrderModel extends Model {
         $header=[
         '订单号',
         // '订单交易快照id',
+        '分享人id',
         '订单买家id',
         // '订单地址id',
         '订单金额',
@@ -143,10 +144,7 @@ class OrderModel extends Model {
         
         foreach ($list as $key => $value) {
             
-            
             unset($value['edit_time']);
-            unset($value['snapshot_id']);
-            unset($value['address_id']);
             
             
             // ===================================================================================
@@ -276,7 +274,10 @@ class OrderModel extends Model {
                 $b=$b."\t";
                 $value[$a]=$b;
             }
-            
+            unset($value['snapshot_id']);
+            unset($value['address_id']);
+            unset($value['supplier_id']);
+            unset($value['amount']);
             $list[$key]=$value;
         }
         

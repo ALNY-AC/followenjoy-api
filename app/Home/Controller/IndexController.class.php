@@ -19,7 +19,13 @@ use Think\Controller;
 class IndexController extends Controller{
     
     public function index(){
-        echo "随享季12";
+        
+        $Goods=D('Goods');
+        
+        
+        $list=$Goods->getField('goods_id',true);
+        dump($list);
+        
     }
     
     
