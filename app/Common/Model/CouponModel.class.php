@@ -29,7 +29,7 @@ class CouponModel extends Model {
     
     public function 取得新499会员大礼包($user_id){
         if(!$user_id){
-            return false;
+            return;
         }
         // ===================================================================================
         // 满场通用
@@ -77,7 +77,6 @@ class CouponModel extends Model {
         $coupon=array_merge($coupon,$couponArr);
         
         foreach ($coupon as $k => $v) {
-            
             $v['user_id']=$user_id;
             $coupon[$k]=$v;
         }
@@ -87,7 +86,7 @@ class CouponModel extends Model {
     
     public function 派发新用户大礼包($user_id){
         if(!$user_id){
-            return false;
+            return;
         }
         $coupon=$this->取得新用户大礼包($user_id);
         
@@ -96,10 +95,10 @@ class CouponModel extends Model {
             $v['edit_time']=time();
             $coupon[$k]=$v;
         }
-        if(false){
-            $this->where('1=1')->delete();
-            dump($coupon);
-        }
+        // if(false){
+        //     $this->where('1=1')->delete();
+        //     dump($coupon);
+        // }
         $this->addAll($coupon);
         
     }
@@ -107,7 +106,7 @@ class CouponModel extends Model {
     
     public function 取得新用户大礼包($user_id){
         if(!$user_id){
-            return false;
+            return;
         }
         $coupon=[];
         

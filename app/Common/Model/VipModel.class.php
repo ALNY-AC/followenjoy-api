@@ -42,12 +42,35 @@ class VipModel extends Model {
                 $super=$UserSuper->where(['user_id'=>$user_id])->find();
                 $super_id=$super['super_id'];
                 
-                $conf=[];
-                $conf['userId']=$super_id;
-                $conf['isDebug']=false;
-                $conf['isSave']=true;
-                $vip=new \VipPlus($conf);
-                $vip->出货得佣金($earn_price);
+                
+                // ===================================================================================
+                $where=[];
+                $where['user_id']= $user_id;
+                $user=$User->where($where)->find();
+                $userLevel=$user['user_vip_level']+0;
+                if($userLevel<=0){
+                    // ===================================================================================
+                    // 当前为客户
+                    $conf=[];
+                    $conf['userId']=$super_id;
+                    $conf['isDebug']=false;
+                    $conf['isSave']=true;
+                    $vip=new \VipPlus($conf);
+                    $vip->出货得佣金($earn_price);
+                    
+                }else{
+                    
+                    // 当前为会员
+                    $conf=[];
+                    $conf['userId']=$user_id;
+                    $conf['isDebug']=false;
+                    $conf['isSave']=true;
+                    $vip=new \VipPlus($conf);
+                    $vip->出货得佣金($earn_price);
+                    
+                }
+                
+                
                 
                 // 找找看看这个商品是不是特殊商品
                 
