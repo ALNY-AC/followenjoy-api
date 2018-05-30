@@ -182,6 +182,7 @@ class CouponModel extends Model {
     public function 取得基本模组(){
         $coupon=[];
         $coupon['coupon_id']=getMd5('coupon');
+        $coupon['coupon_group_id']='';
         $coupon['user_id']='';
         $coupon['class_id']='';//分区id
         $coupon['name']='';
@@ -191,7 +192,7 @@ class CouponModel extends Model {
         $coupon['start_at']='';
         $coupon['end_at']='';
         $coupon['reason']='';
-        $coupon['value']='';
+        $coupon['value']=0.00;
         $coupon['state']=1;
         $coupon['add_time']='';
         $coupon['edit_time']='';

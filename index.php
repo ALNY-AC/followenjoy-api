@@ -22,6 +22,7 @@ $allow_origin=[
 'http://test.q.followenjoy.cn',
 'http://test.admin.followenjoy.cn',
 'http://test.server.followenjoy.cn',
+
 // 正式运营
 "http://cuelyine.cn",
 'http://followenjoy.cn',
