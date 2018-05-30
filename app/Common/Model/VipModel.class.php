@@ -31,13 +31,19 @@ class VipModel extends Model {
             $snapshot = $Snapshot->where($where)->select();
             
             // 取出所有的佣金
+            $UserSuper=D('UserSuper');
             
             foreach ($snapshot as $k => $v) {
                 
                 $earn_price=$v['earn_price'];//佣金
-                $share_id=$v['share_id'];//分享人id
+                // $share_id=$v['share_id'];//分享人ids
+                $user_id=$v['user_id'];//分享人id
+                
+                $super=$UserSuper->where(['user_id'=>$user_id])->find();
+                $super_id=$super['super_id'];
+                
                 $conf=[];
-                $conf['userId']=$share_id;
+                $conf['userId']=$super_id;
                 $conf['isDebug']=false;
                 $conf['isSave']=true;
                 $vip=new \VipPlus($conf);
