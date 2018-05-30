@@ -79,6 +79,7 @@ class LoginController extends Controller {
     public function getCode(){
         
         $user_id=I('user_id');
+        $share_id=I('share_id');
         
         // ===================================================================================
         // 如果没有此用户，那么这个用户在这里就等于注册
@@ -97,6 +98,24 @@ class LoginController extends Controller {
             $add['add_time']=time();
             $add['edit_time']=time();
             $add['user_type']=0;
+            $Coupon=D('Coupon');
+            
+            // 派发大礼包给新注册
+            $Coupon->派发新用户大礼包($user_id);
+            
+            // 派发大礼包给邀请人
+            // 先判断邀请人是不是会员，只有会员邀请别人才有优惠券
+            // share_id
+            
+            if($share_id){
+                $where=[];
+                $where['share_id']=$share_id;
+                $share_user=$User->where($where)->find();
+                if($share_user['user_vip_level']>0){
+                    // 分享人是会员
+                    $Coupon->派发新用户大礼包($share_id);
+                }
+            }
             $User->add($add);
         }
         

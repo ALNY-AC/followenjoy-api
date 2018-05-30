@@ -31,8 +31,6 @@ class SpecialModel extends Model {
         
     }
     
-    
-    
     //获得单个，包括商品等数据
     public function get($special_id){
         
@@ -43,8 +41,8 @@ class SpecialModel extends Model {
         
         //获得商品、专题关联表
         $SpecialGoods=D('SpecialGoods');
-        $goodss=$SpecialGoods->Distinct(true)->where($where)->select();
-
+        $goodss=$SpecialGoods->distinct(true)->where($where)->select();
+        
         $Goods=D('Goods');
         
         $special['goodsList']=[];

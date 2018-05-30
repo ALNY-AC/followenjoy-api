@@ -10,8 +10,6 @@ class IndexController extends Controller {
     
     public function index(){
         
-        echo "<h1>CTOS检测中心 ，项目： ".APP_NAME." ，分组： admin </h1>";
-        dump(session());
         
     }
     

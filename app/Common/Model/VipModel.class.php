@@ -13,7 +13,6 @@ class VipModel extends Model {
         // ===================================================================================
         // 找订单数据
         
-        
         $order=$Order->where(['pay_id'=>$pay_id])->select();
         
         $snapshot_ids=[];
@@ -32,7 +31,6 @@ class VipModel extends Model {
             $snapshot = $Snapshot->where($where)->select();
             
             // 取出所有的佣金
-            
             
             foreach ($snapshot as $k => $v) {
                 
@@ -55,27 +53,34 @@ class VipModel extends Model {
                 // 判断是不是特殊商品
                 
                 if($goods['is_unique']){
+                    
                     // 是特殊商品
-                    // 成为某人的下级,但是不能成为自己的下级
-                    // 当分享人id和user_id是同一个人的时候不执行
-                    if($v['user_id']!=$share_id){
-                        // 不是同一个人的执行团队逻辑
-                        // $邀请人的id,$被邀请人的id
-                        $this->团队发展奖($share_id,$v['user_id']);
-                    }else{
-                        // 让自己成为会员
-                        $where=[];
-                        $where['user_id']=$v['user_id'];
-                        $user=$User->where($where)->find();
-                        // 先判断自己是不是会员
-                        $userLevel=$user['user_vip_level']+0;
+                    $user_id=$v['user_id'];
+                    // ===================================================================================
+                    // 还要判断，如果买家已经是会员，就不能层层获利了
+                    $where=[];
+                    $where['user_id']= $user_id;
+                    $user=$User->where($where)->find();
+                    $userLevel=$user['user_vip_level']+0;
+                    
+                    if($userLevel<=0){
+                        // 成为会员
+                        $save=[];
+                        $save['user_vip_level']=1;
+                        $User->where($where)->save($save);
                         
-                        if($userLevel==0){
-                            // 成为会员
-                            $save=[];
-                            $save['user_vip_level']=1;
-                            $User->where($whereFS)->save($save);
+                        // 成为某人的下级,但是不能成为自己的下级
+                        // 当分享人id和user_id是同一个人的时候不执行
+                        if( $user_id!=$share_id){
+                            // 不是同一个人的执行团队逻辑
+                            // $邀请人的id,$被邀请人的id
+                            $this->团队发展奖($share_id, $user_id);
                         }
+                        
+                        // 发红包给会员
+                        $Coupon=D('Coupon');
+                        $Coupon->派发给新499会员大礼包( $user_id);
+                        
                     }
                     
                 }

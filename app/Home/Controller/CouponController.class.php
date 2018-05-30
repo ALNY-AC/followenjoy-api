@@ -44,7 +44,7 @@ class CouponController extends CommonController{
         $Coupon=D('Coupon');
         $data=I();
         $data['time']=true;
-        $couponList= $Coupon->getList($data);
+        $couponList= $Coupon->getUserList($data);
         $res['count']= $Coupon->count()+0;
         
         if($couponList !== false){

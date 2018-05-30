@@ -17,6 +17,7 @@ class CouponGroupModel extends Model {
         $where=[];
         $where['coupon_group_id']=$id;
         $data['edit_time']=time();
+        unset($data['add_time']);
         return $this->where($where)->save($data);
     }
     

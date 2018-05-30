@@ -19,18 +19,16 @@ use Think\Controller;
 class IndexController extends Controller{
     
     public function index(){
-        
-        $Goods=D('Goods');
-        
-        
-        $list=$Goods->getField('goods_id',true);
-        dump($list);
+        $Coupon=D('Coupon');
+        // $Coupon->派发给新499会员大礼包('1');
+        $Coupon->派发新用户大礼包('17621643903','1');
         
     }
     
     
     public function init(){
         
+        die;
         $userList=[];
         
         $User=D('User');
@@ -41,16 +39,14 @@ class IndexController extends Controller{
             $item['user_id']=$i;
             $item['user_name']=$i;
             $item['user_pwd']='6ee5d358e0f29a6e44514b8deaec46c5';
-            $item['user_type']='1';
-            $item['user_vip_level']=1;
-            $item['user_money']=0;
+            $item['user_type']='0';
+            $item['user_vip_level']=$i===1?0:1;
+            $item['user_money']=$i===1?10000:0;
             $item['course_hours']=0;
             $item['add_time']=time();
             $item['edit_time']=time();
             $userList[]=$item;
         }
-        
-        
         
         $User->addAll($userList);
         
@@ -104,7 +100,7 @@ class IndexController extends Controller{
     }
     
     public function js(){
-        
+        die;
         $level=[
         '1',//J
         '1',//I
@@ -136,7 +132,7 @@ class IndexController extends Controller{
         
     }
     public function test(){
-        
+        die;
         Vendor('VIP.VipPlus');
         
         $conf=[];

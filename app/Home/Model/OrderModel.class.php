@@ -56,7 +56,6 @@ class OrderModel extends Model {
         }
         return $first_price ;
         
-        
     }
     
     
@@ -70,7 +69,8 @@ class OrderModel extends Model {
         $Coupon=D('Coupon');//优惠券模型
         $Sku=D('Sku');//Sku数据
         $Freight=D('Freight');//物流模板
-        
+        $Time=D('Time');//限时购
+        $TimeGoods=D('TimeGoods');//限时购商品
         
         // ===================================================================================
         // 基本数据
@@ -84,7 +84,6 @@ class OrderModel extends Model {
         $snapshot_id=$snapshot['snapshot_id'];//快照id
         $goods_id=$snapshot['goods_id'];//商品id
         $order_id=date('YmdHis',time()).rand(10000,99999);//创建订单号
-        $activity_id=$snapshot['activity_id'];//促销活动的id
         $sku_id=$snapshot['sku_id'];//sku 的id
         
         // ===================================================================================
@@ -128,13 +127,40 @@ class OrderModel extends Model {
         $discount=0;//优惠的价格
         
         // ===================================================================================
-        //找促销活动信息
-        $discount+=$Activity->getActivityPrice($activity_id,$snapshot_id,$order_id);
+        //找促销活动信息,如果有，就记录到表中
+        // $discount+=$Activity->getActivityPrice($activity_id,$snapshot_id,$order_id,$goods_id);
+        // 限时购计价
+        
+        // ===================================================================================
+        // 先看看这个商品在TimeGoods中有没有
+        $timeGoods=$TimeGoods->where(['goods_id'=>$goods_id])->find();
+        $discounted=0;
+        if($timeGoods){
+            $time_id=$timeGoods['time_id'];
+            $time=$Time->where($where)->find();
+            if($time){
+                
+                // 检查是否过期
+                if(time()<=$time['end_time']){
+                    // 未过期
+                    $discounted=$time['discounted'];
+                    
+                }else{
+                    $discounted=0;
+                }
+            }else{
+                $discounted=0;
+            }
+        }else{
+            $discounted=0;
+        }
         
         // ===================================================================================
         // 计算价格
-        $price=$snapshot['price']*$snapshot['count']-$discount;
+        $price=($snapshot['price']*$snapshot['count'])*($discounted===0?1:$discounted/10);
         $price+=$first_price;
+        // 优惠后的订单总价=订单总价*打折
+        
         
         // ===================================================================================
         // 组装订单数据
@@ -165,8 +191,7 @@ class OrderModel extends Model {
     
     public function create($data){
         
-        
-        $isDebug=false;
+        $isDebug=true;
         
         // $order_info_id=date('YmdHis',time()).rand(10000,99999);
         // ===================================================================================
@@ -205,14 +230,14 @@ class OrderModel extends Model {
         
         // 测试环境
         if($isDebug){
-            // $OrderAddress->where('1=1')->delete();
-            // $save=[];
-            // $save['order_id']=null;
-            // $Snapshot->where('1=1')->save($save);
-            // $Order->where('1=1')->delete();
-            // $Logistics->where('1=1')->delete();
-            // $Pay->where('1=1')->delete();
-            // $OrderCoupon->where('1=1')->delete();
+            $OrderAddress->where('1=1')->delete();
+            $save=[];
+            $save['order_id']=null;
+            $Snapshot->where('1=1')->save($save);
+            $Order->where('1=1')->delete();
+            $Logistics->where('1=1')->delete();
+            $Pay->where('1=1')->delete();
+            $OrderCoupon->where('1=1')->delete();
         }
         // ===================================================================================
         // 找到所有的快照数据
@@ -250,6 +275,9 @@ class OrderModel extends Model {
         // ===================================================================================
         //找优惠券信息，如果优惠券可用，在本次使用后优惠券失效，此次订单只可以使用一次。
         $coupon=$Coupon->getCouponPrice($coupon_id,$orderDatas,$snapshots,$total);
+        
+        
+        
         
         $total-=$coupon['price'];
         // ===================================================================================
@@ -297,7 +325,6 @@ class OrderModel extends Model {
     //组成支付数据
     public function pay($pay_id){
         
-        
         // ===================================================================================
         // 创建模型
         $Pay=D('Pay');
@@ -316,13 +343,6 @@ class OrderModel extends Model {
             return $this->balancePayment($pay_id);
         }
         
-        if($pay_type=='2'){
-            // 微信支付
-        }
-        
-        if($pay_type=='1'){
-            // 支付宝
-        }
         
     }
     
@@ -490,7 +510,6 @@ class OrderModel extends Model {
         $where['address_id']=$address_id;
         return $OrderAddress->where($where)->find();
     }
-    
     
     //取得维权数据
     public function getAfterSaleInfo($order_id){

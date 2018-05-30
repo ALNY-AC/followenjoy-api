@@ -161,7 +161,6 @@ class VipPlus{
         }
     }
     
-    
     /**
     * 自购：判断是否有分享人id，如果没有，判断是不是会员，如果自己是会员，则调用这个会员的此函数。
     * 分享：判断是否有分享人id，如果有，判断分享人是不是会员，如果是，调用分享人（会员）的此函数。
@@ -576,14 +575,18 @@ class VipPlus{
     */
     public function querySuper($level){
         
-        ec ("> 找人模式 找 $level < 谁在找人：【$this->level | $this->vip_name | $this->userName : $this->userId 】");
+        if($this->isDebug){
+            ec ("> 找人模式 找 $level < 谁在找人：【$this->level | $this->vip_name | $this->userName : $this->userId 】");
+        }
         
         if($this->getSuper()){
             
             if($this->getSuper()->level==$level){
                 //条件满足，返回数据
                 $t=$this->getSuper();
-                ec ("> 找人模式 < 找到的人：===$t->level | $t->vip_name | $t->userName : $t->userId === 条件满足");
+                if($this->isDebug){
+                    ec ("> 找人模式 < 找到的人：===$t->level | $t->vip_name | $t->userName : $t->userId === 条件满足");
+                }
                 return $this->getSuper();
             }else{
                 return $this->getSuper()->querySuper($level);
@@ -659,7 +662,7 @@ class VipPlus{
                 // 满足直属经理两人
                 // 开始判断下面所有层会员的数量
                 
-                $会员列表=$this->递归二叉树找普通会();
+                $会员列表=$this->递归二叉树找普通会员();
                 if(count($会员列表)>=750){
                     // 升级成总监
                     $this->upgrade(3);

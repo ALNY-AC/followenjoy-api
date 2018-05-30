@@ -78,6 +78,7 @@ class CouponGroupController extends CommonController{
         echo json_encode($res);
     }
     
+    
     public function del(){
         $CouponGroup=D('CouponGroup');
         $result=$CouponGroup->del(I('id'));

@@ -187,6 +187,7 @@ class GoodsModel extends Model {
             $GoodsImg=D('goods_img');
             $goods['img_list']=$GoodsImg
             ->limit($limit['img_list'])
+            ->order('slot asc')
             ->where($where)
             ->field(
             [
@@ -210,6 +211,7 @@ class GoodsModel extends Model {
             $skus= $Sku
             ->limit($limit['img_list'])
             ->where($where)
+            ->order('price asc,stock_num desc')
             ->select();
             $goods['sku']=$skus;
         }

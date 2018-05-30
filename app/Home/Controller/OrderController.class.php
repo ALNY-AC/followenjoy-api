@@ -46,7 +46,7 @@ class OrderController extends CommonController{
         // ===================================================================================
         // 找优惠券信息
         $Coupon=D('Coupon');
-        $couponList= $Coupon->getList(['time'=>false]);
+        $couponList= $Coupon->getUserList(['time'=>false]);
         
         if($snapshots){
             $res['res']=count($snapshots);

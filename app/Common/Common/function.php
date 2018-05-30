@@ -873,3 +873,16 @@ function alipay($pay_id,$data,$conf,$test=false){
     $result = $aop->pageExecute ( $request);
     echo $result;
 }
+
+function get_float_length($a){
+    if(($a-(int)$a)<1E-9){
+        $count=0;
+    }
+    $a=fmod(1E9*$a,1E9);
+    while($a%10==0){
+        if($a==0) break ;
+        $a=$a/10;
+        $count--;
+    }
+    return count;
+}
