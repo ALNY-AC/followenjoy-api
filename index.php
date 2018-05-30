@@ -11,20 +11,32 @@
 //跨域
 $origin = isset($_SERVER['HTTP_ORIGIN'])? $_SERVER['HTTP_ORIGIN'] : '';
 $allow_origin=[
+// 本地测试
 'http://192.168.1.251:8081',
 'http://192.168.1.251:8080',
-    'http://192.168.1.101:8081',
-    'http://192.168.1.101:8080',
-"http://cuelyine.cn",
+'http://192.168.1.101:8081',
+'http://192.168.1.101:8080',
 'http://cosmetics.com',
-'http://admin.cuelyine.cn',
+
+// 测试端
+'http://test.q.followenjoy.cn',
+'http://test.admin.followenjoy.cn',
+'http://test.server.followenjoy.cn',
+// 正式运营
+"http://cuelyine.cn",
 'http://followenjoy.cn',
-'http://admin.followenjoy.cn',
-'http://srver.followenjoy.cn',
-'http://srver2.followenjoy.cn',
-'http://admin.followenjoy.com',
-'http://q.followenjoy.com',
+
+'http://server.followenjoy.cn',
 'http://server.followenjoy.com',
+'http://server2.followenjoy.com',
+
+'http://admin.followenjoy.cn',
+'http://admin.followenjoy.com',
+
+'http://q.followenjoy.com',
+'http://q.followenjoy.cn',
+
+
 ];
 $is=in_array($origin, $allow_origin);
 if(in_array($origin, $allow_origin)){

@@ -170,7 +170,7 @@ class GoodsModel extends Model {
     }
     
     public function getGoodsSku($goods,$map=['img_list','sku','tree','class','freight'],$limit=[]){
-        
+        $goods['goods_head']='';
         if(!$limit){
             $limit=[];
             $limit['img_list']=1;
@@ -185,10 +185,10 @@ class GoodsModel extends Model {
         // 找图片
         if(in_array('img_list',$map)){
             $GoodsImg=D('goods_img');
-            $goods['img_list']=$GoodsImg
+            $img_list=$GoodsImg
             ->limit($limit['img_list'])
-            ->order('slot asc')
             ->where($where)
+            ->order('slot asc')
             ->field(
             [
             // 'img_id',
@@ -199,9 +199,10 @@ class GoodsModel extends Model {
             // 'edit_time',
             ]
             )
-            ->order('slot asc')
             ->select();
+            $goods['img_list']=$img_list?$img_list:[];
             $goods['goods_head']=count($goods['img_list'])>0?$goods['img_list'][0]['src']:'';
+            
         }
         
         // ===================================================================================

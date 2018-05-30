@@ -53,7 +53,9 @@ class SpecialModel extends Model {
         for ($i=0; $i < count($goodss); $i++) {
             $goods_id=$goodss[$i]['goods_id'];
             $goods=$Goods->get($goods_id);
-            $special['goodsList'][]=$goods;
+            if($goods){
+                $special['goodsList'][]=$goods;
+            }
         }
         
         //获得对应的商品信息

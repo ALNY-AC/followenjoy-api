@@ -191,7 +191,7 @@ class OrderModel extends Model {
     
     public function create($data){
         
-        $isDebug=true;
+        $isDebug=false;
         
         // $order_info_id=date('YmdHis',time()).rand(10000,99999);
         // ===================================================================================
@@ -227,17 +227,16 @@ class OrderModel extends Model {
         $Logistics=M('Logistics');//物流信息表模型
         $OrderCoupon=D('OrderCoupon');//优惠券订单关联表
         
-        
         // 测试环境
         if($isDebug){
-            $OrderAddress->where('1=1')->delete();
-            $save=[];
-            $save['order_id']=null;
-            $Snapshot->where('1=1')->save($save);
-            $Order->where('1=1')->delete();
-            $Logistics->where('1=1')->delete();
-            $Pay->where('1=1')->delete();
-            $OrderCoupon->where('1=1')->delete();
+            // $OrderAddress->where('1=1')->delete();
+            // $save=[];
+            // $save['order_id']=null;
+            // $Snapshot->where('1=1')->save($save);
+            // $Order->where('1=1')->delete();
+            // $Logistics->where('1=1')->delete();
+            // $Pay->where('1=1')->delete();
+            // $OrderCoupon->where('1=1')->delete();
         }
         // ===================================================================================
         // 找到所有的快照数据
@@ -271,13 +270,9 @@ class OrderModel extends Model {
             $snapshots[$key]['order_id']=$data['orderData']['order_id'];
         }
         
-        
         // ===================================================================================
         //找优惠券信息，如果优惠券可用，在本次使用后优惠券失效，此次订单只可以使用一次。
         $coupon=$Coupon->getCouponPrice($coupon_id,$orderDatas,$snapshots,$total);
-        
-        
-        
         
         $total-=$coupon['price'];
         // ===================================================================================
@@ -290,7 +285,6 @@ class OrderModel extends Model {
         $payData['pay_type']=$pay_type;//支付类型，1：支付宝支付，2：微信支付，3：余额支付
         $payData['add_time']=time();
         $payData['edit_time']=time();
-        
         
         // ===================================================================================
         // 写入到数据库中
