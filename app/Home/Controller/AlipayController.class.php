@@ -61,7 +61,6 @@ class AlipayController extends Controller{
         $subject=rtrim($body, " - ");
         echo strlen($body);
         // 128
-        
         $data['body']='【随享季】';
         $data['subject']=$subject;
         $data['out_trade_no']=$pay_id;
@@ -69,10 +68,14 @@ class AlipayController extends Controller{
         $data['total_amount']=$payData['price'];
         $data['product_code']='QUICK_WAP_WAY';
         
+        if(IS_DEBUG){
+            $notify_url='http://test.server.followenjoy.cn/index.php/Home/Alipay/shopping_notify';
+        }else{
+            $notify_url='http://server.followenjoy.cn/index.php/Home/Alipay/shopping_notify';
+        }
         
-        $conf['notify_url']="http://server.followenjoy.cn/index.php/Home/Alipay/shopping_notify";//异步通知：购物异步通知
-        
-        alipay($pay_id,$data,$conf,false);
+        $conf['notify_url']=$notify_url;//异步通知：购物异步通知
+        alipay($pay_id,$data,$conf,IS_DEBUG);
         
     }
     

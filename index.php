@@ -74,6 +74,9 @@ define('__UPLOAD__ADMIN__', '/Public/Upload/admin/');
 //定义上传的根目录—home
 define('__UPLOAD__HOME__', '/Public/Upload/home/');
 
+// 是否是测试环境API
+define('IS_DEBUG', true);
+
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 

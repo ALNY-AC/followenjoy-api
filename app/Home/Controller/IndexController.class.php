@@ -19,10 +19,9 @@ use Think\Controller;
 class IndexController extends Controller{
     
     public function index(){
-        $Coupon=D('Coupon');
+        // $Coupon=D('Coupon');
         // $Coupon->派发给新499会员大礼包('1');
-        $Coupon->派发新用户大礼包('17621643903','1');
-        
+        // $Coupon->派发新用户大礼包('17621643903','1');
     }
     
     

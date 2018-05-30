@@ -60,7 +60,9 @@ class SpecialPaperModel extends Model {
     public function get($special_paper_id){
         $where=[];
         $where['special_paper_id']=$special_paper_id;
-        return $this->where($where)->find();
+        $data=$this->where($where)->find();
+        $data=toTime([$data])[0];
+        return $data;
     }
     
 }

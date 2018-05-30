@@ -28,7 +28,6 @@ class PaperModel extends Model {
         
         return $papers;
         
-        
     }
     
     
