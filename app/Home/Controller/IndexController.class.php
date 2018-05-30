@@ -22,6 +22,7 @@ class IndexController extends Controller{
         // $Coupon=D('Coupon');
         // $Coupon->派发给新499会员大礼包('1');
         // $Coupon->派发新用户大礼包('17621643903','1');
+        echo "测试地址";
     }
     
     
