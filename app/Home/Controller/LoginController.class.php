@@ -41,7 +41,6 @@ class LoginController extends Controller {
             "15216776703",
             ];
             
-            
             if(in_array($user_id,$testID)){
                 $isSuccess=true;
             }
@@ -108,14 +107,25 @@ class LoginController extends Controller {
             // share_id
             
             if($share_id){
+                // 绑定
                 $where=[];
-                $where['share_id']=$share_id;
+                $where['user_id']=$share_id;
                 $share_user=$User->where($where)->find();
-                if($share_user['user_vip_level']>0){
-                    // 分享人是会员
-                    $Coupon->派发新用户大礼包($share_id);
+                if($share_user){
+                    if($share_user['user_vip_level']>0){
+                        // 分享人是会员
+                        $UserSuper=D('UserSuper');
+                        $data=[];
+                        $data['user_id']=$user_id;
+                        $data['super_id']=$share_id;
+                        $data['add_time']=time();
+                        $data['edit_time']=time();
+                        $UserSuper->add($data);
+                    }
                 }
+                
             }
+            
             $User->add($add);
         }
         

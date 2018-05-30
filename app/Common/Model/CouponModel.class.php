@@ -6,7 +6,9 @@ class CouponModel extends Model {
     public function _initialize (){}
     
     public function 派发给新499会员大礼包($user_id){
-        
+        if(!$user_id){
+            return;
+        }
         $coupon=$this->取得新499会员大礼包($user_id);
         
         foreach ($coupon as $k => $v) {
@@ -17,10 +19,10 @@ class CouponModel extends Model {
         
         // $coupon=toTime2($coupon,'Y-m-d H:i:s',['start_at', 'end_at']);
         
-        if(false){
-            $this->where('1=1')->delete();
-            dump($coupon);
-        }
+        // if(false){
+        //     $this->where('1=1')->delete();
+        //     dump($coupon);
+        // }
         
         $this->addAll($coupon);
     }
@@ -84,7 +86,9 @@ class CouponModel extends Model {
     
     
     public function 派发新用户大礼包($user_id){
-        
+        if(!$user_id){
+            return false;
+        }
         $coupon=$this->取得新用户大礼包($user_id);
         
         foreach ($coupon as $k => $v) {
@@ -102,7 +106,6 @@ class CouponModel extends Model {
     
     
     public function 取得新用户大礼包($user_id){
-        
         if(!$user_id){
             return false;
         }

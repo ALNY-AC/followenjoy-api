@@ -559,12 +559,23 @@ class VipPlus{
         $where['super_id']=$this->userId;
         $is=$UserSuper->where($where)->find();
         if(!$is){
+            // 不存在
             $data=[];
             $data['user_id']=$sub->userId;
             $data['super_id']=$this->userId;
             $data['add_time']=time();
             $data['edit_time']=time();
-            $UserSuper->add($data);
+            return $UserSuper->add($data);
+        }else{
+            // 存在
+            // 覆盖
+            $data=[];
+            $where['user_id']=$sub->userId;
+            
+            $data['super_id']=$this->userId;
+            $data['add_time']=time();
+            $data['edit_time']=time();
+            return $UserSuper->where($where)->save($data);
         }
     }
     

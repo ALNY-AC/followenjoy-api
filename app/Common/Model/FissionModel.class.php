@@ -3,7 +3,6 @@ namespace Common\Model;
 use Think\Model;
 class FissionModel extends Model {
     
-    
     /**
     * 验证是否是499订单
     */

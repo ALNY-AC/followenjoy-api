@@ -79,7 +79,10 @@ class VipModel extends Model {
                         
                         // 发红包给会员
                         $Coupon=D('Coupon');
-                        $Coupon->派发给新499会员大礼包( $user_id);
+                        $Coupon->派发给新499会员大礼包($user_id);
+                        
+                        // 发给邀请人大礼包
+                        $Coupon->派发新用户大礼包($share_id);
                         
                     }
                     

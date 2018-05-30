@@ -174,6 +174,7 @@ class AlipayController extends Controller{
                 
                 // 2018052000273318721
                 $Fission=D('Fission');
+                // 验证是否是499订单
                 $is=$Fission->validate($out_trade_no);
                 if($is){
                     $Fission->handle($is,$user_id);
