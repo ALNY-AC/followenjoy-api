@@ -36,7 +36,7 @@ class VipModel extends Model {
             foreach ($snapshot as $k => $v) {
                 
                 $earn_price=$v['earn_price'];//佣金
-                // $share_id=$v['share_id'];//分享人ids
+                $share_id=$v['share_id'];//分享人ids
                 $user_id=$v['user_id'];//分享人id
                 
                 $super=$UserSuper->where(['user_id'=>$user_id])->find();
