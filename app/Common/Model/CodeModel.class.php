@@ -1,8 +1,7 @@
 <?php
-namespace Home\Model;
+namespace Common\Model;
 use Think\Model;
 class CodeModel extends Model {
-    
     
     public function _initialize (){}
     

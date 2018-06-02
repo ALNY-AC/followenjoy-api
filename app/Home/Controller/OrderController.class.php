@@ -34,9 +34,6 @@ class OrderController extends CommonController{
         
         $where=[];
         $where['user_id']=session('user_id');
-        // ===================================================================================
-        // 地址数据
-        $addressList=$Address->where($where)->select();
         
         // ===================================================================================
         // 商品快照
@@ -51,7 +48,6 @@ class OrderController extends CommonController{
         if($snapshots){
             $res['res']=count($snapshots);
             $res['snapshots']=$snapshots;
-            $res['addressList']=$addressList;
             $res['couponList']=$couponList;
         }else{
             $res['res']=-1;

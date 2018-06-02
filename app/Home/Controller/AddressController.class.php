@@ -122,11 +122,10 @@ class AddressController extends CommonController{
     }
     
     public function getList(){
-        $model=M('address');
+        $Address=M('Address');
         $where=[];
         $where['user_id']=session('user_id');
-        $result=$model->where($where)->select();
-        
+        $result=$Address->where($where)->select();
         
         if($result){
             $res['res']=count($result);
