@@ -22,6 +22,7 @@ class CodeController extends CommonController{
         $user_id=I('user_id');
         $Code=D('Code');
         $res=$Code->pushCode($user_id);
+        echo json_encode($res);
     }
     
     public function validate(){
