@@ -889,7 +889,7 @@ function get_float_length($a){
 
 function weixin(){
     // unifiedOrder
-    Vendor('Weixin.WxPay.Api');
+    Vendor('Weixin.WxPayApi');
     //②、统一下单
     $input = new WxPayUnifiedOrder();
     $input->SetBody("test");
