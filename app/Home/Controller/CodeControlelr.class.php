@@ -23,7 +23,6 @@ class CodeController extends CommonController{
         $res=$Code->pushCode($user_id);
     }
     
-    
     public function validate(){
         $Code=D('Code');
         $user_id=I('user_id');
