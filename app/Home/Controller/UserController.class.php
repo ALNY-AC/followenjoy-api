@@ -47,6 +47,38 @@ class UserController extends CommonController{
         
     }
     
+    public function validatePayCode(){
+        $User=D('User');
+        $pay_code=I('pay_code');
+        $user_id=session('user_id');
+        
+        $where=[];
+        $where['user_id']=$user_id;
+        
+        $user=$User->where($where)->find();
+        
+        //加密算法： 用户id+密码+密匙
+        $pay_code=md5($user_id.$pay_code.__KEY__);
+        
+        $is=false;
+        
+        if($user['pay_code']===$pay_code){
+            $is=true;
+        }else{
+            $is=false;
+        }
+        
+        if($is){
+            $res['res']=1;
+            $res['msg']=1;
+        }else{
+            $res['res']=-1;
+            $res['msg']=-1;
+        }
+        
+        
+        
+    }
     
     public function save(){
         
