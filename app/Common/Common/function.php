@@ -891,5 +891,8 @@ function weixin(){
     // unifiedOrder
     Vendor('Weixin.WxPay.Api');
     echo 123;
+    WxPayApi:unifiedOrder();
+
+    
     
 }
