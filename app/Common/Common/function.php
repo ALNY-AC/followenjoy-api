@@ -890,5 +890,6 @@ function get_float_length($a){
 function weixin(){
     // unifiedOrder
     Vendor('Weixin.WxPay.Api');
+    echo 123;
     
 }
