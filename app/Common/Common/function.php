@@ -904,7 +904,7 @@ function weixin(){
     // $input->SetOpenid($openId);
     $order = WxPayApi::unifiedOrder($input);
     echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
-    // printf_info($order);
+    // printf_info($order);asdads
     dump($order);
     // $jsApiParameters = $tools->GetJsApiParameters($order);
     
