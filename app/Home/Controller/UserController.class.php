@@ -20,24 +20,6 @@ use Think\Controller;
 class UserController extends CommonController{
     
     
-    public function isCode(){
-        $Code=D('Code');
-        $user_id=I('user_id');
-        $user_code=I('user_code');
-        
-        $isSuccess= $Code->validate($user_id,$user_code)>0;
-        
-        if($isSuccess){
-            $res['res']=1;
-        }else{
-            //验证码不正确
-            $res['res']=-1;
-        }
-        echo json_encode($res);
-        
-    }
-    
-    
     public function setCode(){
         $pay_code=I('pay_code');
         $user_id=session('user_id');
@@ -178,7 +160,7 @@ class UserController extends CommonController{
         echo json_encode($res);
         
     }
-
+    
     
     
     
