@@ -87,6 +87,21 @@ class OrderModel extends Model {
         $sku_id=$snapshot['sku_id'];//sku 的id
         
         // ===================================================================================
+        // 删掉订单中，订单中，没有快照的
+        // 1、待付款
+        // 2、待发货
+        // 3、待收货
+        // 4、交易成功
+        // 5、退款/退货
+        // 6、已关闭
+        // 7、已退款
+        // 8、退款失败
+        $where=[];
+        $where['snapshot_id']=$snapshot_id;
+        $where['state']=1;
+        $this->where($where)->delete();
+        
+        // ===================================================================================
         // 找商品信息
         $where=[];
         $where['goods_id']=$goods_id;
@@ -337,7 +352,6 @@ class OrderModel extends Model {
             return $this->balancePayment($pay_id);
         }
         
-        
     }
     
     //余额支付
@@ -392,7 +406,6 @@ class OrderModel extends Model {
         $where['user_id']=session('user_id');
         $where['pay_id']=$pay_id;
         $Pay->where($where)->save($save);
-        
         
         // 减库存
         $where=[];
