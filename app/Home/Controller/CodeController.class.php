@@ -19,6 +19,8 @@ use Think\Controller;
 class CodeController extends CommonController{
     
     public function get(){
+        
+        $user_id=I('user_id');
         $Code=D('Code');
         $res=$Code->pushCode($user_id);
     }
