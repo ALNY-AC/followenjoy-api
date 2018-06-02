@@ -1,7 +1,7 @@
 <?php
-require_once "WxPay.Exception.php";
-require_once "WxPay.Config.php";
-require_once "WxPay.Data.php";
+require_once "WxPayException.php";
+require_once "WxPayConfig.php";
+require_once "WxPayData.php";
 
 /**
  * 
@@ -20,7 +20,7 @@ class WxPayApi
 	 * @param int $timeOut
 	 * @throws WxPayException
 	 * @return 成功时返回，其他抛异常
-	 */
+	 */ 
 	public static function unifiedOrder($inputObj, $timeOut = 6)
 	{
 		$url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
