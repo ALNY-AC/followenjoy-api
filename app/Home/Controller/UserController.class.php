@@ -75,7 +75,7 @@ class UserController extends CommonController{
             $res['res']=-1;
             $res['msg']=-1;
         }
-        
+        echo json_encode($res);
         
         
     }
