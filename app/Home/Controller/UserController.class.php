@@ -36,7 +36,7 @@ class UserController extends CommonController{
         
         $result=$User->where($where)->save($save);
         
-        if($result){
+        if($result!==false){
             $res['res']=1;
             $res['msg']=$result;
         }else{
