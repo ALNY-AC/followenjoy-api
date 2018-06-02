@@ -21,10 +21,9 @@ class UpgradeLogModel extends Model {
     public function create($data){
         $upgrade_log_id=getMd5('upgrade_log');
         $data['upgrade_log_id']=$upgrade_log_id;
-        $data['eidt_time']=time();
         $data['add_time']=time();
-        $this->add($data);
-        return $this->where(["upgrade_log_id"=>$upgrade_log_id])->find();
+        $data['edit_time']=time();
+        return $this->add($data);
     }
     
     public function get($id){

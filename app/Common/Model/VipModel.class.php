@@ -42,7 +42,6 @@ class VipModel extends Model {
                 $super=$UserSuper->where(['user_id'=>$user_id])->find();
                 $super_id=$super['super_id'];
                 
-                
                 // ===================================================================================
                 $where=[];
                 $where['user_id']= $user_id;
@@ -69,8 +68,6 @@ class VipModel extends Model {
                     $vip->出货得佣金($earn_price);
                     
                 }
-                
-                
                 
                 // 找找看看这个商品是不是特殊商品
                 

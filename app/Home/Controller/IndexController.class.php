@@ -19,15 +19,14 @@ use Think\Controller;
 class IndexController extends Controller{
     
     public function index(){
-        // $Coupon=D('Coupon');
-        // $Coupon->派发给新499会员大礼包('1');
-        // $Coupon->派发新用户大礼包('17621643903','1');
-        // 2018052921001004730584601541
-        // 2018052916311721598
-        // 18621888787
-        echo "测试地址";
+        
+        // https://api.mch.weixin.qq.com/pay/unifiedorder
+        weixin();
+        
+        
     }
     
+    public function index2(){}
     
     public function init(){
         

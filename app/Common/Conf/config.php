@@ -25,7 +25,6 @@ return array(
 // 'DB_PREFIX' => 'c_', // 数据库表前缀
 // 'DB_PARAMS'    =>    array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
 
-
 // ===================================================================================
 // 测试
 'DB_TYPE' => 'mysql', // 数据库类型

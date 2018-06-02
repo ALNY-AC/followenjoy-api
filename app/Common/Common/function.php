@@ -886,3 +886,9 @@ function get_float_length($a){
     }
     return count;
 }
+
+function weixin(){
+    // unifiedOrder
+    Vendor('Weixin.WxPay.Api');
+    
+}

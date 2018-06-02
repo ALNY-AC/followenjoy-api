@@ -218,17 +218,24 @@ class VipPlus{
         if($this->level==2){
             // 如果是经理
             // 上级的最近的一个总监得到30%
+            
+            // 当自己是经理，直接上级是总监的情况下，这个总监是得到课时费，还是佣金*25%*20%
+            // 这里放到个人账户里面
             $super=$this->querySuper(3);
             if($super){
                 // 得到佣金收益的30%
                 // 总监获得所有层经理的佣金收益返利（佣金收益奖金）
-                $super->总监获得所有层经理的佣金收益返利（佣金收益奖金）($佣金收益);
+                // 个人账户的30%
+                
+                
+                $super->money+=$佣金收益*0.3;
+                $super->saveMoney();
+                
+                // $super->总监获得所有层经理的佣金收益返利（佣金收益奖金）($佣金收益);
                 
             }
             
-            
         }
-        
         
         if($this->level==1 && $this->getSuper()){
             if($this->getSuper()->level>=2){
@@ -237,7 +244,6 @@ class VipPlus{
         }
         
     }
-    
     
     
     public function 总监或经理得到佣金收益奖金($佣金收益){
@@ -610,12 +616,36 @@ class VipPlus{
     }
     
     
+    public function test($info){
+        $test=F('testinfo');
+        $test=$test.'<br/>'.$info;
+        F('testinfo',$test);
+    }
+    
     
     // ===================================================================================
     // 辅助脚本
     
     public function 检测升级条件(){
         
+        // 执行完毕后，需要让上级也执行一次，自己等级发生变化，上级也要发生变化
+        if($this->getSuper()){
+            
+            // 升级完毕，要检查是否比上级大，比上级大的话，就删除关联
+            $myLevel=$this->level;
+            $superLevel=$this->getSuper()->level;
+            
+            if($myLevel>$superLevel){
+                $UserSuper=D('UserSuper');
+                $where=[];
+                $where['user_id']=$this->userId;
+                $where['super_id']=$this->getSuper()->userId;
+                $UserSuper->where($where)->delete();
+            }
+            
+            $this->getSuper()->检测升级条件();
+            
+        }
         // 重新初始化下级列表
         
         $this->initSubList();
@@ -631,6 +661,7 @@ class VipPlus{
         // 先判断当前用户等级
         
         if($this->level==1){
+            
             // 如果当前用户是会员，检测升级到经理的条件
             // 检测此时此刻自己下面是否有25个人
             // 找到自己下面的所有的是会员的
@@ -674,7 +705,8 @@ class VipPlus{
                 // 开始判断下面所有层会员的数量
                 
                 $会员列表=$this->递归二叉树找普通会员();
-                if(count($会员列表)>=750){
+                
+                if(count($会员列表)>=6){
                     // 升级成总监
                     $this->upgrade(3);
                     $data=[];
@@ -687,24 +719,24 @@ class VipPlus{
             
         }
         
-        // 执行完毕后，需要让上级也执行一次，自己等级发生变化，上级也要发生变化
-        if($this->getSuper()){
-            $this->getSuper()->检测升级条件();
-        }
+        
         
     }
     
     public function 递归二叉树找普通会员(){
         
-        $会员列表=[];
         
         $list=$this->initSubVipList();
         
+        if(!$list){
+            return [];
+        }
+        $会员列表=[];
         foreach ($list as $k => $v) {
+            $会员列表2=$v->递归二叉树找普通会员();
+            $会员列表=array_merge($会员列表,$会员列表2);
             if($v->level==1){
-                $会员列表2=$v->递归二叉树找普通会员();
-                $会员列表+=$会员列表2;
-                $会员列表[]=$this->userName.'->'.$v->userName;
+                $会员列表[]=$this->userId;
             }
         }
         return $会员列表;
@@ -721,7 +753,7 @@ class VipPlus{
         $ids=$UserSub->where($where)->getField("user_id",true);
         
         if($ids){
-            $this->subListIds=$ids;
+            $this->subListIds=getIds($ids);
             $userList= $this->User->where(['user_id'=>['in',$ids]])->select();
             $this->subList=$userList;
         }
@@ -741,14 +773,16 @@ class VipPlus{
     */
     public function initSubVipList(){
         $ids=$this->subListIds;
+        
         $list=[];
         if($ids){
             // 有列表,一个个创建vip对象
             
             foreach ($ids as $k => $v) {
+                $this->test("784：<pre>".json_encode($v)."</pre>");
                 $conf=$this->conf;
                 $conf['userId']=$v;
-                $sub=new \VipPlus($conf);
+                $sub=new VipPlus($conf);
                 $list[]=$sub;
             }
             $this->subVipList=$list;

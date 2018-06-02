@@ -257,8 +257,8 @@ class GoodsModel extends Model {
         
         
         $label=[];
-        $label['type']=1;
-        $label['label']="特卖";
+        // $label['type']=1;
+        // $label['label']="特卖";
         $goods['goodsLabel'][]=$label;
         
         // $label=[];
