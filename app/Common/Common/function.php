@@ -900,7 +900,7 @@ function weixin(){
     $input->SetTime_expire(date("YmdHis", time() + 600));
     $input->SetGoods_tag("test");
     $input->SetNotify_url("http://paysdk.weixin.qq.com/example/notify.php");
-    $input->SetTrade_type("JSAPI");
+    $input->SetTrade_type("MWEB");
     // $input->SetOpenid($openId);
     $order = WxPayApi::unifiedOrder($input);
     echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
