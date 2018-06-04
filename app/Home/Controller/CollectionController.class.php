@@ -19,53 +19,28 @@ use Think\Controller;
 class CollectionController extends CommonController{
     
     public function change(){
-        $model=M('collection');
-        
-        $where=[];
-        $where['goods_id']=I('goods_id');
-        $where['user_id']=session('user_id');
-        $result=$model->where($where)->find();
-        $res=[];
+        $Collection=D('Collection');
+        $result=$Collection->change();
         if($result){
-            //已存在，就取消收藏
-            $result= $model->where($where)->delete();
-            if($result){
-                $res['res']=1;
-                $res['msg']=0;
-            }else{
-                $res['res']=-2;
-                $res['msg']='在取消收藏时出错';
-            }
-            
+            $res['res']=1;
+            $res['msg']=$result;
         }else{
-            //不存在，就添加收藏
-            $add=$where;
-            $add['add_time']=time();
-            $add['edit_time']=time();
-            $result= $model->add($add);
-            if($result){
-                $res['res']=1;
-                $res['msg']=1;
-            }else{
-                $res['res']=-1;
-                $res['msg']='在添加收藏时出错';
-            }
+            $res['res']=-1;
+            $res['msg']=$result;
         }
-        
         echo json_encode($res);
     }
     
     public function getList(){
         
-        $model=M('collection');
+        $Collection=D('Collection');
         $where=[];
         $where['user_id']=session('user_id');
         
-        $result=$model
+        $result=$Collection
         ->where($where)
         ->order('add_time desc')
         ->select();
-        
         
         $Goods=D('goods');
         // 找商品
@@ -74,9 +49,7 @@ class CollectionController extends CommonController{
             $result[$i]['goods_info']        =    $goods;
         }
         
-        
         if($result){
-            
             $res['res']=count($result);
             $res['msg']=$result;
         }else{
