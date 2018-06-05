@@ -20,7 +20,7 @@ class CollectionController extends CommonController{
     
     public function change(){
         $Collection=D('Collection');
-        $result=$Collection->change();
+        $result=$Collection->change(I());
         if($result){
             $res['res']=1;
             $res['msg']=$result;
