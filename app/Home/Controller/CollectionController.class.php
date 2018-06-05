@@ -31,25 +31,15 @@ class CollectionController extends CommonController{
         echo json_encode($res);
     }
     
-    public function getList(){
+    public function getList($data){
         
         $Collection=D('Collection');
         $where=[];
         $where['user_id']=session('user_id');
         
-        $result=$Collection
-        ->where($where)
-        ->order('add_time desc')
-        ->select();
+        $result=$Collection->getList(I());
         
-        $Goods=D('goods');
-        // 找商品
-        for ($i=0; $i < count($result); $i++) {
-            $goods=    $Goods->get($result[$i]['goods_id']);
-            $result[$i]['goods_info']        =    $goods;
-        }
-        
-        if($result){
+        if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{
