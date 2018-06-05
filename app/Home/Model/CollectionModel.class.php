@@ -8,7 +8,7 @@ class CollectionModel extends Model {
     
     public function change($data){
         $where=[];
-        $where['goods_id']=I('goods_id');
+        $where['goods_id']=$data['goods_id'];
         $where['user_id']=session('user_id');
         $result=$this->where($where)->find();
         if($result){
@@ -19,6 +19,7 @@ class CollectionModel extends Model {
             }else{
                 return false;
             }
+            
         }else{
             //不存在，就添加收藏
             $add=$where;
