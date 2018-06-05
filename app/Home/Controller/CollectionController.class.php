@@ -31,7 +31,7 @@ class CollectionController extends CommonController{
         echo json_encode($res);
     }
     
-    public function getList($data){
+    public function getList(){
         
         $Collection=D('Collection');
         $where=[];
