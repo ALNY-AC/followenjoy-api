@@ -190,10 +190,8 @@ class GoodsModel extends Model {
             $goodsList[$i]      =     $this->getGoodsSku($goods);
         }
         
-        
         $goodsList=toTime($goodsList);
         return $goodsList;
-        
         
     }
     
@@ -210,6 +208,9 @@ class GoodsModel extends Model {
         ->field($field)
         ->where($where)
         ->find();
+        if(!$goods){
+            return null;
+        }
         
         $goods=$this->getGoodsSku($goods,$map,true);
         $goods=toTime([$goods])[0];

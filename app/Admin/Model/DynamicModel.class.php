@@ -7,25 +7,12 @@ class DynamicModel extends Model {
     public function _initialize (){}
     
     public function creat($add){
+        
         $dynamic_id=getMd5('dynamic');
-        $imgList=$add['img_list'];
+        
+        $this->saveImg($dynamic_id,$add['img_list']);
         unset($add['img_list']);
         
-        $img_list=[];
-        for ($i=0; $i < count($imgList); $i++) {
-            
-            $add['dynamic_img_id']=getMd5('dynamic_img');
-            $add['dynamic_id']=$dynamic_id;
-            $add['src']=$imgList[$i];
-            $add['add_time']=time();
-            $add['edit_time']=time();
-            $img_list[]=$add;
-        }
-        
-        $DynamicImg=M('dynamic_img');
-        $DynamicImg->addAll($img_list);
-        
-        //设置用户id
         $add['add_time']=time();
         $add['edit_time']=time();
         $add['dynamic_id']=$dynamic_id;
@@ -76,11 +63,10 @@ class DynamicModel extends Model {
     }
     
     private function getImgList($dynamic_id){
-        
         $Img=M('dynamic_img');
         $where=[];
         $where['dynamic_id']=$dynamic_id;
-        return $Img->where($where)->select();
+        return $Img->order('sort asc')->where($where)->select();
         
     }
     
@@ -125,34 +111,15 @@ class DynamicModel extends Model {
     }
     
     public function svaeData($dynamic_id,$save){
+        
+        
         $where=[];
         $where['dynamic_id']=$dynamic_id;
-        // ===================================================================================
-        // 创建模型
-        $DynamicImg=M('dynamic_img');
-        
-        // ===================================================================================
-        // 先删除图片
-        $DynamicImg->where($where)->delete();
-        
         
         // ===================================================================================
         // 构建图片数据
-        $imgList=$save['img_list'];
+        $this->saveImg($dynamic_id,$save['img_list']);
         unset($save['img_list']);
-        $img_list=[];
-        for ($i=0; $i < count($imgList); $i++) {
-            $save['dynamic_img_id']=getMd5('dynamic_img');
-            $save['dynamic_id']=$dynamic_id;
-            $save['src']=$imgList[$i];
-            $save['add_time']=time();
-            $save['edit_time']=time();
-            $img_list[]=$save;
-        }
-        
-        // ===================================================================================
-        // 添加图片
-        $DynamicImg->addAll($img_list);
         
         // ===================================================================================
         // 保存数据
@@ -161,6 +128,39 @@ class DynamicModel extends Model {
         //添加进去
         return $this->where($where)->save($save);
         
+        
+    }
+    
+    public function saveImg($dynamic_id,$imgList){
+        
+        $arr=[];
+        
+        foreach ($imgList as $k => $v) {
+            
+            $item=[];
+            $item['dynamic_img_id']=getMd5('dynamic_img');
+            $item['dynamic_id']=$dynamic_id;
+            $item['src']=$v['src'];
+            $item['sort']=$v['sort'];
+            $item['add_time']=time();
+            $item['edit_time']=time();
+            
+            $arr[]=$item;
+        }
+        // ===================================================================================
+        // 创建模型
+        $DynamicImg=D('DynamicImg');
+        
+        $where=[];
+        $where['dynamic_id']=$dynamic_id;
+        
+        // ===================================================================================
+        // 删除
+        $DynamicImg->where($where)->delete();
+        
+        // ===================================================================================
+        // 添加图片
+        $DynamicImg->addAll($arr);
         
     }
     

@@ -10,6 +10,8 @@ class CollectionModel extends Model {
         $where=[];
         $where['goods_id']=$data['goods_id'];
         $where['user_id']=session('user_id');
+        
+        
         $result=$this->where($where)->find();
         if($result){
             //已存在，就取消收藏
@@ -22,7 +24,9 @@ class CollectionModel extends Model {
             
         }else{
             //不存在，就添加收藏
-            $add=$where;
+            $add=[];
+            $add['goods_id']=$data['goods_id'];
+            $add['user_id']=session('user_id');
             $add['add_time']=time();
             $add['edit_time']=time();
             $result= $this->add($add);
@@ -40,17 +44,24 @@ class CollectionModel extends Model {
         $where=[];
         $where['user_id']=session('user_id');
         
+        $where=[];
+        $where['user_id']=session('user_id');
+        
         $goodsIds=$this->where($where)->getField('goods_id',true);
+        
+        if(!$goodsIds){
+            return [];
+        }
+        
         
         $where=[];
         $where['goods_id']=['in',getIds($goodsIds)];
         
         $data['where']=$where;
         $Goods=D('Goods');
-        return $Goods->getList($data);
+        return $Goods->getAll($data);
         
     }
-    
     
     
 }

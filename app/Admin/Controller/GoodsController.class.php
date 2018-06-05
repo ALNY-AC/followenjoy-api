@@ -38,13 +38,12 @@ class GoodsController extends CommonController{
         
     }
     
+    
     //获得一个
     public function get(){
         
         $Goods=D('Goods');
         $goods_id=I('goods_id');
-        
-        
         
         if(I('map')){
             $goods=$Goods->get($goods_id,I('map'),I(''));

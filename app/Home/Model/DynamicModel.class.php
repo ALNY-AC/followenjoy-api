@@ -6,6 +6,7 @@ class DynamicModel extends Model {
     
     public function _initialize (){}
     
+    
     public function getList($data){
         
         
@@ -30,7 +31,7 @@ class DynamicModel extends Model {
             $dynamic_id=$dynamicList[$i]['dynamic_id'];
             $where=[];
             $where['dynamic_id']=$dynamic_id;
-            $img_list=$Img->where($where)->select();
+            $img_list=$Img->order('sort asc')->where($where)->select();
             $dynamicList[$i]['img_list']=$img_list;
             
             //找商品
@@ -102,7 +103,7 @@ class DynamicModel extends Model {
             $dynamic_id=$dynamicList[$i]['dynamic_id'];
             $where=[];
             $where['dynamic_id']=$dynamic_id;
-            $img_list=$Img->where($where)->select();
+            $img_list=$Img->order('sort asc')->where($where)->select();
             $dynamicList[$i]['img_list']=$img_list;
             
             //找商品

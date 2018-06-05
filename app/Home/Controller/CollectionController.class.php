@@ -24,6 +24,7 @@ class CollectionController extends CommonController{
         if($result){
             $res['res']=1;
             $res['msg']=$result;
+            
         }else{
             $res['res']=-1;
             $res['msg']=$result;
@@ -34,8 +35,6 @@ class CollectionController extends CommonController{
     public function getList(){
         
         $Collection=D('Collection');
-        $where=[];
-        $where['user_id']=session('user_id');
         
         $result=$Collection->getList(I());
         
@@ -49,6 +48,5 @@ class CollectionController extends CommonController{
         echo json_encode($res);
         
     }
-    
     
 }
