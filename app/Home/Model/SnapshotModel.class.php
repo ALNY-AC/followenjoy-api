@@ -97,6 +97,10 @@ class SnapshotModel extends Model {
             $add['shop_code']=$sku['shop_code'];
             $add['amount']=$sku['amount'];
             
+            // 限时购字段
+            $add['activity_price']=$sku['activity_price'];//活动时价格
+            $add['activity_earn_price']=$sku['activity_earn_price'];//活动时佣金
+            
             $add['user_id']=session('user_id');
             $add['count']=$count+0;
             $add['add_time']=time();
@@ -135,6 +139,9 @@ class SnapshotModel extends Model {
         $goods_info=$Goods->get($goods_id);
         $snapshot['goods_info']=$goods_info;
         
+        $snapshot=$this->getTime($snapshot);
+        $snapshot=$this->updateGoods($snapshot);
+        
         return $snapshot;
     }
     
@@ -147,7 +154,70 @@ class SnapshotModel extends Model {
         return $arr;
         
     }
+    public function getTime($snapshot){
+        
+        
+        $TimeGoods=D('TimeGoods');
+        
+        $goods_id=$snapshot['goods_id'];
+        
+        $where=[];
+        $where['goods_id'] = $goods_id;
+        
+        $time=$TimeGoods->where($where)->find();
+        
+        
+        
+        $toTime=time();
+        
+        $start_time=$time['start_time'];
+        $end_time=$time['end_time'];
+        
+        if($toTime>$start_time && $toTime < $end_time){
+            // 限时购商品，正在进行时
+            $snapshot['original_price']=$snapshot['price'];
+            $snapshot['price'] =   $snapshot['activity_price'];
+            $snapshot['earn_price'] =   $snapshot['activity_earn_price'];
+        }
+        
+        return $snapshot;
+    }
     
-    
+    // 同步一下数据
+    public function updateGoods($snapshot){
+        
+        $sku_id=$snapshot['sku_id'];
+        $Sku=D('Sku');
+        
+        $where=[];
+        $where['sku_id']=$sku_id;
+        $sku=$Sku->where($where)->find();
+        if(!$sku){
+            $snapshot['no_sku']=true;
+            return $snapshot;
+        }else{
+            $snapshot['no_sku']=false;
+        }
+        
+        $data=[];
+        $data['is_unique']=$sku['is_unique'];//是否是499商品
+        $data['earn_price']=$sku['earn_price'];
+        $data['purchase_price']=$sku['purchase_price'];
+        $data['shop_code']=$sku['shop_code'];
+        $data['amount']=$sku['amount'];
+        $data['activity_price']=$sku['activity_price'];//活动时价格
+        $data['activity_earn_price']=$sku['activity_earn_price'];//活动时佣金
+        
+        
+        $where=[];
+        $where['snapshot_id']=$snapshot['snapshot_id'];
+        $this->where($where)->save($data);
+        
+        
+        foreach ($data as $k => $v) {
+            $snapshot[$k]=$v;
+        }
+        return $snapshot;
+    }
     
 }

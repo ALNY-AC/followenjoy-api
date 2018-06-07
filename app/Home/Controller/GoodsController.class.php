@@ -76,7 +76,7 @@ class GoodsController extends CommonController{
         $Goods=D('Goods');
         $goods=$Goods->get($goods_id);
         
-   
+        
         
         
         if($goods){

@@ -22,7 +22,6 @@ class HomeController extends CommonController {
         $res['homeData']=$homeData;
         
         echo json_encode($res);
-        
     }
     
 }

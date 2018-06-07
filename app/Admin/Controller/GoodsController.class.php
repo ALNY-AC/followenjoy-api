@@ -31,6 +31,7 @@ class GoodsController extends CommonController{
             $res['res']=1;
             $res['msg']=$result;
         }else{
+            
             $res['res']=-1;
             $res['msg']=$result;
         }
@@ -90,6 +91,22 @@ class GoodsController extends CommonController{
         echo json_encode($res);
         
     }
+    
+    
+    public function getAll(){
+        
+        $Goods=D('Goods');
+        $result=$Goods->getAll(I('ids'));
+        if($result){
+            $res['res']=count($result);
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
     
     public function up(){
         

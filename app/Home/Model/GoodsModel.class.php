@@ -23,6 +23,8 @@ class GoodsModel extends Model {
         $limit  =   $data['limit']?$data['limit']:10;
         $field  =   $data['field']?$data['field']:[];
         
+        
+        
         $where['is_up']=1;
         
         $field=[
@@ -41,19 +43,20 @@ class GoodsModel extends Model {
         // 'edit_time'
         ];
         
-        
         $list  =  $this
         ->order('sort desc,add_time desc')
         ->where($where)
         ->field($field)
         ->limit(($page-1)*$limit,$limit)
         ->select();
-        //找 sku 和 tree
-        
         
         for ($i=0; $i <count($list) ; $i++) {
-            $goods              =     $list[$i];
-            $list[$i]      =     $this->getGoodsSku($goods,$map=['img_list','sku','tree'],[]);
+            
+            $goods=$list[$i];
+            $goods=$this->getGoodsSku($goods,$map=['img_list','sku','tree'],false);
+            $goods=$this->getTime($goods);
+            $list[$i]=$goods;
+            
         }
         
         return $list;
@@ -72,7 +75,7 @@ class GoodsModel extends Model {
         'is_up',
         'goods_class',
         'sort',
-        // 'is_cross_border',s
+        // 'is_cross_border',
         // 'goods_content',
         // 'is_unique',
         'add_time',
@@ -81,19 +84,22 @@ class GoodsModel extends Model {
         
         $where['is_up']=1;
         
-        $goodsList  =  $this
+        $list  =  $this
         ->order('sort desc,add_time desc')
         ->where($where)
         ->field($field)
         ->select();
         
-        //找 sku 和 tree
-        for ($i=0; $i <count($goodsList) ; $i++) {
-            $goods              =     $goodsList[$i];
-            $goodsList[$i]      =     $this->getGoodsSku($goods,$map=['img_list','sku','tree'],false);
+        for ($i=0; $i <count($list) ; $i++) {
+            
+            $goods=$list[$i];
+            $goods=$this->getGoodsSku($goods,$map=['img_list','sku','tree'],false);
+            $goods=$this->getTime($goods);
+            $list[$i]=$goods;
+            
         }
         
-        return $goodsList;
+        return $list;
     }
     
     //获得一个
@@ -120,32 +126,44 @@ class GoodsModel extends Model {
         
         $goods['is_collection']=!($collection==null);
         
-        //判断是不是限时购商品
+        //配置限时购商品
+        $goods= $this->getTime($goods);
+        
+        return $goods;
+    }
+    
+    public function getTime($goods){
+        
         $TimeGoods=D('TimeGoods');
-        $Time=D('Time');
+        
+        $goods_id=$goods['goods_id'];
+        
         $where=[];
         $where['goods_id'] = $goods_id;
         
-        $timeGoods=$TimeGoods->where($where)->find();
-        $time_id=$timeGoods['time_id'];
+        $time=$TimeGoods->where($where)->find();
         
-        $where=[];
-        $where['time_id']=$time_id;
+        if(!$time){
+            return $goods;
+        }
         
-        $time=$Time
-        ->where($where)
-        ->find();
+        $toTime=time();
         
-        if($time){
-            //参加了限时购商品
-            //判断过期
-            $time['qj_time']=$time['end_time']-time();
+        $start_time=$time['start_time'];
+        $end_time=$time['end_time'];
+        
+        if($toTime>$start_time && $toTime < $end_time){
+            // 限时购商品，正在进行时
             
-            
-            $time['end_time_text']=date('Y-m-d H:i:s',$time['end_time']);
-            $time['start_time_text']=date('Y-m-d H:i:s',$time['start_time']);
-            
-            $goods['time']=$time;
+            foreach ($goods['sku'] as $k => $v) {
+                
+                $v['original_price']=$v['price'];
+                $v['price'] =   $v['activity_price'];
+                $v['earn_price'] =   $v['activity_earn_price'];
+                
+                $goods['sku'][$k]=$v;
+                
+            }
             
         }
         

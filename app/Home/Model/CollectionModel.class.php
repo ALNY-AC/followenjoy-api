@@ -38,7 +38,6 @@ class CollectionModel extends Model {
         }
     }
     
-    
     public function getList($data){
         
         $where=[];
@@ -53,15 +52,12 @@ class CollectionModel extends Model {
             return [];
         }
         
-        
         $where=[];
         $where['goods_id']=['in',getIds($goodsIds)];
         
         $data['where']=$where;
         $Goods=D('Goods');
         return $Goods->getAll($data);
-        
     }
-    
     
 }

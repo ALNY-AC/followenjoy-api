@@ -76,7 +76,7 @@ define('__UPLOAD__ADMIN__', '/Public/Upload/admin/');
 define('__UPLOAD__HOME__', '/Public/Upload/home/');
 
 // 是否是测试环境API
-define('IS_DEBUG', true);
+define('IS_DEBUG', false);
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

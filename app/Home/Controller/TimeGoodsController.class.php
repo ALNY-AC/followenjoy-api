@@ -18,14 +18,30 @@ namespace Home\Controller;
 use Think\Controller;
 class TimeGoodsController extends CommonController{
     
+    public function create(){
+        $TimeGoods=D('TimeGoods');
+        $result=$TimeGoods->create(I());
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
     public function getList(){
         $TimeGoods=D('TimeGoods');
         
         $data=I();
-        $data['where']=getKey();
+        
         $result=$TimeGoods->getList($data);
         
-        $res['count']=$TimeGoods->where($data['where'])->count()+0;
+        $start_time=$data['start_time'];
+
+        $res['count']=$TimeGoods->where(['start_time'=>$start_time])->count()+0;
+        
         if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
@@ -49,5 +65,37 @@ class TimeGoodsController extends CommonController{
         }
         echo json_encode($res);
     }
+    
+    
+    public function getData(){
+        
+        $TimeGoods=D('TimeGoods');
+        
+        $result=$TimeGoods->getData(I());
+        if($result!==false){
+            $res['res']=count($result);
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
+    public function get(){
+        
+        $TimeGoods=D('TimeGoods');
+        
+        $result=$TimeGoods->get(I());
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
     
 }

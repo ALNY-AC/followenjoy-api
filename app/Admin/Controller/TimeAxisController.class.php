@@ -1,8 +1,8 @@
 <?php
 /**
 * +----------------------------------------------------------------------
-* 创建日期：2018年5月27日23:32:56
-* 最新修改时间：2018年5月27日23:32:56
+* 创建日期：2018年6月6日17:06:00
+* 最新修改时间：2018年6月6日17:06:00
 * +----------------------------------------------------------------------
 * https：//github.com/ALNY-AC
 * +----------------------------------------------------------------------
@@ -10,39 +10,46 @@
 * +----------------------------------------------------------------------
 * QQ:1173197065
 * +----------------------------------------------------------------------
-* #####限时购商品控制器#####
+* #####时刻表控制器#####
 * @author 代码狮
 *
 */
 namespace Admin\Controller;
 use Think\Controller;
-class TimeGoodsController extends CommonController{
+class TimeAxisController extends CommonController{
     
     public function create(){
-        $TimeGoods=D('TimeGoods');
-        $result=$TimeGoods->create(I());
+        $TimeAxis=D('TimeAxis');
+        $result=$TimeAxis->create(I());
         if($result){
-            $res['res']=1;
+            $res['res']=count($result);
             $res['msg']=$result;
         }else{
             $res['res']=-1;
             $res['msg']=$result;
         }
         echo json_encode($res);
+        
+    }
+    
+    public function get(){
+        $TimeAxis=D('TimeAxis');
+        $result=$TimeAxis->get();
+        if($result){
+            $res['res']=count($result);
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
     }
     
     public function getList(){
-        $TimeGoods=D('TimeGoods');
-        
-        $data=I();
-        
-        $result=$TimeGoods->getList($data);
-        
-        $start_time=$data['start_time'];
-        
-        $res['count']=$TimeGoods->where(['start_time'=>$start_time])->count()+0;
-        
-        if($result!==false){
+        $TimeAxis=D('TimeAxis');
+        $result=$TimeAxis->getList();
+        if($result){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{
@@ -50,13 +57,13 @@ class TimeGoodsController extends CommonController{
             $res['msg']=$result;
         }
         echo json_encode($res);
+        
     }
     
     public function getAll(){
-        $TimeGoods=D('TimeGoods');
-        $data=I();
-        $result=$TimeGoods->getAll($data);
-        if($result!==false){
+        $TimeAxis=D('TimeAxis');
+        $result=$TimeAxis->getAll();
+        if($result){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{
@@ -64,28 +71,13 @@ class TimeGoodsController extends CommonController{
             $res['msg']=$result;
         }
         echo json_encode($res);
+        
     }
     
     public function del(){
-        $TimeGoods=D('TimeGoods');
-        $result=$TimeGoods->del(I('goods_id'),I('start_time'));
+        $TimeAxis=D('TimeAxis');
+        $result=$TimeAxis->del();
         if($result){
-            $res['res']=1;
-            $res['msg']=$result;
-        }else{
-            $res['res']=-1;
-            $res['msg']=$result;
-        }
-        echo json_encode($res);
-    }
-    
-    
-    public function getData(){
-        
-        $TimeGoods=D('TimeGoods');
-        
-        $result=$TimeGoods->getData(I());
-        if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{
@@ -93,21 +85,22 @@ class TimeGoodsController extends CommonController{
             $res['msg']=$result;
         }
         echo json_encode($res);
+        
     }
     
     public function saveData(){
-        
-        $TimeGoods=D('TimeGoods');
-        
-        $result=$TimeGoods->saveData(I('goods_id'),I('start_time'),I('data'));
-        if($result!==false){
-            $res['res']=1;
+        $TimeAxis=D('TimeAxis');
+        $result=$TimeAxis->saveData();
+        if($result){
+            $res['res']=count($result);
             $res['msg']=$result;
         }else{
             $res['res']=-1;
             $res['msg']=$result;
         }
         echo json_encode($res);
+        
     }
+    
     
 }
