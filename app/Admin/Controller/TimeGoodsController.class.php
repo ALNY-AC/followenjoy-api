@@ -110,4 +110,29 @@ class TimeGoodsController extends CommonController{
         echo json_encode($res);
     }
     
+    public function test(){
+        
+        die;
+        $TimeGoods=D('TimeGoods');
+        
+        $list=$TimeGoods->select();
+        
+        foreach ($list as $k => $v) {
+            
+            $where=[];
+            $where['time_goods_id']=$v['time_goods_id'];
+            
+            $data=[];
+            $end_time=strtotime("+1 day",$v['start_time']);
+            // $data['start_time']=$end_time;
+            $data['end_time']=$end_time;
+            
+            $TimeGoods->where($where)->save($data);
+            
+        }
+        $list=$TimeGoods->select();
+        
+        dump($list);
+        
+    }
 }

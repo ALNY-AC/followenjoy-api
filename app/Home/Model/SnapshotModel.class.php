@@ -157,6 +157,11 @@ class SnapshotModel extends Model {
     public function getTime($snapshot){
         
         
+        if($snapshot['order_id']){
+            return;
+        }
+        
+        
         $TimeGoods=D('TimeGoods');
         
         $goods_id=$snapshot['goods_id'];
@@ -165,8 +170,6 @@ class SnapshotModel extends Model {
         $where['goods_id'] = $goods_id;
         
         $time=$TimeGoods->where($where)->find();
-        
-        
         
         $toTime=time();
         

@@ -39,8 +39,13 @@ class TimeGoodsController extends CommonController{
         $result=$TimeGoods->getList($data);
         
         $start_time=$data['start_time'];
-
-        $res['count']=$TimeGoods->where(['start_time'=>$start_time])->count()+0;
+        
+        $where=[];
+        $where['start_time']=$start_time;
+        $where['is_show']=1;
+        
+        
+        $res['count']=$TimeGoods->where($where)->count()+0;
         
         if($result!==false){
             $res['res']=count($result);
@@ -96,6 +101,7 @@ class TimeGoodsController extends CommonController{
         }
         echo json_encode($res);
     }
+    
     
     
 }

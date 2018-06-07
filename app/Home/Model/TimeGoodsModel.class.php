@@ -11,11 +11,14 @@ class TimeGoodsModel extends Model {
         
         $Goods=D('Goods');
         $start_time=$data['start_time'];
-        $goods_id=$this->where(['start_time'=>$start_time])->getField('goods_id',true);
+        $where=[];
+        $where['start_time']=$start_time;
+        $where['is_show']=1;
+        $goods_id=$this->where($where)->getField('goods_id',true);
         
         if($goods_id){
-            $data['where']['goods_id']=['in',$goods_id];
-            $list=$Goods->getList($data,  $data['where']);
+            $where['goods_id']=['in',$goods_id];
+            $list=$Goods->getList($data,  $where);
         }else{
             $list=[];
         }
@@ -39,7 +42,6 @@ class TimeGoodsModel extends Model {
             $v['is_show']=$is_show+0;
             $list[$k]=$v;
         }
-        
         return $list;
     }
     

@@ -9,7 +9,6 @@ class TimeGoodsModel extends Model {
     public function create($data){
         
         
-        
         $goods_ids=$data['goods_id'];
         
         $addAll=[];
@@ -24,8 +23,11 @@ class TimeGoodsModel extends Model {
             $item['start_time']=$data['start_time'];
             
             // dump(date('Y-m-d H:i:s',$data['start_time']));
+            $end_time=strtotime("+1 day",$start_time);
+            $data['end_time']=$end_time;
             
-            $item['end_time']=$data['start_time']+3600;
+            
+            $item['end_time']=$end_time;
             $item['add_time']=time();
             $item['edit_time']=time();
             
@@ -147,9 +149,12 @@ class TimeGoodsModel extends Model {
         $where['start_time']=$start_time;
         $where['goods_id']=['in',getIds($goods_id)];
         
+        
         unset($data['add_time']);
         $data['edit_time']=time();
         $this->where($where)->save($data);
     }
+    
+    
     
 }

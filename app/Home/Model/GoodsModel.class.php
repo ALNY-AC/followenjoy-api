@@ -234,7 +234,7 @@ class GoodsModel extends Model {
             ->select();
             $goods['sku']=$skus;
         }
-        
+        // http://q.followenjoy.cn/#/TempPages?temp_pages_id=1632c332fd0ff5633a7072ad978bd739
         // ===================================================================================
         // 找skutree
         if(in_array('tree',$map)){
