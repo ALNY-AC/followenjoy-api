@@ -21,7 +21,18 @@ class IndexController extends Controller{
     public function index(){
         
         // https://api.mch.weixin.qq.com/pay/unifiedorder
-        weixin();
+        // weixin();
+        //
+        
+        die;
+        
+        $APPID='wx8c3b0269e9e2c724';
+        $redirect_uri="http://q.followenjoy.cn";
+        $redirect_uri= urlencode($redirect_uri);
+        dump($APPID);
+        $url="https://open.weixin.qq.com/connect/qrconnect?appid=$APPID&redirect_uri=$redirect_uri&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect";
+        
+        echo "<a href='$url'>$url</a>";
         
         
     }

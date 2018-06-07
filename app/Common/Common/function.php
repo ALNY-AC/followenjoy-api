@@ -894,20 +894,21 @@ function weixin(){
     $input = new WxPayUnifiedOrder();
     $input->SetBody("test");
     $input->SetAttach("test");
-    $input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
+    // WxPayConfig::MCHID.date("YmdHis")
+    $input->SetOut_trade_no(time());
     $input->SetTotal_fee("1");
     $input->SetTime_start(date("YmdHis"));
     $input->SetTime_expire(date("YmdHis", time() + 600));
-    $input->SetGoods_tag("test");
+    // $input->SetGoods_tag("test");
     $input->SetNotify_url("http://paysdk.weixin.qq.com/example/notify.php");
     $input->SetTrade_type("MWEB");
     // $input->SetOpenid($openId);
     $order = WxPayApi::unifiedOrder($input);
     echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
     // printf_info($order);
-    $jsApiParameters = $tools->GetJsApiParameters($order);
+    // $jsApiParameters = $tools->GetJsApiParameters($order);
     dump($order);
-    dump($jsApiParameters);
+    // dump($jsApiParameters);
     
     //获取共享收货地址js函数参数
     // $editAddress = $tools->GetEditAddressParameters();

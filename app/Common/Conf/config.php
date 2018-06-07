@@ -35,4 +35,14 @@ return array(
 // 'DB_PORT' => '3306', // 端口
 // 'DB_PREFIX' => 'c_', // 数据库表前缀
 // 'DB_PARAMS'    =>    array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
+
+
+"weixin"=>array(
+"APPID"=>"wx8c3b0269e9e2c724",
+"MCHID"=>"1504196381",
+"KEY"=>"8312162ee470f489870f1fd35288a946",
+// bcc5e9cfa42e8be37da2a6812f992bad
+),
+
+
 );

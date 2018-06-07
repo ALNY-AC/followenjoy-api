@@ -185,4 +185,46 @@ class LoginController extends Controller {
         echo json_encode($res);
     }
     
+    public function weixinLogin(){
+        
+        $unionid=I('unionid');
+        $nickname=I('nickname');
+        $headimgurl=I('headimgurl');
+        
+        // 先检查用户是否存在
+        
+        $where=[];
+        $where['unionid']=$unionid;
+        
+        $User=D('User');
+        
+        $user=$User->where($where)->find();
+        
+        if(!$user){
+            // 没有创建新用户
+            $data['user_id']=$unionid;
+            $data['user_name']=$nickname;
+            $data['user_head']=$headimgurl;
+            $data['unionid']=$unionid;
+            $data['user_vip_level']=0;
+            $data['user_money']=0;
+            $data['add_time']=time();
+            $data['edit_time']=time();
+            $User->add($data);
+        }
+        
+        $token=createToken($unionid);
+        
+        if($token){
+            $res['res']=1;
+            $res['token']=$token;
+        }else{
+            $res['res']=-1;
+            $res['msg']=I();
+        }
+        
+        echo json_encode($res);
+        
+    }
+    
 }
