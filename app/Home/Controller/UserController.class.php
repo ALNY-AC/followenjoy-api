@@ -172,11 +172,7 @@ class UserController extends CommonController{
             //是会员
             //初始化vip对象
             // $vip->setDebug(true);
-            $vipInfo['levelName']=$vip->levelName;//会员优惠价
-            $vipInfo['discount']=$vip->discount;//会员优惠价
-        }else{
-            //非会员可以分享商品得钱
-            $vipInfo['shareMoney']=$vip->shareMoney;//会员优惠价
+            $vipInfo['levelName']=$vip->levelName;
         }
         $user['vipInfo']=$vipInfo;
         

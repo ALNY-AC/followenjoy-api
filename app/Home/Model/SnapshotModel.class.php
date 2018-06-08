@@ -89,6 +89,8 @@ class SnapshotModel extends Model {
             $add['price']=$sku['price'];
             
             $add['is_unique']=$goods['is_unique'];//是否是499商品
+            $add['is_cross_border']=$goods['is_cross_border'];//是否是跨境
+            
             // 加分享id
             $add['share_id']=$share_id;//share_id
             
