@@ -29,7 +29,6 @@ class IndexController extends Controller{
         // AppSecret
         // 643f69abc138477f4362ab22a5d012c0
         
-        
         $APPID='wx56a5a0b6368f00a7';
         $redirect_uri="http://q.followenjoy.cn";
         $redirect_uri= urlencode($redirect_uri);
