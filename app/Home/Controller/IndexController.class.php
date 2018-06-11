@@ -19,28 +19,139 @@ use Think\Controller;
 class IndexController extends Controller{
     
     public function index(){
+        $backUrl=I('backUrl');
+        
         
         // https://api.mch.weixin.qq.com/pay/unifiedorder
         // weixin();
         //
-        
-        // AppID
-        // wx56a5a0b6368f00a7
         // AppSecret
         // 643f69abc138477f4362ab22a5d012c0
-        
+        // https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
         $APPID='wx56a5a0b6368f00a7';
-        $redirect_uri="http://q.followenjoy.cn";
-        $redirect_uri= urlencode($redirect_uri);
-        dump($APPID);
-        $url="https://open.weixin.qq.com/connect/qrconnect?appid=$APPID&redirect_uri=$redirect_uri&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect";
+        $secret='643f69abc138477f4362ab22a5d012c0';
+        // dump(I('get.'));
+        $code=I('code');
+        $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=$APPID&secret=$secret&code=$code&grant_type=authorization_code";
         
-        echo "<a href='$url'>$url</a>";
         
+        
+        $accessData=_request($url);
+        $accessData=json_decode($accessData,true);
+        // dump($accessData);
+        
+        $access_token=$accessData['access_token'];
+        $openid=$accessData['openid'];
+        
+        $url="https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
+        $userInfo=_request($url);
+        $userInfo=json_decode($userInfo,true);
+        // dump($userInfo);
+        
+        $unionid=$userInfo['unionid'];
+        $nickname=$userInfo['nickname'];
+        $headimgurl=$userInfo['headimgurl'];
+        
+        // 创建用户信息
+        
+        $where=[];
+        $where['unionid']=$unionid;
+        $User=D('User');
+        $user=$User->where($where)->find();
+        if(!$user){
+            // 没有创建新用户
+            $data['user_id']=$unionid;
+            $data['user_name']=$nickname;
+            $data['user_head']=$headimgurl;
+            $data['unionid']=$unionid;
+            $data['user_vip_level']=0;
+            $data['user_money']=0;
+            $data['add_time']=time();
+            $data['edit_time']=time();
+            $User->add($data);
+        }
+        
+        
+        $token=createToken($unionid);
+        $url="http://q.followenjoy.cn/#/?unionid=$unionid&token=$token&backUrl=$backUrl";
+        
+        // echo "<a href='$url'>$url</a>";
+        
+        echo "<script>window.location.href='$url'</script>";
         
     }
     
-    public function index2(){}
+    public function login(){
+        
+        $backUrl=I('backUrl');
+        
+        $APPID='wx56a5a0b6368f00a7';
+        $backUrl= urlencode($backUrl);
+        $redirect_uri="http://server.followenjoy.cn?backUrl=$backUrl";
+        $redirect_uri= urlencode($redirect_uri);
+        // dump($APPID);
+        $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$APPID&redirect_uri=$redirect_uri&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        
+        echo "<script>window.location.href='$url'</script>";
+        
+    }
+    
+    
+    public function index2(){
+        
+        $weiData=weixin();
+        $this->assign('loginData',$weiData['order']);
+        $this->assign('weiData',$weiData['wei']);
+        $this->assign('time',time());
+        
+        $this->display();
+        
+    }
+    
+    public function test2(){
+        
+        $TimeGoods=D('TimeGoods');
+        $list=$TimeGoods->select();
+        
+        $start_time=time();
+        
+        $end_time=strtotime("+1 day",$start_time);
+        
+        $time1=date('Y-m-d H:i:s',$start_time);
+        $time2=date('Y-m-d H:i:s',$end_time);
+        
+        
+        foreach ($list as $k => $v) {
+            
+            
+            $start_time=$v['start_time'];
+            $end_time=$v['end_time'];
+            
+            
+            $end_time=strtotime("+1 day",$start_time);
+            $v['end_time']=$end_time;
+            
+            dump($start_time);
+            dump($end_time);
+            dump(date('Y-m-d H:i:s',$start_time));
+            dump(date('Y-m-d H:i:s',$end_time));
+            
+            
+            echo '<hr/>';
+            
+            $data=$v;
+            
+            $where=[];
+            $where['time_goods_id']=$v['time_goods_id'];
+            
+            // $TimeGoods->where($where)->save($data);
+            // dump($v);
+            
+        }
+        
+        
+        
+    }
     
     public function init(){
         

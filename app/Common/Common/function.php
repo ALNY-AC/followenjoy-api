@@ -831,6 +831,9 @@ function getIds($id){
         $arr=$id;
     }
     return $arr;
+    
+    
+    
 }
 
 
@@ -889,29 +892,57 @@ function get_float_length($a){
 
 function weixin(){
     // unifiedOrder
+    //①、获取用户openid
+    ini_set('date.timezone','Asia/Shanghai');
+    
+    Vendor('Weixin.WxPayJsApiPay');
     Vendor('Weixin.WxPayApi');
+    
+    $tools = new JsApiPay();
+    $openId = $tools->GetOpenid();
     //②、统一下单
     $input = new WxPayUnifiedOrder();
     $input->SetBody("test");
     $input->SetAttach("test");
-    // WxPayConfig::MCHID.date("YmdHis")
+    
     $input->SetOut_trade_no(time());
-    $input->SetTotal_fee("1");
+    $input->SetTotal_fee("5000");
     $input->SetTime_start(date("YmdHis"));
     $input->SetTime_expire(date("YmdHis", time() + 600));
-    // $input->SetGoods_tag("test");
-    $input->SetNotify_url("http://paysdk.weixin.qq.com/example/notify.php");
-    $input->SetTrade_type("MWEB");
-    // $input->SetOpenid($openId);
-    $order = WxPayApi::unifiedOrder($input);
-    echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
-    // printf_info($order);
-    // $jsApiParameters = $tools->GetJsApiParameters($order);
-    dump($order);
-    // dump($jsApiParameters);
+    $input->SetGoods_tag("test");
+    $input->SetNotify_url("http://server.followenjoy.cn/index.php/home/weixin/notify");
+    $input->SetTrade_type("JSAPI");
+    // dump($openId);
+    $input->SetOpenid($openId);
     
-    //获取共享收货地址js函数参数
-    // $editAddress = $tools->GetEditAddressParameters();
+    $order = WxPayApi::unifiedOrder($input);
+    // echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
+    // printf_info($order);
+    $jsApiParameters = $tools->GetJsApiParameters($order);
+    
+    dump($order);
+    dump(json_decode($jsApiParameters,true));
+    
+    
+    
+    $timestamp=time();//生成签名的时间戳
+    $nonceStr=WxPayApi::getNonceStr();//生成签名的随机串
+    $signature=WxPayApi::getNonceStr();//签名
+    
+    
+    $config=[];
+    $config['timestamp']=$timestamp;
+    $config['nonceStr']=$nonceStr;
+    $config['signature']=$signature;
+    
+    
+    
+    
+    return ['order'=>json_encode($order),'wei'=>$jsApiParameters];
+    
+    // https://api.mch.weixin.qq.com/pay/unifiedorder
+    
+    
     
     //③、在支持成功回调通知中处理成功之后的事宜，见 notify.php
     /**
@@ -920,4 +951,73 @@ function weixin(){
     * 2、jsapi支付时需要填入用户openid，WxPay.JsApiPay.php中有获取openid流程 （文档可以参考微信公众平台“网页授权接口”，
     * 参考http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html）
     */
+}
+
+//设置网络请求配置
+function _request($curl,$https=true,$method='GET',$data=null){
+    // 创建一个新cURL资源
+    $ch = curl_init();
+    
+    // 设置URL和相应的选项
+    curl_setopt($ch, CURLOPT_URL, $curl);    //要访问的网站
+    curl_setopt($ch, CURLOPT_HEADER, false);    //启用时会将头文件的信息作为数据流输出。
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  //将curl_exec()获取的信息以字符串返回，而不是直接输出。
+    
+    if($https){
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);  //FALSE 禁止 cURL 验证对等证书（peer's certificate）。
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, true);  //验证主机
+    }
+    if($method == 'POST'){
+        curl_setopt($ch, CURLOPT_POST, true);  //发送 POST 请求
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);  //全部数据使用HTTP协议中的 "POST" 操作来发送。
+    }
+    
+    
+    // 抓取URL并把它传递给浏览器
+    $content = curl_exec($ch);
+    if ($content  === false) {
+        return "网络请求出错: " . curl_error($ch);
+        exit();
+    }
+    //关闭cURL资源，并且释放系统资源
+    curl_close($ch);
+    // http://127.0.0.1:12138/wShop/index.php/home/test/index
+    return $content;
+}
+
+
+
+
+/**
+* 获取用户的openid
+* @param  string $openid [description]
+* @return [type]         [description]
+*/
+function baseAuth($redirect_url){
+    
+    // $appid='wx9b7ab18e61268efb';
+    // $appsecret='bcd46807674b9448617438256db6cada';
+    //===
+    $appid='wxc5919bd34da8b695';
+    $appsecret='87e678bca54b92f8c7213e1ba9f12963';
+    
+    
+    //1.准备scope为 snsapi_base 网页授权页面 snsapi_userinfo
+    
+    $baseurl = urlencode($redirect_url);
+    $snsapi_base_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri='.$baseurl.'&response_type=code&scope=snsapi_userinfo&state=YQJ#wechat_redirect';
+    
+    //2.静默授权,获取code
+    //页面跳转至redirect_uri/?code=CODE&state=STATE
+    $code = $_GET['code'];
+    if( !isset($code) ){
+        header('Location:'.$snsapi_base_url);
+    }
+    
+    //3.通过code换取网页授权access_token和openid
+    $curl = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$appsecret.'&code='.$code.'&grant_type=authorization_code';
+    $content =_request($curl);
+    $result = json_decode($content,true);
+    
+    return $result;
 }

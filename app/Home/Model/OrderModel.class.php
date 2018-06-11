@@ -237,7 +237,7 @@ class OrderModel extends Model {
         $Coupon=D('Coupon');//优惠券模型
         $Pay=D('Pay');//支付单模型
         $OrderAddress=M('OrderAddress');//地址库模型
-        $Snapshot=M('Snapshot');//快照模型
+        $Snapshot=D('Snapshot');//快照模型
         $Order=M('Order');//订单模型
         $Logistics=M('Logistics');//物流信息表模型
         $OrderCoupon=D('OrderCoupon');//优惠券订单关联表
@@ -258,6 +258,11 @@ class OrderModel extends Model {
         $where=[];
         $where['snapshot_id']=['in',$snapshot_ids];
         $snapshots=$Snapshot->where($where)->select();
+        
+        foreach ($snapshots as $k => $v) {
+            $v=$Snapshot->getTime($v);
+            $snapshots[$k]=$v;
+        }
         
         // ===================================================================================
         // 找地址信息
@@ -482,7 +487,6 @@ class OrderModel extends Model {
             $orders[$key]=$order;
         }
         
-        
         $orders=toTime($orders);
         return $orders;
         
@@ -493,7 +497,10 @@ class OrderModel extends Model {
         $Snapshot=D('Snapshot');//快照
         $where=[];
         $where['order_id']=$order_id;
-        return $Snapshot->where($where)->find();
+        $data=    $Snapshot->where($where)->find();
+        //检查时间轴数据
+        $data=$Snapshot->getTime($data);
+        return $data;
     }
     
     //取得订单的物流数据

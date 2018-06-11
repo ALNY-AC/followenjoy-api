@@ -29,7 +29,7 @@ class OrderController extends CommonController{
     
     //获得添加订单页的数据包
     public function getAddPacket(){
-        $Address=M('Address');
+        $Address=D('Address');
         $snapshot_id=I('snapshot_id');
         
         $where=[];

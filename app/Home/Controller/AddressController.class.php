@@ -160,12 +160,12 @@ class AddressController extends CommonController{
         $where['user_id']=session('user_id');
         $where['address_id']=I('address_id');
         
-        $save['is_default'] = $save['is_default'] ==true? 1 : 0 ;
+        $save['is_default'] = $save['is_default'] == true ? 1 : 0;
             
             $result=$model->where($where)->save($save);
             
             
-            if($result){
+            if($result!==false){
                 $res['res']=$result;
                 $res['msg']=$result;
                 $save['edit_time']=time();

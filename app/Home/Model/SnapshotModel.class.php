@@ -141,7 +141,7 @@ class SnapshotModel extends Model {
         $goods_info=$Goods->get($goods_id);
         $snapshot['goods_info']=$goods_info;
         
-        $snapshot=$this->getTime($snapshot);
+        $snapshot=$this->getTime($snapshot);//取得限时购数据
         $snapshot=$this->updateGoods($snapshot);
         
         return $snapshot;
@@ -156,13 +156,9 @@ class SnapshotModel extends Model {
         return $arr;
         
     }
+    
+    // 获得限时购数据
     public function getTime($snapshot){
-        
-        
-        if($snapshot['order_id']){
-            return;
-        }
-        
         
         $TimeGoods=D('TimeGoods');
         
@@ -190,6 +186,11 @@ class SnapshotModel extends Model {
     
     // 同步一下数据
     public function updateGoods($snapshot){
+        
+        
+        if($snapshot['order_id']){
+            return;
+        }
         
         $sku_id=$snapshot['sku_id'];
         $Sku=D('Sku');

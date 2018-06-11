@@ -21,6 +21,7 @@ class TimeGoodsModel extends Model {
             $item['sort']=0;
             $item['is_show']=1;
             $item['start_time']=$data['start_time'];
+            $start_time=$item['start_time'];
             
             // dump(date('Y-m-d H:i:s',$data['start_time']));
             $end_time=strtotime("+1 day",$start_time);

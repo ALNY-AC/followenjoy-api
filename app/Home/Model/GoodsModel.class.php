@@ -132,6 +132,7 @@ class GoodsModel extends Model {
         return $goods;
     }
     
+    // 取得限时购数据
     public function getTime($goods){
         
         $TimeGoods=D('TimeGoods');

@@ -34,7 +34,7 @@ class WxPayApi
 		}else if(!$inputObj->IsTrade_typeSet()) {
 			throw new WxPayException("缺少统一支付接口必填参数trade_type！");
 		}
-		
+				
 		//关联参数
 		if($inputObj->GetTrade_type() == "JSAPI" && !$inputObj->IsOpenidSet()){
 			throw new WxPayException("统一支付接口中，缺少必填参数openid！trade_type为JSAPI时，openid为必填参数！");
@@ -53,6 +53,8 @@ class WxPayApi
 		$inputObj->SetSpbill_create_ip($_SERVER['REMOTE_ADDR']);//终端ip	  
 		//$inputObj->SetSpbill_create_ip("1.1.1.1");  	    
 		$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
+		
+		
 		
 		//签名
 		$inputObj->SetSign();
