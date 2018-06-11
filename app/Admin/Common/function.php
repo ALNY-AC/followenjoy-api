@@ -64,7 +64,42 @@ function create_xls($data,$filename='simple.xls'){
     ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
         ->setKeywords("office 2007 openxml php")
     ->setCategory("Test result file");
-
+    
+    
+    $stringList=[
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    ];
+    
+    foreach ($stringList as $k => $v) {
+        $phpexcel->getActiveSheet()->getStyle($v)->getNumberFormat()
+        ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+    }
+    
     
     $phpexcel->getActiveSheet()->fromArray($data);
     $phpexcel->getActiveSheet()->setTitle('Sheet1');
@@ -86,7 +121,6 @@ function create_xls($data,$filename='simple.xls'){
 function getIndex($arr,$field){
     
     $count=0;
-    
     
     foreach ($arr as $key => $value) {
         if($key==$field){

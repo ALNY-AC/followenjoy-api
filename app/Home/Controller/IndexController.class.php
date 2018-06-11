@@ -34,8 +34,6 @@ class IndexController extends Controller{
         $code=I('code');
         $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=$APPID&secret=$secret&code=$code&grant_type=authorization_code";
         
-        
-        
         $accessData=_request($url);
         $accessData=json_decode($accessData,true);
         // dump($accessData);
@@ -52,7 +50,8 @@ class IndexController extends Controller{
         $nickname=$userInfo['nickname'];
         $headimgurl=$userInfo['headimgurl'];
         
-        // 创建用户信息
+        // ===================================================================================
+        // 检测用户是否存在，不存在就创建新用户
         
         $where=[];
         $where['unionid']=$unionid;
@@ -60,7 +59,7 @@ class IndexController extends Controller{
         $user=$User->where($where)->find();
         if(!$user){
             // 没有创建新用户
-            $data['user_id']=$unionid;
+            $data['user_id']='';
             $data['user_name']=$nickname;
             $data['user_head']=$headimgurl;
             $data['unionid']=$unionid;
@@ -69,13 +68,30 @@ class IndexController extends Controller{
             $data['add_time']=time();
             $data['edit_time']=time();
             $User->add($data);
+            $user=$User->where($where)->find();
+        }else{
+            // 绑定 unionid
+            
+            $save=[];
+            $save['unionid']=$unionid;
+            $User->where($where)->save($save);
+            
         }
         
-        
-        $token=createToken($unionid);
-        $url="http://q.followenjoy.cn/#/?unionid=$unionid&token=$token&backUrl=$backUrl";
-        
-        // echo "<a href='$url'>$url</a>";
+        // ===================================================================================
+        // 检测用户id是否存在
+        // 如果用户id不存在，就需要绑定，或者，如果用户id和unionid一样，也需要绑定（这一点是为了修复之前的问题）
+        if($user['user_id'] || $user['user_id'] == $user['unionid']){
+            // 用户id存在，可以直接登录，绑定 unionid
+            $user_id=$user['user_id'];
+            $token=createToken($user_id);
+            $url="http://q.followenjoy.cn/#/?user_id=$user_id&token=$token&backUrl=$backUrl";
+            
+        }else{
+            // 用户id不存在,需要绑定手机号
+            $url="http://q.followenjoy.cn/#/WeiXinLogin?unionid=$unionid&backUrl=$backUrl";
+            
+        }
         
         echo "<script>window.location.href='$url'</script>";
         
@@ -93,18 +109,6 @@ class IndexController extends Controller{
         $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$APPID&redirect_uri=$redirect_uri&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
         
         echo "<script>window.location.href='$url'</script>";
-        
-    }
-    
-    
-    public function index2(){
-        
-        $weiData=weixin();
-        $this->assign('loginData',$weiData['order']);
-        $this->assign('weiData',$weiData['wei']);
-        $this->assign('time',time());
-        
-        $this->display();
         
     }
     

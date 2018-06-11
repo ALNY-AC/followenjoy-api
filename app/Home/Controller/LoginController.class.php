@@ -73,8 +73,82 @@ class LoginController extends Controller {
         
     }
     
+    // 将用户的手机号和unionid绑定
+    public function binding(){
+        
+        // 注意：
+        // 1、user_id 和 unionid 同时存在的账户，无法绑定，因为已经绑定过
+        // 2、user_id 和 unionid 同时存在且相等的，可以绑定，为了修复之前的未绑定bug
+        
+        $user_id=I('user_id');//用户的id
+        $unionid=I('unionid');//联盟id
+        
+        $where=[];
+        $where['unionid']=$unionid;
+        
+        $User=D('User');//用户模型
+        $user=$User->where($where)->find();//取出数据
+        
+        if(!$user){
+            // 当前用户不存在！
+            $res['res']=-1;
+        }else{
+            // 这个手机号存在
+            // 先检查手机号是否存在
+            $save=[];
+            if($user['user_id']){
+                // 手机号存在
+                // 检查 user_id 和 unionid 是否相等，只有相等才可以绑定
+                if($user['user_id'] === $user['unionid']){
+                    // 可以绑定
+                    $save['user_id']=$user_id;
+                }else{
+                    // 不可以绑定，原因是已经绑定
+                    $res['res']=-2;
+                }
+            }else{
+                // 手机号不存在
+                // 可以绑定
+                $save=[];
+                $save['user_id']=$user_id;
+            }
+            
+            $where=[];
+            $where['unionid']=$unionid;
+            $result= $User->where($where)->save($save);
+            
+            if($result){
+                // 绑定成功
+                $res['res']=1;
+            }else{
+                // 绑定失败
+                $res['res']=-3;
+            }
+            
+            if($user['user_id'] && $user['unionid']){
+                // 两个都存，判断是否相等
+                if($user['user_id'] === $user['unionid']){
+                    // 两个相等，可以绑定
+                }else{
+                    // 两个不相等，不可以绑定
+                }
+            }else{
+                // 有一个不存在
+                if(!$user['user_id']){
+                    // 如果是手机号不存在
+                    // 可以绑定
+                }else{
+                    // 手机号存在，不能绑定
+                }
+            }
+        }
+        
+        echo json_encode($res);
+        
+    }
+    
     /**
-    * 获得手机验证码0
+    * 获得手机验证码
     */
     public function getCode(){
         
@@ -135,7 +209,6 @@ class LoginController extends Controller {
         
         $Code=D('Code');
         $res=$Code->pushCode($user_id);
-        
         echo json_encode($res);
         
     }

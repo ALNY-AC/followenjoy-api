@@ -20,11 +20,27 @@ class WeiXinController extends Controller{
     
     public function notify(){
         F('weixin',I());
+    }
+    
+    public function pay(){
+        
+        $jsApiParameters=weixin();
+        $this->assign('jsApiParameters',$jsApiParameters);
+        $this->display();
         
     }
     
     public function test(){
         $weixin= F('weixin');
         dump($weixin);
+    }
+    
+    public function getsignkey(){
+        
+        
+        getsignkey();
+        
+        
+        
     }
 }

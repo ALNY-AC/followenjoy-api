@@ -890,6 +890,15 @@ function get_float_length($a){
     return count;
 }
 
+
+//打印输出数组信息
+function printf_info($data)
+{
+    foreach($data as $key=>$value){
+        echo "<font color='#00ff55;'>$key</font> : $value <br/>";
+    }
+}
+
 function weixin(){
     // unifiedOrder
     //①、获取用户openid
@@ -904,42 +913,24 @@ function weixin(){
     $input = new WxPayUnifiedOrder();
     $input->SetBody("test");
     $input->SetAttach("test");
-    
+    $input->SetOut_trade_no(WxPayConfig::MCHID.date("YmdHis"));
     $input->SetOut_trade_no(time());
-    $input->SetTotal_fee("5000");
+    $input->SetTotal_fee("1");
     $input->SetTime_start(date("YmdHis"));
     $input->SetTime_expire(date("YmdHis", time() + 600));
     $input->SetGoods_tag("test");
     $input->SetNotify_url("http://server.followenjoy.cn/index.php/home/weixin/notify");
     $input->SetTrade_type("JSAPI");
-    // dump($openId);
     $input->SetOpenid($openId);
-    
     $order = WxPayApi::unifiedOrder($input);
-    // echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
-    // printf_info($order);
+    echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
+    printf_info($order);
+    // sandboxnew
     $jsApiParameters = $tools->GetJsApiParameters($order);
     
-    dump($order);
-    dump(json_decode($jsApiParameters,true));
+    // ===================================================================================
     
-    
-    
-    $timestamp=time();//生成签名的时间戳
-    $nonceStr=WxPayApi::getNonceStr();//生成签名的随机串
-    $signature=WxPayApi::getNonceStr();//签名
-    
-    
-    $config=[];
-    $config['timestamp']=$timestamp;
-    $config['nonceStr']=$nonceStr;
-    $config['signature']=$signature;
-    
-    
-    
-    
-    return ['order'=>json_encode($order),'wei'=>$jsApiParameters];
-    
+    return $jsApiParameters;
     // https://api.mch.weixin.qq.com/pay/unifiedorder
     
     
@@ -951,6 +942,60 @@ function weixin(){
     * 2、jsapi支付时需要填入用户openid，WxPay.JsApiPay.php中有获取openid流程 （文档可以参考微信公众平台“网页授权接口”，
     * 参考http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html）
     */
+}
+function ToXml($data)
+{
+    
+    $xml = "<xml>";
+    foreach ($data as $key=>$val)
+    {
+        if (is_numeric($val)){
+            $xml.="<".$key.">".$val."</".$key.">";
+        }else{
+            $xml.="<".$key."><![CDATA[".$val."]]></".$key.">";
+        }
+    }
+    $xml.="</xml>";
+    return $xml;
+}
+
+function getsignkey()
+{
+    
+    // 1501688321 商户号
+    // 签名
+    $mch_id='1501688321';
+    
+    Vendor('Weixin.WxPayJsApiPay');
+    Vendor('Weixin.WxPayApi');
+    
+    $tools = new JsApiPay();
+    $nonce_str=WxPayApi::getNonceStr();
+    $time=time();
+    
+    // $inputObj->SetAppid('wx56a5a0b6368f00a7');//公众账号ID
+    
+    
+    $string1="mch_id=$mch_id&nonce_str=$nonce_str&key=8312162ee470f489870f1fd35288a946";
+    
+    $sign=strtoupper(MD5($string1));
+    
+    dump($sign);
+    
+    $data=[];
+    $data['mch_id']=$mch_id;
+    $data['nonce_str']=$nonce_str;
+    $data['sign']='CB50E5EDBC8788D8BB68E061E129D813';
+    $data= ToXml($data);
+    dump($data);
+    
+    $url="https://api.mch.weixin.qq.com/sandboxnew/pay/getsignkey";
+    
+    $accessData=_request($url,true,'POST',$data);
+    
+    dump($accessData);
+    
+    
 }
 
 //设置网络请求配置

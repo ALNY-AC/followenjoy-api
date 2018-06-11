@@ -23,6 +23,7 @@ class OrderModel extends Model {
         if($state!='all'){
             $where['state']=$state;
         }
+        
         $where['supplier_id']=['exp','IS NOT NULL'];
         $where['add_time'] = [['gt',$start_time],['lt',$end_time]];
         
@@ -61,7 +62,6 @@ class OrderModel extends Model {
             $order_ids[]=$id['order_id'];
         }
         
-        
         //删除下载数据
         $Download->where($where)->delete();
         
@@ -85,7 +85,6 @@ class OrderModel extends Model {
         $list=$this->where($where)->select();
         
         $list=toTime($list);
-        
         
         $header=[
         '订单号',
@@ -119,12 +118,15 @@ class OrderModel extends Model {
         // === 商品数据
         '商品ID',
         '商品标题',
-        '商品SKU编码',
+        'SKU编码',
         '商品规格1',
         '商品规格2',
         '商品规格3',
         '商品税率',
+        '商品采购价',
         '商品数量',
+        '代入计算量',
+        '总数量',
         '商品单价',
         // === 收货地址
         '收货人联系电话',
@@ -133,6 +135,7 @@ class OrderModel extends Model {
         '区县',
         '详细地址',
         // '编号',
+        '身份证号',
         '收货人姓名',
         ];
         // dump($header);
@@ -145,7 +148,6 @@ class OrderModel extends Model {
         foreach ($list as $key => $value) {
             
             unset($value['edit_time']);
-            
             
             // ===================================================================================
             // 处理基本订单数据
@@ -223,11 +225,12 @@ class OrderModel extends Model {
             ->field([
             'goods_id',// 商品号
             'goods_title',// 商品标题
-            'sku_id',// skuID
+            'shop_code',// 商家自定义SKU编码
             's1',// 规格1
             's2',// 规格2
             's3',// 规格3
             'tax',// 税率
+            'purchase_price',// 采购价
             'price',// 单价
             'count',// 数量
             'amount',// 代入计算量
@@ -236,8 +239,15 @@ class OrderModel extends Model {
             ->find();
             // 插入到数据中
             
+            // getIndex
+            // array_insert
+            $snapshot['count_amount']=$snapshot['count'];
+            if($snapshot['amount']){
+                $snapshot['count_amount']=$snapshot['count']*$snapshot['amount'];
+            }
+            
             $snapshot['goods_price']=$snapshot['price'];
-            $snapshot['tax']=$snapshot['tax']/100;
+            // $snapshot['tax']=$snapshot['tax']/100;
             unset($snapshot['price']);
             foreach ($snapshot as $j => $s) {
                 $s=!$s===""?'--':$s;
@@ -258,6 +268,7 @@ class OrderModel extends Model {
             'city',//城市
             'county',//区县
             'address_detail',//详细地址
+            'id_card',//身份证号
             // 'area_code',//编号
             ])
             ->where($where)
@@ -271,16 +282,16 @@ class OrderModel extends Model {
             }
             
             foreach ($value as $a => $b) {
-                $b=$b."\t";
                 $value[$a]=$b;
             }
             unset($value['snapshot_id']);
             unset($value['address_id']);
             unset($value['supplier_id']);
-            unset($value['amount']);
             $list[$key]=$value;
         }
         
+        // dump($list);
+        // die;
         array_unshift($list,$header);
         $fileName="订单列表";
         create_xls($list,$fileName);

@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class CodeController extends CommonController{
+class CodeController extends Controller{
     
     public function get(){
         $user_id=I('user_id');
@@ -29,9 +29,7 @@ class CodeController extends CommonController{
         $Code=D('Code');
         $user_id=I('user_id');
         $user_code=I('user_code');
-        
         $isSuccess= $Code->validate($user_id,$user_code)>0;
-        
         if($isSuccess){
             $res['res']=1;
         }else{

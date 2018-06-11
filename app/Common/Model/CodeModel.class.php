@@ -20,8 +20,8 @@ class CodeModel extends Model {
         }
     }
     
+    // 加密压验证码
     public function encryption($user_id,$user_code){
-        
         // 加密算法： __KEY__.$user_id.$user_code.__KEY__
         $code=md5(__KEY__.$user_id.$user_code.__KEY__);
         return $code;
