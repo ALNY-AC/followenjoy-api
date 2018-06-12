@@ -73,6 +73,8 @@ class LoginController extends Controller {
         
     }
     
+    
+    
     // 将用户的手机号和unionid绑定
     public function binding(){
         
@@ -83,64 +85,69 @@ class LoginController extends Controller {
         $user_id=I('user_id');//用户的id
         $unionid=I('unionid');//联盟id
         
-        $where=[];
-        $where['unionid']=$unionid;
-        
         $User=D('User');//用户模型
+        
+        $where=[];
+        $where['user_id']=$user_id;
+        
         $user=$User->where($where)->find();//取出数据
         
-        if(!$user){
-            // 当前用户不存在！
-            $res['res']=-1;
-        }else{
-            // 这个手机号存在
-            // 先检查手机号是否存在
-            $save=[];
-            if($user['user_id']){
-                // 手机号存在
-                // 检查 user_id 和 unionid 是否相等，只有相等才可以绑定
-                if($user['user_id'] === $user['unionid']){
-                    // 可以绑定
-                    $save['user_id']=$user_id;
-                }else{
-                    // 不可以绑定，原因是已经绑定
-                    $res['res']=-2;
-                }
-            }else{
-                // 手机号不存在
-                // 可以绑定
+        if($user){
+            // user_id 已存在
+            // 将 unionid 保存到 user_id 上
+            // 前提是这个账号没有 unionid
+            if(!$user['unionid']){
+                // 这个账号没有 unionid ，所以可以绑定
+                
+                $where=[];
+                $where['user_id']=$user_id;
                 $save=[];
-                $save['user_id']=$user_id;
+                $save['unionid']=$unionid;
+                
+                $User->where($save)->delete();
+                $User->where($where)->save($save);
+                $token=createToken($user_id);
+                $res['user_id']=$user_id;
+                $res['token']=$token;
+                $res['res']=1;
+            }else{
+                // 此账户已经绑定，不能再次绑定
+                $res['res']=-2;
             }
+            
+            
+        }else{
+            // 用户不存在
+            // 可能用户之前是用旧版登录接口登录，或者是为绑定手机号的新用户
+            // 再通过 unionid 查找用户
             
             $where=[];
             $where['unionid']=$unionid;
-            $result= $User->where($where)->save($save);
             
-            if($result){
-                // 绑定成功
+            $user=$User->where($where)->find();//取出数据
+            
+            if($user){
+                // 第一次用微信登录的用户存在，绑定手机号
+                
+                $where=[];
+                $where['unionid']=$unionid;
+                $save=[];
+                $save['user_id']=$user_id;
+                $User->where($save)->delete();
+                $User->where($where)->save($save);
+                
+                $token=createToken($user_id);
+                $res['user_id']=$user_id;
+                $res['token']=$token;
                 $res['res']=1;
+                
             }else{
-                // 绑定失败
-                $res['res']=-3;
+                
+                // 刚刚登录微信 unionid 找不到？参数有问题吧。
+                
             }
             
-            if($user['user_id'] && $user['unionid']){
-                // 两个都存，判断是否相等
-                if($user['user_id'] === $user['unionid']){
-                    // 两个相等，可以绑定
-                }else{
-                    // 两个不相等，不可以绑定
-                }
-            }else{
-                // 有一个不存在
-                if(!$user['user_id']){
-                    // 如果是手机号不存在
-                    // 可以绑定
-                }else{
-                    // 手机号存在，不能绑定
-                }
-            }
+            
         }
         
         echo json_encode($res);
@@ -270,11 +277,13 @@ class LoginController extends Controller {
         $where['unionid']=$unionid;
         
         $User=D('User');
-        
         $user=$User->where($where)->find();
         
+        $isBinding=false;
+        
         if(!$user){
-            // 没有创建新用户
+            // 新用户，并且要求用户绑定
+            $isBinding=true;
             $data['user_id']=$unionid;
             $data['user_name']=$nickname;
             $data['user_head']=$headimgurl;
@@ -284,13 +293,32 @@ class LoginController extends Controller {
             $data['add_time']=time();
             $data['edit_time']=time();
             $User->add($data);
+            $user=$User->where($where)->find();
+            
+        }else{
+            if(!$user['user_id']){
+                // 没有user_id也是需要绑定
+                $isBinding=true;
+            }
+            if($user['user_id'] == $user['unionid']){
+                $isBinding=true;
+            }
         }
         
-        $token=createToken($unionid);
+        if($isBinding){
+            $res['res']=1;
+            $res['isBinding']=$isBinding;
+            echo json_encode($res);
+            exit;
+        }
+        
+        $user=$User->where($where)->find();
+        $token=createToken($user['user_id']);
         
         if($token){
             $res['res']=1;
             $res['token']=$token;
+            $res['user_id']=$user['user_id'];
         }else{
             $res['res']=-1;
             $res['msg']=I();

@@ -210,11 +210,13 @@ class OrderModel extends Model {
             ])
             ->where($where)
             ->find();
+            
             // 插入到数据中
             foreach ($supplier as $j => $s) {
                 $s=!$s===""?'--':$s;
                 $value[$j]=$s;
             }
+            
             
             // ===================================================================================
             // 快照数据
@@ -282,6 +284,7 @@ class OrderModel extends Model {
             }
             
             foreach ($value as $a => $b) {
+                $b=''."$b".'';
                 $value[$a]=$b;
             }
             unset($value['snapshot_id']);

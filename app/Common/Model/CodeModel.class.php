@@ -6,21 +6,10 @@ class CodeModel extends Model {
     public function _initialize (){}
     
     public function creat($data){
-        $chat_id=getMd5('chat');
-        $data['chat_id']=$chat_id;
-        $data['user_id']=session('user_id');
-        $data['role']=2;//1是客服，2是客户
-        $data['add_time']=time();
-        $data['edit_time']=time();
         
-        if( $this->add($data)){
-            return $this->get($chat_id);
-        }else{
-            return false;
-        }
     }
     
-    // 加密压验证码
+    // 加密验证码
     public function encryption($user_id,$user_code){
         // 加密算法： __KEY__.$user_id.$user_code.__KEY__
         $code=md5(__KEY__.$user_id.$user_code.__KEY__);
@@ -35,9 +24,14 @@ class CodeModel extends Model {
         $data['key']=$user_id;
         $data['add_time']=time();
         if($this->add($data)){
+            // 检测是否免签
+            if(D('LaissezPasser')->validate($user_id)){
+                $res['res']=1;
+            }else{
+                $result=$this->send($user_id,$code);
+                $res['res']=$result;
+            }
             
-            $result=$this->send($user_id,$code);
-            $res['res']=$result;
         }else{
             $res['res']=-2;
         }
@@ -49,6 +43,14 @@ class CodeModel extends Model {
     }
     
     public function validate($user_id,$user_code){
+        
+        if(D('LaissezPasser')->validate($user_id)){
+            // 免签特权
+            $this->del($user_id);
+            return true;
+        }else{
+            // 需要签证
+        }
         
         $where=[];
         $where['code']=$this->encryption($user_id,$user_code);

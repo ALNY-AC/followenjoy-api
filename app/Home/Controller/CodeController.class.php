@@ -30,7 +30,13 @@ class CodeController extends Controller{
         $user_id=I('user_id');
         $user_code=I('user_code');
         $isSuccess= $Code->validate($user_id,$user_code)>0;
+        
+        // 创建票据
+        
         if($isSuccess){
+            $AppSecret=D('AppSecret');
+            $app_secret=$AppSecret->create($user_id);
+            $res['app_secret']=$app_secret;
             $res['res']=1;
         }else{
             //验证码不正确

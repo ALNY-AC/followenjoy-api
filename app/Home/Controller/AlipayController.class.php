@@ -61,6 +61,7 @@ class AlipayController extends Controller{
         $subject=rtrim($body, " - ");
         echo strlen($body);
         // 128
+        $data=[];
         $data['body']='【随享季】';
         $data['subject']=$subject;
         $data['out_trade_no']=$pay_id;
@@ -146,7 +147,6 @@ class AlipayController extends Controller{
         
         // ===================================================================================
         // 创建支付日志数据
-        
         $user_id=$payData['user_id'];
         
         $data=[];
@@ -166,55 +166,58 @@ class AlipayController extends Controller{
         if($result){
             // 日志创建成功
             if($trade_status=='TRADE_SUCCESS'){
-                // 支付成功
-                $Pay->setState($out_trade_no,1);
-                // 0：未支付
-                // 1：已支付
-                // 2：已取消
-                
-                // 2018052000273318721
-                $Fission=D('Fission');
-                // 验证是否是499订单
-                $is=$Fission->validate($out_trade_no);
-                if($is){
-                    $Fission->handle($is,$user_id);
-                    $conf=[];
-                    $conf['userId']=$user_id;
-                    $vip=new \VIP($conf);
-                    $vip->setDebug(false);
-                    $vip->setWriteDatabase(true);
-                    $vip->getSuper()->邀请人得钱奖($vip);
-                }
-                
-                // 减库存
-                $where=[];
-                $where['pay_id']=$out_trade_no;
-                $Order=D('Order');
-                $order=$Order->where($where)->select();
-                $orderIds=[];
-                foreach ($order as $k => $v) {
-                    $orderIds[]=$v['order_id'];
-                }
-                
-                $Snapshot=D('Snapshot');
-                
-                $where=[];
-                $where['order_id']=['in',$orderIds];
-                
-                $snapshot=$Snapshot->where($where)->select();
-                
-                $Sku=D('Sku');
-                
-                foreach ($snapshot as $k => $v) {
-                    $count=$v['count'];
-                    $sku_id=$v['sku_id'];
+                if($payData['state']!=1){
+                    
+                    // 支付成功
+                    $Pay->setState($out_trade_no,1);
+                    // 0：未支付
+                    // 1：已支付
+                    // 2：已取消
+                    
+                    // 2018052000273318721
+                    $Fission=D('Fission');
+                    // 验证是否是499订单
+                    $is=$Fission->validate($out_trade_no);
+                    if($is){
+                        $Fission->handle($is,$user_id);
+                        $conf=[];
+                        $conf['userId']=$user_id;
+                        $vip=new \VIP($conf);
+                        $vip->setDebug(false);
+                        $vip->setWriteDatabase(true);
+                        $vip->getSuper()->邀请人得钱奖($vip);
+                    }
+                    
+                    // 减库存
                     $where=[];
-                    $where['sku_id']=$sku_id;
-                    $Sku->where($where)->setDec('stock_num',$count);
+                    $where['pay_id']=$out_trade_no;
+                    $Order=D('Order');
+                    $order=$Order->where($where)->select();
+                    $orderIds=[];
+                    foreach ($order as $k => $v) {
+                        $orderIds[]=$v['order_id'];
+                    }
+                    
+                    $Snapshot=D('Snapshot');
+                    
+                    $where=[];
+                    $where['order_id']=['in',$orderIds];
+                    
+                    $snapshot=$Snapshot->where($where)->select();
+                    
+                    $Sku=D('Sku');
+                    
+                    foreach ($snapshot as $k => $v) {
+                        $count=$v['count'];
+                        $sku_id=$v['sku_id'];
+                        $where=[];
+                        $where['sku_id']=$sku_id;
+                        $Sku->where($where)->setDec('stock_num',$count);
+                    }
+                    
+                    $Vip=D('Vip');
+                    $Vip->销售佣金奖($out_trade_no);
                 }
-                
-                $Vip=D('Vip');
-                $Vip->销售佣金奖($out_trade_no);
                 
             }
             echo 'success';

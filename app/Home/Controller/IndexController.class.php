@@ -59,7 +59,8 @@ class IndexController extends Controller{
         $user=$User->where($where)->find();
         if(!$user){
             // 没有创建新用户
-            $data['user_id']='';
+            $data=[];
+            $data['user_id']=$unionid;
             $data['user_name']=$nickname;
             $data['user_head']=$headimgurl;
             $data['unionid']=$unionid;
@@ -81,7 +82,7 @@ class IndexController extends Controller{
         // ===================================================================================
         // 检测用户id是否存在
         // 如果用户id不存在，就需要绑定，或者，如果用户id和unionid一样，也需要绑定（这一点是为了修复之前的问题）
-        if($user['user_id'] || $user['user_id'] == $user['unionid']){
+        if($user['user_id'] && $user['user_id'] != $user['unionid']){
             // 用户id存在，可以直接登录，绑定 unionid
             $user_id=$user['user_id'];
             $token=createToken($user_id);

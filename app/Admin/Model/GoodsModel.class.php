@@ -347,4 +347,129 @@ class GoodsModel extends Model {
     }
     
     
+    public function printData(){
+        
+        $goods=$this
+        ->field('goods_id,freight_id,goods_class,goods_title,is_up,is_cross_border')
+        ->order('goods_id')
+        ->select();
+        $Sku=D('Sku');
+        
+        $sku=$Sku->select();
+        
+        $header=[
+        '供货商名',
+        '商品分类',
+        '商品ID',
+        'SKU编码',
+        '商品标题',
+        '商品规格1',
+        '商品规格2',
+        '商品规格3',
+        '商品税率',
+        '采购成本价',
+        '正常售价',
+        '佣金金额/比例',
+        '活动售价',
+        '活动佣金金额/比例',
+        '库存',
+        '上架状态',
+        '运费模板',
+        '是否是跨境商品',
+        ];
+        
+        $list=[];
+        foreach ($sku as $k => $v) {
+            
+            $item=[];
+            
+            $goodsInfo=$this->getGoodsInfo($v['goods_id'],$goods);
+            $supplier_info=$this->getSupplier($v['supplier_id']);
+            $freight_info=$this->getFreight($goodsInfo['freight_id']);
+            $class_title=$this->getClassName($goodsInfo['goods_class']);
+            // ===================================================================================
+            // 重新排序
+            $item['供货商名']=$supplier_info['supplier_name'];
+            $item['商品分类']= $class_title;
+            $item['商品ID']=$v['goods_id'];
+            $item['SKU编码']=$v['shop_code'];
+            $item['商品标题']=$goodsInfo['goods_title'];
+            $item['商品规格1']=$v['s1'];
+            $item['商品规格2']=$v['s2'];
+            $item['商品规格3']=$v['s3'];
+            $item['商品税率']=$v['tax'];
+            $item['采购成本价']=$v['purchase_price'];
+            $item['正常售价']=$v['price'];
+            $item['佣金金额/比例']=$v['earn_price'];
+            $item['活动售价']=$v['activity_price'];
+            $item['活动佣金金额/比例']=$v['activity_price'];
+            $item['库存']=$v['stock_num'];
+            $item['上架状态']=$goodsInfo['is_up']?'上架中':'未上架';
+            $item['运费模板']=$freight_info['freight_name'];
+            $item['是否是跨境商品']=$goodsInfo['is_cross_border']?'是':'否';
+            
+            if($goodsInfo){
+                $list[]=$item;
+            }
+            
+        }
+        
+        
+        array_unshift($list,$header);
+        $fileName="商品数据";
+        create_xls($list,$fileName);
+        // dump($list);
+    }
+    
+    private function getGoodsInfo($goods_id,$list){
+        
+        foreach ($list as $k => $v) {
+            if($v['goods_id'] == $goods_id){
+                return $v;
+            }
+            
+        }
+        return null;
+        
+    }
+    
+    private function getSupplier($supplier_id){
+        $Supplier=D('Supplier');
+        return $Supplier
+        ->where(['supplier_id'=>$supplier_id])
+        ->field('supplier_name')
+        ->find();
+        
+    }
+    
+    private function getFreight($freight_id){
+        $Freight=D('Freight');
+        return $Freight
+        ->where(['supplier_id'=>$freight_id])
+        ->field('freight_name')
+        ->find();
+        
+    }
+    
+    private function getClassName($class_id){
+        $Class=D('Class');
+        $class_title='';
+        $class=$Class
+        ->where(['class_id'=>$class_id])
+        ->field('class_title,super_id')
+        ->find();
+        $class_title=$class['class_title'];
+        if($class['super_id']){
+            
+            $super=$Class
+            ->where(['class_id'=>$class['super_id']])
+            ->field('class_title,super_id')
+            ->find();
+            
+            $class_title.='/'.$super['class_title'];
+        }
+        
+        return $class_title;
+        
+    }
 }

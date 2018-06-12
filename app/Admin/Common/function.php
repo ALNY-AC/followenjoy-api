@@ -51,6 +51,7 @@ array('Q3',   52,   61,   69),
 array('Q4',   30,   32,    0),
 );
 */
+
 function create_xls($data,$filename='simple.xls'){
     ini_set('max_execution_time', '0');
     Vendor('PHPExcel.PHPExcel');
@@ -64,7 +65,6 @@ function create_xls($data,$filename='simple.xls'){
     ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
         ->setKeywords("office 2007 openxml php")
     ->setCategory("Test result file");
-    
     
     $stringList=[
     "A",
@@ -94,16 +94,16 @@ function create_xls($data,$filename='simple.xls'){
     "Y",
     "Z",
     ];
-    
-    foreach ($stringList as $k => $v) {
-        $phpexcel->getActiveSheet()->getStyle($v)->getNumberFormat()
-        ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-    }
-    
-    
     $phpexcel->getActiveSheet()->fromArray($data);
     $phpexcel->getActiveSheet()->setTitle('Sheet1');
     $phpexcel->setActiveSheetIndex(0);
+    
+    foreach ($stringList as $k => $v) {
+        $phpexcel->getActiveSheet()->getStyle($v)->getNumberFormat()
+        ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
+        $phpexcel->getActiveSheet()->getColumnDimension($v)->setAutoSize(true);
+    }
+    
     header('Content-Type: application/vnd.ms-excel');
     header("Content-Disposition: attachment;filename=$filename");
     header('Cache-Control: max-age=0');
@@ -112,6 +112,7 @@ function create_xls($data,$filename='simple.xls'){
     header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
     header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
     header ('Pragma: public'); // HTTP/1.0
+    
     $objwriter = PHPExcel_IOFactory::createWriter($phpexcel, 'Excel5');
     $objwriter->save('php://output');
     exit;

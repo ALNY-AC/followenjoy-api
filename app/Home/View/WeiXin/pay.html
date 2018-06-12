@@ -15,17 +15,27 @@
 
         let jsApiParameters = JSON.parse('{$jsApiParameters}');
 
-        window.onload = function () {
-
-        };
-
         function jsApiCall() {
             WeixinJSBridge.invoke(
                 'getBrandWCPayRequest',
                 jsApiParameters,
                 function (res) {
-                    WeixinJSBridge.log(res.err_msg);
-                    alert(res.err_code + res.err_desc + res.err_msg);
+                    var url = '';
+                    if (res.err_msg == "get_brand_wcpay_request:ok") {
+                        url = "http://q.followenjoy.cn/#/state?state=success&title=支付成功";
+                    }
+
+                    if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                        url = "http://q.followenjoy.cn/#/state?state=error&title=用户取消";
+                    }
+
+                    if (res.err_msg == "get_brand_wcpay_request:fail") {
+                        url = "http://q.followenjoy.cn/#/state?state=error&title=支付失败";
+                    }
+
+                    location.replace(url);
+                    // WeixinJSBridge.log(res.err_msg);
+                    // alert(res.err_code + res.err_desc + res.err_msg);
                 }
             );
         }
@@ -43,6 +53,12 @@
             }
         }
 
+        window.onload = function () {
+            setTimeout(function () {
+                callpay();
+            }, 100);
+        };
+
     </script>
 
 
@@ -51,7 +67,7 @@
 
 <body>
 
-    <h1>微信支付</h1>
+    <!-- <h1>微信支付</h1>
     <br/>
     <font color="#9ACD32">
         <b>该笔订单支付金额为
@@ -64,7 +80,7 @@
             type="button" onclick="callpay()">立即支付</button>
     </div>
 
-
+ -->
 
 </body>
 

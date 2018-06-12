@@ -204,4 +204,12 @@ class GoodsController extends CommonController{
         echo json_encode($res);
     }
     
+    public function printData(){
+        $Goods=D('goods');
+        $Goods->printData();
+        
+    }
+    
+    
+    
 }
