@@ -46,5 +46,9 @@ class TimeModel extends Model {
     }
     
     
+    public function getTomorrow(){
+        
+    }
+    
     
 }

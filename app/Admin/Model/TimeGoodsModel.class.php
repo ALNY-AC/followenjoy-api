@@ -27,7 +27,6 @@ class TimeGoodsModel extends Model {
             $end_time=strtotime("+1 day",$start_time);
             $data['end_time']=$end_time;
             
-            
             $item['end_time']=$end_time;
             $item['add_time']=time();
             $item['edit_time']=time();

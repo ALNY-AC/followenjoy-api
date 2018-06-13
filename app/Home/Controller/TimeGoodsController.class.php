@@ -102,6 +102,46 @@ class TimeGoodsController extends CommonController{
         echo json_encode($res);
     }
     
+    public function getPlus(){
+        
+        $TimeGoods=D('TimeGoods');
+        
+        $data=I();
+        
+        $result=$TimeGoods->getPlus($data);
+        
+        $start_time=$data['start_time'];
+        
+        $where=[];
+        $where['start_time']=$start_time;
+        $where['is_show']=1;
+        
+        $res['count']=$TimeGoods->where($where)->count()+0;
+        
+        if($result!==false){
+            $res['res']=count($result);
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
     
+    
+    
+    public function getTomorrow(){
+        
+        $TimeGoods=D('TimeGoods');
+        $result=$TimeGoods->getTomorrow(I());
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
     
 }

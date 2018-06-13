@@ -57,7 +57,7 @@ class LaissezPasserController extends CommonController{
         }
         echo json_encode($res);
     }
-            
+    
     public function saveData(){
         $LaissezPasser=D('LaissezPasser');
         $result=$LaissezPasser->saveData(I('id'),I('data'));

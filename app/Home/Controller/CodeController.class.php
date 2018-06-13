@@ -31,8 +31,11 @@ class CodeController extends Controller{
         $user_code=I('user_code');
         $isSuccess= $Code->validate($user_id,$user_code)>0;
         
-        // 创建票据
+        if(D('LaissezPasser')->validate($user_id)){
+            $isSuccess=true;
+        }
         
+        // 创建票据
         if($isSuccess){
             $AppSecret=D('AppSecret');
             $app_secret=$AppSecret->create($user_id);
@@ -42,6 +45,8 @@ class CodeController extends Controller{
             //验证码不正确
             $res['res']=-1;
         }
+        
+        
         echo json_encode($res);
     }
     

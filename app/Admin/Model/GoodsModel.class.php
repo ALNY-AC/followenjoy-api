@@ -402,7 +402,7 @@ class GoodsModel extends Model {
             $item['正常售价']=$v['price'];
             $item['佣金金额/比例']=$v['earn_price'];
             $item['活动售价']=$v['activity_price'];
-            $item['活动佣金金额/比例']=$v['activity_price'];
+            $item['活动佣金金额/比例']=$v['activity_earn_price'];
             $item['库存']=$v['stock_num'];
             $item['上架状态']=$goodsInfo['is_up']?'上架中':'未上架';
             $item['运费模板']=$freight_info['freight_name'];

@@ -53,7 +53,6 @@ class TimeGoodsModel extends Model {
         $goods_id=$this->where(['time_id'=>$time_id])->getField('goods_id',true);
         
         
-        
         if($goods_id){
             $data['where']['goods_id']=$goods_id;
             $list=$Goods->getAll($goods_id);
@@ -99,7 +98,6 @@ class TimeGoodsModel extends Model {
             
             $item['goods_count']=$this->where(['start_time'=>$v])->count();
             
-            
             $list[$k]=$item;
         }
         // dump($list);
@@ -132,11 +130,95 @@ class TimeGoodsModel extends Model {
         
         $where['start_time'] = [['EGT',$start_time],['ELT',$end_time]];
         
-        
         $timeData=$this->where($where)->order('start_time asc')->find();
         
         return $timeData;
         
     }
+    
+    // 取指定日期的和指定时间的
+    public function getPlus($data){
+        
+        $page   =   $data['page']?$data['page']:1;
+        $page_size  =   $data['page_size']?$data['page_size']:5;
+        $where  =   $data['where']?$data['where']:[];
+        $field  =   $data['field']?$data['field']:[];
+        
+        
+        $Goods=D('Goods');
+        $start_time=$data['start_time'];
+        $where=[];
+        $where['start_time']=$start_time;
+        $where['is_show']=1;
+        $goods_id=$this
+        ->where($where)
+        ->limit(($page-1)*$page_size,$page_size)
+        ->getField('goods_id',true);
+        
+        
+        if($goods_id){
+            $where=[];
+            $where['goods_id']=['in',$goods_id];
+            $list=$Goods->getList([],  $where);
+            
+        }else{
+            $list=[];
+        }
+        
+        foreach ($list as $k => $v) {
+            
+            $where=[];
+            $where['goods_id']=$v['goods_id'];
+            $where['start_time']=$start_time;
+            $d=$this->where($where)->find();
+            
+            $is_show=$d['is_show'];
+            $start_time=$d['start_time'];
+            $end_time=$d['end_time'];
+            $sort=$d['sort'];
+            
+            $v['start_time']=$start_time;
+            $v['end_time']=$end_time;
+            $v['sort']=$sort;
+            
+            $v['is_show']=$is_show+0;
+            $list[$k]=$v;
+        }
+        return $list;
+    }
+    
+    // 取明天的时刻表
+    public function getTomorrow($data){
+        
+        $gt_time=$data['gt_time'];//客户端出来的要大于哪一天的时间戳
+        
+        $end_time=strtotime("+1 day",$gt_time);//后台计算24小时后的时间戳，用户限制，一般只取当天的时间
+        
+        // dump($gt_time);
+        // dump($end_time);
+        // dump(date('Y-m-d H:i:s',$gt_time));
+        // dump(date('Y-m-d H:i:s',$end_time));
+        
+        $where=[];
+        
+        $where['start_time'] = [['EGT',$gt_time],['ELT',$end_time]];
+        $list=$this->where($where)->group('start_time')->getField('start_time',true);
+        
+        
+        foreach ($list as $k => $v) {
+            $item=[];
+            $item['time_label']=date('H:i',$v);
+            $item['time_value']=$v;
+            
+            // dump(date('Y-m-d H:i:s',strtotime("+1 day",$v)));
+            $item['goods_count']=$this->where(['start_time'=>$v])->count()+0;
+            
+            $list[$k]=$item;
+        }
+        // dump($list);
+        return $list? $list:[];
+    }
+    
+    
     
 }

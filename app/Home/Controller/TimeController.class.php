@@ -31,5 +31,6 @@ class TimeController extends CommonController{
         echo json_encode($res);
     }
     
+
     
 }
