@@ -49,7 +49,6 @@ class LaissezPasserModel extends Model {
         $where=[];
         $where['user_id']=$user_id;
         $is= $this->where($where)->find();
-        
         if($is){
             return true;
         }else{

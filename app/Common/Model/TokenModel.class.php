@@ -4,9 +4,29 @@ use Think\Model;
 class TokenModel extends Model {
     
     public function create($data){
-        
         $user_id=$data['user_id'];
         $app_secret=$data['app_secret'];
+        
+        // ===================================================================================
+        // 检查用户是否存在
+        $User=D('User');
+        $where=[];
+        $where['user_id']=$user_id;
+        $isUser=$User->where($where)->find();
+        if(!$isUser){
+            // ===================================================================================
+            // 没有用户，新建用户
+            $data['user_id']=$user_id;
+            $data['user_name']=$user_id;
+            $User->create($data);
+            $isUser=$User->where($where)->find();
+            
+        }
+        
+        // ===================================================================================
+        // 增加用户的登录次数
+        $User->where(['user_id'=>$user_id])->setInc('login_count',1); // 登录次数加+1
+        
         
         $AppSecret=D('AppSecret');
         $is=$AppSecret->validate($app_secret,$user_id);

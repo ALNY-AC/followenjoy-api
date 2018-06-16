@@ -6,34 +6,24 @@ class FissionModel extends Model {
     /**
     * 验证是否是499订单
     */
-    public function validate($pay_id){
+    public function validate($order_id){
         
         // ===================================================================================
         // 创建模型
-        $Pay=D('Pay');
         $Order=D('Order');
         $Snapshot=D('Snapshot');
         $Goods=D('Goods');
-        // ===================================================================================
-        // 找支付单
-        
-        $where=[];
-        $where['pay_id']=$pay_id;
-        $pay=$Pay->where($where)->find();
         
         // ===================================================================================
         // 找订单
         
         $where=[];
-        $where['pay_id']=$pay_id;
+        $where['order_id']=$order_id;
         $orders=$Order->where($where)->select();
-        
         
         // ===================================================================================
         // 找到快照
-        
         $snapshot_ids=[];
-        
         foreach ($orders as $k => $v) {
             $snapshot_ids[]=$v['snapshot_id'];
         }
@@ -43,35 +33,14 @@ class FissionModel extends Model {
         
         $snapshot=$Snapshot->where($where)->select();
         
+        
         // ===================================================================================
-        // 找到商品
+        // 是否是 499
+        $is_unique=$snapshot['is_unique'];
         
-        
-        $goods_ids=[];
-        
-        foreach ($snapshot as $k => $v) {
-            $goods_ids[]=$v['goods_id'];
-        }
-        
-        $snapshot=$Snapshot->where($where)->select();
-        // ===================================================================================
-        // 遍历查找是否是 499
-        $goods_id;
-        foreach ($snapshot as $k => $v) {
-            
-            $is_unique=$v['is_unique'];
-            if($is_unique){
-                // 是
-                $goods_id=$v['goods_id'];
-                break ;
-            }
-            
-        }
-        
-        if($goods_id){
-            // 有，返回邀请人id
-            // $share_id
-            return $pay['share_id'];
+        if($is_unique){
+            // 返回邀请人id
+            return $order['share_id'];
         }else{
             // 没有
             return false;

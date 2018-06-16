@@ -337,6 +337,12 @@ class OrderModel extends Model {
             $order['logistics']=$this->getLogisticsInfo($order_id);
             
             // ===================================================================================
+            // 检查物流状态
+            if($this->isLogistics($order_id, $order['logistics']['logistics_id'])){
+                $order['logistics']=$this->getLogisticsInfo($order_id);
+            }
+            
+            // ===================================================================================
             // 取得支付单数据
             $order['pay']=$this->getPayInfo($pay_id);
             
@@ -361,6 +367,97 @@ class OrderModel extends Model {
         $orders=toTime($orders);
         
         return $orders;
+    }
+    
+    public function isLogistics($order_id,$logistics_id){
+        
+        $Logistics=D('Logistics');//物流信息表模型，包括运费
+        $where=[];
+        $where['logistics_id']=$logistics_id;
+        $logistics=$Logistics->where($where)->find();
+        
+        if(!$logistics['state']){
+            
+            $where=[];
+            $where['com']=$logistics['logistics_name'];
+            $where['num']=$logistics['logistics_number'];
+            $info=$Logistics->getInfo($where);
+            
+            if($info['state']=='3'){
+                // 快递已签收
+                // ===================================================================================
+                // 取出签收时间
+                
+                $logisticsTime=$info['data'][0]['ftime'];
+                
+                $logisticsTime=strtotime($logisticsTime);//这是收货时间的时间戳
+                $toTime=time();//这是今天的时间戳
+                
+                // 公式为：
+                // 此时此刻的时间>=收货日期+15天
+                $time15=strtotime('+15 day',$logisticsTime);//这是确认收货15天后的时间戳
+                
+                if($toTime>=$time15){
+                    // 自动确认收货
+                    $this->okLogistics($order_id,$logistics_id);
+                    return true;
+                }else{
+                    return false;
+                }
+                // $testTime=date('Y-m-d H:i:s',$time15);
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+        
+    }
+    
+    
+    // 自动确认收货
+    public function okLogistics($order_id,$logistics_id){
+        $Logistics=D('Logistics');//物流信息表模型
+        // 设置状态
+        $where=[];
+        $where['logistics_id']=$logistics_id;
+        $save=[];
+        $save['state']=1;
+        $Logistics->where($where)->save($save);
+        
+        // 让订单完成，同时有分润
+        $this->okOrder($order_id);
+        
+    }
+    
+    public function okOrder($order_id){
+        
+        // 1、待付款
+        // 2、待发货
+        // 3、待收货
+        // 4、交易成功
+        // 5、退款/退货
+        // 6、已关闭
+        // 7、已退款
+        // 8、退款失败
+        
+        $where=[];
+        $where['order_id']=$order_id;
+        
+        $data=[];
+        $data['state']=4;//确认收货
+        $result=$this->where($where)->save($data);
+        
+        // ===================================================================================
+        // 佣金结算
+        $Vip=D('Vip');
+        $Vip->销售佣金奖($order_id);
+        
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     //取得订单的经销商数据

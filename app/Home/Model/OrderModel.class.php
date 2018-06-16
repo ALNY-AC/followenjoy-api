@@ -6,7 +6,6 @@ class OrderModel extends Model {
     
     public function _initialize (){}
     
-    
     //物流模板
     public function getFirstPrice($freight,$address){
         
@@ -60,7 +59,7 @@ class OrderModel extends Model {
     
     
     //创建订单数据
-    public function createOrder($snapshot,$address,$pay_id){
+    public function createOrder($snapshot,$address,$pay_id,$message){
         
         $Goods=D('Goods');//商品模型
         $Snapshot=M('Snapshot');//快照模型
@@ -180,6 +179,27 @@ class OrderModel extends Model {
         // ===================================================================================
         // 组装订单数据
         $orderData=[];//订单数据
+        
+        // ===================================================================================
+        // 取得shop_id snapshot
+        $UserSuper=D('UserSuper');
+        $where=[];
+        $where['user_id']=$user_id;
+        $super=$UserSuper->where($where)->find();
+        
+        if($super){
+            // 存在上级
+            // 取出shopid
+            $where=[];
+            $where['user_id']=$super['super_id'];
+            $User=D('User');
+            $super=$User->where($where)->find();
+            $orderData['shop_id']=$super['shop_id'];//店铺id
+            
+        }else{
+            $orderData['shop_id']='';
+        }
+        
         $orderData['order_id']=$order_id;//订单号
         $orderData['snapshot_id']=$snapshot_id;//快照id
         $orderData['user_id']=$user_id;//买家id
@@ -189,6 +209,7 @@ class OrderModel extends Model {
         $orderData['state']=1;//状态，默认是1
         $orderData['pay_id']=$pay_id;//支付号
         $orderData['supplier_id']=$sku['supplier_id'];//供货商id，取此时商品sku设置的数据，留空表示平台发货
+        $orderData['message']=$message;//添加时间
         $orderData['add_time']=time();//添加时间
         $orderData['edit_time']=time();//编辑时间
         $data['orderData']=$orderData;
@@ -226,6 +247,7 @@ class OrderModel extends Model {
         $address_id=$data['address_id'];//地址id
         $snapshot_ids=$data['snapshot_id'];//快照id数组
         $coupon_id=$data['coupon_id'];//优惠券
+        $message=$data['message'];//买家留言
         // share_id
         
         // ===================================================================================
@@ -283,7 +305,7 @@ class OrderModel extends Model {
         $logisticsDatas=[];
         
         foreach ($snapshots as $key => $snapshot) {
-            $data=$this->createOrder($snapshot,$address,$pay_id);// 创建订单数据
+            $data=$this->createOrder($snapshot,$address,$pay_id,$message);// 创建订单数据
             $orderDatas[]=$data['orderData'];// 订单数据添加到数组中
             $logisticsDatas[]=$data['logisticsData'];// 物流数据添加到数组中
             $total+=$data['orderData']['price'];// 计算总价
@@ -451,7 +473,6 @@ class OrderModel extends Model {
         // 基本数据
         $user_id=session('user_id');
         
-        
         // ===================================================================================
         // 取得当前用户订单数据
         $where=[];
@@ -474,6 +495,12 @@ class OrderModel extends Model {
             $order['logistics']=$this->getLogisticsInfo($order_id);
             
             // ===================================================================================
+            // 检查物流状态
+            if($this->isLogistics($order_id, $order['logistics']['logistics_id'])){
+                $order['logistics']=$this->getLogisticsInfo($order_id);
+            }
+            
+            // ===================================================================================
             // 取得支付单数据
             $order['pay']=$this->getPayInfo($pay_id);
             
@@ -484,6 +511,12 @@ class OrderModel extends Model {
             // 取得收货地址数据
             $order['address']=$this->getAddressInfo($order['address_id']);
             
+            // ===================================================================================
+            // 判断是否到达十五天，如果是，就要确认收货
+            // 先找物流信息
+            // $Logistics
+            // logistics
+            
             $orders[$key]=$order;
         }
         
@@ -491,6 +524,67 @@ class OrderModel extends Model {
         return $orders;
         
     }
+    
+    public function isLogistics($order_id,$logistics_id){
+        
+        $Logistics=D('Logistics');//物流信息表模型，包括运费
+        $where=[];
+        $where['logistics_id']=$logistics_id;
+        $logistics=$Logistics->where($where)->find();
+        
+        if(!$logistics['state']){
+            
+            $where=[];
+            $where['com']=$logistics['logistics_name'];
+            $where['num']=$logistics['logistics_number'];
+            $info=$Logistics->getInfo($where);
+            
+            if($info['state']=='3'){
+                // 快递已签收
+                // ===================================================================================
+                // 取出签收时间
+                
+                $logisticsTime=$info['data'][0]['ftime'];
+                
+                $logisticsTime=strtotime($logisticsTime);//这是收货时间的时间戳
+                $toTime=time();//这是今天的时间戳
+                
+                // 公式为：
+                // 此时此刻的时间>=收货日期+15天
+                $time15=strtotime('+15 day',$logisticsTime);//这是确认收货15天后的时间戳
+                
+                if($toTime>=$time15){
+                    // 自动确认收货
+                    $this->okLogistics($order_id,$logistics_id);
+                    return true;
+                }else{
+                    return false;
+                }
+                // $testTime=date('Y-m-d H:i:s',$time15);
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+        
+    }
+    
+    // 自动确认收货
+    public function okLogistics($order_id,$logistics_id){
+        $Logistics=D('Logistics');//物流信息表模型
+        // 设置状态
+        $where=[];
+        $where['logistics_id']=$logistics_id;
+        $save=[];
+        $save['state']=1;
+        $Logistics->where($where)->save($save);
+        
+        // 让订单完成，同时有分润
+        $this->okOrder($order_id);
+        
+    }
+    
     
     //取得订单的快照数据
     public function getSnapshotInfo($order_id){
@@ -619,6 +713,37 @@ class OrderModel extends Model {
         
         return true;
         
+    }
+    
+    
+    public function okOrder($order_id){
+        
+        // 1、待付款
+        // 2、待发货
+        // 3、待收货
+        // 4、交易成功
+        // 5、退款/退货
+        // 6、已关闭
+        // 7、已退款
+        // 8、退款失败
+        
+        $where=[];
+        $where['order_id']=$order_id;
+        
+        $data=[];
+        $data['state']=4;//确认收货
+        $result=$this->where($where)->save($data);
+        
+        // ===================================================================================
+        // 佣金结算
+        $Vip=D('Vip');
+        $Vip->销售佣金奖($order_id);
+        
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
     }
     
 }

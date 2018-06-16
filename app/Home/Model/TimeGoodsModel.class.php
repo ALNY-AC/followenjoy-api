@@ -8,7 +8,6 @@ class TimeGoodsModel extends Model {
     
     public function getList($data){
         
-        
         $Goods=D('Goods');
         $start_time=$data['start_time'];
         $where=[];
@@ -18,6 +17,8 @@ class TimeGoodsModel extends Model {
         
         if($goods_id){
             $where['goods_id']=['in',$goods_id];
+            $data=[];
+            $data['limit']=200;
             $list=$Goods->getList($data,  $where);
         }else{
             $list=[];
@@ -61,15 +62,12 @@ class TimeGoodsModel extends Model {
         }
         return $list;
     }
-    
     public function del($goods_id,$start_time){
         $where=[];
         $where['goods_id']=['in',getIds($goods_id)];
         $where['start_time']=$start_time;
         return $this->where($where)->delete();
     }
-    
-    
     public function getData($data){
         
         
@@ -103,7 +101,6 @@ class TimeGoodsModel extends Model {
         // dump($list);
         return $list? $list:[];
     }
-    
     public function saveData($goods_id,$start_time,$data){
         $where=[];
         $where['start_time']=$start_time;
@@ -113,7 +110,6 @@ class TimeGoodsModel extends Model {
         $data['edit_time']=time();
         $this->where($where)->save($data);
     }
-    
     public function get($data){
         
         $goods_id=$data['goods_id'];
@@ -135,7 +131,6 @@ class TimeGoodsModel extends Model {
         return $timeData;
         
     }
-    
     // 取指定日期的和指定时间的
     public function getPlus($data){
         
@@ -186,7 +181,6 @@ class TimeGoodsModel extends Model {
         }
         return $list;
     }
-    
     // 取明天的时刻表
     public function getTomorrow($data){
         
@@ -209,14 +203,86 @@ class TimeGoodsModel extends Model {
             $item=[];
             $item['time_label']=date('H:i',$v);
             $item['time_value']=$v;
-            
             // dump(date('Y-m-d H:i:s',strtotime("+1 day",$v)));
             $item['goods_count']=$this->where(['start_time'=>$v])->count()+0;
             
             $list[$k]=$item;
         }
+        
         // dump($list);
         return $list? $list:[];
+    }
+    // 取昨天
+    public function getTesterday(){
+        
+        $toTime=time();//当前时间
+        
+        $start_time=strtotime("-24 hours",$toTime);//24小时前的
+        $start_time=$this->getWholeTime($start_time);//取整点
+        
+        $end_time=$this->getTesterdayTime();//昨天晚上23点的
+        
+        // dump(date('Y-m-d H:i:s',$toTime));
+        // dump(date('Y-m-d H:i:s',$start_time));
+        // dump(date('Y-m-d H:i:s',$end_time));
+        
+        // ===================================================================================
+        //
+        $Goods=D('Goods');
+        $where=[];
+        $where['is_show']=1;
+        $where['start_time'] = [['EGT',$start_time],['ELT',$end_time]];
+        $goods_id=$this->where($where)->getField('goods_id',true);
+        
+        if($goods_id){
+            $where['goods_id']=['in',$goods_id];
+            $data=[];
+            $data['limit']=200;
+            $list=$Goods->getList($data,  $where);
+        }else{
+            $list=[];
+        }
+        
+        foreach ($list as $k => $v) {
+            
+            $where=[];
+            $where['goods_id']=$v['goods_id'];
+            $where['start_time']=$start_time;
+            $d=$this->where($where)->find();
+            
+            $is_show=$d['is_show'];
+            $start_time=$d['start_time'];
+            $end_time=$d['end_time'];
+            $sort=$d['sort'];
+            
+            $v['start_time']=$start_time;
+            $v['end_time']=$end_time;
+            $v['sort']=$sort;
+            
+            $v['is_show']=$is_show+0;
+            $list[$k]=$v;
+        }
+        return $list;
+    }
+    
+    
+    // 取整点
+    private function getWholeTime($time){
+        
+        $time = mktime(date('h',$time), 0, 0, date("n", $time), date("j", $time), date("Y", $time));
+        return    $time;
+        
+    }
+    
+    
+    private function getTesterdayTime(){
+        // ===================================================================================
+        // 取昨天晚上23点
+        $secondsOneDay = 60 * 60 * 24;
+        $now = time();
+        $yesterday = $now - $secondsOneDay;
+        $end_time = mktime(23, 0, 0, date("n", $yesterday), date("j", $yesterday), date("Y", $yesterday));
+        return    $end_time;
     }
     
     

@@ -109,6 +109,12 @@ class VipPlus{
         $this->销售收益奖金比=$this->vipConf['销售收益奖金比'];//
         
     }
+    /**
+    * 获得此vip的数据
+    */
+    public function getInfo(){
+        return $this->vipConf;
+    }
     
     public function initSuper(){
         $UserSuper=D('UserSuper');

@@ -143,5 +143,18 @@ class TimeGoodsController extends CommonController{
         }
         echo json_encode($res);
     }
+    public function getTesterday(){
+        
+        $TimeGoods=D('TimeGoods');
+        $result=$TimeGoods->getTesterday(I());
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
     
 }

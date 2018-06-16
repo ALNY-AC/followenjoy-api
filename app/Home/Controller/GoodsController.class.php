@@ -22,7 +22,6 @@ class GoodsController extends CommonController{
     public function getPacket(){
         
         
-        
     }
     
     //搜索
@@ -72,11 +71,8 @@ class GoodsController extends CommonController{
             die;
         }
         
-        
         $Goods=D('Goods');
         $goods=$Goods->get($goods_id);
-        
-        
         
         
         if($goods){

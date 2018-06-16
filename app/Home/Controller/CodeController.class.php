@@ -31,11 +31,8 @@ class CodeController extends Controller{
         $user_code=I('user_code');
         $isSuccess= $Code->validate($user_id,$user_code)>0;
         
-        if(D('LaissezPasser')->validate($user_id)){
-            $isSuccess=true;
-        }
-        
-        // 创建票据
+    
+        // 创建票据 
         if($isSuccess){
             $AppSecret=D('AppSecret');
             $app_secret=$AppSecret->create($user_id);

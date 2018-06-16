@@ -17,16 +17,19 @@ class CodeModel extends Model {
     }
     
     public function pushCode($user_id){
+        
         $this->del($user_id);
         $code=rand(1000,9999);
         $m_code=$this->encryption($user_id,$code);
         $data['code']=$m_code;
         $data['key']=$user_id;
         $data['add_time']=time();
+        
+        
         if($this->add($data)){
             // 检测是否免签
             if(D('LaissezPasser')->validate($user_id)){
-                $res['res']=1;
+                $res['res']=10;
             }else{
                 $result=$this->send($user_id,$code);
                 $res['res']=$result;
@@ -47,7 +50,7 @@ class CodeModel extends Model {
         if(D('LaissezPasser')->validate($user_id)){
             // 免签特权
             $this->del($user_id);
-            return true;
+            return 1;
         }else{
             // 需要签证
         }

@@ -174,19 +174,7 @@ class AlipayController extends Controller{
                     // 1：已支付
                     // 2：已取消
                     
-                    // 2018052000273318721
-                    $Fission=D('Fission');
-                    // 验证是否是499订单
-                    $is=$Fission->validate($out_trade_no);
-                    if($is){
-                        $Fission->handle($is,$user_id);
-                        $conf=[];
-                        $conf['userId']=$user_id;
-                        $vip=new \VIP($conf);
-                        $vip->setDebug(false);
-                        $vip->setWriteDatabase(true);
-                        $vip->getSuper()->邀请人得钱奖($vip);
-                    }
+                    
                     
                     // 减库存
                     $where=[];
@@ -215,8 +203,6 @@ class AlipayController extends Controller{
                         $Sku->where($where)->setDec('stock_num',$count);
                     }
                     
-                    $Vip=D('Vip');
-                    $Vip->销售佣金奖($out_trade_no);
                 }
                 
             }

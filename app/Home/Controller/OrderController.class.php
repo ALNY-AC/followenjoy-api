@@ -152,24 +152,10 @@ class OrderController extends CommonController{
     
     public function okOrder(){
         
-        // 1、待付款
-        // 2、待发货
-        // 3、待收货
-        // 4、交易成功
-        // 5、退款/退货
-        // 6、已关闭
-        // 7、已退款
-        // 8、退款失败
-        
-        $order_id=I('order_id');
-        $where=[];
-        $where['order_id']=$order_id;
         $Order=D('Order');
         
-        $data=[];
-        $data['state']=4;
-        $result=$Order->where($where)->save($data);
         
+        $result=$Order->okOrder(I('order_id'));
         
         if($result){
             $res['res']=count($result);

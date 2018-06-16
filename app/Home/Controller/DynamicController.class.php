@@ -19,29 +19,12 @@ namespace Home\Controller;
 use Think\Controller;
 class DynamicController extends CommonController{
     
-    //获得发现页数据包
-    public function getPacket(){
-        $res=[];
-        //轮播图
-        $Carousel=D('Carousel');
-        $Dynamic=D('Dynamic');
-        $User=D('User');
-        
-        $upUsers=$User->getUpList();
-        
-        $where=[];
-        $where['pages_id']=1;
-        $carousel=$Carousel->getList($where);
-        
-        $dynamic=$Dynamic->getList(I());
-        
-        $res['dynamic']=$dynamic;
-        $res['carousel']=$carousel;
-        $res['upUsers']=$upUsers;
-        $res['rse']=1;
-        echo json_encode($res);
-        
+    public function test(){
+        // $save=[];
+        // $save['release_time']=time();//当前时间到达发布时间
+        // M('dynamic')->where('1=1')->save($save);
     }
+    
     //添加
     public function add(){
         //要添加的数据
@@ -113,11 +96,32 @@ class DynamicController extends CommonController{
     public function getList(){
         
         $Dynamic=D('Dynamic');
-        $dynamic=$Dynamic->getList(I());
-        $res['res']=count($dynamic);
-        $res['msg']=$dynamic;
+        
+        $data=I();
+        
+        $result=$Dynamic->getList($data);
+        $res['count']=$Dynamic->where($data['where']?$data['where']:[])->count()+0;
+        
+        if($result!==false){
+            $res['res']=count($result);
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
         echo json_encode($res);
     }
+    
+    public function getUpUser(){
+        $res=[];
+        $User=D('User');
+        $upUsers=$User->getUpList();
+        $res['msg']=$upUsers;
+        $res['res']=1;
+        echo json_encode($res);
+    }
+    
+    
     
     
 }

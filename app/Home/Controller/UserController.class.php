@@ -22,6 +22,8 @@ class UserController extends CommonController{
     
     public function setCode(){
         $pay_code=I('pay_code');
+        
+        
         $user_id=session('user_id');
         
         //加密算法： 用户id+密码+密匙

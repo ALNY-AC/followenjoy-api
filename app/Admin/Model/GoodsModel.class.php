@@ -3,11 +3,7 @@ namespace Admin\Model;
 use Think\Model;
 class GoodsModel extends Model {
     
-    public  $Goods ;
-    
-    public function _initialize (){
-        $this->Goods=M('goods');
-    }
+    public function _initialize (){}
     
     public function creat($add){
         
@@ -220,21 +216,24 @@ class GoodsModel extends Model {
     //删除事务
     public function del($goods_id){
         //删除关联的东西
+        
         $is=true;
         
         $where=[];
-        $where['goods_id']=['in',$goods_id];
+        $where['goods_id']=['in',getIds($goods_id)];
         $result=$this->where($where)->delete();
         
         $Models=[];
         
         $Models['NavGoods']=$NavGoods=D('NavGoods');
         $Models['GoodsImg']=$GoodsImg=D('GoodsImg');
+        $Models['GoodsLabel']=$GoodsLabel=D('GoodsLabel');
         $Models['Sku']=$Sku=D('Sku');
         $Models['SkuTree']=$SkuTree=D('SkuTree');
         $Models['SkuTreeV']=$SkuTreeV=D('SkuTreeV');
         $Models['SpecialGoods']=$SpecialGoods=D('SpecialGoods');
-        $Models['Time']=$Time=D('Time');
+        $Models['TimeGoods']=$TimeGoods=D('TimeGoods');
+        
         //删除阵列
         foreach ($Models as $key => $Model) {
             $is=$Model->where($where)->delete()!==false;

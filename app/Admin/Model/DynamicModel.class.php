@@ -31,7 +31,18 @@ class DynamicModel extends Model {
         $where=$data['where'];
         
         $dynamicList  =  $this
-        ->order('add_time desc')
+        ->order('release_time desc')
+        ->field(
+        [
+        'dynamic_id',
+        'user_id',
+        'goods_id',
+        'dynamic_title',
+        'is_show',
+        'add_time',
+        'release_time',
+        ]
+        )
         ->where($where)
         ->limit(($page-1)*$limit,$limit)
         ->select();
@@ -39,25 +50,24 @@ class DynamicModel extends Model {
         $Img=M('dynamic_img');
         $Goods=D('goods');
         $User=M('user');
+        
         for ($i=0; $i < count($dynamicList); $i++) {
             
             
             $dynamic_id=$dynamicList[$i]['dynamic_id'];
             
             //找图片
-            $dynamicList[$i]['img_list']=$this->getImgList($dynamic_id);
-            
-            
+            // $dynamicList[$i]['img_list']=$this->getImgList($dynamic_id);
             //找商品
-            $dynamicList[$i]['goods_info']=$Goods->get($dynamicList[$i]['goods_id']);
+            $dynamicList[$i]['goods_info']=$this->getGoods($dynamicList[$i]['goods_id']);
             //找用户信息
             $dynamicList[$i]['user_info']=$this->getUserInfo($dynamicList[$i]['user_id']);
             
+            $dynamicList[$i]['release_time']=date('Y-m-d H:i:s',$dynamicList[$i]['release_time']);
             
         }
         
         $dynamicList=  toTime($dynamicList);
-        
         return $dynamicList;
         
     }
@@ -74,7 +84,32 @@ class DynamicModel extends Model {
         $User=D('user');
         $where=[];
         $where['user_id']=$user_id;
-        return $User->where($where)->find();
+        return $User->field('user_name,user_head,user_id')->where($where)->find();
+    }
+    
+    
+    private function getGoods($goods_id){
+        
+        $Goods=D('Goods');
+        $GoodsImg=D('GoodsImg');
+        
+        // ===================================================================================
+        // 找商品
+        $where=[];
+        $where['goods_id']=$goods_id;
+        $goods=$Goods
+        ->where($where)
+        ->field('goods_id,goods_title')
+        ->find();
+        // ===================================================================================
+        // 找单图
+        $img=$GoodsImg
+        ->where($where)
+        ->order('slot asc')
+        ->getField('src');
+        $goods['goods_head']=$img;
+        
+        return $goods;
     }
     
     public function get($dynamic_id){
@@ -87,7 +122,7 @@ class DynamicModel extends Model {
         //找图片
         $dynamic['img_list']=$this->getImgList($dynamic_id);
         //找商品
-        $dynamic['goods_info']=$Goods->get($dynamic['goods_id']);
+        $dynamic['goods_info']=$this->getGoods($dynamic['goods_id']);
         //找用户信息
         $dynamic['user_info']=$this->getUserInfo($user_id);
         

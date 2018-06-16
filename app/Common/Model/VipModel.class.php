@@ -3,121 +3,114 @@ namespace Common\Model;
 use Think\Model;
 class VipModel extends Model {
     
-    public function 销售佣金奖($pay_id){
+    public function 销售佣金奖($order_id){
         Vendor('VIP.VipPlus');
+        
         
         $Order=D('Order');
         $Goods=D('Goods');
         $User=D('User');
         $Snapshot=D('Snapshot');
+        $UserSuper=D('UserSuper');
         // ===================================================================================
         // 找订单数据
         
-        $order=$Order->where(['pay_id'=>$pay_id])->select();
-        
-        $snapshot_ids=[];
-        
-        foreach ($order as $k => $v) {
-            $snapshot_ids[]=$v['snapshot_id'];
-        }
-        
+        $order=$Order->where(['order_id'=>$order_id])->find();
+        $snapshot_id=$order['snapshot_id']  ;
         // ===================================================================================
         // 找快照数据
-        // http://192.168.1.251:8080/#/goodsInfo?goods_id=620&share_id=13914896237
-        if($snapshot_ids){
+        if($snapshot_id){
+            
+            
             
             $where=[];
-            $where['snapshot_id']=['in',$snapshot_ids];
-            $snapshot = $Snapshot->where($where)->select();
+            $where['snapshot_id']=$snapshot_id;
+            $snapshot = $Snapshot->where($where)->find();//取出快照数据
             
-            // 取出所有的佣金
-            $UserSuper=D('UserSuper');
             
-            foreach ($snapshot as $k => $v) {
-                
-                $earn_price=$v['earn_price'];//佣金
-                $share_id=$v['share_id'];//分享人ids
-                $user_id=$v['user_id'];//分享人id
-                
-                $super=$UserSuper->where(['user_id'=>$user_id])->find();
-                $super_id=$super['super_id'];
-                
-                // ===================================================================================
-                $where=[];
-                $where['user_id']= $user_id;
-                $user=$User->where($where)->find();
-                $userLevel=$user['user_vip_level']+0;
-                if($userLevel<=0){
-                    // ===================================================================================
-                    // 当前为客户
+            
+            $earn_price=$snapshot['earn_price'];//佣金
+            $share_id=$snapshot['share_id'];//分享人
+            $user_id=$snapshot['user_id'];//买家id
+            
+            $super=$UserSuper->where(['user_id'=>$user_id])->find();//取出这个用户的上级
+            $super_id=$super['super_id'];//取出上级的id
+            
+            // ===================================================================================
+            // 取出买家信息，判断买家的等级
+            $where=[];
+            $where['user_id']= $user_id;
+            $user=$User->where($where)->find();//查找买家
+            $userLevel=$user['user_vip_level']+0;//买家的vip等级
+            
+            // ===================================================================================
+            // 判断买家的等级
+            if($userLevel<=0){
+                // 买家的身份为普通客户，不是会员
+                // 让上级得到佣金
+                if($super){
                     $conf=[];
                     $conf['userId']=$super_id;
                     $conf['isDebug']=false;
                     $conf['isSave']=true;
                     $vip=new \VipPlus($conf);
                     $vip->出货得佣金($earn_price);
-                    
-                }else{
-                    
-                    // 当前为会员
-                    $conf=[];
-                    $conf['userId']=$user_id;
-                    $conf['isDebug']=false;
-                    $conf['isSave']=true;
-                    $vip=new \VipPlus($conf);
-                    $vip->出货得佣金($earn_price);
-                    
                 }
                 
-                // 找找看看这个商品是不是特殊商品
-                
-                $where=[];
-                $where['goods_id']=$v['goods_id'];
-                $goods=$Goods->where($where)->find();
-                
-                // ===================================================================================
-                // 判断是不是特殊商品
-                
-                if($goods['is_unique']){
-                    
-                    // 是特殊商品
-                    $user_id=$v['user_id'];
-                    // ===================================================================================
-                    // 还要判断，如果买家已经是会员，就不能层层获利了
-                    $where=[];
-                    $where['user_id']= $user_id;
-                    $user=$User->where($where)->find();
-                    $userLevel=$user['user_vip_level']+0;
-                    
-                    if($userLevel<=0){
-                        // 成为会员
-                        $save=[];
-                        $save['user_vip_level']=1;
-                        $User->where($where)->save($save);
-                        
-                        // 成为某人的下级,但是不能成为自己的下级
-                        // 当分享人id和user_id是同一个人的时候不执行
-                        if( $user_id!=$share_id){
-                            // 不是同一个人的执行团队逻辑
-                            // $邀请人的id,$被邀请人的id
-                            $this->团队发展奖($share_id, $user_id);
-                        }
-                        
-                        // 发红包给会员
-                        $Coupon=D('Coupon');
-                        $Coupon->派发给新499会员大礼包($user_id);
-                        
-                        // 发给邀请人大礼包
-                        $Coupon->派发新用户大礼包($share_id);
-                        
-                    }
-                    
-                }
-                
+            }else{
+                // 买家身份为会员
+                // 从自己开始得到佣金
+                // 当前为会员
+                $conf=[];
+                $conf['userId']=$user_id;
+                $conf['isDebug']=false;
+                $conf['isSave']=true;
+                $vip=new \VipPlus($conf);
+                $vip->出货得佣金($earn_price);
             }
             
+            
+            // ===================================================================================
+            // 判断当前商品是否为499商品
+            
+            $where=[];
+            $where['goods_id']=$snapshot['goods_id'];
+            $goods=$Goods->where($where)->find();
+            
+            if($goods['is_unique']){
+                // 当前商品是499商品
+                $user_id=$snapshot['user_id'];
+                // ===================================================================================
+                // 还要判断，如果买家已经是会员，就不能获得发展会员奖
+                $where=[];
+                $where['user_id']= $user_id;
+                $user=$User->where($where)->find();
+                $userLevel=$user['user_vip_level']+0;
+                if($userLevel<=0){
+                    // 买家的等级是普通客户
+                    // 让买家成为会员
+                    // ===================================================================================
+                    // 保存买家信息
+                    $save=[];
+                    $save['user_vip_level']=1;
+                    $User->where($where)->save($save);
+                    
+                    // 成为某人的下级,但是不能成为自己的下级
+                    // 当分享人id和user_id是同一个人的时候不执行
+                    if($user_id!=$share_id){
+                        // 不是同一个人的执行团队逻辑
+                        // $邀请人的id, $被邀请人的id
+                        $this->团队发展奖($share_id, $user_id);
+                    }
+                    
+                    // 发红包给新会员
+                    $Coupon=D('Coupon');
+                    $Coupon->派发给新499会员大礼包($user_id);
+                    // 发给邀请人大礼包
+                    $Coupon->派发新用户大礼包($share_id);
+                }
+            }
         }
-        
     }
     
     public function 团队发展奖($邀请人的id,$被邀请人的id){

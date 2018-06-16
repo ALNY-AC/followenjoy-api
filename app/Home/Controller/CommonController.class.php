@@ -32,6 +32,7 @@ class CommonController extends Controller {
             //登录成功，继续操作
             //保存session
             session('user_id',$is['user_id']);
+            session('shop_id',$is['shop_id']);
             return;
         }
         

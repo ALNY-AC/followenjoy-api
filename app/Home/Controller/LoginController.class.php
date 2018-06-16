@@ -4,76 +4,10 @@ use Think\Controller;
 class LoginController extends Controller {
     
     
-    public function test(){
-        $res['res']=1;
-        $res['get']=I('get.');
-        $res['post']=I('post.');
-        echo json_encode($res);
-    }
-    
     public function login(){
         
-        $user_id=I('user_id');
-        $user_code=I('user_code');
-        
-        //检查参数
-        if( !$user_id || !$user_code ){
-            //少一样都不行
-            $res['res']=-2;
-            echo json_encode($res);
-            die;
-        }else{
-            
-            // 有验证码
-            // ===================================================================================
-            // 验证短信验证码
-            $Code=D('Code');
-            $isSuccess= $Code->validate($user_id,$user_code)>0;
-            
-            // ===================================================================================
-            // 测试账户：
-            $testID=[
-            '13914896237',
-            '17621643903',
-            '17521712398',
-            "18751178711",
-            "13251603333",
-            "15727304388",
-            "15216776703",
-            ];
-            
-            if(in_array($user_id,$testID)){
-                $isSuccess=true;
-            }
-            
-            if($isSuccess){
-                //验证码正确
-                //生成 token
-                //换取token
-                
-                $token=createToken($user_id);
-                
-                if($token){
-                    $res['res']=1;
-                    $res['token']=$token;
-                }else{
-                    $res['res']=-1;
-                    $res['msg']=I();
-                }
-                
-                echo json_encode($res);
-                
-            }else{
-                //验证码不正确
-                $res['res']=-3;
-                echo json_encode($res);
-            }
-        }
-        
         
     }
-    
-    
     
     // 将用户的手机号和unionid绑定
     public function binding(){

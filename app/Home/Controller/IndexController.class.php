@@ -20,6 +20,8 @@ class IndexController extends Controller{
     
     public function index(){
         $backUrl=I('backUrl');
+        $shop_id=I('shop_id');
+        
         
         
         // https://api.mch.weixin.qq.com/pay/unifiedorder
@@ -79,18 +81,58 @@ class IndexController extends Controller{
             
         }
         
+        
         // ===================================================================================
         // 检测用户id是否存在
         // 如果用户id不存在，就需要绑定，或者，如果用户id和unionid一样，也需要绑定（这一点是为了修复之前的问题）
+        
+        $host='http://q.followenjoy.cn/#/';
+        // $host='http://192.168.1.251/#/';
+        
         if($user['user_id'] && $user['user_id'] != $user['unionid']){
             // 用户id存在，可以直接登录，绑定 unionid
             $user_id=$user['user_id'];
             $token=createToken($user_id);
-            $url="http://q.followenjoy.cn/#/?user_id=$user_id&token=$token&backUrl=$backUrl";
+            $url="HomePage?user_id=$user_id&token=$token&backUrl=$backUrl&shop_id=$shop_id";
+            
+            
+            
+            
+            if($shop_id){
+                // 需要绑定上级
+                // ===================================================================================
+                // 绑定 shopID
+                // 先看看有没有绑定，已经绑定过了就不要再绑定
+                $UserSuper=D('UserSuper');
+                
+                $where=[];
+                $where['user_id']=$user['user_id'];
+                $isSuper=$UserSuper->where($where)->find();
+                if(!$isSuper){
+                    // 不存在才添加
+                    $where=[];
+                    $where['shop_id']=$shop_id;
+                    $shopUser=$User->where($where)->find();
+                    if($shopUser){
+                        // shop用户存在
+                        // 绑定
+                        $data=[];
+                        $data['user_id']=$user['user_id'];
+                        $data['super_id']=$shopUser['user_id'];
+                        $data['add_time']=time();
+                        $data['edit_time']=time();
+                        
+                        $UserSuper->add($data);
+                        
+                    }
+                    
+                }
+                
+            }
             
         }else{
             // 用户id不存在,需要绑定手机号
-            $url="http://q.followenjoy.cn/#/WeiXinLogin?unionid=$unionid&backUrl=$backUrl";
+            $url="WeiXinLogin?unionid=$unionid&backUrl=$backUrl&shop_id=$shop_id";
             
         }
         
@@ -100,11 +142,11 @@ class IndexController extends Controller{
     
     public function login(){
         
-        $backUrl=I('backUrl');
-        
+        $shop_id=I('shop_id');
         $APPID='wx56a5a0b6368f00a7';
-        $backUrl= urlencode($backUrl);
-        $redirect_uri="http://server.followenjoy.cn?backUrl=$backUrl";
+        // $host='http://cosmetics.cn';
+        $host='http://server.followenjoy.cn';
+        $redirect_uri="$host?shop_id=$shop_id";
         $redirect_uri= urlencode($redirect_uri);
         // dump($APPID);
         $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$APPID&redirect_uri=$redirect_uri&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";

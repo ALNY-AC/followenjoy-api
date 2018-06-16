@@ -36,7 +36,7 @@ class DrawMoneyController extends CommonController{
         $DrawMoney=D('DrawMoney');
         $result=$DrawMoney->getList(I('','',false));
         $res['count']=$DrawMoney->count()+0;
-        if($result){
+        if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{

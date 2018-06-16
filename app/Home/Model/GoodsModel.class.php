@@ -26,6 +26,7 @@ class GoodsModel extends Model {
         
         
         $where['is_up']=1;
+        $where['is_unique']=0;
         
         $field=[
         'goods_id',
@@ -83,6 +84,7 @@ class GoodsModel extends Model {
         ];
         
         $where['is_up']=1;
+        $where['is_unique']=0;
         
         $list  =  $this
         ->order('sort desc,add_time desc')
@@ -129,7 +131,39 @@ class GoodsModel extends Model {
         //配置限时购商品
         $goods= $this->getTime($goods);
         
+        
+        
+        // c_record 添加浏览记录
+        $this->createRecord($goods_id);
+        
         return $goods;
+    }
+    
+    public function createRecord($goods_id){
+        
+        $Record=D('Record');
+        $user_id=session('user_id');
+        
+        $UserSuper=D('UserSuper');
+        
+        $where=[];
+        $where['user_id']=$user_id;
+        $super=$UserSuper->where($where)->find();
+        
+        $User=D('User');
+        $where=[];
+        $where['user_id']=$super['super_id'];
+        $user=$User->where($where)->find();
+        $data=[];
+        if($super){
+            $data['shop_id']=$user['shop_id'];
+        }else{
+            $data['shop_id']='';
+        }
+        
+        $data['goods_id']=$goods_id;
+        $data['user_id']=$user_id;
+        return $Record->create($data);
     }
     
     // 取得限时购数据
@@ -148,25 +182,25 @@ class GoodsModel extends Model {
             return $goods;
         }
         
-        $toTime=time();
+        // $toTime=time();
         
-        $start_time=$time['start_time'];
-        $end_time=$time['end_time'];
+        // $start_time=$time['start_time'];
+        // $end_time=$time['end_time'];
         
-        if($toTime>$start_time && $toTime < $end_time){
-            // 限时购商品，正在进行时
+        // if($toTime>$start_time && $toTime < $end_time){
+        // 限时购商品，正在进行时
+        
+        foreach ($goods['sku'] as $k => $v) {
             
-            foreach ($goods['sku'] as $k => $v) {
-                
-                $v['original_price']=$v['price'];
-                $v['price'] =   $v['activity_price'];
-                $v['earn_price'] =   $v['activity_earn_price'];
-                
-                $goods['sku'][$k]=$v;
-                
-            }
+            $v['original_price']=$v['price'];
+            $v['price'] =   $v['activity_price'];
+            $v['earn_price'] =   $v['activity_earn_price'];
+            
+            $goods['sku'][$k]=$v;
             
         }
+        
+        // }
         
         
         return $goods;
