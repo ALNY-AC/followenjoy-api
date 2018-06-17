@@ -338,9 +338,13 @@ class OrderModel extends Model {
             
             // ===================================================================================
             // 检查物流状态
-            if($this->isLogistics($order_id, $order['logistics']['logistics_id'])){
-                $order['logistics']=$this->getLogisticsInfo($order_id);
+            if($order['logistics']['state']==3){
+                // 3、待收货
+                if($this->isLogistics($order_id, $order['logistics']['logistics_id'])){
+                    $order['logistics']=$this->getLogisticsInfo($order_id);
+                }
             }
+            
             
             // ===================================================================================
             // 取得支付单数据

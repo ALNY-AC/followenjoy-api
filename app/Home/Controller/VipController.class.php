@@ -29,7 +29,7 @@ class VipController extends CommonController{
         $vip->setWriteDatabase(false);
         $vip->initSubList();
         $subList=  $vip->getSubList();
-        if($subList){
+        if($subList!==false){
             $res['res']=count($subList);
             $res['msg']=$subList;
         }else{

@@ -55,10 +55,10 @@ class SnapshotModel extends Model {
         $where['sku_id']=$sku_id;
         $where['user_id']=$user_id;
         $where['order_id']=['EXP','is NULL'];
-        $result=$this->where($where)->find();
+        $snapshot=$this->where($where)->find();
         //==================================================================
-        //如果添加过就不用再次添加
-        if(!$result){
+        //如果添加过就不用再次添加，需要更新数据
+        if(!$snapshot){
             
             //未添加
             //==================================================================
@@ -109,15 +109,19 @@ class SnapshotModel extends Model {
             $add['edit_time']=time();
             //==================================================================
             //添加到数据库中
-            $result=$this->add($add);
+            $snapshot=$this->add($add);
         }else{
-            //已添加，返回已添加的id，并且追加数量
-            $snapshot_id=$result['snapshot_id'];
+            //已添加，返回已添加的id，并且追加数量，需要更新数据
+            
+            $snapshot=$this->updateGoods($snapshot);
+            
+            $snapshot_id=$snapshot['snapshot_id'];
             $where=[];
             $where['snapshot_id']=$snapshot_id;
             $save=[];
             $save['count']=$count+0;
             $save['share_id']=$share_id;
+            
             $this->where($where)->save($save);
         }
         
@@ -141,8 +145,8 @@ class SnapshotModel extends Model {
         $goods_info=$Goods->get($goods_id);
         $snapshot['goods_info']=$goods_info;
         
-        $snapshot=$this->getTime($snapshot);//取得限时购数据
         $snapshot=$this->updateGoods($snapshot);
+        $snapshot=$this->getTime($snapshot);//取得限时购数据
         
         return $snapshot;
     }
@@ -154,7 +158,6 @@ class SnapshotModel extends Model {
             $arr[]=$this->get($id);
         }
         return $arr;
-        
     }
     
     // 获得限时购数据
@@ -165,6 +168,11 @@ class SnapshotModel extends Model {
         $goods_id=$snapshot['goods_id'];
         
         $where=[];
+        // 限制时间范围
+        // strtotime("-1 day")
+        // strtotime("+1 day")
+        $where['start_time']=[];
+        $where['start_time'] = [['EGT',strtotime("-1 day")],['ELT',strtotime("+1 day")]];
         $where['goods_id'] = $goods_id;
         
         $time=$TimeGoods->where($where)->find();
@@ -173,12 +181,27 @@ class SnapshotModel extends Model {
         
         $start_time=$time['start_time'];
         $end_time=$time['end_time'];
-        
+        if(I('test')==1){
+            
+            dump(date('y-m-d h:i:s',$toTime));
+            dump(date('y-m-d h:i:s',$start_time));
+            dump(date('y-m-d h:i:s',$end_time));
+            
+            dump($toTime>$start_time && $toTime < $end_time);
+        }
         if($toTime>$start_time && $toTime < $end_time){
             // 限时购商品，正在进行时
             $snapshot['original_price']=$snapshot['price'];
             $snapshot['price'] =   $snapshot['activity_price'];
             $snapshot['earn_price'] =   $snapshot['activity_earn_price'];
+            if(I('test')==1){
+                ec('限时购商品');
+            }
+        }
+        
+        if(I('test')==1){
+            dump($snapshot);
+            ec('====================================================');
         }
         
         return $snapshot;
@@ -187,8 +210,8 @@ class SnapshotModel extends Model {
     // 同步一下数据
     public function updateGoods($snapshot){
         
-        
         if($snapshot['order_id']){
+            // 已经存在订单，就不用再同步
             return;
         }
         
@@ -199,9 +222,11 @@ class SnapshotModel extends Model {
         $where['sku_id']=$sku_id;
         $sku=$Sku->where($where)->find();
         if(!$sku){
+            // sku不存在了
             $snapshot['no_sku']=true;
             return $snapshot;
         }else{
+            // sku还存在
             $snapshot['no_sku']=false;
         }
         
@@ -214,11 +239,9 @@ class SnapshotModel extends Model {
         $data['activity_price']=$sku['activity_price'];//活动时价格
         $data['activity_earn_price']=$sku['activity_earn_price'];//活动时佣金
         
-        
         $where=[];
         $where['snapshot_id']=$snapshot['snapshot_id'];
         $this->where($where)->save($data);
-        
         
         foreach ($data as $k => $v) {
             $snapshot[$k]=$v;

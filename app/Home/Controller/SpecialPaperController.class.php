@@ -54,8 +54,9 @@ class SpecialPaperController extends CommonController{
         
         $SpecialPaper=D('SpecialPaper');
         $result=$SpecialPaper->get(I('special_paper_id'));
+        
         if($result){
-            $res['res']=count($result);
+            $res['res']=1;
             $res['msg']=$result;
         }else{
             $res['res']=-1;

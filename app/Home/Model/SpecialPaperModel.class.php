@@ -63,8 +63,18 @@ class SpecialPaperModel extends Model {
     public function get($special_paper_id){
         $where=[];
         $where['special_paper_id']=$special_paper_id;
+        
         $data=$this->where($where)->find();
         $data=toTime([$data])[0];
+        if($data['goods_id']){
+            // 商品存在，找商品
+            $Goods=D('Goods');
+            $goods=$Goods->get($data['goods_id']);
+            $data['goods']=$goods;
+        }else{
+            $data['goods']=null;
+        }
+        
         return $data;
     }
     

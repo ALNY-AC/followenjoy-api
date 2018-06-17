@@ -19,11 +19,33 @@ use Think\Controller;
 class OrderController extends CommonController{
     
     
-    
-    
-    public function test(){
+    public function getAddPacketTest(){
         
+        $Address=D('Address');
+        $snapshot_id=I('snapshot_id');
         
+        $where=[];
+        $where['user_id']=session('user_id');
+        
+        // ===================================================================================
+        // 商品快照
+        $Snapshot=D('Snapshot');
+        $snapshots=$Snapshot->getList($snapshot_id);
+        
+        // ===================================================================================
+        // 找优惠券信息
+        $Coupon=D('Coupon');
+        $couponList= $Coupon->getUserList(['time'=>false]);
+        
+        if($snapshots){
+            $res['res']=count($snapshots);
+            $res['snapshots']=$snapshots;
+            $res['couponList']=$couponList;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        dump($res);
         
     }
     

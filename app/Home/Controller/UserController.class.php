@@ -179,6 +179,7 @@ class UserController extends CommonController{
         $user['vipInfo']=$vipInfo;
         
         
+        
         if($user){
             $res['res']=1;
             $res['msg']=$user;

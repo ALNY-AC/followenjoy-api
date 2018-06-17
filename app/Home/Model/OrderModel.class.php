@@ -148,30 +148,18 @@ class OrderModel extends Model {
         // ===================================================================================
         // 先看看这个商品在TimeGoods中有没有
         $timeGoods=$TimeGoods->where(['goods_id'=>$goods_id])->find();
-        $discounted=0;
-        if($timeGoods){
-            $time_id=$timeGoods['time_id'];
-            $time=$Time->where($where)->find();
-            if($time){
-                
-                // 检查是否过期
-                if(time()<=$time['end_time']){
-                    // 未过期
-                    $discounted=$time['discounted'];
-                    
-                }else{
-                    $discounted=0;
-                }
-            }else{
-                $discounted=0;
-            }
-        }else{
-            $discounted=0;
+        $toTime=time();
+        $start_time=$time['start_time'];
+        $end_time=$time['end_time'];
+        if($toTime>$start_time && $toTime < $end_time){
+            $snapshot['original_price']=$snapshot['price'];
+            $snapshot['price'] =   $snapshot['activity_price'];
+            $snapshot['earn_price'] =   $snapshot['activity_earn_price'];
         }
         
         // ===================================================================================
         // 计算价格
-        $price=($snapshot['price']*$snapshot['count'])*($discounted===0?1:$discounted/10);
+        $price=($snapshot['price']*$snapshot['count']);
         $price+=$first_price;
         // 优惠后的订单总价=订单总价*打折
         
@@ -496,9 +484,14 @@ class OrderModel extends Model {
             
             // ===================================================================================
             // 检查物流状态
-            if($this->isLogistics($order_id, $order['logistics']['logistics_id'])){
-                $order['logistics']=$this->getLogisticsInfo($order_id);
+            if($order['logistics']['state']==3){
+                // 3、待收货
+                if($this->isLogistics($order_id, $order['logistics']['logistics_id'])){
+                    $order['logistics']=$this->getLogisticsInfo($order_id);
+                }
             }
+            
+            
             
             // ===================================================================================
             // 取得支付单数据
