@@ -30,8 +30,9 @@ class WeiXinLoginController extends Controller{
         
         $goIndex=urlencode($goIndex);
         
+        $host='http://'.$_SERVER['SERVER_NAME'].'/';
         
-        $redirect_uri="http://server.followenjoy.cn/home/WeiXinLogin/redirct?shop_id=$shop_id&goIndex=$goIndex";
+        $redirect_uri= $host."home/WeiXinLogin/redirct?shop_id=$shop_id&goIndex=$goIndex";
         $weixinLogin = new \WeiXinLogin();
         $weixinLogin->setRedirectUrl($redirect_uri,false);
         $url=$weixinLogin->login(false);
@@ -54,10 +55,11 @@ class WeiXinLoginController extends Controller{
         $unionid=$userInfo['unionid'];
         F('userInfo'.$unionid,json_encode($userInfo));
         
+        $host='http://test.q.followenjoy.cn/#/';
         if($shop_id){
-            $url="http://q.followenjoy.cn/#/WeiXinLogin?unionid=$unionid&shop_id=$shop_id&goIndex=$goIndex";
+            $url= $host."WeiXinLogin?unionid=$unionid&shop_id=$shop_id&goIndex=$goIndex";
         }else{
-            $url="http://q.followenjoy.cn/#/WeiXinLogin?unionid=$unionid&shop_id=-1&goIndex=$goIndex";
+            $url= $host."WeiXinLogin?unionid=$unionid&shop_id=-1&goIndex=$goIndex";
         }
         echo "<script>window.location.replace='$url'</script>";
     }
