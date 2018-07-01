@@ -35,7 +35,7 @@ class WeiXinLoginController extends Controller{
         $redirect_uri= $host."home/WeiXinLogin/redirct?shop_id=$shop_id&goIndex=$goIndex";
         $weixinLogin = new \WeiXinLogin();
         $weixinLogin->setRedirectUrl($redirect_uri,false);
-        $url=$weixinLogin->login(false);
+        $weixinLogin->login(true);
         
         
     }
