@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class HomeController extends CommonController {
+class HomeController extends Controller {
     
     // 获得首页数据包
     public function getPacket(){

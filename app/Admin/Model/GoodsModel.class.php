@@ -80,6 +80,7 @@ class GoodsModel extends Model {
     
     //添加sku
     function addGoodsSku($goods_id,$data){
+        
         $Sku=M('sku');//sku
         $SkuTree=M('sku_tree');//sku树
         $SkuTreeV=M('sku_tree_v');//sky树的v

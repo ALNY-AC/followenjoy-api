@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class NavController extends CommonController{
+class NavController extends Controller{
     
     public function getList(){
         $Nav=D('Nav');

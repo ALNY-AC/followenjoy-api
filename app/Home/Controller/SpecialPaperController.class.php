@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class SpecialPaperController extends CommonController{
+class SpecialPaperController extends Controller{
     
     
     public function getList(){

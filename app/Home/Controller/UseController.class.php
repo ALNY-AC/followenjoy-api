@@ -100,7 +100,12 @@ class UseController extends CommonController {
         $image=I('file');
         //=========输出json=========
         
-        $imageName = "25220_".date("His",time())."_".rand(1111,9999).'.png';
+        preg_match('/^(data:\s*image\/(\w+);base64,)/', $image, $result);
+        
+        $type = $result[2];    //获取图片的类型jpg png等
+        $imageName = "25220_".date("His",time())."_".rand(1111,9999).".$type";
+        
+        
         if (strstr($image,",")){
             $image = explode(',',$image);
             $image = $image[1];

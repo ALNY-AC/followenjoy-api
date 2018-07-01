@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class GoodsController extends CommonController{
+class GoodsController extends Controller{
     
     //取得详情页数据包
     public function getPacket(){

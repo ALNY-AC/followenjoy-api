@@ -1,5 +1,16 @@
 <?php
 return array(
+'TMPL_PARSE_STRING' => array(
+
+'__VENDOR__' => __ROOT__ . '/Public/vendor', // 配置自定义资源文件夹：第三方库
+'__ADIST__' => __ROOT__ . '/Public/Admin/dist', // 配置自定义资源文件夹：admin
+'__HDIST__' => __ROOT__ . '/Public/Home/dist', // 配置自定义资源文件夹：home
+'__ASSETS__' => __ROOT__ . '/Public/Assets', // 配置自定义资源文件夹：home
+'__DIST__' => __ROOT__ . '/Public/dist', // 配置自定义资源文件夹：home
+'__PUBLIC__' => __ROOT__ . '/Public', // 配置自定义资源文件夹
+
+),
+
 /* 数据库设置 */
 
 // ===================================================================================

@@ -5,33 +5,29 @@ class CodeModel extends Model {
     
     public function _initialize (){}
     
-    public function creat($data){
-        
-    }
     
     // 加密验证码
-    public function encryption($user_id,$user_code){
-        // 加密算法： __KEY__.$user_id.$user_code.__KEY__
-        $code=md5(__KEY__.$user_id.$user_code.__KEY__);
+    public function encryption($phone,$user_code){
+        // 加密算法： __KEY__.$phone.$user_code.__KEY__
+        $code=md5(__KEY__.$phone.$user_code.__KEY__);
         return $code;
     }
     
-    public function pushCode($user_id){
+    public function pushCode($phone){
         
-        $this->del($user_id);
+        $this->del($phone);
         $code=rand(1000,9999);
-        $m_code=$this->encryption($user_id,$code);
+        $m_code=$this->encryption($phone,$code);
         $data['code']=$m_code;
-        $data['key']=$user_id;
+        $data['key']=$phone;
         $data['add_time']=time();
-        
         
         if($this->add($data)){
             // 检测是否免签
-            if(D('LaissezPasser')->validate($user_id)){
+            if(D('LaissezPasser')->validate($phone)){
                 $res['res']=10;
             }else{
-                $result=$this->send($user_id,$code);
+                $result=$this->send($phone,$code);
                 $res['res']=$result;
             }
             
@@ -41,23 +37,23 @@ class CodeModel extends Model {
         return   $res;
     }
     
-    private function send($user_id,$code){
-        return send_sms($user_id,$code);
+    private function send($phone,$code){
+        return send_sms($phone,$code);
     }
     
-    public function validate($user_id,$user_code){
+    public function validate($phone,$user_code){
         
-        if(D('LaissezPasser')->validate($user_id)){
+        if(D('LaissezPasser')->validate($phone)){
             // 免签特权
-            $this->del($user_id);
+            $this->del($phone);
             return 1;
         }else{
             // 需要签证
         }
         
         $where=[];
-        $where['code']=$this->encryption($user_id,$user_code);
-        $where['key']=$user_id;
+        $where['code']=$this->encryption($phone,$user_code);
+        $where['key']=$phone;
         
         // 验证是否存在
         $data=$this->where($where)->find();
@@ -73,12 +69,12 @@ class CodeModel extends Model {
             // 十分钟 超时
             if($add_time+600>$time){
                 // 未超时，十分钟
-                $this->del($user_id);
+                $this->del($phone);
                 // 验证正确，删除验证码
                 return 1;
             }else{
                 // 超时，删除验证码
-                $this->del($user_id);
+                $this->del($phone);
                 return -2;
             }
         }

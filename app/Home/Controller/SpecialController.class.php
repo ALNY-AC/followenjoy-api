@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class SpecialController extends CommonController{
+class SpecialController extends Controller{
     
     //获得专题页数据包
     public function getPacket(){

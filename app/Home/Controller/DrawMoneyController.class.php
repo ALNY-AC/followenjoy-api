@@ -35,6 +35,7 @@ class DrawMoneyController extends CommonController{
     public function getList(){
         $DrawMoney=D('DrawMoney');
         $result=$DrawMoney->getList(I('','',false));
+        // $result=[];
         $res['count']=$DrawMoney->count()+0;
         if($result!==false){
             $res['res']=count($result);

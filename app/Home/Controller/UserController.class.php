@@ -23,7 +23,6 @@ class UserController extends CommonController{
     public function setCode(){
         $pay_code=I('pay_code');
         
-        
         $user_id=session('user_id');
         
         //加密算法： 用户id+密码+密匙
@@ -103,6 +102,26 @@ class UserController extends CommonController{
         
     }
     
+    public function update(){
+        
+        $User=D('User');
+        $data=I('data','',false);
+        unset($data['user_id']);
+        unset($data['pay_code']);
+        unset($data['edit_time']);
+        unset($data['add_time']);
+        $where=[];
+        $where=[];
+        $where['user_id']=session('user_id');
+        $result=$User->where($where)->save($data);
+        
+        if($result!==false){
+            $res['res']=1;
+        }else{
+            $res['res']=-1;
+        }
+        echo json_encode($res);
+    }
     
     public function getUpList(){
         $User=D('User');
@@ -177,7 +196,6 @@ class UserController extends CommonController{
             $vipInfo['levelName']=$vip->levelName;
         }
         $user['vipInfo']=$vipInfo;
-        
         
         
         if($user){

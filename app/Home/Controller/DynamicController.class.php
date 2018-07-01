@@ -14,10 +14,9 @@
 * @author 代码狮
 *
 */
-
 namespace Home\Controller;
 use Think\Controller;
-class DynamicController extends CommonController{
+class DynamicController extends Controller{
     
     public function test(){
         // $save=[];
@@ -80,15 +79,28 @@ class DynamicController extends CommonController{
         echo json_encode($res);
     }
     
+    // public function getUpList(){
+    
+    //     $Dynamic=D('Dynamic');
+    //     $dynamic=$Dynamic->getList(I());
+    //     $res['res']=1;
+    //     $res['msg']=$dynamic;
+    //     echo json_encode($res);
+    
+    // }
     
     public function getUpList(){
+        $User=D('User');
+        $upUsers=$User->getUpList();
         
-        $Dynamic=D('Dynamic');
-        $dynamic=$Dynamic->getList(I());
-        $res['res']=1;
-        $res['msg']=$dynamic;
+        if($upUsers){
+            $res['res']=count($upUsers);
+            $res['msg']=$upUsers;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$upUsers;
+        }
         echo json_encode($res);
-        
     }
     
     

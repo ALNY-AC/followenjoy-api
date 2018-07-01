@@ -40,8 +40,6 @@ class SnapshotModel extends Model {
         }
     }
     
-    
-    
     //添加一个快照信息
     public function create($goods_id,$sku_id,$count=1,$share_id=''){
         
@@ -128,7 +126,6 @@ class SnapshotModel extends Model {
         return $snapshot_id;
     }
     
-    
     //取得一个
     public function get($snapshot_id){
         //==================================================================
@@ -150,7 +147,6 @@ class SnapshotModel extends Model {
         
         return $snapshot;
     }
-    
     
     public function getList($snapshot_ids){
         $arr=[];
@@ -176,33 +172,37 @@ class SnapshotModel extends Model {
         $where['goods_id'] = $goods_id;
         
         $time=$TimeGoods->where($where)->find();
+        if(!$time){
+            // 不在时间轴上
+            $snapshot['is_time']=false;
+            return $snapshot;
+        }else{
+            $snapshot['is_time']=true;
+        }
         
         $toTime=time();
-        
         $start_time=$time['start_time'];
         $end_time=$time['end_time'];
-        if(I('test')==1){
-            
-            dump(date('y-m-d h:i:s',$toTime));
-            dump(date('y-m-d h:i:s',$start_time));
-            dump(date('y-m-d h:i:s',$end_time));
-            
-            dump($toTime>$start_time && $toTime < $end_time);
-        }
+        // f_start_time 将时间轴开始日期格式化
+        $time['f_start_time']=date('m月d日 h:i',$start_time);
+        
         if($toTime>$start_time && $toTime < $end_time){
             // 限时购商品，正在进行时
             $snapshot['original_price']=$snapshot['price'];
             $snapshot['price'] =   $snapshot['activity_price'];
             $snapshot['earn_price'] =   $snapshot['activity_earn_price'];
-            if(I('test')==1){
-                ec('限时购商品');
-            }
         }
         
-        if(I('test')==1){
-            dump($snapshot);
-            ec('====================================================');
+        // 检测是否还未到时间
+        if($toTime<$start_time){
+            // 时间还未到
+            $snapshot['not_time']=true;
+        }else{
+            // 已经开始,或者结束，此参数不可以判断活动是否结束。
+            $snapshot['not_time']=false;
         }
+        
+        $snapshot['time']=$time;
         
         return $snapshot;
     }

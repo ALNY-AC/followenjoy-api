@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class TimeController extends CommonController{
+class TimeController extends Controller{
     
     public function getList(){
         $Time=D('Time');

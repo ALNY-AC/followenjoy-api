@@ -21,8 +21,7 @@ class CommonController extends Controller {
     public function _initialize() {
         
         $is=isUserLogin('admin');
-        
-        if($is){
+        if($is>0){
             //登录成功，继续操作
             //保存session
             session('admin_id',$is['admin_id']);

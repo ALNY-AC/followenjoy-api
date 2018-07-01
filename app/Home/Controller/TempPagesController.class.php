@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class TempPagesController extends CommonController{
+class TempPagesController extends Controller{
     
     public function get(){
         $TempPages=D('TempPages');

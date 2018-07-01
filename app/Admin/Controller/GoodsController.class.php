@@ -156,6 +156,7 @@ class GoodsController extends CommonController{
     
     public function saveData(){
         
+        
         $Goods=D('Goods');
         
         $save=I('save','',false);

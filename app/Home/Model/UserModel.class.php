@@ -12,6 +12,7 @@ class userModel extends Model {
         $where['is_up']=1;
         $upUsers=$this
         ->field('user_id,user_head,user_name')
+        ->order('add_time desc')
         ->where($where)
         ->select();
         return $upUsers;
@@ -30,7 +31,7 @@ class userModel extends Model {
         
         $data['user_pwd']='';
         $data['pay_code']='';
-        $data['user_head']='';
+        $data['user_head']='https://mmbiz.qlogo.cn/mmbiz_png/EISicquI57gst6WUxm3ksJgTtNBSyzL1ja1UHDQNDVcTySfib4BfYRnbFXnE3Bpx1wKJ08QjnAR6scaNoicBJn5uw/0?wx_fmt=png';
         $data['user_type']=0;
         $data['unionid']='';
         $data['user_email']='';

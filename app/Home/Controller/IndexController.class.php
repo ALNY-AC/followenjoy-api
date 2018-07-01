@@ -19,141 +19,85 @@ use Think\Controller;
 class IndexController extends Controller{
     
     public function index(){
-        $backUrl=I('backUrl');
-        $shop_id=I('shop_id');
         
-        
-        
-        // https://api.mch.weixin.qq.com/pay/unifiedorder
-        // weixin();
-        //
-        // AppSecret
-        // 643f69abc138477f4362ab22a5d012c0
-        // https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
-        $APPID='wx56a5a0b6368f00a7';
-        $secret='643f69abc138477f4362ab22a5d012c0';
-        // dump(I('get.'));
-        $code=I('code');
-        $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=$APPID&secret=$secret&code=$code&grant_type=authorization_code";
-        
-        $accessData=_request($url);
-        $accessData=json_decode($accessData,true);
-        // dump($accessData);
-        
-        $access_token=$accessData['access_token'];
-        $openid=$accessData['openid'];
-        
-        $url="https://api.weixin.qq.com/sns/userinfo?access_token=$access_token&openid=$openid&lang=zh_CN";
-        $userInfo=_request($url);
-        $userInfo=json_decode($userInfo,true);
-        // dump($userInfo);
-        
-        $unionid=$userInfo['unionid'];
-        $nickname=$userInfo['nickname'];
-        $headimgurl=$userInfo['headimgurl'];
-        
-        // ===================================================================================
-        // 检测用户是否存在，不存在就创建新用户
-        
-        $where=[];
-        $where['unionid']=$unionid;
-        $User=D('User');
-        $user=$User->where($where)->find();
-        if(!$user){
-            // 没有创建新用户
-            $data=[];
-            $data['user_id']=$unionid;
-            $data['user_name']=$nickname;
-            $data['user_head']=$headimgurl;
-            $data['unionid']=$unionid;
-            $data['user_vip_level']=0;
-            $data['user_money']=0;
-            $data['add_time']=time();
-            $data['edit_time']=time();
-            $User->add($data);
-            $user=$User->where($where)->find();
-        }else{
-            // 绑定 unionid
-            
-            $save=[];
-            $save['unionid']=$unionid;
-            $User->where($where)->save($save);
-            
-        }
+        // $where=[];
+        // $where['unionid']=$unionid;
+        // $User=D('User');
+        // $user=$User->where($where)->find();
+        // if(!$user){
+        //     // 没有创建新用户
+        //     $data=[];
+        //     $data['user_id']=$unionid;
+        //     $data['user_name']=$nickname;
+        //     $data['user_head']=$headimgurl;
+        //     $data['unionid']=$unionid;
+        //     $data['user_vip_level']=0;
+        //     $data['user_money']=0;
+        //     $data['add_time']=time();
+        //     $data['edit_time']=time();
+        //     $User->add($data);
+        //     $user=$User->where($where)->find();
+        // }else{
+        //     // 绑定 unionid
+        //     $save=[];
+        //     $save['unionid']=$unionid;
+        //     $User->where($where)->save($save);
+        // }
         
         
         // ===================================================================================
         // 检测用户id是否存在
         // 如果用户id不存在，就需要绑定，或者，如果用户id和unionid一样，也需要绑定（这一点是为了修复之前的问题）
         
-        $host='http://q.followenjoy.cn/#/';
+        // $host='http://q.followenjoy.cn/#/';
         // $host='http://192.168.1.251/#/';
         
-        if($user['user_id'] && $user['user_id'] != $user['unionid']){
-            // 用户id存在，可以直接登录，绑定 unionid
-            $user_id=$user['user_id'];
-            $token=createToken($user_id);
-            $url="HomePage?user_id=$user_id&token=$token&backUrl=$backUrl&shop_id=$shop_id";
-            
-            
-            
-            
-            if($shop_id){
-                // 需要绑定上级
-                // ===================================================================================
-                // 绑定 shopID
-                // 先看看有没有绑定，已经绑定过了就不要再绑定
-                $UserSuper=D('UserSuper');
-                
-                $where=[];
-                $where['user_id']=$user['user_id'];
-                $isSuper=$UserSuper->where($where)->find();
-                if(!$isSuper){
-                    // 不存在才添加
-                    $where=[];
-                    $where['shop_id']=$shop_id;
-                    $shopUser=$User->where($where)->find();
-                    if($shopUser){
-                        // shop用户存在
-                        // 绑定
-                        $data=[];
-                        $data['user_id']=$user['user_id'];
-                        $data['super_id']=$shopUser['user_id'];
-                        $data['add_time']=time();
-                        $data['edit_time']=time();
-                        
-                        $UserSuper->add($data);
-                        
-                    }
-                    
-                }
-                
-            }
-            
-        }else{
-            // 用户id不存在,需要绑定手机号
-            $url="WeiXinLogin?unionid=$unionid&backUrl=$backUrl&shop_id=$shop_id";
-            
-        }
+        // if($user['user_id'] && $user['user_id'] != $user['unionid']){
+        //     // 用户id存在，可以直接登录，绑定 unionid
+        //     $user_id=$user['user_id'];
+        //     $token=createToken($user_id);
+        //     $url=$host."HomePage?user_id=$user_id&token=$token&backUrl=$backUrl&shop_id=$shop_id";
         
-        echo "<script>window.location.href='$url'</script>";
+        //     if($shop_id){
+        //         // 需要绑定上级
+        //         // ===================================================================================
+        //         // 绑定 shopID
+        //         // 先看看有没有绑定，已经绑定过了就不要再绑定
+        //         $UserSuper=D('UserSuper');
+        
+        //         $where=[];
+        //         $where['user_id']=$user['user_id'];
+        //         $isSuper=$UserSuper->where($where)->find();
+        //         if(!$isSuper){
+        //             // 不存在才添加
+        //             $where=[];
+        //             $where['shop_id']=$shop_id;
+        //             $shopUser=$User->where($where)->find();
+        //             if($shopUser){
+        //                 // shop用户存在
+        //                 // 绑定
+        //                 $data=[];
+        //                 $data['user_id']=$user['user_id'];
+        //                 $data['super_id']=$shopUser['user_id'];
+        //                 $data['add_time']=time();
+        //                 $data['edit_time']=time();
+        
+        //                 $UserSuper->add($data);
+        
+        //             }
+        
+        //         }
+        
+        //     }
+        
+        // }else{
+        //     // 用户id不存在,需要绑定手机号
+        //     $url=$host."WeiXinLogin?unionid=$unionid&backUrl=$backUrl&shop_id=$shop_id";
+        // }
+        
         
     }
     
-    public function login(){
-        
-        $shop_id=I('shop_id');
-        $APPID='wx56a5a0b6368f00a7';
-        // $host='http://cosmetics.cn';
-        $host='http://server.followenjoy.cn';
-        $redirect_uri="$host?shop_id=$shop_id";
-        $redirect_uri= urlencode($redirect_uri);
-        // dump($APPID);
-        $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$APPID&redirect_uri=$redirect_uri&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-        
-        echo "<script>window.location.href='$url'</script>";
-        
-    }
     
     public function test2(){
         

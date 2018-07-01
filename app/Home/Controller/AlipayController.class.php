@@ -174,8 +174,6 @@ class AlipayController extends Controller{
                     // 1：已支付
                     // 2：已取消
                     
-                    
-                    
                     // 减库存
                     $where=[];
                     $where['pay_id']=$out_trade_no;

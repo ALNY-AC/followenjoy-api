@@ -18,7 +18,6 @@ namespace Admin\Controller;
 use Think\Controller;
 class HelpController extends CommonController{
     
-    
     public function add(){
         
         $Help=D('Help');
@@ -38,12 +37,14 @@ class HelpController extends CommonController{
         
     }
     
-    public function save(){
+    public function saveData(){
         
         $Help=D('Help');
         
-        $save=I('save','',false);
-        $where=I('where');
+        $save=I('data','',false);
+        
+        $where=[];
+        $where['help_id']=['in',getIds(I('help_id'))];
         
         unset($save['help_id']);
         unset($save['add_time']);
@@ -61,8 +62,6 @@ class HelpController extends CommonController{
         echo json_encode($res);
         
     }
-    
-    
     
     public function getList(){
         
@@ -89,8 +88,19 @@ class HelpController extends CommonController{
             
         }
         
-        
-        $result=$Help->where($where)->limit(($page-1)*$limit,$limit)->select();
+        $result=$Help
+        ->field([
+        'help_id',
+        'help_title',
+        'help_type',
+        'is_up',
+        'is_show',
+        'add_time',
+        'edit_time'
+        ])
+        ->where($where)
+        ->limit(($page-1)*$limit,$limit)
+        ->select();
         $result=toTime($result);
         
         $res['count']=$Help->count()+0;

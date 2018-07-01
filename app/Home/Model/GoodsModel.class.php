@@ -23,8 +23,6 @@ class GoodsModel extends Model {
         $limit  =   $data['limit']?$data['limit']:10;
         $field  =   $data['field']?$data['field']:[];
         
-        
-        
         $where['is_up']=1;
         $where['is_unique']=0;
         
@@ -105,32 +103,34 @@ class GoodsModel extends Model {
     }
     
     //获得一个
-    public function get($goods_id,$map=['img_list','sku','tree','class','freight']){
-        
+    public function get($goods_id,$map=['img_list','sku','tree','class','freight'],$field,$limit=true){
         
         $where=[];
         $where['is_up']=1;
         $where['goods_id']=$goods_id;
         
-        $goods=$this->where($where)->find();
+        $goods=$this
+        ->field($field)
+        ->where($where)
+        ->find();
+        
         if(!$goods){
             return null;
         }
         
-        $goods=$this->getGoodsSku($goods,$map,true);
+        $goods=$this->getGoodsSku($goods,$map,$limit);
         $goods=toTime([$goods])[0];
         //找是否收藏
-        $model=M('collection');
+        $Collection=D('Collection');
         $where=[];
         $where['goods_id']=$goods_id;
-        $where['user_id']=session('user_id');
-        $collection=$model->where($where)->find();
-        
+        $where['user_id']=I('user_id');
+        $collection=$Collection->where($where)->find();
         $goods['is_collection']=!($collection==null);
+        
         
         //配置限时购商品
         $goods= $this->getTime($goods);
-        
         
         
         // c_record 添加浏览记录
@@ -141,6 +141,9 @@ class GoodsModel extends Model {
     
     public function createRecord($goods_id){
         
+        if(!session('user_id')){
+            return;
+        }
         $Record=D('Record');
         $user_id=session('user_id');
         
@@ -173,39 +176,123 @@ class GoodsModel extends Model {
         
         $goods_id=$goods['goods_id'];
         
+        // 先取今天的
+        // 没有的话再取昨天的
+        // 在没有的话再取明天的
+        
+        
+        $今天0点=mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+        $今天23点=mktime(23, 59, 59, date('m'), date('d'), date('Y'));
+        // dump(date('Y-m-d H:i:s',$今天0点));
+        // dump(date('Y-m-d H:i:s',$今天23点));
+        
+        
+        
+        $昨天0点=mktime(0, 0, 0, date('m'), date('d')-1, date('Y'));
+        $昨天23点=mktime(23, 59, 59, date('m'), date('d')-1, date('Y'));
+        // dump(date('Y-m-d H:i:s',$昨天0点));
+        // dump(date('Y-m-d H:i:s',$昨天23点));
+        
+        
+        
+        $明天0点=mktime(0, 0, 0, date('m'), date('d')+1, date('Y'));
+        $明天23点=mktime(23, 59, 59, date('m'), date('d')+1, date('Y'));
+        // dump(date('Y-m-d H:i:s',$明天0点));
+        // dump(date('Y-m-d H:i:s',$明天23点));
+        
+        
         $where=[];
+        // 限制时间范围
+        $where['start_time']=[];
+        $where['start_time']=[['EGT',$今天0点],['ELT',$今天23点]];
         $where['goods_id'] = $goods_id;
-        
         $time=$TimeGoods->where($where)->find();
-        
         if(!$time){
-            return $goods;
+            // 不在今天
+            
+            // 那就查查昨天的
+            
+            $where=[];
+            // 限制时间范围
+            $where['start_time']=[];
+            $where['start_time']=[['EGT',$昨天0点],['ELT',$昨天23点]];
+            $where['goods_id'] = $goods_id;
+            $time=$TimeGoods->where($where)->find();
+            
+            if(!$time){
+                // 昨天不存在
+                // 那就查查明天的
+                
+                $where=[];
+                // 限制时间范围
+                $where['start_time']=[];
+                $where['start_time']=[['EGT',$明天0点],['ELT',$明天23点]];
+                $where['goods_id'] = $goods_id;
+                $time=$TimeGoods->where($where)->find();
+                
+                if(!$time){
+                    // 商品不在明天的时间轴上
+                    // 商品不在三天时间轴上
+                    $goods['is_time']=false;
+                    return $goods;
+                    
+                }else{
+                    // 商品在明天的时间抽上
+                    $goods['is_time']=true;
+                    $goods['test']='明天';
+                }
+                
+            }else{
+                // 商品在昨天的时间抽上
+                $goods['is_time']=true;
+                $goods['test']='昨天';
+            }
+            
+        }else{
+            // 在 今天
+            $goods['is_time']=true;
+            $goods['test']='今天';
+            
         }
         
-        // $toTime=time();
         
-        // $start_time=$time['start_time'];
-        // $end_time=$time['end_time'];
+        $toTime=time();
+        $start_time=$time['start_time'];
+        $end_time=$time['end_time'];
+        
+        if( $goods['is_time']){
+            foreach ($goods['sku'] as $k => $v) {
+                
+                $v['original_price']=$v['price'];
+                $v['price'] =   $v['activity_price'];
+                $v['earn_price'] =   $v['activity_earn_price'];
+                $goods['sku'][$k]=$v;
+                
+            }
+        }
         
         // if($toTime>$start_time && $toTime < $end_time){
-        // 限时购商品，正在进行时
-        
-        foreach ($goods['sku'] as $k => $v) {
-            
-            $v['original_price']=$v['price'];
-            $v['price'] =   $v['activity_price'];
-            $v['earn_price'] =   $v['activity_earn_price'];
-            
-            $goods['sku'][$k]=$v;
-            
-        }
-        
+        //     // 范围内
         // }
         
         
+        // 检测是否还未到时间
+        if($toTime<$start_time){
+            // 时间还未到
+            $goods['not_time']=true;
+            
+        }else{
+            // 已经开始,或者结束，此参数不可以判断活动是否结束。
+            $goods['not_time']=false;
+        }
+        $goods['activity_time']=$time['start_time'];
+        
+        // dump(date('Y-m-d h:i:s',$start_time));
+        // dump(date('Y-m-d h:i:s',$end_time));
+        // dump($goods);
+        // die;
         return $goods;
     }
-    
     
     public function search(){
         $keys=I('key');
@@ -263,7 +350,7 @@ class GoodsModel extends Model {
         if(in_array('sku',$map)){
             $Sku=D('sku');
             $skus= $Sku
-            ->limit($limit['img_list'])
+            ->limit($limit['sku'])
             ->where($where)
             ->order('price asc,stock_num desc')
             ->select();
@@ -275,7 +362,7 @@ class GoodsModel extends Model {
         if(in_array('tree',$map)){
             
             $tree= $this->SkuTree
-            ->limit($limit['img_list'])
+            ->limit($limit['tree'])
             ->where($where)
             ->order('k_s asc')
             ->select();

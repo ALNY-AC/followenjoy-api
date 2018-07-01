@@ -78,6 +78,7 @@ class OrderModel extends Model {
         $data['orderData']=null;
         $data['logisticsData']=null;
         
+        
         // ===================================================================================
         // 基本数据
         $snapshot_id=$snapshot['snapshot_id'];//快照id
@@ -169,29 +170,29 @@ class OrderModel extends Model {
         $orderData=[];//订单数据
         
         // ===================================================================================
-        // 取得shop_id snapshot
-        $UserSuper=D('UserSuper');
+        // 取出此人的上级店铺号
+        
+        $UserSuper=D('UserSuper');//限时购商品
+        $User=D('User');//限时购商品
+        
         $where=[];
         $where['user_id']=$user_id;
-        $super=$UserSuper->where($where)->find();
-        
-        if($super){
-            // 存在上级
-            // 取出shopid
+        $user_super=$UserSuper->where($where)->getField('super_id');
+        if($user_super){
             $where=[];
-            $where['user_id']=$super['super_id'];
-            $User=D('User');
-            $super=$User->where($where)->find();
-            $orderData['shop_id']=$super['shop_id'];//店铺id
-            
+            $where['user_super']=$user_super;
+            $shop_id=$User->where($where)->getField('shop_id');
         }else{
-            $orderData['shop_id']='';
+            $shop_id='';
         }
+        
+        // ===================================================================================
         
         $orderData['order_id']=$order_id;//订单号
         $orderData['snapshot_id']=$snapshot_id;//快照id
-        $orderData['user_id']=$user_id;//买家id
         $orderData['share_id']=$snapshot['share_id'];//分享人id
+        $orderData['shop_id']=$shop_id;//店铺id
+        $orderData['user_id']=$user_id;//买家id
         $orderData['address_id']=$address['address_id'];//地址库id
         $orderData['price']=$price;//应付金额（计算商品总价且优惠后的价格）
         $orderData['state']=1;//状态，默认是1

@@ -1,0 +1,34 @@
+body {
+    background-color: #f6f6f6;
+}
+
+.weixin-info {
+    text-align: center;
+    opacity: 0;
+    .weixin-head {
+        border-radius: 100%;
+        display: inline-block;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        margin-top: 20%;
+        img {
+            max-width: 100%;
+        }
+    }
+    .weixin-name {
+        font-size: 18px;
+        padding: 10px 0;
+    }
+    .weixin-btn {
+        margin-top: 20%;
+        padding: 0 80px;
+    }
+    .weixin-login {
+        padding: 0 80px;
+        .weixin-login-title {
+            padding: 20px 0;
+        }
+        .weixin-login-body {}
+    }
+}

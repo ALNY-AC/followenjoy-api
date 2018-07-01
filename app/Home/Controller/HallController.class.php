@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class HallController extends CommonController{
+class HallController extends Controller{
     
     public function get(){
         

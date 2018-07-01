@@ -21,6 +21,7 @@ function toTime($arr,$code='Y-m-d H:i:s',$field=[]){
     return $arr;
     
 }
+
 function toTime2($arr,$code='Y-m-d H:i:s',$field=[]){
     
     foreach ($arr as $key => $value) {
@@ -32,7 +33,6 @@ function toTime2($arr,$code='Y-m-d H:i:s',$field=[]){
     return $arr;
     
 }
-
 
 function to_format_date($arr,$field){
     foreach ($arr as $key => $value) {
@@ -807,9 +807,9 @@ function send_sms($phone,$code){
         return -2;
     }
     if($result->statusCode!=0) {
-        echo "模板短信发送失败!";
-        echo "error code :" . $result->statusCode . "";
-        echo "error msg :" . $result->statusMsg . "";
+        // echo "模板短信发送失败!";
+        // echo "error code :" . $result->statusCode . "";
+        // echo "error msg :" . $result->statusMsg . "";
         return -2;
     }else{
         // 获取返回信息
@@ -852,6 +852,7 @@ function alipay($pay_id,$data,$conf,$test=false){
     $aop = new AopClient ();
     
     if($test){
+        
         $aop->gatewayUrl = 'https://openapi.alipaydev.com/gateway.do';
         $aop->appId = '2016091500514389';
         $aop->rsaPrivateKey = 'MIIEpQIBAAKCAQEAxVgPE/N1jVkoS8EnEadKlxbzhraZViqtGmi0OssNwGuXrHPeUoY7G8ZplQk9Q3nv9/fkqBSHcNQdqGLVAXVRPL/fKGEksylmfe+51QkiZgt07Pmbp8/cfQRypHQwJAg5HONMDLClF4DXW+fv2avgZfg9aummKY4kq2taAFvIAsBS/CKLvTfPqJOP4JtfOZ9hxR68+qhH2R0tgbhsXM3ySUj39wKV0JMLQlxnn404LGgLcLgzQ4oFX4tzZmCxzQY1U60WU3G+3T7/Vy+UBBIk8JbMgmHnXFQ5hz/AYK4y2OXihpWiEDOYsGj3LnXbgMGhR5keTZGFHas8Vl/DDWrnawIDAQABAoIBAQCPeIvNt2w5DR6spIpg3TzvR3JY+BvWd0RONN0C+WjQAejNKZfya0BB2ygbgBIYImiB4KlOQU6OisfdCa1OWBptjhkRZD6oOmsXF9gEt5VYlu+08Wtmv0nPYhJu2UG+kHPlOqKpfysnQTZQzPilSb3kpGsSdTemcn7aWTufkxqAVEeo/FNIDSrIjFTybEUDxwoPCtsh1rQ+Ok+xhZMH4pNeQyVs6l2/tCTzcRXpZQ0Phn7zmHd6ZiB7xOivgSxu4spg1ovVOl/748cgiMi1t7gNrefNI+dVbGbf2wp2W+kk1WA7QrOsBddWqJuhJTw/+LV0HTmJ28Zq3q240r14sCPRAoGBAONr4dji8zILaJk3p1O2Y/cyRQnVOJQIyKHIOV1leztQ4tBVV2fGIxoRiN3kwye2jqBh6it/ZnmfC9wE3jjZLVFk8edqecQtDEz16xaDaKtmHkYE1hskZ0oGGqKq4O1nmsjUhs3o3oZUAyecwgYuuTw6VAnU6YMXp5FoEFuYEaL1AoGBAN4klualWkvkjAX6xuTF+YXxa5ifH73YcMEW998xUijyoC83wg3o/F3FC2jVdJw9eoS39ZzOsYbn9e8FusKKThQbxeow7BZ3DXIr4d5HEoRwxEwwLVPr6Qs/wavvhCMgeHQC9XwegzUWy/L/8LDPYPc2oJKUX6o3EwU7RRujZaTfAoGACh9SJRos4uxZEoDEpNg4aNdG9WIVK5mcfH7x9rM+oew+vDEgO9E43L8tDVtSSGE6xe61wovgHseyem+JCJS6DKZmkftOQioTIxXLCex9ayuXa1xpvzmGk2fkJZtfeZGj9Q5olZ+oz+fLYCb9B9NqkUCzXuCoKBqUbcdo+vqwxkUCgYEAs3DlAFzzarisLyxau3P8UqkoW/m1vzn2ItN12LHTh0YuBNZKh8f7C5fe1okOkCLNNCYRXeBM4QfAzppXOUxVM8MXhUyNeLwkfWRbKJ1KpPceadjE1LSM5ExVGpj4qRNSmYvGVsOjAyBuENWTzI9H6YoT/TOjbzDbyW8OLPw5YAsCgYEAlHjutxv+tT4RJF+BWSsOKdbX+rdZhINleQ9Lr5NzmPLcRMncfvpS7kMNN/ZJrR1vjPUuYcMtwU6Qk743sB8SpPjKYVa2Sp2/dlirrnhk3fHytkDR3FE/+2oNTI9NekRHst4QaAIF8cJas2yNTlm5iaYTOtsSJhnWcX6OTqtVA0A=';
@@ -862,7 +863,6 @@ function alipay($pay_id,$data,$conf,$test=false){
         $aop->rsaPrivateKey = 'MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDhCPJk3Xa+YGj58ASlbMX0PqqN6zSiidpvw2uKrSLBerfScalHlZlUQPjP8mhdZwvPtfLQ+jdp4OWjXQHyZoihMFk0v7r/a/qqnXpbm8BqV+rZ6gQZ5u4Jl34P7rQfJVhlEMj46/tu3jBia+LunK03As9iecjPL0W/fr1XLP7sybN3xcBqKVEiV+ey3RxBUamcfTB0Tsbb4zYMDhu+Un+i4loLiVSsDXC65wEMTgmaZXIzNSE602pzq7mmS0+eQ8Yz3WJVI9YEP8aLpzqQfp1R4Rj0i1+hZAGol3hTGZ+9pPiX7dNfvJE/xuOaBHJKAOYmfFyJhJH9kmT9H9ZyNFTNAgMBAAECggEACzDBtQhaTk9HCR7JbFyDX4j6PEJ1BJwsU6B5KZVAhDSRDZL/YwLqdAkjFlwsmnB0YujeYUwAE3DOmpgWb7JvmuxnkzrxlqANAA0Ct6mAIQmsMRf1CkC0l5+D8lDhficCRUxXYiGCCFpeN5a72zfJWVH3dCMwPDVSl5o62invp2CseZ74SrH1fCubV2QVyTCY2Taq72/WXrxpFpMbfiSLZTcgfuLqFc1jtI3FDpfOHpoInRj/lweDdw8TBO2bd3tY9oRVbJ6Ebm3i9dXLEvRub+N0GWFMS+w45PAnCcH6AgJXN2vm1Z8TVKUtuceS1VzXt1IwP8YDKDGVVkHk3oHj1QKBgQD7LoS+SQbAAQ9if09yj+eHGyeQP5kRgbh7agNlZiNZr19cKZ8KZKyksFOOTpIH5ybBBvSJKGg6077e/flHkuFsUeDwbeVreAyJR3DVUkvnxLuh74DRLGRIS41UKy82HQhswdz2y+7J91ydsB5uU0sNdVgDd2EqdkxF+lGRFOX9SwKBgQDlWgdv0F07GxILNfR5IGDIvElIEAtEMVZWy4B0u/Eg8VmKBIY3ry+pj8Mo38IT5Gf+TOG6ZZjJJfh5QNGRgMFJATn0nfWsYNCMO5dV3dqfN7DRDZJ58Ax2vS7nwbgANk29vDaL3RmBjQeBJRpcfxn+YkiYEoKxbewPJ/FLid0fRwKBgGXXeqLcYQxAYciB7eh5SFqTO/tUje93NSF03mOigfq/DF8F0SIZp5Yul/I/ER57Lk9dTpC9/WS8rcskFopal2Of3yAcrsRgLFUMzkbv0y7pqVoDDavB3/cgCvFxgPbj1qKiB8FY9jyVOswEuJHq26ddSI4/PPpGdK56y8+TNZz5AoGBAJnwd5VhMXJ+lPnZWSIDzXJujnFD84vt4ZmYNbwkeZA27nZo2v19JGyXBdLlfQqFABf72naVwpsgVUptazxSQ2mQ3SmG7GKrCM9XIBiONDMx2gg3J92YdYUtLdJ4f9wEluGG9sWhvYDq++J+2NbEqNnJdhg8NGSK9yqlEJw3CKf5AoGBALteW/+EfQxWqEn5yBjje+viEnmMOL8UahopDf0+Aphm35IOFTUJMoROylki9NM7I4wyu0IrlHCXNxt9xt3xfJrEEfKnfVOh5lTD7FDEQlHpL9d4funU45WiluBhBXI1ALbEHcurLKz8rBShgmw9fAyHFcIbR/DiyWivAtJi4rCY';
         $aop->alipayrsaPublicKey='MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApHXKTQ8bgJTImUwZ/2aDcOG0AaNZjPFUVsZq/mqsDqrCpEOuepEsWE0eTd/TXP8vXpnnQzl2LPW6XHme7+e9LrkSUJH+8SHRBteaWUwCj8WOkfBiTvnSKTFw4RNhujZWH44dxZ5MNiXydOT7inHkZkKz0+Jhzkgz0yXx7wE4PYV0er6bJBOvnaOyQ3o5nECyBWdOQFIO9RFA1LQZ+nJrIZCfSTpHj7PQcA3zvLcaUZVjgcErJpqEKOteSC77ksWaSH3RDVsC2mEhDODZinch654ltwS8PNBBi1uXFL9+3Rx33gmq7igigvRRheZqZKn0OjbmZc2kqeAmg9Zx/gBDWQIDAQAB';
     }
-    
     
     
     $aop->apiVersion = '1.0';
@@ -904,8 +904,8 @@ function weixin($data){
     //①、获取用户openid
     ini_set('date.timezone','Asia/Shanghai');
     
-    Vendor('Weixin.WxPayJsApiPay');
-    Vendor('Weixin.WxPayApi');
+    Vendor('Weixin.pay1.WxPayJsApiPay');
+    Vendor('Weixin.pay1.WxPayApi');
     
     $tools = new JsApiPay();
     $openId = $tools->GetOpenid();
@@ -918,9 +918,13 @@ function weixin($data){
     $input->SetTime_start(date("YmdHis"));
     $input->SetTime_expire(date("YmdHis", time() + 600));
     $input->SetGoods_tag("test");
-    $input->SetNotify_url( U('Home/WeiXin/notify',null,null,true));
+    $input->SetNotify_url( U('Home/WeiXinPay/notify',null,null,true));
     $input->SetTrade_type("JSAPI");
     $input->SetOpenid($openId);
+    
+    // $input->SetAppid('wx56a5a0b6368f00a7');//公众账号ID
+    // $input->SetMch_id('1501688321');//商户号
+    
     $order = WxPayApi::unifiedOrder($input);
     // echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
     // printf_info($order);
@@ -933,7 +937,6 @@ function weixin($data){
     // https://api.mch.weixin.qq.com/pay/unifiedorder
     
     
-    
     //③、在支持成功回调通知中处理成功之后的事宜，见 notify.php
     /**
     * 注意：
@@ -942,6 +945,106 @@ function weixin($data){
     * 参考http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html）
     */
 }
+
+function weixinApp($data){
+    
+    // unifiedOrder
+    //①、获取用户openid
+    ini_set('date.timezone','Asia/Shanghai');
+    
+    Vendor('Weixin.pay2.WxPayApi');
+    
+    //②、统一下单
+    $input = new WxPayUnifiedOrder();
+    $input->SetBody($data['body']);
+    // $input->SetAttach("test");
+    $input->SetOut_trade_no($data['out_trade_no']);
+    $input->SetTotal_fee($data['total_fee']*100);
+    $input->SetTime_start(date("YmdHis"));
+    $input->SetTime_expire(date("YmdHis", time() + 600));
+    $input->SetGoods_tag("test");
+    $input->SetNotify_url(U('Home/WeiXin/WeiXinPay',null,null,true));
+    $input->SetTrade_type("APP");
+    
+    // $input->SetAppid('wx8c3b0269e9e2c724');//公众账号ID
+    // $input->SetMch_id('1504196381');//商户号
+    // $input->SetKey('8312162ee470f489870f1fd35288a946');//key
+    
+    $order = WxPayApi::unifiedOrder($input);
+    
+    // ===================================================================================
+    // 处理预订单
+    // getNonceStr
+    $prepay_id=$order['prepay_id'];
+    $prepayData=[];
+    $noncestr=getNonceStr();
+    $timestamp=''.time().'';
+    
+    $prepayData['appid']='wx8c3b0269e9e2c724';
+    $prepayData['partnerid']='1504196381';
+    $prepayData['prepayid']=$prepay_id;
+    $prepayData['package']='Sign=WXPay';
+    $prepayData['noncestr']=$noncestr;
+    $prepayData['timestamp']=$timestamp;
+    $key='20ac48b09fa2246441b3e784182e80ca';
+    $sign=makeSign($prepayData,$key);
+    
+    $prepayData['sign']=$sign;
+    
+    // dump($prepayData);
+    // printf_info($prepayData);
+    
+    // echo json_encode($prepayData);
+    
+    // echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
+    // printf_info($order);
+    // sandboxnew
+    // $jsApiParameters = $tools->GetJsApiParameters($order);
+    
+    // ===================================================================================
+    
+    return $prepayData;
+    
+}
+
+function makeSign($values,$key){
+    //签名步骤一：按字典序排序参数
+    ksort($values);
+    $string = toUrlParams($values);
+    //签名步骤二：在string后加入KEY
+    $string = $string . "&key=".$key;
+    //签名步骤三：MD5加密
+    $string = md5($string);
+    //签名步骤四：所有字符转为大写
+    $result = strtoupper($string);
+    return $result;
+}
+
+function toUrlParams($values)
+{
+    $buff = "";
+    foreach ($values as $k => $v)
+    {
+        if($k != "sign" && $v != "" && !is_array($v)){
+            $buff .= $k . "=" . $v . "&";
+        }
+    }
+    
+    $buff = trim($buff, "&");
+    return $buff;
+}
+
+function getNonceStr($length = 32)
+{
+    $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    $str ="";
+    for ( $i = 0; $i < $length; $i++ )  {
+        $str .= substr($chars, mt_rand(0, strlen($chars)-1), 1);
+    }
+    return $str;
+}
+
+
 function ToXml($data)
 {
     
@@ -1032,3 +1135,450 @@ function baseAuth($redirect_url){
     
     return $result;
 }
+
+function randomFloat($min = 0, $max = 1) {
+    return $min + mt_rand() / mt_getrandmax() * ($max - $min);
+}
+
+
+
+
+
+
+
+
+/**
+* 分享图片生成
+* @param $gData  商品数据，array
+* @param $codeName 二维码图片
+* @param $fileName string 保存文件名,默认空则直接输入图片
+*/
+function createSharePng($gData,$codeName,$fileName = ''){
+    
+    
+    $width=1080;
+    $height=1900;
+    $left=50;
+    
+    //创建画布
+    $im = imagecreatetruecolor($width, $height);
+    
+    //填充画布背景色
+    $color = imagecolorallocate($im, 35, 35, 35);
+    imagefill($im, 0, 0, $color);
+    
+    // 字体文件
+    $font_file = "./Public/ttf/PingFang Regular.ttf";
+    $font_file2 = "./Public/ttf/PingFang Medium.ttf";
+    $font_file_bold = "./Public/ttf/PingFang Heavy.ttf";
+    
+    //设定字体的颜色
+    $font_color_1 = ImageColorAllocate ($im, 38, 38, 38);
+    $font_color_2 = ImageColorAllocate ($im, 250, 250, 250);
+    
+    $font_color_red = ImageColorAllocate ($im, 217, 45, 32);
+    
+    $font_color_3 = ImageColorAllocate ($im, 186, 163, 113);
+    
+    
+    $fang_bg_color = ImageColorAllocate ($im, 250, 250, 250);
+    $fang_bg_color2 = ImageColorAllocate ($im, 254, 216, 217);
+    
+    $fontSize=30;
+    
+    
+    $userImgTop=100;
+    // ===================================================================================
+    // 分享人的头像
+    list($g_w,$g_h) = getimagesize($gData['user_head']);
+    $userImg = createImageFromFile($gData['user_head']);
+    $userImgSize=80;
+    imagecopyresized($im, $userImg, $left, $userImgTop, 0, 0,  $userImgSize,  $userImgSize, $g_w, $g_h);
+    
+    
+    // ===================================================================================
+    // 名字的背景
+    $strWidth=imagettfbbox($fontSize-8,0,$font_file,$gData['user_name'])[2];
+    $labelWidth=$strWidth +40;
+    
+    imagefilledrectangle ($im, $left + $userImgSize+1 , $userImgTop+ $userImgSize -1 , $left + $userImgSize+1+$labelWidth, $userImgTop+30 , $fang_bg_color);
+    
+    // ===================================================================================
+    // 分享人名称
+    imagettftext($im,  $fontSize-8,0,($left+$userImgSize) + $labelWidth/2 - $strWidth/2, $userImgTop+$userImgSize-14 , $font_color_1,$font_file, $gData['user_name']);
+    
+    
+    
+    // imagecopyresized($im, $codeImg, $codeX, $codeY, 0, 0, $codeWidth, $codeWidth, $code_w, $code_h);
+    
+    // 一级标题
+    $titleYTop=250;
+    $titleDev=$fontSize+10;
+    $theTitle = cn_row_substr($gData['title'],2,19);
+    $count=0;
+    foreach ($theTitle as $k => $v) {
+        if($v){
+            imagettftext($im,  $fontSize-5,0, $left, $titleYTop+($count)*$titleDev, $font_color_2 ,$font_file2, $theTitle[$count+1]);
+            $count++;
+        }
+    }
+    
+    // 二级标题
+    $subTop=$titleYTop+$titleDev*$count+10;
+    $sub_title = cn_row_substr($gData['sub_title'],2,19);
+    $font_color_2 = ImageColorAllocate($im, 190, 190, 190);
+    $count=0;
+    $imgTop=0;
+    foreach ($sub_title as $k => $v) {
+        if($v){
+            imagettftext($im,  $fontSize-7,0, $left, $subTop+($count)*$titleDev, $font_color_2 ,$font_file, $sub_title[$count+1]);
+            $count++;
+        }
+    }
+    
+    $imgTop=$subTop+($count)*$titleDev+30;
+    
+    
+    
+    // ===================================================================================
+    // 商品图片上的装饰
+    imagefilledrectangle ($im, $width/1.7 , $imgTop-3, $width, $imgTop-10 , $fang_bg_color);
+    
+    // ===================================================================================
+    // 商品图片下的装饰
+    imagefilledrectangle ($im, 0, $imgTop+$width+13, $width/2.3, $imgTop+$width+3 , $fang_bg_color);
+    
+    // ===================================================================================
+    // 商品图片
+    list($g_w,$g_h) = getimagesize($gData['pic']);
+    $goodImg = createImageFromFile($gData['pic']);
+    imagecopyresized($im, $goodImg, 0, $imgTop, 0, 0, $width, $width, $g_w, $g_h);
+    
+    
+    
+    // ===================================================================================
+    // 如果有活动
+    if($gData['is_time']){
+        
+        // $top=$priceTop + $fontSize+10;
+        
+        // 238, 37, 50
+        // $fang_bg_color = ImageColorAllocate ($im, 238, 37, 50);
+        
+        // imagerectangle ($im, 125 , 950 , 220 , 975 , $fang_bg_color);
+        // imagefilledrectangle ($im, $left , $top , $left+170 , $top+50 , $fang_bg_color);
+        
+        // imagettftext($im, $fontSize,0, $left+5,$top+$fontSize+10, $font_color_3 ,$font_file, "限时特卖");
+        
+        // imagerectangle ($im,  $left+170 , $top , $left+170+400 , $top+50 , $fang_bg_color);//开抢的框框
+        
+        // imagettftext($im, $fontSize,0, $left+170+10,$top+40, $fang_bg_color ,$font_file, '06月30日 11:00开抢');
+        
+    }
+    
+    
+    
+    // ===================================================================================
+    // 二维码
+    list($code_w,$code_h) = getimagesize($codeName);
+    $codeImg = createImageFromFile($codeName);
+    $codeWidth=$width/5;
+    $codeHeight=$codeWidth;
+    $codeY=$imgTop+$width+100;
+    $codeX=$width-$codeWidth-$left;
+    imagecopyresized($im, $codeImg, $codeX, $codeY, 0, 0, $codeWidth, $codeHeight, $code_w, $code_h);
+    
+    
+    
+    // ===================================================================================
+    // 二维码提示符
+    
+    imagettftext($im, $fontSize-5,0, $codeX-1, $codeY-17, $font_color_2 ,$font_file, '[长按立即购买]');
+    
+    
+    
+    // ===================================================================================
+    // 价格的left
+    $priceTop=$imgTop+$width+180;
+    
+    if($gData['origin']){
+        
+        // 方块
+        
+        // ===================================================================================
+        // 限时特卖
+        $fang_bg_color = ImageColorAllocate ($im, 186, 163, 113);
+        $font_color_8 = ImageColorAllocate($im, 250, 250, 250);
+        
+        imagefilledrectangle ($im, 80 , $priceTop+5 , 80+150, $priceTop-50 , $fang_bg_color);
+        
+        imagettftext($im, $fontSize-9 ,0 , 100  , $priceTop -12, $font_color_8 ,$font_file, '限时特卖');
+        
+        $priceLeft=240;
+        imagettftext($im, $fontSize-3 ,0 , $priceLeft  , $priceTop , $font_color_3 ,$font_file_bold, '￥：');
+        imagettftext($im, $fontSize+15 , 0 , $priceLeft+50 , $priceTop , $font_color_3 ,$font_file_bold, $gData["price"]);
+        
+        
+    }else{
+        
+        $priceLeft=130;
+        $priceTop+=70;
+        imagettftext($im, $fontSize+10 ,0 , $priceLeft  , $priceTop , $font_color_3 ,$font_file_bold, 'RMB：');
+        imagettftext($im, $fontSize+30 , 0 , $priceLeft+150 , $priceTop , $font_color_3 ,$font_file_bold, $gData["price"]);
+        
+    }
+    
+    // ===================================================================================
+    // 价格的icon
+    
+    
+    // ===================================================================================
+    // 价格
+    
+    
+    
+    if($gData['origin']){
+        
+        
+        // ===================================================================================
+        // 原价
+        $str=$gData["origin"]['time'];
+        $font_color_2 = ImageColorAllocate($im, 250, 250, 250);
+        imagettftext($im, $fontSize-10 , 0 , 80, $priceTop+$fontSize+15 , $font_color_2 ,$font_file_bold, $str);
+        
+        
+    }
+    
+    /***
+    
+    http://cosmetics.cn/index.php/Home/Share/getGoodsImage?down=true&user_id=13914896237&goods_id=33&href=http%3A%2F%2Fq.followenjoy.cn%2F%23%2FgoodsInfo%3F%26goods_id%3D33%26share_id%3D13914896237%26shop_id%3D92868559
+    http://cosmetics.cn/index.php/Home/Share/getGoodsImage?down=true&user_id=13914896237&goods_id=33&href=http%3A%2F%2Fq.followenjoy.cn%2F%23%2FgoodsInfo%3F%26goods_id%3D33%26share_id%3D13914896237%26shop_id%3D92868559
+    
+    
+    http://cosmetics.cn/index.php/Home/Share/getGoodsImage?down=true&user_id=13914896237&goods_id=32&href=http%3A%2F%2Fq.followenjoy.cn%2F%23%2FgoodsInfo%3F%26goods_id%3D32%26share_id%3D13914896237%26shop_id%3D92868559
+    http://cosmetics.cn/index.php/Home/Share/getGoodsImage?down=true&user_id=13914896237&goods_id=32&href=http%3A%2F%2Fq.followenjoy.cn%2F%23%2FgoodsInfo%3F%26goods_id%3D32%26share_id%3D13914896237%26shop_id%3D92868559
+    
+    
+    
+    http://cosmetics.cn/index.php/Home/Share/getGoodsImage?down=true&user_id=13914896237&goods_id=33&href=http%3A%2F%2Fq.followenjoy.cn%2F%23%2FgoodsInfo%3F%26goods_id%3D33%26share_id%3D13914896237%26shop_id%3D92868559&rand=0.9334339965619542 at static/js/app.b6a045c40b8cdea23ce7.js:1
+    http://cosmetics.cn/index.php/Home/Share/getGoodsImage?down=true&user_id=13914896237&goods_id=33&href=http%3A%2F%2Fq.followenjoy.cn%2F%23%2FgoodsInfo%3F%26goods_id%3D33%26share_id%3D13914896237%26shop_id%3D92868559&rand=0.9334339965619542 at static/js/app.b6a045c40b8cdea23ce7.js:1
+    S
+    
+    *
+    *
+    *
+    */
+    // dump($fileName);
+    // die;
+    
+    //输出图片
+    if($fileName){
+        // ob_clean();
+        $fileName='Public/Assets/Goods/'.$fileName;
+        Header("Content-Type: image/png");
+        imagepng ($im,$fileName);
+        
+        // //告诉浏览器这是一个文件流格式的文件
+        // Header ( "Content-type: application/octet-stream" );
+        // //请求范围的度量单位
+        // Header ( "Accept-Ranges: bytes" );
+        // //用来告诉浏览器，文件是可以当做附件被下载，下载后的文件名称为$file_name该变量的值。
+        // Header ( "Content-Disposition: attachment; filename=" . $fileName );
+        // readfile($fileName);
+        
+        // //释放空间
+        // imagedestroy($im);
+        // imagedestroy($goodImg);
+        // imagedestroy($codeImg);
+        // exit;
+        download($fileName);
+    }else{
+        
+        Header("Content-Type: image/png");
+        imagepng ($im);
+        
+    }
+    
+    //释放空间
+    imagedestroy($im);
+    imagedestroy($goodImg);
+    imagedestroy($codeImg);
+}
+
+function download($file_url,$new_name=''){
+    if(!isset($file_url)||trim($file_url)==''){
+        echo '500';
+    }
+    if(!file_exists($file_url)){ //检查文件是否存在
+        echo '404';
+    }
+    $file_name=basename($file_url);
+    $file_type=explode('.',$file_url);
+    $file_type=$file_type[count($file_type)-1];
+    $file_name=trim($new_name=='')?$file_name:urlencode($new_name);
+    $file_type=fopen($file_url,'r'); //打开文件
+    //输入文件标签
+    header("Content-type: application/octet-stream");
+    header("Accept-Ranges: bytes");
+    header("Accept-Length: ".filesize($file_url));
+    header("Content-Disposition: attachment; filename=".$file_name);
+    //输出文件内容
+    echo fread($file_type,filesize($file_url));
+    fclose($file_type);
+}
+
+
+
+/**
+* 从图片文件创建Image资源
+* @param $file 图片文件，支持url
+* @return bool|resource    成功返回图片image资源，失败返回false
+*/
+function createImageFromFile($file){
+    
+    if(preg_match('/http(s)?:\/\//',$file)){
+    
+    // $fileSuffix = getNetworkImgType($file);
+    $fileSuffix= getimagesize($file)['mime'];
+    
+}else{
+    // $fileSuffix = pathinfo($file, PATHINFO_EXTENSION);
+    $fileSuffix= getimagesize($file)['mime'];
+}
+
+
+if(!$fileSuffix) return false;
+
+
+switch ($fileSuffix){
+    case 'jpeg' :
+        case 'image/jpeg' :
+            $theImage = @imagecreatefromjpeg($file);
+            break ;
+            case 'jpg' :
+                $theImage = @imagecreatefromjpeg($file);
+                break ;
+                case 'png' :
+                    
+                    $theImage = @imagecreatefrompng($file);
+                    
+                    break ;
+                    case 'gif' :
+                        $theImage = @imagecreatefromgif($file);
+                        break ;
+                        default :
+                            $theImage = @imagecreatefromstring(file_get_contents($file));
+                            break ;
+                    }
+                    
+                    
+                    return $theImage;
+                    
+                }
+                
+                /**
+                * 获取网络图片类型
+                * @param $url  网络图片url,支持不带后缀名url
+                * @return bool
+                */
+                function getNetworkImgType($url){
+                    $ch = curl_init(); //初始化curl
+                    curl_setopt($ch, CURLOPT_URL, $url); //设置需要获取的URL
+                    curl_setopt($ch, CURLOPT_NOBODY, 1);
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);//设置超时
+                    curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //支持https
+                    curl_exec($ch);//执行curl会话
+                    $http_code = curl_getinfo($ch);//获取curl连接资源句柄信息
+                    curl_close($ch);//关闭资源连接
+                    
+                    if ($http_code['http_code'] == 200) {
+                        $theImgType = explode('/',$http_code['content_type']);
+                        
+                        if($theImgType[0] == 'image'){
+                            return $theImgType[1];
+                        }else{
+                            return false;
+                        }
+                    }else{
+                        return false;
+                    }
+                }
+                
+                /**
+                * 分行连续截取字符串
+                * @param $str  需要截取的字符串,UTF-8
+                * @param int $row  截取的行数
+                * @param int $number   每行截取的字数，中文长度
+                * @param bool $suffix  最后行是否添加‘...’后缀
+                * @return array    返回数组共$row个元素，下标1到$row
+                */
+                function cn_row_substr($str,$row = 1,$number = 10,$suffix = true){
+                    $result = array();
+                    for ($r=1;$r<=$row;$r++){
+                        $result[$r] = '';
+                    }
+                    
+                    $str = trim($str);
+                    if(!$str) return $result;
+                    
+                    $theStrlen = strlen($str);
+                    
+                    //每行实际字节长度
+                    $oneRowNum = $number * 3;
+                    for($r=1;$r<=$row;$r++){
+                        if($r == $row and $theStrlen > $r * $oneRowNum and $suffix){
+                            $result[$r] = mg_cn_substr($str,$oneRowNum-6,($r-1)* $oneRowNum).'...';
+                        }else{
+                            $result[$r] = mg_cn_substr($str,$oneRowNum,($r-1)* $oneRowNum);
+                        }
+                        if($theStrlen < $r * $oneRowNum) break ;
+                    }
+                    
+                    return $result;
+                }
+                
+                /**
+                * 按字节截取utf-8字符串
+                * 识别汉字全角符号，全角中文3个字节，半角英文1个字节
+                * @param $str  需要切取的字符串
+                * @param $len  截取长度[字节]
+                * @param int $start    截取开始位置，默认0
+                * @return string
+                */
+                function mg_cn_substr($str,$len,$start = 0){
+                    $q_str = '';
+                    $q_strlen = ($start + $len)>strlen($str) ? strlen($str) : ($start + $len);
+                    
+                    //如果start不为起始位置，若起始位置为乱码就按照UTF-8编码获取新start
+                    if($start and json_encode(substr($str,$start,1)) === false){
+                        for($a=0;$a<3;$a++){
+                            $new_start = $start + $a;
+                            $m_str = substr($str,$new_start,3);
+                            if(json_encode($m_str) !== false) {
+                                $start = $new_start;
+                                break ;
+                            }
+                        }
+                    }
+                    
+                    //切取内容
+                    for($i=$start;$i<$q_strlen;$i++){
+                        //ord()函数取得substr()的第一个字符的ASCII码，如果大于0xa0的话则是中文字符
+                        if(ord(substr($str,$i,1))>0xa0){
+                            $q_str .= substr($str,$i,3);
+                            $i+=2;
+                        }else{
+                            $q_str .= substr($str,$i,1);
+                        }
+                    }
+                    return $q_str;
+                }
+                
+                
+                function rsa($data){
+                    return base64_encode($data);
+                }
+                function rsa2($data){
+                    return base64_decode($data);
+                }

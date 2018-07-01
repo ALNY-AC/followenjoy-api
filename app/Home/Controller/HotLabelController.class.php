@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class HotLabelController extends CommonController{
+class HotLabelController extends Controller{
     
     public function getList(){
         $HotLabel=D('HotLabel');

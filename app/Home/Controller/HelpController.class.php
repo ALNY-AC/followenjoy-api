@@ -16,23 +16,24 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class HelpController extends CommonController{
+class HelpController extends Controller{
     
     
     public function getList(){
         
         $page=I('page')?I('page'):1;
-        $limit=I('limit')?I('limit'):10;
+        $limit=I('limit')?I('limit'):5;
         
         $Help=D('Help');
-        $where=I('where');
+        $where=I('where')?I('where'):[];
+        $where['is_show']=1;
+        
         $result=$Help
         ->where($where)
         ->limit(($page-1)*$limit,$limit)
         ->select();
         $result=toTime($result);
-        
-        $res['count']=$Help->count()+0;
+        $res['count']=$Help->where($where)->count()+0;
         
         if($result){
             $res['res']=count($result);

@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class CarouselController extends CommonController{
+class CarouselController extends Controller{
     
     
     public function getList(){

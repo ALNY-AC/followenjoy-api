@@ -21,16 +21,11 @@ class VipModel extends Model {
         // 找快照数据
         if($snapshot_id){
             
-            
-            
             $where=[];
             $where['snapshot_id']=$snapshot_id;
             $snapshot = $Snapshot->where($where)->find();//取出快照数据
             
-            
-            
             $earn_price=$snapshot['earn_price'];//佣金
-            $share_id=$snapshot['share_id'];//分享人
             $user_id=$snapshot['user_id'];//买家id
             
             $super=$UserSuper->where(['user_id'=>$user_id])->find();//取出这个用户的上级
@@ -73,6 +68,8 @@ class VipModel extends Model {
             // ===================================================================================
             // 判断当前商品是否为499商品
             
+            $share_id=$order['share_id'];//分享人id
+            
             $where=[];
             $where['goods_id']=$snapshot['goods_id'];
             $goods=$Goods->where($where)->find();
@@ -83,7 +80,7 @@ class VipModel extends Model {
                 // ===================================================================================
                 // 还要判断，如果买家已经是会员，就不能获得发展会员奖
                 $where=[];
-                $where['user_id']= $user_id;
+                $where['user_id']=$user_id;
                 $user=$User->where($where)->find();
                 $userLevel=$user['user_vip_level']+0;
                 if($userLevel<=0){
@@ -130,5 +127,42 @@ class VipModel extends Model {
         $vip->获得邀人得钱奖($sub);
     }
     
+    
+    public function linkShop($user_id,$shop_id){
+        // ===================================================================================
+        // 检查绑定关系
+        // 如果已经绑定，就不绑定
+        // 如果没有绑定，就绑定
+        if($shop_id!='-1'){
+            // 只有shop_id不等于-1时才生效
+            $UserSuper=D('UserSuper');
+            $where=[];
+            $where['user_id']=$user_id;
+            $super=$UserSuper->where($where)->find();
+            
+            if($super){
+                // 已经绑定，不用绑定
+            }else{
+                // 未绑定，需要绑定
+                $User=D('User');
+                $where=[];
+                $where['shop_id']=$shop_id;
+                $shop_user=$User->where($where)->getField('user_id');
+                
+                // ===================================================================================
+                // 如果店铺号就是店主自己的，也不用绑定
+                if($shop_user!=$user_id){
+                    $add=[];
+                    $add['user_id']=$user_id;
+                    $add['super_id']=$shop_user;
+                    $add['add_time']=time();
+                    $add['edit_time']=time();
+                    $UserSuper->add($add);
+                }
+                
+            }
+        }
+        
+    }
     
 };

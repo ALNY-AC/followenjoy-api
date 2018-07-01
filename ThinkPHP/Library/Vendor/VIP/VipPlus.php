@@ -561,14 +561,13 @@ class VipPlus{
         $this->saveMoney();
         $this->createProfit($this->同级N层节点新增奖,'收入',"[直邀会员]:获得同级N层节点新增奖 [$this->同级N层节点新增奖] ￥");
         
-        
     }
     
     public function linkUser($sub){
         $UserSuper=D('UserSuper');
         $where=[];
         $where['user_id']=$sub->userId;
-        $where['super_id']=$this->userId;
+        // $where['super_id']=$this->userId;
         $is=$UserSuper->where($where)->find();
         if(!$is){
             // 不存在
@@ -583,7 +582,6 @@ class VipPlus{
             // 覆盖
             $data=[];
             $where['user_id']=$sub->userId;
-            
             $data['super_id']=$this->userId;
             $data['add_time']=time();
             $data['edit_time']=time();

@@ -20,35 +20,30 @@ class CommonController extends Controller {
     
     //ThinkPHP提供的构造方法
     public function _initialize() {
-        $isDebug=I('debug',false);
-        if($isDebug){
+        
+        
+        $token=I('token');
+        $user_id=I('user_id');
+        // ===================================================================================
+        // 验证用户token是否正确
+        $Token=D('Token');
+        $token=$Token->validate($token,$user_id);
+        
+        if($token){
+            // 可以登录
+            $User=D('User');
+            $where=[];
+            $where['user_id']=$user_id;
+            $user=$User->where($where)->field('user_id,shop_id')->find();
+            session('user_id',$user['user_id']);
+            session('shop_id',$user['shop_id']);
             return;
+        }else{
+            // 登录失效
+            $res['res']=-991;
+            echo json_encode($res);
+            exit;
         }
-        
-        $is=isUserLogin('user');
-        
-        
-        if($is>0 ){
-            //登录成功，继续操作
-            //保存session
-            session('user_id',$is['user_id']);
-            session('shop_id',$is['shop_id']);
-            return;
-        }
-        
-        $res['res']=$is;
-        if($is==-991){
-            //令牌过期了
-            $res['msg']='令牌过期了';
-        }
-        if($is==-992){
-            //未登录
-            $res['msg']='未登录';
-        }
-        echo json_encode($res);
-        exit;
-        
-        
     }
     
 }

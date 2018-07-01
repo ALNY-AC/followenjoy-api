@@ -19,30 +19,30 @@ use Think\Controller;
 class CodeController extends Controller{
     
     public function get(){
-        $user_id=I('user_id');
+        $phone=I('phone');
         $Code=D('Code');
-        $res=$Code->pushCode($user_id);
+        $res=$Code->pushCode($phone);
         echo json_encode($res);
     }
     
-    public function validate(){
+    public function authorize(){
         $Code=D('Code');
-        $user_id=I('user_id');
+        $phone=I('phone');
         $user_code=I('user_code');
-        $isSuccess= $Code->validate($user_id,$user_code)>0;
         
-    
-        // 创建票据 
+        $isSuccess= $Code->validate($phone,$user_code)>0;
+        
+        // 创建票据
         if($isSuccess){
-            $AppSecret=D('AppSecret');
-            $app_secret=$AppSecret->create($user_id);
-            $res['app_secret']=$app_secret;
+            $Secret=D('Secret');
+            $secret=$Secret->create($phone);
             $res['res']=1;
+            $res['secret']=$secret;
         }else{
             //验证码不正确
             $res['res']=-1;
+            $res['secret']='';
         }
-        
         
         echo json_encode($res);
     }

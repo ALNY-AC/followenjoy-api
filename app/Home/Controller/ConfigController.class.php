@@ -17,7 +17,7 @@
 
 namespace Home\Controller;
 use Think\Controller;
-class ConfigController extends CommonController{
+class ConfigController extends Controller{
     
     public function get(){
         

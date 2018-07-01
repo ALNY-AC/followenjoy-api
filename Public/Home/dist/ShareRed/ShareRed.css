@@ -1,0 +1,255 @@
+@charset "UTF-8";
+body {
+  background-color: #fec81e;
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
+.header {
+  position: relative;
+  width: 100%;
+  top: 0; }
+  .header .header-bg {
+    max-width: 100%;
+    display: block;
+    z-index: 1;
+    position: relative; }
+
+.img-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: block;
+  z-index: 2;
+  background-color: transparent; }
+
+.bg-color {
+  background-color: #fec81e; }
+
+#App {
+  position: relative;
+  z-index: 200; }
+  #App .app-body {
+    transition: all 0.3s;
+    opacity: 0; }
+
+.bcue {
+  height: 10rem; }
+
+/*优惠券面板*/
+.coupon-panel {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0 13px;
+  border-radius: 4px; }
+  .coupon-panel.coupon-header {
+    margin-top: -3.5rem; }
+  .coupon-panel .coupon-panel-body {
+    padding: 20px 13px; }
+
+/*优惠券*/
+.coupon-list .coupon-card {
+  height: 2.8rem;
+  position: relative;
+  background-size: 100% 100%;
+  background-position: 100%;
+  margin-bottom: 8px; }
+  .coupon-list .coupon-card .coupon-card-body {
+    white-space: nowrap;
+    font-size: 0;
+    height: 2.8rem; }
+    .coupon-list .coupon-card .coupon-card-body .coupon-price {
+      display: inline-block;
+      vertical-align: top;
+      color: #FF274A;
+      width: 2rem;
+      font-size: 14px;
+      line-height: 1;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center; }
+      .coupon-list .coupon-card .coupon-card-body .coupon-price .icon {
+        line-height: 1;
+        font-size: 0.5rem;
+        display: inline-block; }
+      .coupon-list .coupon-card .coupon-card-body .coupon-price .price {
+        line-height: 1;
+        font-weight: bold;
+        font-size: 1rem;
+        display: inline-block; }
+    .coupon-list .coupon-card .coupon-card-body .coupon-info {
+      display: inline-block;
+      vertical-align: top;
+      width: 4rem;
+      font-size: 14px;
+      height: 2.8rem;
+      text-align: center; }
+      .coupon-list .coupon-card .coupon-card-body .coupon-info .coupon-info-body {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        display: inline-block; }
+        .coupon-list .coupon-card .coupon-card-body .coupon-info .coupon-info-body .title {
+          color: #000;
+          font-size: 0.5rem;
+          line-height: 1;
+          margin-bottom: 15px;
+          text-align: left; }
+        .coupon-list .coupon-card .coupon-card-body .coupon-info .coupon-info-body .info-list {
+          color: #777;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          font-size: 0.3rem;
+          text-align: left; }
+          .coupon-list .coupon-card .coupon-card-body .coupon-info .coupon-info-body .info-list li {
+            line-height: 1;
+            margin-bottom: 5px; }
+    .coupon-list .coupon-card .coupon-card-body .coupon-btn-box {
+      display: inline-block;
+      font-size: 0.3rem;
+      width: 2rem;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: right;
+      margin-left: 0.2rem; }
+      .coupon-list .coupon-card .coupon-card-body .coupon-btn-box .coupon-btn {
+        border-radius: 25px;
+        background-color: #FF274A;
+        color: #fff;
+        text-align: center;
+        display: inline-block;
+        line-height: 1;
+        padding: 0.2rem; }
+
+/*带分割线的标题*/
+.high-title {
+  text-align: center;
+  padding: 10px 0;
+  font-family: "微软雅黑"; }
+  .high-title.fff {
+    color: #fff; }
+  .high-title.red {
+    color: #FF274A;
+    border-top: solid 1px #FF274A;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0; }
+    .high-title.red .title {
+      position: relative;
+      transform: translateY(-50%);
+      background-color: #fec81e;
+      display: inline-block;
+      padding: 0 10px; }
+
+.coupon-bottom-info-box {
+  color: #FF274A;
+  text-align: center;
+  margin-bottom: 100px; }
+  .coupon-bottom-info-box .coupon-bottom-info {
+    padding: 15px 0; }
+    .coupon-bottom-info-box .coupon-bottom-info .phone {
+      color: #3190E8; }
+  .coupon-bottom-info-box a {
+    color: #fff;
+    text-decoration: none; }
+  .coupon-bottom-info-box .big-btn {
+    color: #fff;
+    background-color: #FF274A;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+    line-height: 1;
+    padding: 10px 30px; }
+    .coupon-bottom-info-box .big-btn .icon {
+      width: 20px;
+      height: 20px; }
+
+/*用户卡片*/
+.user-list {
+  width: 80%;
+  margin: 0 auto; }
+  .user-list .user-list-footer {
+    text-align: center;
+    color: #FF274A; }
+
+.user-card {
+  white-space: nowrap;
+  font-size: 0;
+  margin-bottom: 10px; }
+  .user-card .user-header {
+    font-size: 14px;
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    vertical-align: top; }
+    .user-card .user-header img {
+      width: 45px;
+      height: 45px;
+      background-color: #FF274A;
+      border-radius: 4px;
+      display: inline-block;
+      vertical-align: top;
+      border: none; }
+  .user-card .user-info-box {
+    font-size: 14px;
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    position: relative; }
+    .user-card .user-info-box .user-info-row {
+      white-space: nowrap;
+      line-height: 1;
+      margin-bottom: 8px;
+      padding: 3px 0; }
+      .user-card .user-info-box .user-info-row .user-name {
+        color: #FF274A;
+        display: inline-block;
+        line-height: 1; }
+      .user-card .user-info-box .user-info-row .user-time {
+        display: inline-block;
+        line-height: 1; }
+  .user-card .user-price-box {
+    font-size: 14px;
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    text-align: right; }
+    .user-card .user-price-box .user-price {
+      color: #FF274A; }
+
+.input-panel {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0 13px;
+  border-radius: 4px;
+  margin-top: -3.5rem;
+  padding: 10px;
+  font-size: .52rem; }
+  .input-panel .input {
+    padding: 3px;
+    height: 1.3rem;
+    width: 100%;
+    border: none;
+    font-size: .52rem;
+    text-align: left;
+    padding-left: 10px;
+    border-radius: 4px;
+    outline: none; }
+  .input-panel .login-btn {
+    display: block;
+    background-color: #FF274A;
+    color: #fff;
+    font-size: .6rem;
+    height: 1.3rem;
+    line-height: 1.3rem;
+    width: 100%;
+    margin: .5rem auto 0;
+    border-radius: 4px;
+    text-align: center; }
+
+/*# sourceMappingURL=ShareRed.css.map */

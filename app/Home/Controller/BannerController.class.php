@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class BannerController extends CommonController{
+class BannerController extends Controller{
     
     
     public function get(){

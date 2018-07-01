@@ -1,0 +1,27 @@
+body {
+  background-color: #f6f6f6; }
+
+.weixin-info {
+  text-align: center;
+  opacity: 0; }
+  .weixin-info .weixin-head {
+    border-radius: 100%;
+    display: inline-block;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin-top: 20%; }
+    .weixin-info .weixin-head img {
+      max-width: 100%; }
+  .weixin-info .weixin-name {
+    font-size: 18px;
+    padding: 10px 0; }
+  .weixin-info .weixin-btn {
+    margin-top: 20%;
+    padding: 0 80px; }
+  .weixin-info .weixin-login {
+    padding: 0 80px; }
+    .weixin-info .weixin-login .weixin-login-title {
+      padding: 20px 0; }
+
+/*# sourceMappingURL=loginPage.css.map */

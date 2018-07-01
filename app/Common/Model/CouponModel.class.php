@@ -418,6 +418,7 @@ class CouponModel extends Model {
         ->order('add_time desc')
         ->where($where)
         ->select();
+        
         foreach ($list as $k => $v) {
             
             $v['end_at']=  $v['end_at']+0;
@@ -443,7 +444,6 @@ class CouponModel extends Model {
             
             $list[$k]=$v;
         }
-        
         
         if($data['time']){
             // $couponList=toTime($couponList);

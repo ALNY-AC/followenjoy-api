@@ -18,25 +18,8 @@ namespace Home\Controller;
 use Think\Controller;
 class TokenController extends Controller{
     
-    public function get(){
-        
-        $data=[];
-        $data['user_id']=I('user_id');
-        $data['app_secret']=I('app_secret');
-        
-        $Token=D('Token');
-        $token=$Token->create($data);
-        
-        if($token){
-            $res['res']=1;
-            $res['token']=$token;
-        }else{
-            $res['res']=-1;
-            $res['msg']=0;
-        }
-        echo json_encode($res);
-        
-    }
+
+    
     
     
 }

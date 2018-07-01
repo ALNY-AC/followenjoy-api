@@ -117,12 +117,11 @@ class TimeGoodsModel extends Model {
         // 取正在进行时的数据
         $toTime=time();//当前时间
         // 大于开始时间，且小于结束时间
-        
         $where=[];
         $where['goods_id'] = $goods_id;
         
         $start_time=mktime(0,0,0,date('m'),date('d'),date('Y'));
-        $end_time=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+        $end_time=mktime(23,59,59,date('m'),date('d')+1,date('Y'));
         
         $where['start_time'] = [['EGT',$start_time],['ELT',$end_time]];
         
@@ -264,8 +263,6 @@ class TimeGoodsModel extends Model {
         }
         return $list;
     }
-    
-    
     // 取整点
     private function getWholeTime($time){
         
@@ -273,8 +270,6 @@ class TimeGoodsModel extends Model {
         return    $time;
         
     }
-    
-    
     private function getTesterdayTime(){
         // ===================================================================================
         // 取昨天晚上23点
@@ -284,7 +279,5 @@ class TimeGoodsModel extends Model {
         $end_time = mktime(23, 0, 0, date("n", $yesterday), date("j", $yesterday), date("Y", $yesterday));
         return    $end_time;
     }
-    
-    
     
 }

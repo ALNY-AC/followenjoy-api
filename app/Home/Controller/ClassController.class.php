@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class ClassController extends CommonController{
+class ClassController extends Controller{
     
     
     //获得列表

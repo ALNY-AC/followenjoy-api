@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class TimeGoodsController extends CommonController{
+class TimeGoodsController extends Controller{
     
     public function create(){
         $TimeGoods=D('TimeGoods');
