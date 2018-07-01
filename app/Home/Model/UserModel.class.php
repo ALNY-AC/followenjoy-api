@@ -38,7 +38,7 @@ class userModel extends Model {
         $data['user_info']='';
         $data['user_vip_level']=0;
         $data['user_money']=0;
-        $data['course_hours']='';
+        $data['course_hours']=0;
         $data['invite_code']='';
         $data['is_up']=0;
         $data['login_count']=0;
