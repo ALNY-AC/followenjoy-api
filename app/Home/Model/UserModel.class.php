@@ -31,7 +31,7 @@ class userModel extends Model {
         
         $data['user_pwd']='';
         $data['pay_code']='';
-        $data['user_head']='https://mmbiz.qlogo.cn/mmbiz_png/EISicquI57gst6WUxm3ksJgTtNBSyzL1ja1UHDQNDVcTySfib4BfYRnbFXnE3Bpx1wKJ08QjnAR6scaNoicBJn5uw/0?wx_fmt=png';
+        $data['user_head']='';
         $data['user_type']=0;
         $data['unionid']='';
         $data['user_email']='';
