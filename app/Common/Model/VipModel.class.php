@@ -148,16 +148,18 @@ class VipModel extends Model {
                 $where=[];
                 $where['shop_id']=$shop_id;
                 $shop_user=$User->where($where)->getField('user_id');
-                
-                // ===================================================================================
-                // 如果店铺号就是店主自己的，也不用绑定
-                if($shop_user!=$user_id){
-                    $add=[];
-                    $add['user_id']=$user_id;
-                    $add['super_id']=$shop_user;
-                    $add['add_time']=time();
-                    $add['edit_time']=time();
-                    $UserSuper->add($add);
+                // 如果这个用户存在
+                if($shop_user){
+                    // ===================================================================================
+                    // 如果店铺号就是店主自己的，也不用绑定
+                    if($shop_user!=$user_id){
+                        $add=[];
+                        $add['user_id']=$user_id;
+                        $add['super_id']=$shop_user;
+                        $add['add_time']=time();
+                        $add['edit_time']=time();
+                        $UserSuper->add($add);
+                    }
                 }
                 
             }
