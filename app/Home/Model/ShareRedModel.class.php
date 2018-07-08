@@ -35,6 +35,7 @@ class ShareRedModel extends Model {
     }
     
     public function pull($post){
+        $res=[];
         // ===================================================================================
         // 接收参数
         $share_red_id=$post['share_red_id'];
@@ -102,14 +103,13 @@ class ShareRedModel extends Model {
             
         }
         
-        
-        
-        
         // ===================================================================================
         // 组成红包获取数据
         $propleCount=$share['max_length'];
         $money=$share['price'];
         $maxMoney=$share['max_price'];
+        $where=[];
+        $where['share_red_id']=$share_red_id;
         $length=$ShareRedRecord->where($where)->count()+0;
         $isEnd=$length+1>=$propleCount-1;
         
@@ -166,7 +166,8 @@ class ShareRedModel extends Model {
                 $data['info']=$info;
                 $isRecord=$ShareRedRecord->create($data);
                 $isBalance=$this->where($where)->setDec('balance',$maxMoney); // 减去余额
-                if($isRecord && $isBalance!==false){
+                
+                if($isRecord){
                     
                     // 成功
                     $res['res']=1;
@@ -208,11 +209,11 @@ class ShareRedModel extends Model {
                 
                 $where=[];
                 $where['share_red_id']=$share_red_id;
-                $isBalance=$this->where($where)->setDec('balance',$price[1]); // 减去余额
+                $this->where($where)->setDec('balance',$price[1]); // 减去余额
                 
                 // dump($isRecord);
                 // dump($isBalance);
-                if($isRecord && $isBalance!==false){
+                if($isRecord){
                     // 成功
                     $res['res']=1;
                     $res['msg']=$isRecord;
@@ -237,11 +238,11 @@ class ShareRedModel extends Model {
         
         if($isMax){
             // 最大红包
-            $coupon=$Coupon->获得满减券(30,$money,1,2,0,'','拼手气红包-全场通用');
+            $coupon=$Coupon->获得满减券(30,$money,1,2,0,'','拼手气红包-全场通用')[0];
             
         }else{
             // 其他红包
-            $coupon=$Coupon->获得满减券(0,$money,1,2,0,'','拼手气红包-全场通用');
+            $coupon=$Coupon->获得满减券(0,$money,1,2,0,'','拼手气红包-全场通用')[0];
             
         }
         

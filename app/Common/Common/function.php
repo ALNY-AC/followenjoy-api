@@ -481,22 +481,20 @@ function add($id=false,$idType=false,$addData){
 function isUserLogin($table='user'){
     
     //接收登录参数
-    $login_id=I($table."_id",false);
-    $token=I('token',false);
+    $login_id=I($table."_id");
+    $token=I('token');
     
     if(!$login_id || !$token){
         //没有参数
         return -992;
+        
     }
-    
     
     $where['login_id']=$login_id;
     $where['token']=$token;
-    $Token=M('token');
+    $Token=D('Token');
     $result=$Token->where($where)->find();
     
-    // dump($where);
-    // die;
     
     if($result){
         //账户正确 , token存在
@@ -946,10 +944,101 @@ function weixin($data){
     */
 }
 
+/**
+* 以post方式提交xml到对应的接口url
+*
+* @param string $xml  需要post的xml数据
+* @param string $url  url
+* @param bool $useCert 是否需要证书，默认不需要
+* @param int $second   url执行超时时间，默认30s
+* @throws WxPayException
+*/
+function postXmlCurl($xml, $url, $useCert = false, $second = 30)
+{
+    $ch = curl_init();
+    //设置超时
+    curl_setopt($ch, CURLOPT_TIMEOUT, $second);
+    
+    //如果有配置代理这里就设置代理
+    if(WxPayConfig::CURL_PROXY_HOST != "0.0.0.0"
+    && WxPayConfig::CURL_PROXY_PORT != 0){
+        curl_setopt($ch,CURLOPT_PROXY, WxPayConfig::CURL_PROXY_HOST);
+        curl_setopt($ch,CURLOPT_PROXYPORT, WxPayConfig::CURL_PROXY_PORT);
+    }
+    curl_setopt($ch,CURLOPT_URL, $url);
+    
+    
+    if(stripos($url,"https://")!==FALSE){
+    curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+}    else    {
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,TRUE);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,2);//严格校验
+}
+
+// curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,TRUE);
+// curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,2);//严格校验
+
+//设置header
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+//要求结果为字符串且输出到屏幕上
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+if($useCert == true){
+    //设置证书
+    //使用证书：cert 与 key 分别属于两个.pem文件
+    curl_setopt($ch,CURLOPT_SSLCERTTYPE,'PEM');
+    curl_setopt($ch,CURLOPT_SSLCERT, WxPayConfig::SSLCERT_PATH);
+    curl_setopt($ch,CURLOPT_SSLKEYTYPE,'PEM');
+    curl_setopt($ch,CURLOPT_SSLKEY, WxPayConfig::SSLKEY_PATH);
+}
+//post提交方式
+curl_setopt($ch, CURLOPT_POST, TRUE);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+//运行curl
+$data = curl_exec($ch);
+//返回结果
+if($data){
+    curl_close($ch);
+    return $data;
+} else {
+    $error = curl_errno($ch);
+    curl_close($ch);
+    throw new WxPayException("curl出错，错误码:$error");
+}
+}
+
 function weixinApp($data){
     
+    // Vendor('Weixin.pay2.WxPayApi');
+    // $input = new WxPayUnifiedOrder();
+    
+    
+    
+    // $mch_id='1501688321';
+    // $nonce_str=getNonceStr();
+    // $key='8312162ee470f489870f1fd35288a946';
+    
+    // $data=[];
+    // $data['mch_id']=$mch_id;
+    // $data['nonce_str']=$nonce_str;
+    // $sign=makeSign($data,$key);
+    // $data['sign']=$sign;
+    
+    // $input->values=$data;
+    
+    // $xml=$input->ToXml();
+    // dump($xml);
+    
+    // $url="https://api.mch.weixin.qq.com/sandboxnew/pay/getsignkey";
+    
+    // $response = postXmlCurl($xml, $url, false, 6);
+    // dump($response);
+    // 813ef3e0dfce44063f8572cfecdb669f
+    // die;
+    
     // unifiedOrder
-    //①、获取用户openid
     ini_set('date.timezone','Asia/Shanghai');
     
     Vendor('Weixin.pay2.WxPayApi');
@@ -957,56 +1046,43 @@ function weixinApp($data){
     //②、统一下单
     $input = new WxPayUnifiedOrder();
     $input->SetBody($data['body']);
-    // $input->SetAttach("test");
     $input->SetOut_trade_no($data['out_trade_no']);
     $input->SetTotal_fee($data['total_fee']*100);
     $input->SetTime_start(date("YmdHis"));
     $input->SetTime_expire(date("YmdHis", time() + 600));
     $input->SetGoods_tag("test");
-    $input->SetNotify_url(U('Home/WeiXin/WeiXinPay',null,null,true));
+    $input->SetNotify_url(U('Home/WeiXinPay/notifyApp',null,null,true));
     $input->SetTrade_type("APP");
     
-    // $input->SetAppid('wx8c3b0269e9e2c724');//公众账号ID
-    // $input->SetMch_id('1504196381');//商户号
-    // $input->SetKey('8312162ee470f489870f1fd35288a946');//key
     
     $order = WxPayApi::unifiedOrder($input);
-    
+    $values=$input->values;
     // ===================================================================================
     // 处理预订单
     // getNonceStr
     $prepay_id=$order['prepay_id'];
     $prepayData=[];
-    $noncestr=getNonceStr();
+    $noncestr=$values['nonce_str'];
+    
     $timestamp=''.time().'';
     
-    $prepayData['appid']='wx8c3b0269e9e2c724';
-    $prepayData['partnerid']='1504196381';
-    $prepayData['prepayid']=$prepay_id;
-    $prepayData['package']='Sign=WXPay';
-    $prepayData['noncestr']=$noncestr;
+    $prepayData['appid']='wx8c3b0269e9e2c724';//appid
+    $prepayData['partnerid']='1504196381';//商户号
+    $prepayData['prepayid']=$prepay_id;//预订单号
+    $prepayData['package']='Sign=WXPay';//扩展字段
+    $prepayData['noncestr']=$noncestr;//随机字符串
     $prepayData['timestamp']=$timestamp;
-    $key='20ac48b09fa2246441b3e784182e80ca';
+    $key='8312162ee470f489870f1fd35288a946';
     $sign=makeSign($prepayData,$key);
-    
     $prepayData['sign']=$sign;
+    // $prepayData['retcode']=0;
+    // $prepayData['retmsg']="ok";
     
-    // dump($prepayData);
-    // printf_info($prepayData);
-    
-    // echo json_encode($prepayData);
-    
-    // echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
-    // printf_info($order);
-    // sandboxnew
-    // $jsApiParameters = $tools->GetJsApiParameters($order);
-    
-    // ===================================================================================
     
     return $prepayData;
-    
 }
 
+// 生成签名
 function makeSign($values,$key){
     //签名步骤一：按字典序排序参数
     ksort($values);
@@ -1020,6 +1096,7 @@ function makeSign($values,$key){
     return $result;
 }
 
+// arr转url参数
 function toUrlParams($values)
 {
     $buff = "";
@@ -1239,14 +1316,13 @@ function createSharePng($gData,$codeName,$fileName = ''){
     $imgTop=$subTop+($count)*$titleDev+30;
     
     
-    
     // ===================================================================================
     // 商品图片上的装饰
-    imagefilledrectangle ($im, $width/1.7 , $imgTop-3, $width, $imgTop-10 , $fang_bg_color);
+    // imagefilledrectangle ($im, $width/1.7 , $imgTop-3, $width, $imgTop-10 , $fang_bg_color);
     
     // ===================================================================================
     // 商品图片下的装饰
-    imagefilledrectangle ($im, 0, $imgTop+$width+13, $width/2.3, $imgTop+$width+3 , $fang_bg_color);
+    // imagefilledrectangle ($im, 0, $imgTop+$width+13, $width/2.3, $imgTop+$width+3 , $fang_bg_color);
     
     // ===================================================================================
     // 商品图片

@@ -10,6 +10,8 @@
     //     location.reload();
     // });
 
+    // http://server.followenjoy.cn/index.php/Home/ShareRed/show/share_red_id/a1d4df7f8ded4e379bf0e2da9687973f
+
     Vue.component('coupon-card', {
         template: '#coupon-card',
         props: {
@@ -168,22 +170,26 @@
                 }, 100);
             },
             clearPhone() {
+                function reload() {
+                    window.location.href = window.location.href + "?test_id=" + 10000 * Math.random();
+                }
                 if (confirm('确认重新输入手机号吗？')) {
                     localStorage.removeItem('phone');
-                    location.reload();
+                    reload();
                 }
             },
             pull() {
+
                 $.get(config.c_api + 'pull', {
                     phone: this.phone,
                     share_red_id: this.share_red_id
                 }, res => {
                     res = JSON.parse(res);
-                    console.warn(res);
                     if (res.res >= 1) {
-                        alert('领取成功~');
-                        // this.myRecord = res.msg;
-                        location.reload();
+                        function reload() {
+                            window.location.href = window.location.href + "?test_id=" + 10000 * Math.random();
+                        }
+                        reload();
                     }
                     if (res.res == -2) {
                         alert('红包已发完~');
@@ -194,6 +200,11 @@
 
                     }
                 });
+
+
+                let a =
+                    { "page": 1, "limit": 1 }
+
 
             }
         },

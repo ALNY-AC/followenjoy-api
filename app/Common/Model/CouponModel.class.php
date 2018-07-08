@@ -228,26 +228,33 @@ class CouponModel extends Model {
             return false;
         }
         
-        if($coupon['class_id']!=$class_id){
-            //分区不正确，直接返回0。
-            // 找这个分区的上级分区，看看对不对
-            $class=$Class->where(['class_id'=>$class_id])->find();
-            $super_id=$class['super_id'];
+        if($coupon['class_id']){
             
-            
-            // 有上级
-            // 判断上级的class
-            if($coupon['class_id']==$super_id){
-                // 分区正确
-                $isClass=true;
+            if($coupon['class_id']!=$class_id){
+                //分区不正确，直接返回0。
+                // 找这个分区的上级分区，看看对不对
+                $class=$Class->where(['class_id'=>$class_id])->find();
+                $super_id=$class['super_id'];
+                
+                
+                // 有上级
+                // 判断上级的class
+                if($coupon['class_id']==$super_id){
+                    // 分区正确
+                    $isClass=true;
+                }else{
+                    // 分区不正确
+                    return 0;
+                }
+                
             }else{
-                // 分区不正确
-                return 0;
+                $isClass=true;
             }
-            
+        }else{
+            $isClass=true;
         }
         
-        if(!$coupon['class_id'] || $isClass){
+        if($isClass){
             
             // 判断是不是满减券
             if($coupon['denominations']>0){
@@ -414,6 +421,7 @@ class CouponModel extends Model {
         
         $where=[];
         $where['user_id']=session('user_id');
+        $where['state']=['NEQ',2];
         $list  =  $this
         ->order('add_time desc')
         ->where($where)

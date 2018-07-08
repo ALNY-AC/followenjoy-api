@@ -18,7 +18,14 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller{
     
+    public function ces(){
+        
+    }
+    
+    
     public function index(){
+        
+        
         
         // $where=[];
         // $where['unionid']=$unionid;

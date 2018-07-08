@@ -25,7 +25,7 @@ class DrawMoneyController extends CommonController{
         $data['where']=getKey();
         $result=$DrawMoney->getList($data);
         $res['count']=$DrawMoney->where($data['where'])->count()+0;
-        if($result){
+        if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{
@@ -39,7 +39,7 @@ class DrawMoneyController extends CommonController{
         $DrawMoney=D('DrawMoney');
         $result=$DrawMoney->get(I('draw_money_id'));
         if($result){
-            $res['res']=count($result);
+            $res['res']=1;
             $res['msg']=$result;
         }else{
             $res['res']=-1;
@@ -51,7 +51,7 @@ class DrawMoneyController extends CommonController{
     public function saveData(){
         $DrawMoney=D('DrawMoney');
         $result=$DrawMoney->saveData(I('draw_money_id'),I('save','',false));
-        if($result){
+        if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{

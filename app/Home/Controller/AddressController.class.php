@@ -40,40 +40,46 @@ class AddressController extends CommonController{
     }
     
     public function add(){
-        $model=M('address');
-        $add=I('add','',false);
-        if(!$add){
-            $res['res']=-2;
-            echo json_encode($res);
-            die;
-        }
-        $add['add_time']=time();
-        $add['edit_time']=time();
-        $add['user_id']=session('user_id');
-        $add['address_id']=getMd5('address');
         
-        $is_default=$add['is_default'];
+        $Address=D('Address');
         
-        if($is_default){
-            //是默认的
-            $save['is_default']=0;
+        $post=I('add','',false);
+        
+        if($post['is_default']=='true'){
+            $is_default=1;
+            // 设置其他的都为0
+            $data=[];
+            $data['is_default']=0;
             $where=[];
             $where['user_id']=session('user_id');
-            $model->where($where)->save($save);
+            $Address->where($where)->save($data);
+        }else{
+            $is_default=0;
         }
         
-        $add['is_default'] = $add['is_default']==true?1:0;
-            
-            
-            $result=$model->add($add);
-            if($result){
-                $res['res']=1;
-                $res['msg']=$add;
+        $post['is_default']=$is_default;
+        
+        $data=$post;
+        $data['add_time']=time();
+        $data['edit_time']=time();
+        $data['user_id']=session('user_id');
+        $data['address_id']=getMd5('address');
+        
+        $result=$Address->add($data);
+        
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
         }else{
             $res['res']=-1;
             $res['msg']=$result;
         }
         echo json_encode($res);
+        
+        
+        
+        
+        
     }
     
     
@@ -125,9 +131,9 @@ class AddressController extends CommonController{
         $Address=M('Address');
         $where=[];
         $where['user_id']=session('user_id');
-        $result=$Address->where($where)->select();
+        $result=$Address->order('add_time desc')->where($where)->select();
         
-        if($result){
+        if($result!==false){
             $res['res']=count($result);
             $res['msg']=$result;
         }else{
@@ -139,43 +145,43 @@ class AddressController extends CommonController{
     
     
     public function save(){
-        $model=M('address');
-        $save=I('save','',false);
-        $is_default=$save['is_default'];
-        if($is_default){
-            //是默认的
-            $save=[];
-            $save['is_default']=0;
+        
+        $Address=D('Address');
+        
+        
+        $post=I('save','',false);
+        
+        if($post['is_default']=='true'){
+            $is_default=1;
+            // 设置其他的都为0
+            $data=[];
+            $data['is_default']=0;
             $where=[];
             $where['user_id']=session('user_id');
-            $model->where($where)->save($save);
+            $Address->where($where)->save($data);
+        }else{
+            $is_default=0;
         }
-        $save=I('save','',false);
         
-        unset($save['address_id']);
-        unset($save['add_time']);
-        unset($save['edit_time']);
+        $post['is_default']=$is_default;
         
+        $data=$post;
         $where=[];
-        $where['user_id']=session('user_id');
         $where['address_id']=I('address_id');
+        $where['user_id']=session('user_id');
+        $result=$Address->where($where)->save($data);
         
-        $save['is_default'] = $save['is_default'] == true ? 1 : 0;
-            
-            $result=$model->where($where)->save($save);
-            
-            
-            if($result!==false){
-                $res['res']=$result;
-                $res['msg']=$result;
-                $save['edit_time']=time();
-                $result=$model->where($where)->save($save);
-                
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
         }else{
             $res['res']=-1;
-            $res['msg']=$model->_sql();
+            $res['msg']=$result;
         }
         echo json_encode($res);
+        
+        
+        
     }
     
     

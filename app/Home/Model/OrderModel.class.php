@@ -57,7 +57,6 @@ class OrderModel extends Model {
         
     }
     
-    
     //创建订单数据
     public function createOrder($snapshot,$address,$pay_id,$message){
         
@@ -77,7 +76,6 @@ class OrderModel extends Model {
         $data=[];
         $data['orderData']=null;
         $data['logisticsData']=null;
-        
         
         // ===================================================================================
         // 基本数据
@@ -306,6 +304,10 @@ class OrderModel extends Model {
         $coupon=$Coupon->getCouponPrice($coupon_id,$orderDatas,$snapshots,$total);
         
         $total-=$coupon['price'];
+        if($total<0){
+            $total=0;
+        }
+        
         // ===================================================================================
         // 创建支付单
         $payData=[];
@@ -457,7 +459,6 @@ class OrderModel extends Model {
     }
     
     public function getList(){
-        
         // ===================================================================================
         // 基本数据
         $user_id=session('user_id');
@@ -466,8 +467,10 @@ class OrderModel extends Model {
         // 取得当前用户订单数据
         $where=[];
         $where['user_id']=$user_id;
-        $orders=$this->where($where)->select();
-        
+        $orders=$this
+        ->order('add_time desc')
+        ->where($where)
+        ->select();
         
         // ===================================================================================
         // 开始组建数据
@@ -492,8 +495,6 @@ class OrderModel extends Model {
                 }
             }
             
-            
-            
             // ===================================================================================
             // 取得支付单数据
             $order['pay']=$this->getPayInfo($pay_id);
@@ -501,9 +502,19 @@ class OrderModel extends Model {
             // ===================================================================================
             // 取得促销活动信息
             
+            
+            // ===================================================================================
+            // 取得优惠券使用记录
+            $order['coupon']=$this->getCouponInfo($order['order_id']);
+            
             // ===================================================================================
             // 取得收货地址数据
             $order['address']=$this->getAddressInfo($order['address_id']);
+            
+            
+            // ===================================================================================
+            // 取维权
+            $order['afterSale']=$this->getAfterSaleInfo($order['order_id']);
             
             // ===================================================================================
             // 判断是否到达十五天，如果是，就要确认收货
@@ -518,6 +529,16 @@ class OrderModel extends Model {
         return $orders;
         
     }
+    
+    public function getCouponInfo($order_id){
+        
+        $OrderCoupon=D('OrderCoupon');
+        $where=[];
+        $where['order_id']=$order_id;
+        $coupon=$OrderCoupon->field('price')->where($where)->find();
+        return $coupon;
+    }
+    
     
     public function isLogistics($order_id,$logistics_id){
         
@@ -616,12 +637,15 @@ class OrderModel extends Model {
     //取得维权数据
     public function getAfterSaleInfo($order_id){
         $AfterSale=D('AfterSale');
-        $AfterSaleImg=D('AfterSaleImg');
         
         $where=[];
         $where['order_id']=$order_id;
         $afterSale= $AfterSale->where($where)->find();
         
+        if(!$afterSale){
+            return null;
+        }
+        $AfterSaleImg=D('AfterSaleImg');
         $where=[];
         $where['after_sale_id']=$afterSale['after_sale_id'];
         $afterSale['img_list']= $AfterSaleImg->where($where)->select();
@@ -638,7 +662,6 @@ class OrderModel extends Model {
         $where['order_id']=$order_id;
         
         
-        
         // ===================================================================================
         // 创建模型
         $Snapshot=D('Snapshot');
@@ -646,7 +669,6 @@ class OrderModel extends Model {
         $Pay=D('Pay');
         $AfterSale=D('AfterSale');
         $OrderAddress=D('OrderAddress');
-        
         
         
         // ===================================================================================
@@ -674,17 +696,31 @@ class OrderModel extends Model {
         $pay=$Pay->where($where)->find();
         
         // ===================================================================================
+        // 取得优惠券使用记录
+        $coupon=$this->getCouponInfo($order_id);
+        
+        // ===================================================================================
         // 取收货地址
         $where=[];
         $where['address_id']=$order['address_id'];
         $address=$OrderAddress->where($where)->find();
         
         $data=[];
+        
+        // ===================================================================================
+        // 如果是售后订单，取得售后信息
+        if($order['state']=='8'){
+            $AfterSale=D('AfterSale');
+            $afterSale=$AfterSale->get($order['order_id'],'order_id');
+        }
+        
         $data['snapshot']=$snapshot;
         $data['order']=$order;
         $data['logistics']=$logistics;
         $data['pay']=$pay;
         $data['address']=$address;
+        $data['afterSale']=$afterSale;
+        $data['coupon']=$coupon;
         return $data;
     }
     

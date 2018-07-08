@@ -14,7 +14,7 @@ require_once "WxPayException.php";
 */
 class WxPayDataBase
 {
-    protected $values = array();
+    public $values = array();
     
     /**
     * 设置签名，详见签名生成算法
@@ -168,7 +168,7 @@ class WxPayResults extends WxPayDataBase
             throw new WxPayException("签名错误！");
         }
         
-        $sign = $this->MakeSign();
+        $sign = $this->MakeSign('接口调用结果类');
         if($this->GetSign() == $sign){
             return true;
         }

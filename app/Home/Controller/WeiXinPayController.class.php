@@ -19,6 +19,7 @@ use Think\Controller;
 class WeiXinPayController extends Controller{
     
     public function pay(){
+        
         $pay_id=I('pay_id');
         // ===================================================================================
         // 模型
@@ -48,6 +49,11 @@ class WeiXinPayController extends Controller{
         $where=[];
         $where['order_id']=['in',$orderIds];
         $snapshotList= $Snapshot->field('goods_title,s1,s2,s3')->where($where)->select();
+        
+        
+        $Sku=D('Sku');
+        $Sku->snapshotStockInspect($Snapshot->where($where)->getField('sku_id',true));
+        die;
         
         // ===================================================================================
         // 组建描述信息
@@ -115,7 +121,6 @@ class WeiXinPayController extends Controller{
         
         $subject=rtrim($body, " - ");
         
-        
         $data=[];
         $data['body']='随享季-购物';
         $data['out_trade_no']=$pay_id;
@@ -131,10 +136,8 @@ class WeiXinPayController extends Controller{
     public function notify(){
         
         
-        // Vendor('Weixin.WxPayJsApiPay');
-        // Vendor('Weixin.WxPayData');
-        Vendor('Weixin.WxPayApi');
-        Vendor('Weixin.WxPayNotify');
+        Vendor('Weixin.pay1.WxPayApi');
+        Vendor('Weixin.pay1.WxPayNotify');
         
         $xml = file_get_contents("php://input");
         
@@ -149,7 +152,6 @@ class WeiXinPayController extends Controller{
         $time=date('Y-m-d H:i:s',time());
         
         \Think\Log::write("[微信支付 - $time]：". $log,'WARN');
-        
         
         
         $out_trade_no=I('out_trade_no');//商家订单号
@@ -236,8 +238,6 @@ class WeiXinPayController extends Controller{
         }
         
         
-        
-        
         // 给微信返回支付状态值
         $notify = new \WxPayNotify ();
         // 返回状态
@@ -245,20 +245,138 @@ class WeiXinPayController extends Controller{
         
     }
     
+    public function notifyApp(){
+        
+        
+        Vendor('Weixin.pay2.WxPayApi');
+        Vendor('Weixin.pay2.WxPayNotify');
+        
+        $xml = file_get_contents("php://input");
+        
+        $wx_notified_data=\WxPayDataBase::FromXml_4_babbage ($xml) ;
+        
+        // 转成数组 并写入缓存
+        F ( "wx_notified_data", $wx_notified_data);
+        // 吧xml原型也写入xml
+        F ( "wx_notified_data_xml", $xml );
+        
+        $log=json_encode($wx_notified_data);
+        $time=date('Y-m-d H:i:s',time());
+        
+        \Think\Log::write("[微信支付 - $time]：". $log,'WARN');
+        
+        
+        $out_trade_no=$wx_notified_data['out_trade_no'];//商家订单号
+        $total_fee=$wx_notified_data['total_fee'];//支付金额
+        
+        // ===================================================================================
+        // 创建模型
+        $Pay=D('Pay');
+        $PayLog=D('PayLog');
+        
+        // ===================================================================================
+        // 创建条件
+        $where=[];
+        $where['pay_id']=$out_trade_no;
+        
+        
+        // ===================================================================================
+        // 取出支付单数据
+        $payData=$Pay->where($where)->find();
+        
+        // ===================================================================================
+        // 创建支付日志数据
+        $user_id=$payData['user_id'];
+        
+        $data=[];
+        $data['trade_status']=$wx_notified_data['result_code'];//支付状态
+        $data['pay_id']=$out_trade_no;
+        $data['user_id']=$user_id;
+        $data['price']=$total_fee;//支付金额
+        $data['pay_mode']='weixin';//支付方式
+        $data['type']='shopping';//此交易类型，0：购物，1：充值
+        $data['log']="[微信支付]";//日志信息
+        $data['info']='';//日志描述信息
+        $data['data']=json_encode($log);//接口传来的数据
+        $data['remark']='';//备注信息，用户或Admin输入
+        
+        $result=$PayLog->creat($data);
+        if($result){
+            // 日志创建成功
+            if($wx_notified_data['result_code']=='SUCCESS'){
+                //支付成功
+                // 支付成功
+                if($payData['state']!=1){
+                    // 如果已经支付成功，就不能再支付成功
+                    
+                    $Pay->setState($out_trade_no,1);
+                    // 0：未支付
+                    // 1：已支付
+                    // 2：已取消
+                    
+                    // 减库存
+                    $where=[];
+                    $where['pay_id']=$out_trade_no;
+                    $Order=D('Order');
+                    $order=$Order->where($where)->select();
+                    $orderIds=[];
+                    foreach ($order as $k => $v) {
+                        $orderIds[]=$v['order_id'];
+                    }
+                    
+                    $Snapshot=D('Snapshot');
+                    $where=[];
+                    $where['order_id']=['in',$orderIds];
+                    
+                    $snapshot=$Snapshot->where($where)->select();
+                    $Sku=D('Sku');
+                    
+                    foreach ($snapshot as $k => $v) {
+                        $count=$v['count'];
+                        $sku_id=$v['sku_id'];
+                        $where=[];
+                        $where['sku_id']=$sku_id;
+                        $Sku->where($where)->setDec('stock_num',$count);
+                    }
+                    
+                }
+                
+            }else{
+                
+            }
+            
+        }
+        
+        
+        // 给微信返回支付状态值
+        $notify = new \WxPayNotify ();
+        // 返回状态
+        $notify->Handle ( false );
+        
+        
+        
+    }
     
     
     public function test(){
         
-        $wx_notified_data= F('wx_notified_data');
-        $wx_notified_data_xml= F('wx_notified_data_xml');
+        // $data=[];
+        // $data['body']='随享季-购物';
+        // $data['out_trade_no']='Test'.rand();
+        // $data['total_fee']=0.01;
+        // $payData=weixinApp($data);
+        // echo json_encode($payData);
         
-        printf_info($wx_notified_data);
+        // die;
+        // $wx_notified_data= F('wx_notified_data');
+        // $wx_notified_data_xml= F('wx_notified_data_xml');
         
-        dump($wx_notified_data);
-        dump($wx_notified_data_xml);
+        // printf_info($wx_notified_data);
+        
+        // dump($wx_notified_data);
+        // dump($wx_notified_data_xml);
         
         /*
-        
         appid : wx56a5a0b6368f00a7
         attach : test
         bank_type : CFT
@@ -276,7 +394,6 @@ class WeiXinPayController extends Controller{
         total_fee : 1
         trade_type : JSAPI
         transaction_id : 4200000117201806128925456553
-        
         
         ================================================================================================================
         

@@ -18,7 +18,6 @@ namespace Home\Controller;
 use Think\Controller;
 class BagController extends CommonController{
     
-    
     //获得列表
     public function getList(){
         
@@ -44,15 +43,13 @@ class BagController extends CommonController{
         $Bag=D('Bag');
         $Snapshot=D('Snapshot');
         
+        
         $where=[];
         $where['snapshot_id']=$snapshot_id;
         $where['user_id']=session('user_id');
-        
         $save=[];
         $save['edit_time']=time();
-        
         $Bag->where($where)->save($save);
-        
         $save['count']=$count;
         $result=$Snapshot->where($where)->save($save);
         

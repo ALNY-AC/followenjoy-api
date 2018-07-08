@@ -3,10 +3,11 @@ namespace Home\Model;
 use Think\Model;
 class GoodsModel extends Model {
     
-    public  $Goods ;
+    public $Goods ;
     public $SkuTree;
     public $SkuTreeV;
     public $Class;
+    public $TimeGoods;
     
     
     public function _initialize (){
@@ -14,10 +15,11 @@ class GoodsModel extends Model {
         $this->SkuTree=D('SkuTree');
         $this->SkuTreeV=D('SkuTreeV');
         $this->Class=D('Class');
+        $this->TimeGoods=D('TimeGoods');
         
     }
     
-    public function getList($data=[],$where=[]){
+    public function testGestList(){
         
         $page   =   $data['page']?$data['page']:1;
         $limit  =   $data['limit']?$data['limit']:10;
@@ -26,21 +28,72 @@ class GoodsModel extends Model {
         $where['is_up']=1;
         $where['is_unique']=0;
         
-        $field=[
-        'goods_id',
-        'goods_title',
-        'goods_banner',
-        'sub_title',
-        // 'freight_id',
-        'is_up',
-        // 'goods_class',
-        'sort',
-        // 'is_cross_border',
-        // 'goods_content',
-        // 'is_unique',
-        'add_time',
-        // 'edit_time'
-        ];
+        // dump($field);
+        if(!$field){
+            $field=[
+            'goods_id',
+            'goods_title',
+            'goods_banner',
+            'sub_title',
+            // 'freight_id',
+            // 'is_up',
+            // 'goods_class',
+            // 'sort',
+            // 'is_cross_border',
+            // 'goods_content',
+            // 'is_unique',
+            // 'add_time',
+            // 'edit_time'
+            ];
+        }
+        
+        $list  =  $this
+        ->cache(true,5)
+        ->order('sort desc,add_time desc')
+        ->where($where)
+        ->field($field)
+        ->limit(($page-1)*$limit,$limit)
+        ->select();
+        
+        
+        foreach ($list as $k => $v) {
+            $v=$this->getGoodsSku($v,$map=['img_list','sku','tree'],false);
+            $v=$this->getTime($v);
+            $list[$k]=$v;
+        }
+        
+        return $list;
+    }
+    
+    
+    public function getList($data=[],$where=[]){
+        
+        
+        $page   =   $data['page']?$data['page']:1;
+        $limit  =   $data['limit']?$data['limit']:10;
+        $field  =   $data['field']?$data['field']:[];
+        
+        $where['is_up']=1;
+        $where['is_unique']=0;
+        
+        // dump($field);
+        if(!$field){
+            $field=[
+            'goods_id',
+            'goods_title',
+            'goods_banner',
+            'sub_title',
+            // 'freight_id',
+            // 'is_up',
+            // 'goods_class',
+            // 'sort',
+            // 'is_cross_border',
+            // 'goods_content',
+            // 'is_unique',
+            // 'add_time',
+            // 'edit_time'
+            ];
+        }
         
         $list  =  $this
         ->order('sort desc,add_time desc')
@@ -49,13 +102,11 @@ class GoodsModel extends Model {
         ->limit(($page-1)*$limit,$limit)
         ->select();
         
-        for ($i=0; $i <count($list) ; $i++) {
-            
-            $goods=$list[$i];
-            $goods=$this->getGoodsSku($goods,$map=['img_list','sku','tree'],false);
-            $goods=$this->getTime($goods);
-            $list[$i]=$goods;
-            
+        
+        foreach ($list as $k => $v) {
+            $v=$this->getGoodsSku($v,$map=['img_list','sku','tree'],false);
+            $v=$this->getTime($v);
+            $list[$k]=$v;
         }
         
         return $list;
@@ -139,6 +190,8 @@ class GoodsModel extends Model {
         return $goods;
     }
     
+    
+    
     public function createRecord($goods_id){
         
         if(!session('user_id')){
@@ -172,14 +225,11 @@ class GoodsModel extends Model {
     // 取得限时购数据
     public function getTime($goods){
         
-        $TimeGoods=D('TimeGoods');
-        
         $goods_id=$goods['goods_id'];
         
         // 先取今天的
         // 没有的话再取昨天的
         // 在没有的话再取明天的
-        
         
         $今天0点=mktime(0, 0, 0, date('m'), date('d'), date('Y'));
         $今天23点=mktime(23, 59, 59, date('m'), date('d'), date('Y'));
@@ -206,7 +256,8 @@ class GoodsModel extends Model {
         $where['start_time']=[];
         $where['start_time']=[['EGT',$今天0点],['ELT',$今天23点]];
         $where['goods_id'] = $goods_id;
-        $time=$TimeGoods->where($where)->find();
+        $time=$this->TimeGoods->where($where)->find();
+        
         if(!$time){
             // 不在今天
             
@@ -217,7 +268,7 @@ class GoodsModel extends Model {
             $where['start_time']=[];
             $where['start_time']=[['EGT',$昨天0点],['ELT',$昨天23点]];
             $where['goods_id'] = $goods_id;
-            $time=$TimeGoods->where($where)->find();
+            $time=$this->TimeGoods->where($where)->find();
             
             if(!$time){
                 // 昨天不存在
@@ -228,7 +279,7 @@ class GoodsModel extends Model {
                 $where['start_time']=[];
                 $where['start_time']=[['EGT',$明天0点],['ELT',$明天23点]];
                 $where['goods_id'] = $goods_id;
-                $time=$TimeGoods->where($where)->find();
+                $time=$this->TimeGoods->where($where)->find();
                 
                 if(!$time){
                     // 商品不在明天的时间轴上
@@ -269,6 +320,11 @@ class GoodsModel extends Model {
                 $goods['sku'][$k]=$v;
                 
             }
+            
+            $label=[];
+            $label['type']=1;
+            $label['label']="特卖";
+            $goods['goodsLabel'][]=$label;
         }
         
         // if($toTime>$start_time && $toTime < $end_time){
@@ -286,6 +342,8 @@ class GoodsModel extends Model {
             $goods['not_time']=false;
         }
         $goods['activity_time']=$time['start_time'];
+        
+        
         
         // dump(date('Y-m-d h:i:s',$start_time));
         // dump(date('Y-m-d h:i:s',$end_time));
@@ -332,9 +390,9 @@ class GoodsModel extends Model {
             ->field(
             [
             // 'img_id',
-            'goods_id',
+            // 'goods_id',
             'src',
-            'slot',
+            // 'slot',
             // 'add_time',
             // 'edit_time',
             ]
@@ -352,6 +410,28 @@ class GoodsModel extends Model {
             $skus= $Sku
             ->limit($limit['sku'])
             ->where($where)
+            ->field(
+            [
+            'goods_id',
+            'sku_id',
+            'img_url',
+            'id',
+            'price',
+            's1',
+            's2',
+            's3',
+            // 'tax',
+            'stock_num',
+            'purchase_price',
+            'earn_price',
+            // 'supplier_id',
+            // 'shop_code',
+            // 'amount',
+            'activity_price',
+            'activity_earn_price',
+            'sales_volume',
+            ]
+            )
             ->order('price asc,stock_num desc')
             ->select();
             $goods['sku']=$skus;
@@ -365,16 +445,66 @@ class GoodsModel extends Model {
             ->limit($limit['tree'])
             ->where($where)
             ->order('k_s asc')
+            ->field(
+            [
+            'sku_tree_id',
+            // 'goods_id',
+            'k',
+            'k_s',
+            // 'add_time',
+            // 'edit_time',
+            ]
+            )
             ->select();
-            for ($j=0; $j <count($tree) ; $j++) {
-                //找 tree 的 v
-                $sku_tree_id=$tree[$j]['sku_tree_id'];
-                $where['sku_tree_id']=$sku_tree_id;
-                $v=$this->SkuTreeV->where($where)->select();
-                $tree[$j]['v']= $v;
-            }
-            $goods['tree']=$tree;
             
+            foreach ($tree as $k => $v) {
+                $sku_tree_id=$v['sku_tree_id'];
+                $where['sku_tree_id']=$sku_tree_id;
+                $s_v=$this
+                ->SkuTreeV
+                ->field(
+                [
+                'v_id',
+                'goods_id',
+                'sku_tree_id',
+                'id',
+                'name',
+                'img_url',
+                'add_time',
+                'edit_time',
+                ]
+                )
+                ->where($where)
+                ->select();
+                $v['v']= $s_v;
+                //
+                $tree[$k]= $v;
+                //
+                //
+            }
+            // for ($j=0; $j <count($tree) ; $j++) {
+            //     //找 tree 的 v
+            //     $sku_tree_id=$tree[$j]['sku_tree_id'];
+            //     $where['sku_tree_id']=$sku_tree_id;
+            //     $v=$this
+            //     ->SkuTreeV
+            //     ->field(
+            //     [
+            //     // 'v_id',
+            //     // 'goods_id',
+            //     // 'sku_tree_id',
+            //     'id',
+            //     'name',
+            //     'img_url',
+            //     // 'add_time',
+            //     // 'edit_time',
+            //     ]
+            //     )
+            //     ->where($where)
+            //     ->select();
+            //     $tree[$j]['v']= $v;
+            // }
+            $goods['tree']=$tree;
         }
         
         // ===================================================================================
@@ -396,10 +526,10 @@ class GoodsModel extends Model {
         }
         
         
-        $label=[];
+        // $label=[];
         // $label['type']=1;
         // $label['label']="特卖";
-        $goods['goodsLabel'][]=$label;
+        $goods['goodsLabel']=[];
         
         // $label=[];
         // $label['type']=2;

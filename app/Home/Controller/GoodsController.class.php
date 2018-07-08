@@ -43,6 +43,7 @@ class GoodsController extends Controller{
     //获得商品列表
     public function getList(){
         
+        
         $Goods=D('Goods');
         $data=I();
         $goodsList  =  $Goods->getList($data);
@@ -59,6 +60,25 @@ class GoodsController extends Controller{
         }
         echo json_encode($res);
         
+    }
+    
+    
+    public function test(){
+        $Goods=D('Goods');
+        $data=I();
+        $goodsList  =  $Goods->testGestList($data);
+        // =========判断=========
+        if($goodsList){
+            //总条数
+            $goodsList      =   toTime($goodsList);
+            $res['res']     =   count($goodsList);
+            $res['msg']     =   $goodsList;
+            $res['count']   =   $Goods->count()+0;
+            
+        }else{
+            $res['res']     =   0;
+        }
+        echo json_encode($res);
     }
     
     public function get(){

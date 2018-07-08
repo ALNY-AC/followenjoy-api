@@ -26,8 +26,8 @@ class WxPayConfig
     const MCHID = '1504196381';
     const KEY = '8312162ee470f489870f1fd35288a946';
     // const KEY = '20ac48b09fa2246441b3e784182e80ca';
+    // const KEY = '813ef3e0dfce44063f8572cfecdb669f';//沙盒环境密匙 sandbox_signkey
     const APPSECRET = '643f69abc138477f4362ab22a5d012c0';
-    
     
     
     //=======【证书路径设置】=====================================

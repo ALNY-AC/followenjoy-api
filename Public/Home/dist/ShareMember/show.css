@@ -1,0 +1,37 @@
+.box img {
+  max-width: 100%;
+  display: block; }
+.box .f-btn {
+  display: block;
+  text-decoration: none;
+  background-color: #ff0000;
+  height: 50px;
+  line-height: 50px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  background: linear-gradient(to bottom, #dbc492, #a59062);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+  color: #fff; }
+
+.expire .title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px; }
+.expire .hot-btn {
+  background-color: #ff0000;
+  text-decoration: none;
+  height: 50px;
+  line-height: 50px;
+  background-color: #dbc492;
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px; }
+
+/*# sourceMappingURL=show.css.map */

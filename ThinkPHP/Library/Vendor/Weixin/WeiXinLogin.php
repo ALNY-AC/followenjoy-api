@@ -111,7 +111,7 @@ class WeiXinLogin {
         
         // ===================================================================================
         // 取得access_token和openid
-        $code=I('code');
+        $code=$data['code'];
         $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=$appid&secret=$secret&code=$code&grant_type=authorization_code";
         $accessData=$this->_request($url);
         $accessData=json_decode($accessData,true);
@@ -142,7 +142,7 @@ class WeiXinLogin {
         return $this->userInfo;
     }
     
-    public function _request(){
+    public function _request($curl){
         // 创建一个新cURL资源
         $ch = curl_init();
         

@@ -143,9 +143,20 @@ class SnapshotModel extends Model {
         $snapshot['goods_info']=$goods_info;
         
         $snapshot=$this->updateGoods($snapshot);
+        $snapshot=$this->getSku($snapshot);
         $snapshot=$this->getTime($snapshot);//取得限时购数据
         
         return $snapshot;
+    }
+    
+    public function getSku($snapshot){
+        if(!$snapshot['no_sku']){
+            $Sku=D('Sku');
+            $sku=$Sku->get($snapshot['sku_id']);
+            $snapshot['sku']=$sku;
+        }
+        return $snapshot;
+        
     }
     
     public function getList($snapshot_ids){

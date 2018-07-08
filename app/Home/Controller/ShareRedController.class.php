@@ -86,10 +86,9 @@ class ShareRedController extends Controller{
     
     public function show(){
         
-        
-        // 如果unionid不存在，需要登录
+        //http://server.followenjoy.cn/index.php/Home/ShareRed/show/share_red_id/8f81db82befee32798e4b1fcc25376a6
         $share_red_id=I('share_red_id');
-        
+        // 如果unionid不存在，需要登录
         
         // if(!session('unionid')){
         //     // 不存在需要登录

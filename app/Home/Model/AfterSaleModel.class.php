@@ -35,7 +35,6 @@ class AfterSaleModel extends Model {
         $save['state']=5;
         $Order->where($where)->save($save);
         
-        
         return $this->add($add);
         
     }
@@ -47,6 +46,12 @@ class AfterSaleModel extends Model {
         $save['edit_time']=time();
         return   $this->where($where)->save($save);
         
+    }
+    
+    public function get($after_sale_id,$name='after_sale_id'){
+        $where=[];
+        $where[$name]=$after_sale_id;
+        return $this->where($where)->find();
     }
     
     
