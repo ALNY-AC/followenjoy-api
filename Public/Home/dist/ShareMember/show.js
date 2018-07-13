@@ -17,5 +17,4 @@
     });
 
 
-
 }).call(this, this['$'], this['Vue'], this['config']);

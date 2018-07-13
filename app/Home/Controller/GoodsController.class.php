@@ -111,4 +111,39 @@ class GoodsController extends Controller{
     }
     
     
+    public function show(){
+        $goods_id=I('goods_id');
+        $Goods=D('Goods');
+        $where=[];
+        $where['goods_id']=$goods_id;
+        $goods=$Goods->where($where)->find();
+        
+        
+        // dump($goods);
+        
+        
+        // ===================================================================================
+        // 取出图片
+        
+        $GoodsImg=D('GoodsImg');
+        $goodsImg=$GoodsImg->where($where)->getField('src',true);
+        $host='http://'.$_SERVER['SERVER_NAME'].'/';
+        
+        foreach ($goodsImg as $k => $v) {
+            
+            $v=$host.$v;
+            $goodsImg[$k]=$v;
+            
+        }
+        
+        
+        
+        $this->assign('goodsImg',$goodsImg);
+        $this->assign('goods',$goods);
+        
+        $this->display();
+        
+    }
+    
+    
 }

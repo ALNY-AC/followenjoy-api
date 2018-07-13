@@ -65,18 +65,25 @@ class AddressController extends CommonController{
         $data['user_id']=session('user_id');
         $data['address_id']=getMd5('address');
         
-        $result=$Address->add($data);
+        if($Address->add($data)){
+            $where=[];
+            $where['address_id']=$data['address_id'];
+            $address=$Address->where($where)->find();
+            $result=true;
+        }else{
+            $result=false;
+        }
+        
+        
         
         if($result!==false){
             $res['res']=1;
-            $res['msg']=$result;
+            $res['msg']=$address;
         }else{
             $res['res']=-1;
             $res['msg']=$result;
         }
         echo json_encode($res);
-        
-        
         
         
         

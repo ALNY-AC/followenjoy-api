@@ -1,0 +1,43 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif; }
+
+* {
+  box-sizing: border-box; }
+
+#App .swiper-container {
+  margin-bottom: 8px; }
+  #App .swiper-container .swiper-wrapper .swiper-slide img {
+    display: block;
+    width: 100%;
+    max-width: 100%; }
+#App .goods-info-head-card {
+  width: 100%;
+  padding: 0 10px;
+  padding-top: 0; }
+  #App .goods-info-head-card .title-row {
+    font-size: 0; }
+    #App .goods-info-head-card .title-row .goods-title {
+      width: 85%;
+      display: inline-block;
+      font-size: 14px; }
+    #App .goods-info-head-card .title-row .goods-like {
+      font-size: 14px;
+      width: 15%;
+      display: inline-block;
+      text-align: center;
+      border-left: solid 1px #ddd; }
+      #App .goods-info-head-card .title-row .goods-like div {
+        font-size: 12px; }
+  #App .goods-info-head-card .goods-sub-title {
+    color: #EE2532;
+    font-size: 13px;
+    line-height: 2.5; }
+  #App .goods-info-head-card .goods-price-box .goods-price .z {
+    color: #EE2532; }
+#App .goods-content * {
+  max-width: 100%; }
+
+/*# sourceMappingURL=Goods.css.map */

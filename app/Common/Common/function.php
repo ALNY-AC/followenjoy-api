@@ -1470,8 +1470,24 @@ function createSharePng($gData,$codeName,$fileName = ''){
         download($fileName);
     }else{
         
+        // dump(I());
+        // die;
+        $src='Public/Assets/Goods/te/'.date('Y-m-d',time()).'/';
+        set_mkdir($src);
+        $fileName=$src.I('user_id').'-'.I('goods_id').'.png';
+        
         Header("Content-Type: image/png");
-        imagepng ($im);
+        imagepng ($im,$fileName);
+        
+        $image = new \Think\Image();
+        $image->open($fileName);
+        $image->thumb(750, 750)->save(null);
+        
+        // Header("Content-Type: image/png");
+        // imagepng ($im);
+        // header('Content-Type: image/jpg');
+        // $src=I('src');
+        
         
     }
     

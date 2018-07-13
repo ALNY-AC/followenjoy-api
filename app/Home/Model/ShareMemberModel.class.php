@@ -78,7 +78,7 @@ class ShareMemberModel extends Model {
         $add_time=$this->where($where)->getField('add_time');
         
         // 86400
-        if($add_time+1<time()){
+        if($add_time+86400<time()){
             // 过期了
             return true;
         }else{
