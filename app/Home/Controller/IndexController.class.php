@@ -29,6 +29,7 @@ class IndexController extends Controller{
     
     public function index(){
         $this->info();
+        die;
         import('Org.Util.Origin.Order.Order');
         
         $pay = new \Pay();
