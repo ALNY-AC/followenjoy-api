@@ -141,6 +141,7 @@ class OrderController extends CommonController{
         $res['res']=1;
         $res['msg']=$result;
         echo json_encode($res);
+        
     }
     
     public function cancel(){

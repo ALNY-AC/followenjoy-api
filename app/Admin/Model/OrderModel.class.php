@@ -316,7 +316,7 @@ class OrderModel extends Model {
         // 找订单数据
         $orders=$this
         ->where($where)
-        ->order('add_time desc')
+        ->order('edit_time desc')
         ->limit(($page-1)*$limit,$limit)
         ->select();
         

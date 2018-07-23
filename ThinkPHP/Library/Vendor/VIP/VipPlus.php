@@ -19,6 +19,7 @@ class VipPlus{
     private $subList=[];             //下级列表
     private $subListIds=[];             //下级列表 的 id
     private $subVipList=[];         //下级vip对象的列表
+    
     // ===================================================================================
     // 会员返利数据
     public $佣金收益比=0;

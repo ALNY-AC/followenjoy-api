@@ -18,14 +18,67 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller{
     
-    public function ces(){
-        
+    public function info(){
+        echo "<h1>Hello World,I'm Followenjoy Ctos</h1>";
+        $time=time();
+        $date=date('Y-m-d H:i:s',time());
+        echo "<p>当前时间戳：$time</p>";
+        echo "<p>当前时间：$date</p>";
+        echo "<hr/>";
     }
     
-    
     public function index(){
+        $this->info();
+        import('Org.Util.Origin.Order.Order');
+        
+        $pay = new \Pay();
+        
+        $order1 = new \Order();
+        $order2 = new \Order();
+        
+        $goods1 = new \Goods();
+        $goods2 = new \Goods();
+        
+        $order1->setGoods($goods1);
+        $order2->setGoods($goods2);
+        
+        $goods1->setPrice(10);
+        $goods1->setNum(1);
+        $goods1->setTitle('商品1');
+        $goods2->setPrice(20);
+        $goods2->setNum(1);
+        $goods2->setTitle('商品2');
+        
+        $time = new \Time();
         
         
+        $goods1->addComponent($time);
+        
+        $pay->addOrder($order1);
+        $pay->addOrder($order2);
+        
+        
+        
+        $coupon = new \Coupon();
+        
+        $pay->addComponent($coupon);
+        
+        $price=$pay->valuation();
+        
+        
+        // ===================================================================================
+        // 使用优惠券的场景
+        
+        
+        dump($price);
+        
+        
+        // ===================================================================================
+        // 模拟订单流程
+        
+        
+        
+        // 1532047122
         
         // $where=[];
         // $where['unionid']=$unionid;

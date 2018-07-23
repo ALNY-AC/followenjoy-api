@@ -21,6 +21,8 @@ class LogisticsController extends CommonController{
     public function saveData(){
         $Logistics=D('Logistics');
         $result=$Logistics->saveData(I('order_id'),I('save','',false));
+        
+        
         if($result!==false){
             $res['res']=1;
             $res['msg']=$result;

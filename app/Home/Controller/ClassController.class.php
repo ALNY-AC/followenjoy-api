@@ -74,8 +74,66 @@ class ClassController extends Controller{
         
         echo json_encode($res);
         
-        
     }
     
+    public function getAllRoot(){
+        
+        
+        $Class=D('Class');
+        $where=[];
+        $where['super_id']=['EXP','is null'];
+        $list=$Class
+        ->order(
+        [
+        'class_id',
+        'class_title',
+        'img',
+        'sort',
+        ]
+        )
+        ->order('sort asc')
+        ->where($where)
+        ->select();
+        if($list!==false){
+            $res['res']=count($list);
+            $res['msg']=$list;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        
+        echo json_encode($res);
+    }
+    
+    
+    public function getAll(){
+        
+        $super_id=I('super_id');
+        $Class=D('Class');
+        $where=[];
+        $where['super_id']=$super_id;
+        
+        $list=$Class
+        ->order(
+        [
+        'class_id',
+        'class_title',
+        'img',
+        'sort',
+        ]
+        )
+        ->order('sort asc')
+        ->where($where)
+        ->select();
+        if($list!==false){
+            $res['res']=count($list);
+            $res['msg']=$list;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        
+        echo json_encode($res);
+    }
     
 }

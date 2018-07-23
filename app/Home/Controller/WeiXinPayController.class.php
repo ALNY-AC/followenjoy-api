@@ -53,7 +53,6 @@ class WeiXinPayController extends Controller{
         
         $Sku=D('Sku');
         $Sku->snapshotStockInspect($Snapshot->where($where)->getField('sku_id',true));
-        die;
         
         // ===================================================================================
         // 组建描述信息
@@ -76,6 +75,7 @@ class WeiXinPayController extends Controller{
         $this->assign('jsApiParameters',$jsApiParameters);
         $this->display();
         // server.followenjoy.cn/index.php/Home/WeiXin/pay
+        
     }
     
     
@@ -214,6 +214,13 @@ class WeiXinPayController extends Controller{
                         $orderIds[]=$v['order_id'];
                     }
                     
+                    $where=[];
+                    $where['order_id']=['in',$orderIds];
+                    
+                    $orderData=[];
+                    $orderData['edit_time']=time();
+                    $Order->where($where)->save($orderData);
+                    
                     $Snapshot=D('Snapshot');
                     $where=[];
                     $where['order_id']=['in',$orderIds];
@@ -323,6 +330,10 @@ class WeiXinPayController extends Controller{
                     foreach ($order as $k => $v) {
                         $orderIds[]=$v['order_id'];
                     }
+                    
+                    $orderData=[];
+                    $orderData['edit_time']=time();
+                    $Order->where($where)->save($orderData);
                     
                     $Snapshot=D('Snapshot');
                     $where=[];

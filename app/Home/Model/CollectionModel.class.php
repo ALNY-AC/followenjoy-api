@@ -43,10 +43,7 @@ class CollectionModel extends Model {
         $where=[];
         $where['user_id']=session('user_id');
         
-        $where=[];
-        $where['user_id']=session('user_id');
-        
-        $goodsIds=$this->where($where)->getField('goods_id',true);
+        $goodsIds=$this->order('add_time desc')->where($where)->getField('goods_id',true);
         
         if(!$goodsIds){
             return [];

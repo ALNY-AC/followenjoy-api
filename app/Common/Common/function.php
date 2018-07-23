@@ -316,8 +316,6 @@ function save(){
     }
     
     
-    
-    
     //创建模型
     $model=M($table);
     $result=$model->where($where)->save($save);
@@ -1015,7 +1013,6 @@ function weixinApp($data){
     // $input = new WxPayUnifiedOrder();
     
     
-    
     // $mch_id='1501688321';
     // $nonce_str=getNonceStr();
     // $key='8312162ee470f489870f1fd35288a946';
@@ -1054,7 +1051,6 @@ function weixinApp($data){
     $input->SetNotify_url(U('Home/WeiXinPay/notifyApp',null,null,true));
     $input->SetTrade_type("APP");
     
-    
     $order = WxPayApi::unifiedOrder($input);
     $values=$input->values;
     // ===================================================================================
@@ -1077,7 +1073,6 @@ function weixinApp($data){
     $prepayData['sign']=$sign;
     // $prepayData['retcode']=0;
     // $prepayData['retmsg']="ok";
-    
     
     return $prepayData;
 }

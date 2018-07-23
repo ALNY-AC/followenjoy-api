@@ -24,7 +24,6 @@ class CollectionController extends CommonController{
         if($result){
             $res['res']=1;
             $res['msg']=$result;
-            
         }else{
             $res['res']=-1;
             $res['msg']=$result;
