@@ -65,7 +65,6 @@ class GoodsModel extends Model {
         return $list;
     }
     
-    
     public function getList($data=[],$where=[]){
         
         
@@ -477,33 +476,8 @@ class GoodsModel extends Model {
                 ->where($where)
                 ->select();
                 $v['v']= $s_v;
-                //
                 $tree[$k]= $v;
-                //
-                //
             }
-            // for ($j=0; $j <count($tree) ; $j++) {
-            //     //找 tree 的 v
-            //     $sku_tree_id=$tree[$j]['sku_tree_id'];
-            //     $where['sku_tree_id']=$sku_tree_id;
-            //     $v=$this
-            //     ->SkuTreeV
-            //     ->field(
-            //     [
-            //     // 'v_id',
-            //     // 'goods_id',
-            //     // 'sku_tree_id',
-            //     'id',
-            //     'name',
-            //     'img_url',
-            //     // 'add_time',
-            //     // 'edit_time',
-            //     ]
-            //     )
-            //     ->where($where)
-            //     ->select();
-            //     $tree[$j]['v']= $v;
-            // }
             $goods['tree']=$tree;
         }
         

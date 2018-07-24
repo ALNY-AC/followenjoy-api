@@ -37,5 +37,75 @@ class SkuModel extends Model {
         
     }
     
+    /**
+    * 根据商品id取得所有的sku
+    */
+    public function getSkuList($goods_id){
+        $where=[];
+        $where['goods_id']=$goods_id;
+        $skus= $this
+        ->where($where)
+        ->field(
+        [
+        'goods_id',
+        'sku_id',
+        'img_url',
+        'id',
+        'price',
+        's1',
+        's2',
+        's3',
+        'tax',
+        'stock_num',
+        'purchase_price',
+        'earn_price',
+        'supplier_id',
+        'shop_code',
+        'amount',
+        'activity_price',
+        'activity_earn_price',
+        'sales_volume',
+        ]
+        )
+        ->order('price asc,stock_num desc')
+        ->select();
+        return $skus;
+        
+    }
+    /**
+    * 取一个sku，价格最低的
+    */
+    public function getOne($goods_id){
+        
+        $where=[];
+        $where['goods_id']=$goods_id;
+        $sku= $this
+        ->where($where)
+        ->field(
+        [
+        'goods_id',
+        'sku_id',
+        'img_url',
+        'id',
+        'price',
+        's1',
+        's2',
+        's3',
+        'tax',
+        'stock_num',
+        'purchase_price',
+        'earn_price',
+        'supplier_id',
+        'shop_code',
+        'amount',
+        'activity_price',
+        'activity_earn_price',
+        'sales_volume',
+        ]
+        )
+        ->order('price asc,stock_num desc')
+        ->find();
+        return [$sku];
+    }
     
 }

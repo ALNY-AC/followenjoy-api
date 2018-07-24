@@ -114,7 +114,6 @@ class CubeGroupModel extends Model {
         ->field($field)
         ->find();
         
-        
         // ===================================================================================
         // 取出行
         $CubeRow=D('CubeRow');
@@ -123,7 +122,10 @@ class CubeGroupModel extends Model {
         $rowData['where']['cube_group_id']=$id;
         $rows=$CubeRow->getAll($rowData);
         $data['rows']=$rows;
+        
         return $data;
+        
+        
     }
     
     public function del($ids,$is_recycle=true,$data_status=0){

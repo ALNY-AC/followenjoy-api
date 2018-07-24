@@ -136,4 +136,72 @@ class ClassController extends Controller{
         echo json_encode($res);
     }
     
+    
+    public function getGoodsList (){
+        
+        $class_id=I('class_id');
+        $page=I('page');
+        $page_size=I('page_size');
+        
+        $Goods=D('Goods');
+        
+        $where=[];
+        $where['goods_class']=$class_id;
+        
+        $goodsList=$Goods
+        ->where($where)
+        ->field(
+        [
+        'goods_id',
+        'goods_title',
+        'goods_banner',
+        'sub_title',
+        ]
+        )
+        ->order('sort desc,add_time desc')
+        ->limit(($page-1)*$page_size,$page_size)
+        ->select();
+        
+        // ===================================================================================
+        // 创建，模型
+        $Sku=D('Sku');//sku的模型
+        $GoodsImg=D('GoodsImg');//商品图片的模型
+        
+        // ===================================================================================
+        // 找sku，但是只取一个
+        foreach ($goodsList as $k => $v) {
+            
+            
+            // ===================================================================================
+            // sku
+            $goods_id=$v['goods_id'];
+            $sku=$Sku->getOne($goods_id);
+            $v['sku']=$sku;
+            
+            // ===================================================================================
+            // 商品的图片
+            $img_list=$GoodsImg->getOne($goods_id);
+            
+            $v['img_list']=$img_list;
+            $v['goods_head']=$img_list[0];
+            $goodsList[$k]=$v;
+        }
+        
+        
+        // ===================================================================================
+        // 取商品的图片
+        
+        if($goodsList!=false){
+            $res['res']=count($goodsList);
+            $res['msg']=$goodsList;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        
+        echo json_encode($res);
+        
+    }
+    
+    
 }
