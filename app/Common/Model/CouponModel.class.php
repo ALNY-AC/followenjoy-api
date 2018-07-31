@@ -83,7 +83,6 @@ class CouponModel extends Model {
         return $coupon;
     }
     
-    
     public function 派发新用户大礼包($user_id){
         if(!$user_id){
             return;

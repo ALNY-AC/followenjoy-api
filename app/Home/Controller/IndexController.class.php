@@ -28,7 +28,12 @@ class IndexController extends Controller{
     }
     
     public function index(){
+        
         $this->info();
+        
+        // $Coupon=D('Coupon');
+        // $Coupon->派发新用户大礼包('13914896237');
+        
         die;
         import('Org.Util.Origin.Order.Order');
         
@@ -61,7 +66,6 @@ class IndexController extends Controller{
         
         
         $coupon = new \Coupon();
-        
         $pay->addComponent($coupon);
         
         $price=$pay->valuation();

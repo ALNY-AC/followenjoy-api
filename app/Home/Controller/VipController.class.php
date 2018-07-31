@@ -29,6 +29,8 @@ class VipController extends CommonController{
         $vip->setWriteDatabase(false);
         $vip->initSubList();
         $subList=  $vip->getSubList();
+        $subList=  toTime($subList);
+        
         if($subList!==false){
             $res['res']=count($subList);
             $res['msg']=$subList;

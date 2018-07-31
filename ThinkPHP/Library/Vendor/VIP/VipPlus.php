@@ -711,7 +711,7 @@ class VipPlus{
                 
                 $会员列表=$this->递归二叉树找普通会员();
                 
-                if(count($会员列表)>=6){
+                if(count($会员列表)>=750){
                     // 升级成总监
                     $this->upgrade(3);
                     $data=[];

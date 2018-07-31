@@ -203,38 +203,7 @@ class WeiXinPayController extends Controller{
                     // 1：已支付
                     // 2：已取消
                     
-                    
-                    // 减库存
-                    $where=[];
-                    $where['pay_id']=$out_trade_no;
-                    $Order=D('Order');
-                    $order=$Order->where($where)->select();
-                    $orderIds=[];
-                    foreach ($order as $k => $v) {
-                        $orderIds[]=$v['order_id'];
-                    }
-                    
-                    $where=[];
-                    $where['order_id']=['in',$orderIds];
-                    
-                    $orderData=[];
-                    $orderData['edit_time']=time();
-                    $Order->where($where)->save($orderData);
-                    
-                    $Snapshot=D('Snapshot');
-                    $where=[];
-                    $where['order_id']=['in',$orderIds];
-                    
-                    $snapshot=$Snapshot->where($where)->select();
-                    $Sku=D('Sku');
-                    
-                    foreach ($snapshot as $k => $v) {
-                        $count=$v['count'];
-                        $sku_id=$v['sku_id'];
-                        $where=[];
-                        $where['sku_id']=$sku_id;
-                        $Sku->where($where)->setDec('stock_num',$count);
-                    }
+              
                     
                 }
                 

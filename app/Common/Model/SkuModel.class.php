@@ -24,9 +24,16 @@ class SkuModel extends Model {
         $where=[];
         $where['sku_id']=['in',getIds($sku_ids)];
         $skus=$this->where($where)->select();
-        dump($where);
-        dump($skus);
-        die;
+        
+        foreach ($skus as $k => $v) {
+            
+            if($v['stock_num']<=0){
+                // ===================================================================================
+                // 没有库存啦
+                echo "<h1>库存不足！</h1>";
+                exit;
+            }
+        }
         
     }
     public function get($sku_id){

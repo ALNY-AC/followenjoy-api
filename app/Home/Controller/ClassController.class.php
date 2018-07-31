@@ -144,7 +144,6 @@ class ClassController extends Controller{
         $page_size=I('page_size');
         
         $Goods=D('Goods');
-        
         $where=[];
         $where['goods_class']=$class_id;
         

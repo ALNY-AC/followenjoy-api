@@ -195,7 +195,7 @@ class SnapshotModel extends Model {
         $start_time=$time['start_time'];
         $end_time=$time['end_time'];
         // f_start_time 将时间轴开始日期格式化
-        $time['f_start_time']=date('m月d日 h:i',$start_time);
+        $time['f_start_time']=date('m月d日 H:i',$start_time);
         
         if($toTime>$start_time && $toTime < $end_time){
             // 限时购商品，正在进行时

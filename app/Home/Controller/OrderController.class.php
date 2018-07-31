@@ -98,6 +98,9 @@ class OrderController extends CommonController{
         
     }
     
+    
+    
+    
     public function get(){
         
         $Order=D('Order');
@@ -189,4 +192,9 @@ class OrderController extends CommonController{
         }
         echo json_encode($res);
     }
+    
+    
+    
+    
+    
 }

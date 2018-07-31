@@ -1,8 +1,8 @@
 <?php
 /**
 * +----------------------------------------------------------------------
-* 创建日期：2018年5月9日09:30:33
-* 最新修改时间：2018年5月9日09:30:33
+* 创建日期：2018年7月25日15:42:49
+* 最新修改时间：2018年7月25日15:42:49
 * +----------------------------------------------------------------------
 * https：//github.com/ALNY-AC
 * +----------------------------------------------------------------------
@@ -10,35 +10,24 @@
 * +----------------------------------------------------------------------
 * QQ:1173197065
 * +----------------------------------------------------------------------
-* #####支付控制器#####
+* #####展位组控制器#####
 * @author 代码狮
 *
 */
 namespace Home\Controller;
 use Think\Controller;
-class PayController extends Controller{
+class BoothGroupController extends Controller{
     
-    // 支付回调函数
-    public function alipay_notify(){
-        
-        
-    }
-    
-    public function pay(){
-        
-    }
-    
-    public function getPayInfo(){
-        
-        $pay_id=I('pay_id');
+    public function get(){
+        $booth_group_id=I('booth_group_id');
         $where=[];
-        $where['pay_id']=$pay_id;
+        $where['booth_group_id']=$booth_group_id;
         
-        $Pay=D('Pay');
-        $result=$Pay->where($where)->find();
+        $Booth=D('Booth');
+        $result= $Booth->where($where)->select();
         
         if($result){
-            $res['res']=1;
+            $res['res']=count($result);
             $res['msg']=$result;
         }else{
             $res['res']=-1;
@@ -47,6 +36,5 @@ class PayController extends Controller{
         echo json_encode($res);
         
     }
-    
     
 }

@@ -62,6 +62,25 @@ class SpecialController extends Controller{
     }
     
     
+    public function getInfo(){
+        
+        $Special=D('Special');
+        $special_id=I('special_id');
+        $where=[];
+        $where['special_id']=$special_id;
+        $result=$Special->where($where)->find();
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        
+        echo json_encode($res);
+        
+    }
+    
     public function getGoodsList(){
         
         $res=[];
@@ -86,6 +105,7 @@ class SpecialController extends Controller{
         $page_size  =   $data['page_size']?$data['page_size']:10;
         
         $ids=$SpecialGoods
+        ->distinct(true)
         ->where($where)
         ->limit(($page-1)*$page_size,$page_size)
         ->getField('goods_id',true);
@@ -93,7 +113,6 @@ class SpecialController extends Controller{
         $res['total']=$SpecialGoods
         ->where($where)
         ->count();
-        
         
         $where=[];
         $where['goods_id']=['in',getIds($ids)];
@@ -115,6 +134,7 @@ class SpecialController extends Controller{
         ];
         
         $list=$Goods
+        ->order('add_time desc')
         ->where($where)
         ->field($field)
         ->select();

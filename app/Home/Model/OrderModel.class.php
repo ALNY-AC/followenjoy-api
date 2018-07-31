@@ -3,7 +3,6 @@ namespace Home\Model;
 use Think\Model;
 class OrderModel extends Model {
     
-    
     public function _initialize (){}
     
     //物流模板
@@ -31,7 +30,6 @@ class OrderModel extends Model {
             }
             foreach ($area_info as $key => $info) {
                 $value=$info['value'];
-                
                 if(strpos($value,$a1.$a2.$a3)!==false){
                     //找区县
                     $first_price=$area['first_price'];
@@ -171,7 +169,7 @@ class OrderModel extends Model {
         // 取出此人的上级店铺号
         
         $UserSuper=D('UserSuper');//限时购商品
-        $User=D('User');//限时购商品
+        $User=D('User');//用户
         
         $where=[];
         $where['user_id']=$user_id;
@@ -250,6 +248,7 @@ class OrderModel extends Model {
         $Order=M('Order');//订单模型
         $Logistics=M('Logistics');//物流信息表模型
         $OrderCoupon=D('OrderCoupon');//优惠券订单关联表
+        $User=D('User');//优惠券订单关联表
         
         // 测试环境
         if($isDebug){
@@ -309,6 +308,38 @@ class OrderModel extends Model {
         }
         
         // ===================================================================================
+        // 验证余额抵扣
+        $balance_pwd=I('balance_pwd');
+        
+        if($balance_pwd){
+            // 验证密码
+            $user_id=session('user_id');
+            $where=[];
+            $where['user_id']=$user_id;
+            $pay_code=$User->where($where)->getField('pay_code');
+            $balance_value=I('balance_value');
+            
+            //加密算法： 用户id+密码+密匙
+            $balance_pwd=md5($user_id.$balance_pwd.__KEY__);
+            
+            if($pay_code==$balance_pwd){
+                if($balance_value>$total){
+                    $balance_value=$total;
+                }
+                $total-=$balance_value;
+                
+                // ===================================================================================
+                // 减去用户余额
+                $user_id=session('user_id');
+                $where=[];
+                $where['user_id']=$user_id;
+                $User->where($where)->setDec('user_money',$balance_value);
+                
+            }
+            
+        }
+        
+        // ===================================================================================
         // 创建支付单
         $payData=[];
         $payData['pay_id']=$pay_id;// 支付号
@@ -319,12 +350,63 @@ class OrderModel extends Model {
         $payData['add_time']=time();
         $payData['edit_time']=time();
         
+        
+        // ===================================================================================
+        // 判断是否是0元
+        if($total<=0){
+            
+            $payData['state']=1;//支付状态,0：未支付，1：已支付
+            foreach ($orderDatas as $k => $v) {
+                $v['state']=2;
+                $orderDatas[$k]=$v;
+            }
+            
+        }
+        
+        // dump($payData);
+        // dump($orderDatas);
+        // die;
+        
         // ===================================================================================
         // 写入到数据库中
         $Order->addAll($orderDatas);//添加订单数据
         $OrderAddress->add($address);//添加收货地址信息
         $Pay->add($payData);//添加支付单数据
         $Logistics->addAll($logisticsDatas);//添加物流信息表
+        
+        // ===================================================================================
+        // 减库存
+        $where=[];
+        $where['pay_id']=$pay_id;
+        $Order=D('Order');
+        $order=$Order->where($where)->select();
+        $orderIds=[];
+        foreach ($order as $k => $v) {
+            $orderIds[]=$v['order_id'];
+        }
+        
+        $where=[];
+        $where['order_id']=['in',$orderIds];
+        
+        $orderData=[];
+        $orderData['edit_time']=time();
+        $Order->where($where)->save($orderData);
+        
+        $Snapshot=D('Snapshot');
+        $where=[];
+        $where['order_id']=['in',$orderIds];
+        
+        $snapshot=$Snapshot->where($where)->select();
+        $Sku=D('Sku');
+        
+        foreach ($snapshot as $k => $v) {
+            $count=$v['count'];
+            $sku_id=$v['sku_id'];
+            $where=[];
+            $where['sku_id']=$sku_id;
+            $Sku->where($where)->setDec('stock_num',$count);
+        }
+        
         
         // ec('优惠券数据');
         // dump($coupon);
@@ -594,7 +676,6 @@ class OrderModel extends Model {
         $save=[];
         $save['state']=1;
         $Logistics->where($where)->save($save);
-        
         // 让订单完成，同时有分润
         $this->okOrder($order_id);
         
@@ -725,7 +806,8 @@ class OrderModel extends Model {
     }
     
     public function cancel($pay_id){
-        //取消订单
+        
+        // 取消订单
         // ===================================================================================
         // 创建模型
         $Pay=D('Pay');//支付单模型
@@ -741,9 +823,46 @@ class OrderModel extends Model {
         $save['state']=2;
         $Pay->where($where)->save($save);
         
-        return true;
+        // ===================================================================================
+        // 回库存
         
+        $where=[];
+        $where['pay_id']=$pay_id;
+        $Order=D('Order');
+        $order=$Order->where($where)->select();
+        $orderIds=[];
+        foreach ($order as $k => $v) {
+            $orderIds[]=$v['order_id'];
+        }
+        
+        $where=[];
+        $where['order_id']=['in',$orderIds];
+        
+        $orderData=[];
+        $orderData['edit_time']=time();
+        $Order->where($where)->save($orderData);
+        
+        $Snapshot=D('Snapshot');
+        $where=[];
+        $where['order_id']=['in',$orderIds];
+        
+        $snapshot=$Snapshot->where($where)->select();
+        $Sku=D('Sku');
+        
+        foreach ($snapshot as $k => $v) {
+            $count=$v['count'];
+            $sku_id=$v['sku_id'];
+            $where=[];
+            $where['sku_id']=$sku_id;
+            $Sku->where($where)->setInc('stock_num',$count);
+        }
+        
+        
+        return true;
     }
+    
+    
+    
     
     
     public function okOrder($order_id){

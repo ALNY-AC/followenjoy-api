@@ -77,7 +77,6 @@ class SpecialController extends CommonController{
         
         $result=$Special->saveData(I('special_id'),I('save'));
         
-        
         if($result!==false){
             $res['res']=1;
             $res['msg']=$result;

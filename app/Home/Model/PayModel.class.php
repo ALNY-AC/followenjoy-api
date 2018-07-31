@@ -40,5 +40,12 @@ class PayModel extends Model {
     
     
     
+    public function getList(){
+        
+    }
+    
+    
+    
+    
     
 }

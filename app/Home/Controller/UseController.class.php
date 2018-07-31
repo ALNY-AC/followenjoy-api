@@ -9,7 +9,6 @@ class UseController extends CommonController {
     */
     public function upFile(){
         
-        
         if (IS_POST) {
             $file = $_FILES['file'];
             if (!$file['error']) {
@@ -83,7 +82,6 @@ class UseController extends CommonController {
                 $result['msg'] = [];
                 $result['msg']['info'] = '失败，文件错误';
                 $result['msg']['file'] =$info;
-                
             }
             echo json_encode($result);
         } else {
