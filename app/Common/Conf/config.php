@@ -1,5 +1,8 @@
 <?php
 return array(
+
+'URL_CASE_INSENSITIVE'  =>  true,//全部小写
+
 'TMPL_PARSE_STRING' => array(
 
 '__VENDOR__' => __ROOT__ . '/Public/vendor', // 配置自定义资源文件夹：第三方库
@@ -30,16 +33,30 @@ return array(
 // 'DB_PARAMS'    =>    array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
 
 // ===================================================================================
-// 正式
+// 正式1核1G
+
+// 'DB_TYPE' => 'mysql', // 数据库类型
+// 'DB_HOST' => 'hdm106787188.my3w.com', // 服务器地址
+// 'DB_NAME' => 'hdm106787188_db', // 数据库名
+// 'DB_USER' => 'hdm106787188', // 用户名
+// 'DB_PWD' => 'zxy158362541206', // 密码
+// 'DB_PORT' => '3306', // 端口
+// 'DB_PREFIX' => 'c_', // 数据库表前缀
+// 'DB_PARAMS'    =>    array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
+
+// ===================================================================================
+// 正式4核8G
 
 'DB_TYPE' => 'mysql', // 数据库类型
-'DB_HOST' => 'hdm106787188.my3w.com', // 服务器地址
-'DB_NAME' => 'hdm106787188_db', // 数据库名
-'DB_USER' => 'hdm106787188', // 用户名
-'DB_PWD' => 'zxy158362541206', // 密码
+'DB_HOST' => '47.97.220.99', // 服务器地址
+'DB_NAME' => 'followenjoy', // 数据库名
+'DB_USER' => 'root', // 用户名
+'DB_PWD' => 'followenjoy8787', // 密码
 'DB_PORT' => '3306', // 端口
 'DB_PREFIX' => 'c_', // 数据库表前缀
 'DB_PARAMS'    =>    array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
+
+
 
 // ===================================================================================
 // 测试
