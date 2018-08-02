@@ -21,6 +21,9 @@ class OrderController extends CommonController{
     
     public function getAddPacketTest(){
         
+        // isToAppShop
+        
+        
         $Address=D('Address');
         $snapshot_id=I('snapshot_id');
         
@@ -67,16 +70,61 @@ class OrderController extends CommonController{
         $Coupon=D('Coupon');
         $couponList= $Coupon->getUserList(['time'=>false]);
         
+        $isToAppShop='-1';
+        
+        foreach ($snapshots as $k => $v) {
+            // ===================================================================================
+            // 1元特殊商品
+            if($v['goods_id']=='1469'){
+                // ===================================================================================
+                // 是一元特殊商品
+                $isToAppShop='1';
+                if(count($snapshots)<=1){
+                    $couponList=[];
+                }
+            }
+            
+        }
+        
+        if($isToAppShop=='1'){
+            // ===================================================================================
+            // 满59包邮
+            // ===================================================================================
+            // 计算价格
+            foreach ($snapshots as $k => $v) {
+                $total+=$v['count']*$v['price'];
+            }
+            if($total>=59){
+                // ===================================================================================
+                // 满包邮，修改运费为0元
+                foreach ($snapshots as $k => $v) {
+                    
+                    $freight=$v['goods_info']['freight'];
+                    $freight_id=$freight['freight_id'];
+                    
+                    if($freight_id=='6e2371ffe2bab2390629b63dd3d68fad'){
+                        foreach ($freight['areas'] as $x => $z) {
+                            $z['first_price']=0;
+                            $freight['areas'][$x]=$z;
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        
         if($snapshots){
             $res['res']=count($snapshots);
             $res['snapshots']=$snapshots;
             $res['couponList']=$couponList;
+            $res['isToAppShop']=$isToAppShop;
+            // 1469
         }else{
             $res['res']=-1;
             $res['msg']=$result;
         }
         echo json_encode($res);
-        
     }
     
     //获得列表
