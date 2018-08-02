@@ -335,10 +335,9 @@ class OrderModel extends Model {
             // ===================================================================================
             // 取得物流数据
             $order['logistics']=$this->getLogisticsInfo($order_id);
-            
             // ===================================================================================
             // 检查物流状态
-            if($order['logistics']['state']==3){
+            if($order['state']==3){
                 // 3、待收货
                 if($this->isLogistics($order_id, $order['logistics']['logistics_id'])){
                     $order['logistics']=$this->getLogisticsInfo($order_id);
@@ -374,7 +373,6 @@ class OrderModel extends Model {
     }
     
     public function isLogistics($order_id,$logistics_id){
-        
         $Logistics=D('Logistics');//物流信息表模型，包括运费
         $where=[];
         $where['logistics_id']=$logistics_id;
