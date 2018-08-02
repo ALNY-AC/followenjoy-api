@@ -1,6 +1,6 @@
 # This file is a template, and might need editing before it works on your project.
 # Select image from https://hub.docker.com/_/php/
-image: php:7.0.0
+image: phpunit/phpunit
 
 # Select what we should cache between builds
 cache:
@@ -17,7 +17,7 @@ before_script:
 - docker-php-ext-enable xdebug
 # Install and run Composer
 - curl -sS https://getcomposer.org/installer | php
-- sudo php composer.phar install
+- php composer.phar install
 
 # Bring in any services we need http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
 # See http://docs.gitlab.com/ce/ci/services/README.html for examples.
