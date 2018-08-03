@@ -226,8 +226,8 @@ class ShareMemberController extends Controller{
         // ===================================================================================
         // 判断是否过期
         // http://192.168.1.251:8080
-        $is=$ShareMember->isExpire($share_member_id);
-        if(!$is){
+        // $is=$ShareMember->isExpire($share_member_id);
+        if(true){
             // 未过期
             // ===================================================================================
             // 取出分享人信息
@@ -239,10 +239,6 @@ class ShareMemberController extends Controller{
             
             $this->assign('href',$href);
             $this->display();
-        }else{
-            // 已过期
-            $this->display('expire');
-            
         }
         
     }

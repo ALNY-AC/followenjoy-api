@@ -25,6 +25,9 @@ class IndexController extends Controller{
         echo "<p>当前时间戳：$time</p>";
         echo "<p>当前时间：$date</p>";
         echo "<hr/>";
+        echo "<p>输出：</p>";
+        dump(I());
+        echo "<hr/>";
     }
     
     public function index(){

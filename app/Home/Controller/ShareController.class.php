@@ -61,8 +61,46 @@ class ShareController extends Controller{
     //     echo json_encode($res);
     
     // }
-    
+
+    /**
+    * curl 提交数据
+    *
+    * @param string $url
+    * @param string $body
+    * @param string $method
+    * @return type
+    */
+    private function curl($url, $header, $body, $method)
+    {
+        $header['Content-Length'] = strlen($body);
+        foreach($header as $key => $val)
+        {
+            $header[$key] = $key . ": " . $val;
+        }
+        $header = array_values($header);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->unparseUrl($url));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
+
     public function getGoodsImage(){
+        
+        dump(I());
+        curl('http://img.followenjoy.cn/index.php/Home/Share/getGoodsImage');
+        
+        die;
         
         $goods_id=I('goods_id');
         $user_id=I('user_id');
