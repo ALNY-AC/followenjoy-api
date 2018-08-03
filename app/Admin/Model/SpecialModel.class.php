@@ -143,7 +143,6 @@ class SpecialModel extends Model {
         }
         $SpecialGoods=D('SpecialGoods');
         
-        
         $adds=[];
         foreach ($goods_id as $k => $v) {
             $item=[];
@@ -163,11 +162,7 @@ class SpecialModel extends Model {
         $where=[];
         $where['special_id']=$special_id;
         
-        $goods=$SpecialGoods->where($where)->select();
-        $ids=[];
-        foreach ($goods as $k => $v) {
-            $ids[]=$v['goods_id'];
-        }
+        $ids=$SpecialGoods->where($where)->getField('goods_id');
         if(!$ids){
             return [];
         }

@@ -399,7 +399,6 @@ class GoodsModel extends Model {
             ->select();
             $goods['img_list']=$img_list?$img_list:[];
             $goods['goods_head']=count($goods['img_list'])>0?$goods['img_list'][0]['src']:'';
-            
         }
         
         // ===================================================================================
@@ -517,7 +516,6 @@ class GoodsModel extends Model {
             $freight=$Freight->get($goods['freight_id']);
             $goods['freight']=$freight;
         }
-        
         
         return $goods;
     }

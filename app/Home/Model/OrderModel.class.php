@@ -211,6 +211,61 @@ class OrderModel extends Model {
     }
     
     public function create($data){
+        // ===================================================================================
+        // 创建模型
+        $Sku=M('Sku');//sku模型
+        $Address=D('Address');//用户地址库模型s
+        $Bag=D('Bag');//购物袋模型
+        $Activity=D('Activity');//活动模型
+        $Coupon=D('Coupon');//优惠券模型
+        $Pay=D('Pay');//支付单模型
+        $OrderAddress=M('OrderAddress');//地址库模型
+        $Snapshot=D('Snapshot');//快照模型
+        $Order=M('Order');//订单模型
+        $Logistics=M('Logistics');//物流信息表模型
+        $OrderCoupon=D('OrderCoupon');//优惠券订单关联表
+        $User=D('User');//优惠券订单关联表
+        
+        
+        // ===================================================================================
+        // 验证余额抵扣
+        $balance_pwd=I('balance_pwd');
+        
+        if($balance_pwd){
+            // 验证密码
+            $user_id=session('user_id');
+            $where=[];
+            $where['user_id']=$user_id;
+            $pay_code=$User->where($where)->getField('pay_code');
+            $user_money=$User->where($where)->getField('user_money');
+            $balance_value=I('balance_value');
+            if($user_money<=0 || $user_money-$balance_value<=0){
+                //余额不能用，钱不够了
+                $res=[];
+                $res['res']=-50;
+                echo json_encode($res);
+                die;
+                $isBalance=false;
+            }else{
+                //余额能用
+                //加密算法： 用户id+密码+密匙
+                $balance_pwd=md5($user_id.$balance_pwd.__KEY__);
+                if($pay_code==$balance_pwd){
+                    $isBalance=true;
+                }else{
+                    // ===================================================================================
+                    // 密码错误
+                    $res=[];
+                    $res['res']=-51;
+                    echo json_encode($res);
+                    die;
+                    $isBalance=false;
+                }
+            }
+        }else{
+            $isBalance=false;
+        }
+        
         
         $isDebug=false;
         
@@ -235,20 +290,6 @@ class OrderModel extends Model {
         $message=$data['message'];//买家留言
         // share_id
         
-        // ===================================================================================
-        // 创建模型
-        $Sku=M('Sku');//sku模型
-        $Address=D('Address');//用户地址库模型s
-        $Bag=D('Bag');//购物袋模型
-        $Activity=D('Activity');//活动模型
-        $Coupon=D('Coupon');//优惠券模型
-        $Pay=D('Pay');//支付单模型
-        $OrderAddress=M('OrderAddress');//地址库模型
-        $Snapshot=D('Snapshot');//快照模型
-        $Order=M('Order');//订单模型
-        $Logistics=M('Logistics');//物流信息表模型
-        $OrderCoupon=D('OrderCoupon');//优惠券订单关联表
-        $User=D('User');//优惠券订单关联表
         
         // 测试环境
         if($isDebug){
@@ -307,35 +348,21 @@ class OrderModel extends Model {
             $total=0;
         }
         
-        // ===================================================================================
-        // 验证余额抵扣
-        $balance_pwd=I('balance_pwd');
         
-        if($balance_pwd){
-            // 验证密码
+        if($isBalance){
+            // ===================================================================================
+            // 余额抵扣
+            
+            if($balance_value>$total){
+                $balance_value=$total;
+            }
+            $total-=$balance_value;
+            // ===================================================================================
+            // 减去用户余额
             $user_id=session('user_id');
             $where=[];
             $where['user_id']=$user_id;
-            $pay_code=$User->where($where)->getField('pay_code');
-            $balance_value=I('balance_value');
-            
-            //加密算法： 用户id+密码+密匙
-            $balance_pwd=md5($user_id.$balance_pwd.__KEY__);
-            
-            if($pay_code==$balance_pwd){
-                if($balance_value>$total){
-                    $balance_value=$total;
-                }
-                $total-=$balance_value;
-                
-                // ===================================================================================
-                // 减去用户余额
-                $user_id=session('user_id');
-                $where=[];
-                $where['user_id']=$user_id;
-                $User->where($where)->setDec('user_money',$balance_value);
-                
-            }
+            $User->where($where)->setDec('user_money',$balance_value);
             
         }
         

@@ -54,6 +54,8 @@ class OrderController extends CommonController{
     
     //获得添加订单页的数据包
     public function getAddPacket(){
+        $addBagData=[];
+        
         $Address=D('Address');
         $snapshot_id=I('snapshot_id');
         
@@ -76,6 +78,10 @@ class OrderController extends CommonController{
             // ===================================================================================
             // 1元特殊商品
             if($v['goods_id']=='1469'){
+                
+                $addBagData['goods_id']='1469';
+                $addBagData['count']=1;
+                $addBagData['sku_id']=$v['sku_id'];
                 // ===================================================================================
                 // 是一元特殊商品
                 $isToAppShop='1';
@@ -83,7 +89,6 @@ class OrderController extends CommonController{
                     $couponList=[];
                 }
             }
-            
         }
         
         if($isToAppShop=='1'){
@@ -94,6 +99,7 @@ class OrderController extends CommonController{
             foreach ($snapshots as $k => $v) {
                 $total+=$v['count']*$v['price'];
             }
+            // $res['total']=$total;
             if($total>=59){
                 // ===================================================================================
                 // 满包邮，修改运费为0元
@@ -108,11 +114,16 @@ class OrderController extends CommonController{
                             $freight['areas'][$x]=$z;
                         }
                     }
+                    
+                    $v['goods_info']['freight']=$freight;
+                    $snapshots[$k]=$v;
                 }
             }
         }
         
         
+        // $addBagData[]
+        $res['addBagData']=$addBagData;
         
         if($snapshots){
             $res['res']=count($snapshots);

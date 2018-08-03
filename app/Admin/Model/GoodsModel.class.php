@@ -145,6 +145,24 @@ class GoodsModel extends Model {
         $where  =   $data['where']?$data['where']:[];
         $field  =   $data['field']?$data['field']:[];
         
+        // dump($field);
+        if(!$field){
+            $field=[
+            'goods_id',
+            'goods_title',
+            'goods_banner',
+            'sub_title',
+            // 'freight_id',
+            'is_up',
+            'goods_class',
+            'sort',
+            // 'is_cross_border',
+            // 'goods_content',
+            // 'is_unique',
+            // 'add_time',
+            // 'edit_time'
+            ];
+        }
         
         $goodsList  =  $this
         ->order('add_time desc')
@@ -164,8 +182,26 @@ class GoodsModel extends Model {
         
     }
     
-    public function getAll($ids){
+    public function getAll($ids,$data){
         $field  =   $data['field']?$data['field']:[];
+        
+        if(!$field){
+            $field=[
+            'goods_id',
+            'goods_title',
+            'goods_banner',
+            'sub_title',
+            // 'freight_id',
+            'is_up',
+            'goods_class',
+            'sort',
+            // 'is_cross_border',
+            // 'goods_content',
+            // 'is_unique',
+            // 'add_time',
+            // 'edit_time'
+            ];
+        }
         
         if($ids){
             $where['goods_id']=['in',$ids];
@@ -246,7 +282,7 @@ class GoodsModel extends Model {
     }
     
     public function getGoodsSku($goods,$map=['img_list','sku','tree','class','freight'],$limit){
-        
+        $goods['goods_head']='';
         if(!$limit){
             $limit=[];
             $limit['img_list']=1;
@@ -265,6 +301,16 @@ class GoodsModel extends Model {
             ->limit($limit['img_list'])
             ->where($where)
             ->order('slot asc')
+            ->field(
+            [
+            // 'img_id',
+            // 'goods_id',
+            'src',
+            // 'slot',
+            // 'add_time',
+            // 'edit_time',
+            ]
+            )
             ->select();
             $goods['img_list']=$img_list?$img_list:[];
             $goods['goods_head']=count($goods['img_list'])>0?$goods['img_list'][0]['src']:'';
@@ -275,7 +321,30 @@ class GoodsModel extends Model {
         if(in_array('sku',$map)){
             $Sku=D('sku');
             $skus= $Sku
+            ->limit($limit['sku'])
             ->where($where)
+            ->field(
+            [
+            'goods_id',
+            'sku_id',
+            'img_url',
+            'id',
+            'price',
+            's1',
+            's2',
+            's3',
+            // 'tax',
+            'stock_num',
+            'purchase_price',
+            'earn_price',
+            // 'supplier_id',
+            // 'shop_code',
+            // 'amount',
+            'activity_price',
+            'activity_earn_price',
+            'sales_volume',
+            ]
+            )
             ->order('price asc,stock_num desc')
             ->select();
             $goods['sku']=$skus?$skus:[];
@@ -288,18 +357,43 @@ class GoodsModel extends Model {
             $SkuTree=D('sku_tree');
             $SkuTreeV=D('sku_tree_v');
             $tree= $SkuTree
+            ->limit($limit['tree'])
             ->where($where)
             ->order('k_s asc')
+            ->field(
+            [
+            'sku_tree_id',
+            // 'goods_id',
+            'k',
+            'k_s',
+            // 'add_time',
+            // 'edit_time',
+            ]
+            )
             ->select();
-            for ($j=0; $j <count($tree) ; $j++) {
-                //找 tree 的 v
-                $sku_tree_id=$tree[$j]['sku_tree_id'];
+            
+            foreach ($tree as $k => $v) {
+                $sku_tree_id=$v['sku_tree_id'];
                 $where['sku_tree_id']=$sku_tree_id;
-                $v= $SkuTreeV->where($where)->select();
-                $tree[$j]['v']= $v;
+                $s_v=$SkuTreeV
+                ->field(
+                [
+                'v_id',
+                'goods_id',
+                'sku_tree_id',
+                'id',
+                'name',
+                'img_url',
+                'add_time',
+                'edit_time',
+                ]
+                )
+                ->where($where)
+                ->select();
+                $v['v']= $s_v;
+                $tree[$k]= $v;
             }
             $goods['tree']=$tree;
-            
         }
         
         // ===================================================================================
@@ -324,15 +418,16 @@ class GoodsModel extends Model {
         }
         
         
-        $label=[];
-        $label['type']=1;
-        $label['label']="特卖";
-        $goods['goodsLabel'][]=$label;
+        // $label=[];
+        // $label['type']=1;
+        // $label['label']="特卖";
+        // $goods['goodsLabel'][]=$label;
         
-        $label=[];
-        $label['type']=2;
-        $label['label']="预售";
-        $goods['goodsLabel'][]=$label;
+        // $label=[];
+        // $label['type']=2;
+        // $label['label']="预售";
+        // $goods['goodsLabel'][]=$label;
+        $goods['goodsLabel']=[];
         
         // ===================================================================================
         // 取得商品的物流模板

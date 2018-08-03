@@ -76,7 +76,7 @@ class WeiXinLogin {
         $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=$appid&redirect_uri=$redirect_uri&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
         
         if($jump){
-            echo "<script>window.location.href='$url'</script>";
+            // echo "<script>window.location.href='$url'</script>";
             $this->jump($url,$replace);
         }else{
             return $url;
@@ -89,12 +89,11 @@ class WeiXinLogin {
     */
     public function jump($url,$replace=false){
         if($replace){
-            echo "<script>window.location.replace=('$url')</script>";
+            echo "<script>window.location.replace('$url')</script>";
         }else{
             echo "<script>window.location.href='$url'</script>";
         }
     }
-    
     
     /**
     * 先初始化一下登录信息
