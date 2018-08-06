@@ -25,8 +25,6 @@ class CodeController extends Controller{
         }else{
             $phone=I('user_id');
         }
-        
-        
         $Code=D('Code');
         $res=$Code->pushCode($phone);
         echo json_encode($res);

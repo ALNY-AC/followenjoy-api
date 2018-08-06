@@ -799,6 +799,8 @@ function send_sms($phone,$code){
     
     // 发送模板短信
     $result = $rest->sendTemplateSMS($phone,[$code,'10'],'249986');
+    dump($result);
+    die;
     if($result == NULL ) {
         return -2;
     }

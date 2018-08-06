@@ -129,6 +129,11 @@ class VipModel extends Model {
     
     
     public function linkShop($user_id,$shop_id){
+        
+        $User=D('User');
+        $where=[];
+        $where['shop_id']=$shop_id;
+        $shop_user=$User->where($where)->getField('user_id');
         // ===================================================================================
         // 检查绑定关系
         // 如果已经绑定，就不绑定
@@ -140,14 +145,22 @@ class VipModel extends Model {
             $where['user_id']=$user_id;
             $super=$UserSuper->where($where)->find();
             
+            $where=[];
+            $where['user_id']=$shop_user;
+            $where['super_id']=$user_id;
+            
+            if($UserSuper->where($where)->find()){
+                return;
+            }else{
+                // 继续
+            }
+            // ===================================================================================
+            //
             if($super){
                 // 已经绑定，不用绑定
             }else{
+                
                 // 未绑定，需要绑定
-                $User=D('User');
-                $where=[];
-                $where['shop_id']=$shop_id;
-                $shop_user=$User->where($where)->getField('user_id');
                 // 如果这个用户存在
                 if($shop_user){
                     // ===================================================================================
