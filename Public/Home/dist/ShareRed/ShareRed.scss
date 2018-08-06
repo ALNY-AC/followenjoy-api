@@ -1,7 +1,10 @@
 body {
-    background-color: #fec81e;
+    background-color: #1a2a35;
     background-size: 100%;
     background-repeat: no-repeat;
+    img {
+        max-width: 100%;
+    }
 }
 
 .header {
@@ -51,9 +54,7 @@ body {
     background-color: rgba($color: #000000, $alpha: 0.3);
     margin: 0 13px;
     border-radius: 4px;
-    &.coupon-header {
-        margin-top: -3.5rem;
-    }
+    &.coupon-header {}
     .coupon-panel-header {}
     .coupon-panel-body {
         padding: 20px 13px;
@@ -306,3 +307,71 @@ body {
         text-align: center;
     }
 }
+
+.red-card-panel {
+    position: relative;
+    .red-head {
+        position: relative;
+        img {
+            z-index: 1;
+            position: relative;
+        }
+        .red-head-info {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 2;
+            overflow: hidden;
+            .red-head-info-box {
+                position: absolute;
+                text-align: center;
+                z-index: 2;
+                top: 40%;
+                right: 0;
+                bottom: 0;
+                left: 50%;
+                transform: translate3d(-50%, -50%, 0);
+                .title {
+                    font-size: 16px;
+                    color: #e92b37;
+                }
+                .price {
+                    font-size: 50px;
+                    color: #e92b37;
+                    .price-icon {
+                        font-size: 14px;
+                    }
+                }
+                .time {
+                    white-space: nowrap;
+                    color: #666;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    .red-body {
+        text-align: center;
+        background-color: #e5182e;
+        padding: 10px 0;
+        color: #fff;
+        .phone {
+            color: #fcc81d;
+        }
+        p {
+            line-height: 1;
+        }
+    }
+    .red-footer {
+        padding: 10px;
+        background-color: #e5182e;
+        a {
+            img {
+                display: block;
+            }
+        }
+    }
+}
+

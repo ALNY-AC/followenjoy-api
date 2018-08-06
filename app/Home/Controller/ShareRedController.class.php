@@ -79,7 +79,7 @@ class ShareRedController extends Controller{
         $p=[];
         $p['share_red_id']=$share_red_id;
         $url=U('ShareRed/show',$p,'',true);
-            
+        
         echo "<script>window.location.replace('$url')</script>";
         
     }

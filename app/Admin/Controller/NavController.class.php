@@ -32,8 +32,8 @@ class NavController extends CommonController{
         }
         echo json_encode($res);
         
-        
     }
+    
     public function add(){
         $nav_id=getMd5('anv');
         $Nav=D('Nav');

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,7 +8,7 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="__HDIST__/ShareRed/ShareRed.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/Home/dist/ShareRed/ShareRed.css" />
 
     <style>
     </style>
@@ -18,13 +18,13 @@
 
     <div class="header">
         <div class="img-mask"></div>
-        <img class="header-bg" src="__ASSETS__/images/red/share_img_title.png" alt="">
+        <img class="header-bg" src="/Public/Assets/images/red/share_img_title.png" alt="">
     </div>
 
     <div class="red-card-panel hide">
 
         <div class="red-head">
-            <img src="__ASSETS__/images/red/share_bg_money1.png" alt="">
+            <img src="/Public/Assets/images/red/share_bg_money1.png" alt="">
             <div class="red-head-info">
                 <div class="red-head-info-box">
                     <div class="title">拼手气红包</div>
@@ -44,7 +44,7 @@
         </div>
         <div class="red-footer">
             <a href="">
-                <img src="__ASSETS__/images/red/share_btn_openapp.png" alt="">
+                <img src="/Public/Assets/images/red/share_btn_openapp.png" alt="">
             </a>
         </div>
 
@@ -80,7 +80,7 @@
             <div class="red-card-panel" v-if="isLogin()">
 
                 <div class="red-head">
-                    <img src="__ASSETS__/images/red/share_bg_money1.png" alt="">
+                    <img src="/Public/Assets/images/red/share_bg_money1.png" alt="">
                     <div class="red-head-info">
                         <div class="red-head-info-box">
                             <div class="title">拼手气红包</div>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="red-footer">
                     <a href="">
-                        <img src="__ASSETS__/images/red/share_btn_openapp.png" alt="">
+                        <img src="/Public/Assets/images/red/share_btn_openapp.png" alt="">
                     </a>
                 </div>
 
@@ -181,12 +181,12 @@
 
     <script>
         var config = {
-            m_api: '__MODULE__/',
-            c_api: '__CONTROLLER__/',
-            share_red_id: '{$share_red_id}',
-            is_max: '{$is_max}',
-            recordList: JSON.parse('{$recordList}'),
-            myRecord: JSON.parse('{$myRecord}'),
+            m_api: '/index.php/Home/',
+            c_api: '/index.php/Home/ShareRed/',
+            share_red_id: '<?php echo ($share_red_id); ?>',
+            is_max: '<?php echo ($is_max); ?>',
+            recordList: JSON.parse('<?php echo ($recordList); ?>'),
+            myRecord: JSON.parse('<?php echo ($myRecord); ?>'),
         }
 
         console.warn(config);
@@ -194,7 +194,7 @@
 
     </script>
 
-    <script src="__HDIST__/ShareRed/ShareRed.js"></script>
+    <script src="/Public/Home/dist/ShareRed/ShareRed.js"></script>
 
 
 

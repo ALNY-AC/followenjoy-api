@@ -70,16 +70,27 @@ class NavController extends Controller{
         $where=[];
         $where['nav_id']=$nav_id;
         
-        
-        $goodsIds=$NavGoods
+        $ids=$NavGoods
         ->distinct(true)
+        ->table('c_nav_goods as t1,c_goods as t2')
+        ->field('t1.goods_id,t1.nav_id,t2.goods_id,t2.is_up')
         ->where($where)
+        ->where("t2.is_up = 1 AND t1.goods_id=t2.goods_id")
         ->limit(($page-1)*$page_size,$page_size)
-        ->getField('goods_id',true);
+        ->select();
         
         
+        $goodsIds=[];
+        foreach ($ids as $k => $v) {
+            $goodsIds[]=$v['goods_id'];
+        }
+        
+        // ec($NavGoods->_sql());
+        // dump($goodsIds);
+        // die;
         $where=[];
         $where['goods_id']=['in',getIds($goodsIds)];
+        // $where['is_up']=1;
         
         $Goods=D('Goods');
         
