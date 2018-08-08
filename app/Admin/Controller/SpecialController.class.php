@@ -40,6 +40,7 @@ class SpecialController extends CommonController{
         $result=$Special->getList(I());
         $res['count']=$Special->where(I('where'))->count()+0;
         
+        
         if($result){
             $res['res']=count($result);
             $res['msg']=$result;
@@ -52,6 +53,29 @@ class SpecialController extends CommonController{
         echo json_encode($res);
         
     }
+    
+    
+    public function getAll(){
+        
+        $Special=D('Special');
+        $result=$Special
+        ->field('')
+        ->order('sort asc')
+        ->select();
+        
+        $result=toTime($result,'Y-m-d H:i:s',['edit_time']);
+        
+        if($result!==false){
+            $res['res']=count($result);
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
+    }
+    
     
     public function creat(){
         
@@ -74,7 +98,6 @@ class SpecialController extends CommonController{
     public function saveData(){
         
         $Special=D('Special');
-        
         $result=$Special->saveData(I('special_id'),I('save'));
         
         if($result!==false){
@@ -145,6 +168,97 @@ class SpecialController extends CommonController{
         $Special=D('Special');
         $result=$Special->del(I('ids'));
         if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
+    public function getGoodsList(){
+        
+        $SpecialGoods=D('SpecialGoods');
+        $Goods=D('Goods');
+        
+        $special_id=I('special_id');
+        $page=I('page');
+        $page_size=I('page_size');
+        
+        $goodsList=$SpecialGoods
+        ->distinct(true)
+        ->table('c_special_goods as t1,c_goods as t2')
+        ->field('t1.*,t2.goods_id,t2.goods_title,t2.goods_banner,t2.sub_title,t2.sort,t2.add_time,t2.is_up')
+        ->order('t2.sort desc,t2.add_time desc')
+        ->where("t1.special_id='$special_id' AND t1.goods_id = t2.goods_id AND t2.is_up = '1'")
+        ->limit(($page-1)*$page_size,$page_size)
+        ->select();
+        
+        $where=[];
+        $where['special_id']=$special_id;
+        $res['total']=$SpecialGoods
+        ->where($where)
+        ->count()+0;
+        
+        $where=[];
+        $where['goods_id']=['in',getIds($ids)];
+        
+        
+        $GoodsImg=D('GoodsImg');
+        $Sku=D('sku');
+        foreach ($goodsList as $k => $v) {
+            $where=[];
+            $where['goods_id']=$v['goods_id'];
+            $v['goods_head']=$GoodsImg->order('slot asc')->where($where)->getField('src');
+            $v['price']=$Sku->where($where)->getField('price');
+            $v['stock_num']=$Sku->where($where)->sum('stock_num');
+            $goodsList[$k]=$v;
+        }
+        
+        if($goodsList!==false){
+            $res['res']=count($goodsList);
+            $res['msg']=$goodsList;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$goodsList;
+        }
+        echo json_encode($res);
+    }
+    
+    public function addGoodsPlus(){
+        $SpecialGoods=D('SpecialGoods');
+        $data=[];
+        $data['special_id']=I('special_id');
+        $data['goods_id']=I('goods_id');
+        
+        $where=[];
+        $where['special_id']=I('special_id');
+        $where['goods_id']=['in',getIds(I('goods_id'))];
+        $SpecialGoods->where($where)->delete();
+        
+        
+        $result=$SpecialGoods->add($data,null,true);
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
+    public function delGoodsPlus(){
+        
+        $SpecialGoods=D('SpecialGoods');
+        
+        $where=[];
+        $where['special_id']=I('special_id');
+        $where['goods_id']=['in',getIds(I('goods_id'))];
+        $result=$SpecialGoods->where($where)->delete();
+        
+        if($result!==false){
             $res['res']=1;
             $res['msg']=$result;
         }else{

@@ -17,6 +17,9 @@ class SpecialModel extends Model {
         $where=[];
         $where['special_id']=$special_id;
         $save['edit_time']=time();
+        unset($save['add_time']);
+        unset($save['special_id']);
+        
         return $this->where($where)->save($save);
         
     }

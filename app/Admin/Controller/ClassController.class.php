@@ -148,4 +148,49 @@ class ClassController extends CommonController{
         
     }
     
+    public function getAll(){
+        
+        $Class=D('Class');
+        $where=[];
+        $where['super_id']=['EXP','is Null'];
+        $list=$Class
+        ->field(
+        [
+        'class_id',
+        'class_title',
+        'sort',
+        ]
+        )
+        ->order('sort asc')
+        ->where($where)
+        ->select();
+        
+        foreach ($list as $k => $v) {
+            $where=[];
+            $where['super_id']=$v['class_id'];
+            $sub=$Class
+            ->field(
+            [
+            'class_id',
+            'class_title',
+            'sort',
+            ]
+            )
+            ->order('sort asc')
+            ->where($where)
+            ->select();
+            $v['sub']=$sub?$sub:[];
+            $list[$k]=$v;
+        }
+        
+        if($list){
+            $res['res']=count($list);
+            $res['msg']=$list;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$list;
+        }
+        echo json_encode($res);
+    }
+    
 }

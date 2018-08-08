@@ -20,6 +20,8 @@ class WeiXinPayController extends Controller{
     
     public function pay(){
         
+        echo '<h1>微信支付维护中，暂不可用</h1>';
+        die;
         $pay_id=I('pay_id');
         // ===================================================================================
         // 模型
@@ -202,8 +204,6 @@ class WeiXinPayController extends Controller{
                     // 0：未支付
                     // 1：已支付
                     // 2：已取消
-                    
-              
                     
                 }
                 

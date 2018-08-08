@@ -63,6 +63,7 @@ class NavController extends Controller{
     public function getGoodsPlus(){
         
         $nav_id=I('nav_id');
+        
         $page=I('page');
         $page_size=I('page_size');
         
@@ -127,11 +128,14 @@ class NavController extends Controller{
             $v['img_list']=$img_list;
             $v['goods_head']=$img_list[0];
             $goodsList[$k]=$v;
+            
+            
+            // ===================================================================================
+            // 计算库存总量
+            
+            
         }
         
-        
-        // ===================================================================================
-        // 取商品的图片
         
         if($goodsList!=false){
             $res['res']=count($goodsList);

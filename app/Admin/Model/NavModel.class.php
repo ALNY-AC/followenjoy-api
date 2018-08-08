@@ -4,7 +4,6 @@ use Think\Model;
 class NavModel extends Model {
     
     
-    
     public function getList($data){
         $navList=$this
         ->order('add_time asc')
@@ -21,7 +20,6 @@ class NavModel extends Model {
         $where=[];
         $where['nav_id']=$nav_id;
         $nav=$this->where($where)->find();
-        
         
         //找专题
         $NavSpecial=D('NavSpecial');

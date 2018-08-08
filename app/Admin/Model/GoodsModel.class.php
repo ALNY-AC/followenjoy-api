@@ -348,6 +348,9 @@ class GoodsModel extends Model {
             ->order('price asc,stock_num desc')
             ->select();
             $goods['sku']=$skus?$skus:[];
+            $goods['price']=$Sku->where($where)->getField('price');
+            $goods['stock_num']=$Sku->where($where)->sum('stock_num');
+            
         }
         
         // ===================================================================================
