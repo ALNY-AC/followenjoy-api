@@ -39,7 +39,6 @@ class GoodsController extends CommonController{
         
     }
     
-    
     //获得一个
     public function get(){
         
@@ -140,7 +139,6 @@ class GoodsController extends CommonController{
         unset($save['goods_id']);
         unset($save['add_time']);
         
-        
         $where=I('where');
         $Goods->where($where)->save($save);
         
@@ -211,6 +209,71 @@ class GoodsController extends CommonController{
         
     }
     
+    
+    public function saveField(){
+        $Goods=D('Goods');
+        
+        $data=I('data','',false);
+        $goods_id=I('goods_id');
+        
+        unset($data['goods_id']);
+        unset($data['add_time']);
+        
+        $data['edit_time']=time();
+        
+        
+        $where=[];
+        $where['goods_id']=$goods_id;
+        $Goods->where($where)->save($data);
+        
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
+    public function getPreview(){   
+        $Goods=D('Goods');
+        $goods_id=I('goods_id');
+        $where=[];
+        $where['goods_id']=$goods_id;
+        $goods=$Goods
+        ->field([
+        'goods_id',
+        "goods_title",
+        "sub_title",
+        "goods_banner",
+        "goods_content",
+        "sort",
+        "add_time",
+        "edit_time",
+        ])
+        ->where($where)
+        ->find();
+        
+        
+        // ===================================================================================
+        // 找图片
+        $goods['img_list']=D('GoodsImg')->where($where)->getField('src',true);
+        
+        // ===================================================================================
+        // 找sku
+        $goods['sku']=D('Sku')->where($where)->select();
+        
+        if($goods){
+            $res['res']=1;
+            $res['msg']=$goods;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$goods;
+        }
+        
+        echo json_encode($res);
+    }
     
     
 }

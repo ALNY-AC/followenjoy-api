@@ -175,7 +175,10 @@ class GoodsModel extends Model {
         $where=[];
         $where['goods_id']=$goods_id;
         $where['user_id']=I('user_id');
-        $collection=$Collection->where($where)->find();
+        $collection=$Collection
+        ->field()
+        ->where($where)
+        ->find();
         $goods['is_collection']=!($collection==null);
         
         
@@ -311,6 +314,7 @@ class GoodsModel extends Model {
         $end_time=$time['end_time'];
         
         if( $goods['is_time']){
+            
             foreach ($goods['sku'] as $k => $v) {
                 
                 $v['original_price']=$v['price'];
@@ -324,6 +328,7 @@ class GoodsModel extends Model {
             $label['type']=1;
             $label['label']="特卖";
             $goods['goodsLabel'][]=$label;
+            
         }
         
         // if($toTime>$start_time && $toTime < $end_time){

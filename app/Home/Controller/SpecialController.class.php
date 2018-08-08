@@ -97,54 +97,54 @@ class SpecialController extends Controller{
         // ===================================================================================
         // 先取分页专题关联的商品id
         $where=[];
-        $where['special_id']=$special_id;
+        // $where['special_id']=$special_id;
         
-        $data=I();
+        $page=I('page',1,false);
+        $page_size=I('page_size',5,false);
         
-        $page   =   $data['page']?$data['page']:1;
-        $page_size  =   $data['page_size']?$data['page_size']:10;
-        
-        $ids=$SpecialGoods
+        $list=$SpecialGoods
         ->distinct(true)
-        ->where($where)
+        ->table('c_special_goods as t1,c_goods as t2')
+        ->field('t1.*,t2.goods_id,t2.goods_title,t2.goods_banner,t2.sub_title,t2.sort,t2.add_time')
+        ->order('t2.sort desc,t2.add_time desc')
+        ->where("t1.special_id='$special_id' AND t1.goods_id = t2.goods_id AND t2.is_up = '1'")
         ->limit(($page-1)*$page_size,$page_size)
-        ->getField('goods_id',true);
-        
-        $res['total']=$SpecialGoods
-        ->where($where)
-        ->count();
-        
-        $where=[];
-        $where['goods_id']=['in',getIds($ids)];
-        
-        $field=[
-        'goods_id',
-        'goods_title',
-        'goods_banner',
-        'sub_title',
-        // 'freight_id',
-        // 'is_up',
-        // 'goods_class',
-        // 'sort',
-        // 'is_cross_border',
-        // 'goods_content',
-        // 'is_unique',
-        // 'add_time',
-        // 'edit_time'
-        ];
-        
-        $list=$Goods
-        ->order('add_time desc')
-        ->where($where)
-        ->field($field)
         ->select();
         
+        // $res['total']=$SpecialGoods
+        // ->where($where)
+        // ->count();
+        
+        // $where=[];
+        // $where['goods_id']=['in',getIds($ids)];
+        
+        // $field=[
+        // 'goods_id',
+        // 'goods_title',
+        // 'goods_banner',
+        // 'sub_title',
+        // // 'freight_id',
+        // // 'is_up',
+        // // 'goods_class',
+        // 'sort',
+        // // 'is_cross_border',
+        // // 'goods_content',
+        // // 'is_unique',
+        // // 'add_time',
+        // // 'edit_time'
+        // ];
+        
+        // $list=$Goods
+        // ->order('sort desc,add_time desc')
+        // ->where($where)
+        // ->field($field)
+        // ->select();
         foreach ($list as $k => $v) {
             $v=$Goods->getGoodsSku($v,['img_list','sku'],['img_list'=>1,'sku'=>1]);
             $v=$Goods->getTime($v);
             $list[$k]=$v;
         }
-        
+        $res['test']='5';
         if($list!==false){
             $res['res']=count($list);
             $res['msg']=$list;

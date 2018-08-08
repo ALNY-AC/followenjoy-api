@@ -37,9 +37,21 @@ class IndexController extends Controller{
         // $Coupon=D('Coupon');
         // $Coupon->派发新用户大礼包('13914896237');
         
-        $Goods=D('Goods');
-        $goods=$Goods->find();
-        dump($goods);
+        // $Goods=D('Goods');
+        // $goods=$Goods->find();
+        // dump($goods);
+        
+        echo("<hr>");
+        
+        
+        // $SpecialGoods=D('SpecialGoods');
+        // // $list=$SpecialGoods->distinct(true)->select();
+        // // $SpecialGoods->where('1=1')->delete();
+        // // $SpecialGoods->addAll($list);
+        // $list=$SpecialGoods->select();
+        // dump($list);
+        
+        
         die;
         import('Org.Util.Origin.Order.Order');
         

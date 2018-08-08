@@ -1,5 +1,5 @@
 .DS_Store
 Public/Upload
-
 *.zip
 *.log
+app/Common/Conf/config.php
