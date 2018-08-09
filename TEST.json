@@ -1,2 +1,147 @@
+<<<<<<< HEAD
 
 {}
+=======
+{
+    "res": 1,
+    "snapshots": [
+        {
+            "snapshot_id": "b61e0831e5580d01b4f10c9dc0486050",
+            "goods_id": "542",
+            "user_id": "17621643903",
+            "share_id": "-1",
+            "coupon_id": null,
+            "img": "Public\/Upload\/admin2018-05-20\/5b00941e4b9c2.jpg",
+            "goods_title": "\u6d4b\u8bd5\u5546\u54c1",
+            "sku_id": "6f54be1c6e50a41c9d1eec5e396dec3f",
+            "s1": "1",
+            "s2": "",
+            "s3": "",
+            "tax": "0.00",
+            "price": "0.01",
+            "order_id": null,
+            "count": "1",
+            "earn_price": "0.00",
+            "amount": "0",
+            "activity_price": "0.00",
+            "activity_earn_price": "0.00",
+            "purchase_price": "0.00",
+            "shop_code": "0",
+            "is_unique": null,
+            "is_cross_border": "0",
+            "add_time": "1531207331",
+            "edit_time": "1531207331",
+            "goods_info": {
+                "goods_id": "542",
+                "goods_title": "\u6d4b\u8bd5\u5546\u54c1",
+                "goods_banner": "",
+                "sub_title": "",
+                "freight_id": "07ebd80d433afcd6eb3e9bb0c88446f7",
+                "is_up": "1",
+                "goods_class": "95383d6f722918ab334f2ca17053cfef",
+                "sort": "0",
+                "is_cross_border": "0",
+                "goods_content": "",
+                "is_unique": "0",
+                "add_time": "2018-05-20 05: 10: 17",
+                "edit_time": "2018-07-25 14: 03: 56",
+                "goods_head": "Public\/Upload\/admin2018-05-20\/5b00941e4b9c2.jpg",
+                "img_list": [
+                    {
+                        "src": "Public\/Upload\/admin2018-05-20\/5b00941e4b9c2.jpg"
+                    }
+                ],
+                "sku": [
+                    {
+                        "goods_id": "542",
+                        "sku_id": "6f54be1c6e50a41c9d1eec5e396dec3f",
+                        "img_url": "",
+                        "id": "0",
+                        "price": "0.01",
+                        "s1": "1",
+                        "s2": "",
+                        "s3": "",
+                        "stock_num": "1203",
+                        "purchase_price": "0.00",
+                        "earn_price": "0.00",
+                        "activity_price": "0.00",
+                        "activity_earn_price": "0.00",
+                        "sales_volume": "0"
+                    }
+                ],
+                "tree": [
+                    {
+                        "sku_tree_id": "6422bef06c80875b7e2f9b49c26df052",
+                        "k": "\u4ef6",
+                        "k_s": "s1",
+                        "v": [
+                            {
+                                "v_id": "a6c628d3876a5f491b259aa8509cbaf0",
+                                "goods_id": "542",
+                                "sku_tree_id": "6422bef06c80875b7e2f9b49c26df052",
+                                "id": "1",
+                                "name": "1",
+                                "img_url": "",
+                                "add_time": "1532498636",
+                                "edit_time": "1532498636"
+                            }
+                        ]
+                    }
+                ],
+                "class": null,
+                "goodsLabel": [],
+                "freight": {
+                    "freight_id": "07ebd80d433afcd6eb3e9bb0c88446f7",
+                    "freight_name": "\u98df\u54c1\u56fd\u5185\u4ee3\u53d1",
+                    "freight_type": "2",
+                    "value_type": "1",
+                    "add_time": "1525424603",
+                    "edit_time": "1527066581",
+                    "areas": [
+                        {
+                            "freight_area_id": "de10e2a8a6c910eb9220411274d83888",
+                            "freight_id": "07ebd80d433afcd6eb3e9bb0c88446f7",
+                            "area": "[]",
+                            "first": "0",
+                            "first_price": "0.00",
+                            "continued": "0",
+                            "continued_price": "0.00",
+                            "add_time": "2018-05-23 17:09:41",
+                            "edit_time": "2018-05-23 17:09:41"
+                        }
+                    ]
+                },
+                "is_collection": true,
+                "is_time": false
+            },
+            "no_sku": false,
+            "sku": {
+                "goods_id": "542",
+                "sku_id": "6f54be1c6e50a41c9d1eec5e396dec3f",
+                "img_url": "",
+                "id": "0",
+                "price": "0.01",
+                "s1": "1",
+                "s2": "",
+                "s3": "",
+                "tax": "0.00",
+                "stock_num": "1203",
+                "purchase_price": "0.00",
+                "earn_price": "0.00",
+                "supplier_id": "8ccb126286d5b034222c7dff96c6bcb2",
+                "shop_code": "0",
+                "amount": "0",
+                "activity_price": "0.00",
+                "activity_earn_price": "0.00",
+                "sales_volume": "0",
+                "add_time": "1532498636",
+                "edit_time": "1532498636"
+            },
+            "is_time": false
+        }
+    ],
+    "couponList": []
+}
+
+
+>>>>>>> parent of ed715f5... tewt
