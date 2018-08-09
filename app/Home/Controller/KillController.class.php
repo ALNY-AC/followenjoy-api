@@ -214,4 +214,10 @@ class KillController extends Controller
         }
     }
 
+    public function getInfo(){
+        $data = 1;
+        $res = $this->JsonReturn($data);
+        echo json_encode($res);
+    }
+
 }
