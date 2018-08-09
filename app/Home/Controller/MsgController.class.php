@@ -15,6 +15,7 @@
 *
 */
 namespace Home\Controller;
+use Think\Controller;
 class MsgController extends Controller {
     
     //主
