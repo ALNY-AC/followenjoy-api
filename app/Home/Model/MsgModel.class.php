@@ -8,6 +8,18 @@ class MsgModel extends Model {
         $where=$data['where'];
         $msgs=$this
         ->order('add_time desc')
+        ->field(
+            [
+            'msg_id',
+            'msg_head',
+            'msg_title',
+            'msg_info',
+            'is_up',
+            'type',
+            'add_time',
+            'edit_time'
+            ]
+        )
         ->where($where)
         ->select();
         $msgs=toTime($msgs);
