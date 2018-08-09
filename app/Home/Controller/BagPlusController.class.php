@@ -14,15 +14,17 @@ class BagPlusController extends Controller {
         $user_id = I('user_id');
         if(!$user_id){
             $res['res']=0;
-                 $res['msg']=0;
-            return json_encode($res);
+            $res['msg']=0;
+            echo json_encode($res);
+            exit;
         }
         $Bag = D('bag');
         $where['user_id']=$user_id;
         $count = $Bag->where($where)->count()+0;
-           $res['res']=1;
-           $res['msg']=$count;
-       
-        return json_encode($res);
+        $res['res']=1;
+        $res['msg']=$count;
+
+        echo json_encode($res);
+        exit;
     }
 }
