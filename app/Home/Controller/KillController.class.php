@@ -148,7 +148,7 @@ class KillController extends Controller
             $data[$k]['origin_price'] = $a;
             $data[$k]['price'] = $skus[0]['activity_price'];
             $data[$k]['stock_num'] = $skus[0]['stock_num'];
-            $data[$k]['stock_num_total'] = 100;
+            $data[$k]['stock_num_total'] = 1000;
             $data[$k]['end_time'] = $goods_time[$k];
             $data[$k]['time'] = time();
         }
