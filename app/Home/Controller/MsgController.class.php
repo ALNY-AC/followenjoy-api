@@ -15,7 +15,7 @@
 *
 */
 namespace Home\Controller;
-class MsgController extends CommonController {
+class MsgController extends Controller {
     
     //主
     public function getList(){
