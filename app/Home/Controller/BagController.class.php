@@ -17,6 +17,19 @@
 namespace Home\Controller;
 use Think\Controller;
 class BagController extends CommonController{
+    //购物袋数量提示
+    public function getBagNum(){
+        $Bag = D('bag');
+        $where['user_id']=session('user_id');
+        $count = $Bag->where($where)->count()+0;
+        if($count){
+            $res['res']=1;
+            $res['msg']=$count;
+        }else{
+            $res['res']=-1;
+        }
+        echo json_encode($res);
+    }
     
     //获得列表
     public function getList(){
