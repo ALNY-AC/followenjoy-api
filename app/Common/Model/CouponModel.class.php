@@ -417,13 +417,17 @@ class CouponModel extends Model {
     }
     
     public function getUserList($data){
-        
+        $pageSize = I('page_size',5,false);
+        $page = I('page',1,false);
         $where=[];
         $where['user_id']=session('user_id');
+//        $where['user_id']=13914896237;
+
         $where['state']=['NEQ',2];
         $list  =  $this
         ->order('add_time desc')
         ->where($where)
+        ->limit(($page-1)*$pageSize,$pageSize)
         ->select();
         
         foreach ($list as $k => $v) {
