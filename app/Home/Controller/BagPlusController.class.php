@@ -13,7 +13,7 @@ class BagPlusController extends Controller {
     public function getBagNum(){
         $user_id = I('user_id');
         if(!$user_id){
-            $res['res']=-1;
+            $res['res']=0;
             return json_encode($res);
         }
         $Bag = D('bag');
@@ -23,7 +23,7 @@ class BagPlusController extends Controller {
             $res['res']=1;
             $res['msg']=$count;
         }else{
-            $res['res']=-1;
+            $res['res']=0;
         }
         return json_encode($res);
     }
