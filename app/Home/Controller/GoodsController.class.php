@@ -84,6 +84,7 @@ class GoodsController extends Controller{
     public function get(){
         
         $goods_id=I('goods_id');
+        $type = I('activity_type')?I('activity_type'):'';
         if(!$goods_id){
             $res['res']=-2;
             $res['msg']='没有goods_id';
@@ -92,10 +93,15 @@ class GoodsController extends Controller{
         }
         
         $Goods=D('Goods');
+        $TimeGoods=D('time_goods');
         $goods=$Goods->get($goods_id);
-        
-        
+        $TimeGoods = $TimeGoods->where('goods_id ='.$goods_id. ' AND start_time<'.time() . ' AND end_time>'.time())->getField('end_time');
         if($goods){
+            if($type == 'kill'){
+                $goods['activity_type']['time_end_time'] = $TimeGoods;
+                $goods['activity_type']['nowTime'] = time();
+                $goods['activity_type']['activity_type'] = 'kill';
+            }
             $res['res']=1;
             $res['msg']=$goods;
         }else{

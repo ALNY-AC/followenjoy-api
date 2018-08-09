@@ -5,12 +5,9 @@ class SpecialPaperModel extends Model {
     
     
     public function getList($data){
-        
-        
-        return $this->getAll($data);
-        
+
         $page   =   $data['page']?$data['page']:1;
-        $limit  =   $data['limit']?$data['limit']:10;
+        $limit  =   $data['page_size']?$data['page_size']:10;
         $where  =   $data['where']?$data['where']:[];
         
         
