@@ -401,7 +401,7 @@ class GoodsModel extends Model {
         
         // ===================================================================================
         // 找分类信息
-        
+        $class_info='';
         if(in_array('class',$map)){
             $Class=D('Class');
             $where=[];
@@ -409,6 +409,7 @@ class GoodsModel extends Model {
             $class=$Class
             ->where($where)
             ->find();
+            $class_info=$class['class_title'];
             if($class['super_id']){
                 // ===================================================================================
                 // 有上级，找上级
@@ -416,9 +417,13 @@ class GoodsModel extends Model {
                 $where['class_id']=$class['super_id'];
                 $super=$Class->where($where)->find();
                 $class['super']=$super;
+                $class_info=$super['class_title'].' <i class="el-icon-arrow-right"></i> '.$class['class_title'];
+                
             }
             $goods['class']=$class;
         }
+        
+        $goods['class_info']=$class_info;
         
         
         // $label=[];

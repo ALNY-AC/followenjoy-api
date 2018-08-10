@@ -21,7 +21,7 @@ class CubeController extends CommonController{
     public function getHome(){
         
         $res['res']=1;
-        $res['msg']='';
+        $res['msg']='27e73feb5ab0a3f039389cf743b4a836';
         echo json_encode($res);
         
     }
@@ -29,7 +29,7 @@ class CubeController extends CommonController{
     public function getKill(){
         
         $res['res']=1;
-        $res['msg']='';
+        $res['msg']='881084c681efa51634e377516cc66941';
         echo json_encode($res);
         
     }
