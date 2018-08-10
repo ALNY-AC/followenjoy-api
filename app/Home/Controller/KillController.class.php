@@ -26,30 +26,38 @@ class KillController extends Controller
     //获取未开场商品列表
     public function getNextGoodsList(){
         $TimGoods = D('time_goods');//时间轴商品模型
-        $UserMsg = D('user_msg');//用户消息提醒模型
-        $GoodsMsg = D('msg_push');//用户商品消息提醒模型
+//        $UserMsg = D('user_msg');//用户消息提醒模型
+//        $GoodsMsg = D('msg_push');//用户商品消息提醒模型
         $pageSize = 5;
-        $page = I('page',1,false);
+        $page = I('page')?I('page'):1;
 //        $user_id = session('user_id');
-        $user_id = 10086;
-        $msg_id = $UserMsg->where('`user_id` ='.$user_id)->getField('msg_id',true);
-        $msg_id = implode(',',$msg_id);
+//        $user_id = 10086;
+//        $msg_id = $UserMsg->where('`user_id` ='.$user_id)->getField('msg_id',true);
+//        $msg_id = implode(',',$msg_id);
 
-        $time = mktime(10,0,0,date('m'),date('d')+1,date('Y'));
-        $goods_id = $TimGoods->where('`start_time` ='.$time)->limit(($page-1)*$pageSize,$pageSize)->getField('goods_id',true);
+        $h = date('H',time());
+        if($h>=11){
+            $time = mktime(11,0,0,date('m'),date('d')+1,date('Y'));
+        }else{
+            $time = mktime(11,0,0,date('m'),date('d'),date('Y'));
+        }
+
+        $where = ['start_time'=>$time,'type'=>'kill'];
+
+        $goods_id = $TimGoods->where($where)->limit(($page-1)*$pageSize,$pageSize)->getField('goods_id',true);
 
         $data = $this->getTitleById($goods_id);
         foreach ($data as $k => $v ){
-            if($msg_id){
-                $msg = $GoodsMsg->where('`msg_id` IN '.'(' .  $msg_id .')'. ' AND `link_id` ='.$data[$k]['goods_id'])->find();
-                if($msg){
-                    $data[$k]['is_warn'] = 1;
-                }else{
-                    $data[$k]['is_warn'] = 0;
-                }
-            }else{
-                $data[$k]['is_warn'] = 0;
-            }
+//            if($msg_id){
+//                $msg = $GoodsMsg->where('`msg_id` IN '.'(' .  $msg_id .')'. ' AND `link_id` ='.$data[$k]['goods_id'])->find();
+//                if($msg){
+//                    $data[$k]['is_warn'] = 1;
+//                }else{
+//                    $data[$k]['is_warn'] = 0;
+//                }
+//            }else{
+//                $data[$k]['is_warn'] = 0;
+//            }
             $data[$k]['end_time'] = $time;
             unset($data[$k]['stock_num']);
         }
@@ -111,11 +119,12 @@ class KillController extends Controller
         $TimGoods = D('time_goods');//时间轴商品模型
         $h = date('H',time());
         if($h>=11){
-            $time = mktime(10,0,0,date('m'),date('d'),date('Y'));
+            $time = mktime(11,0,0,date('m'),date('d'),date('Y'));
         }else{
-            $time = mktime(10,0,0,date('m'),date('d')-1,date('Y'));
+            $time = mktime(11,0,0,date('m'),date('d')-1,date('Y'));
         }
-        $goods_id = $TimGoods->where('`start_time` ='.$time)->limit(($page-1)*$pageSize,$pageSize)->getField('goods_id,end_time',true);
+        $where = ['start_time'=>$time,'type'=>'kill'];
+        $goods_id = $TimGoods->where($where)->limit(($page-1)*$pageSize,$pageSize)->getField('goods_id,end_time',true);
         return $goods_id;
     }
 
@@ -143,7 +152,7 @@ class KillController extends Controller
             $data[$k]['origin_price'] = $a;
             $data[$k]['price'] = $skus[0]['activity_price'];
             $data[$k]['stock_num'] = $skus[0]['stock_num'];
-            $data[$k]['stock_num_total'] = 100;
+            $data[$k]['stock_num_total'] = 1000;
             $data[$k]['end_time'] = $goods_time[$k];
             $data[$k]['time'] = time();
         }
@@ -160,6 +169,59 @@ class KillController extends Controller
             $res['msg'] = $data;
         }
         return $res;
+    }
+
+    //消息提醒
+    public function setWarn(){
+        $MsgGroup = D('msg_group'); //消息推送分组模型
+        $MsgPush = D('msg_push');   //消息推送模型
+        $UserMsg = D('user_msg');   //用户关联消息模型
+        $Gooods = D('goods');
+
+        $info['link_id'] = I('goods_id');       //商品ID
+        $info['group_type'] = I('type');        //类型
+        $info['link_type'] = 'goods';           //商品链接
+        $info['status'] = I('status');          //是添加还是取消提醒
+//        $info['user_id'] = session('user_id');
+        $info['user_id'] = I('user_id');
+        $info['add_time'] = time();
+        $info['msg_title'] = '您预约的秒杀商品还有十分钟开始';    //所抢商品名称转化为消息标题
+
+        $goods_name = $Gooods->where(['goods_id'=>$info['link_id']])->getField('goods_title');
+        $info['msg_sub_title'] = '预约名称:'.$goods_name;         //所抢商品名称转化为消息小标题
+        $h = date('H',time());
+        if($h>=10){
+            $time = mktime(10,0,0,date('m'),date('d')+1,date('Y'));
+        }else{
+            $time = mktime(10,0,0,date('m'),date('d'),date('Y'));
+        }
+        $info['hint_time'] = $time-10*60*60;    //推送消息前十分钟时间
+        if($info['status']==1){                 //添加提醒
+            $info['msg_group_id'] = $MsgGroup->where(['msg_group_type '=> $info['group_type']])->getField('msg_group_id');
+
+            $info['msg_id'] = $MsgPush->where(['link_type'=> $info['link_type'], 'link_id' => $info['link_id']])->getField('msg_id');
+            if($info['msg_id']){
+                $info['is_read'] = 0;
+                $data = $UserMsg->data($info)->add();
+            }else{
+                $info['is_read'] = 0;
+                $MsgPush->data($info)->add();
+                $info['msg_id'] = $MsgPush->getLastInsID();
+                $data = $UserMsg->data($info)->add();
+            }
+            $res = $this->JsonReturn($data);
+            echo json_encode($res);
+        }elseif($info['status']==2){            //取消提醒
+            $data = $UserMsg->where('user_id ='.$info['user_id']. ' AND hint_time=' .$info['hint_time'])->delete();
+            $res = $this->JsonReturn($data);
+            echo json_encode($res);
+        }
+    }
+
+    public function getInfo(){
+        $data = 1;
+        $res = $this->JsonReturn($data);
+        echo json_encode($res);
     }
 
 }

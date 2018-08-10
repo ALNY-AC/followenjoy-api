@@ -83,7 +83,6 @@ class SkuModel extends Model {
     * 取一个sku，价格最低的
     */
     public function getOne($goods_id){
-        
         $where=[];
         $where['goods_id']=$goods_id;
         $sku= $this

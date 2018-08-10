@@ -74,6 +74,10 @@ return array(
 "KEY"=>"8312162ee470f489870f1fd35288a946",
 // bcc5e9cfa42e8be37da2a6812f992bad
 ),
+//短链接地址
+"sort_url"=>[
+"SORT_URL"=>"http://dev.server.followenjoy.cn:8101"
+],
 
 
 );
