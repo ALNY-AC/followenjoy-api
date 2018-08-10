@@ -17,6 +17,7 @@
 namespace Home\Controller;
 use Think\Controller;
 class BagController extends CommonController{
+
     
     //获得列表
     public function getList(){

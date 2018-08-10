@@ -15,8 +15,7 @@
 *
 */
 namespace Home\Controller;
-use Think\Controller;
-class PayController extends Controller{
+class PayController extends CommonController {
     
     // 支付回调函数
     public function alipay_notify(){
@@ -45,7 +44,21 @@ class PayController extends Controller{
             $res['msg']=$result;
         }
         echo json_encode($res);
-        
+    }
+
+    //待支付消息数量提示
+    public function getPayInfoNum(){
+        $where['user_id'] = session('user_id');
+        $where['state'] = 0;
+        $count = D('pay')->where($where)->count()+0;
+        if($count){
+            $res['res']=1;
+            $res['msg']=$count;
+        }else{
+            $res['res']=-1;
+        }
+
+        echo json_encode($res);
     }
     
     
