@@ -19,7 +19,7 @@ class ShortLinkController extends Controller{
         if($url){
             $res['res'] = 1;
             $res['msg'] = C('sort_url.SORT_URL').$url;
-            echo $res;
+            echo json_encode($res);
             exit;
         }
         $sort_url = uniqid();
