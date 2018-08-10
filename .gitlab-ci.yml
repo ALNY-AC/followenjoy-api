@@ -38,4 +38,6 @@ variables:
 
 delopy:
    script:
-   - cp . /
+   - cp . /data/dev/api
+   only:
+   - dev
