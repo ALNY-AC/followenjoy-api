@@ -114,7 +114,6 @@ class OrderModel extends Model {
         
         $freight_id=$goods['freight_id'];
         $freight=$Freight->get($freight_id);
-        
         // 取得物流价格
         $first_price = $this->getFirstPrice($freight,$address);
         
@@ -308,10 +307,21 @@ class OrderModel extends Model {
         $where['snapshot_id']=['in',$snapshot_ids];
         $snapshots=$Snapshot->where($where)->select();
         
+        $isToAppShop='-1';
+        
         foreach ($snapshots as $k => $v) {
             $v=$Snapshot->getTime($v);
             $snapshots[$k]=$v;
+            if($v['goods_id']=='1469'){
+                $isToAppShop='1';
+                $v['count']=1;
+                $snapshots[$k]=$v;
+            }
+            
         }
+        
+        
+        
         
         // ===================================================================================
         // 找地址信息
@@ -348,6 +358,15 @@ class OrderModel extends Model {
             $total=0;
         }
         
+        if($isToAppShop=='1'){
+            $total2=0;
+            foreach ($snapshots as $k => $v) {
+                $total2+=$v['count']*$v['price'];
+            }
+            if($total2>=59){
+                $total-=9.9;
+            }
+        }
         
         if($isBalance){
             // ===================================================================================

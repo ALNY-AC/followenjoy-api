@@ -82,12 +82,14 @@ class OrderController extends CommonController{
                 $addBagData['goods_id']='1469';
                 $addBagData['count']=1;
                 $addBagData['sku_id']=$v['sku_id'];
+                $v['count']=1;
                 // ===================================================================================
                 // 是一元特殊商品
                 $isToAppShop='1';
                 if(count($snapshots)<=1){
                     $couponList=[];
                 }
+                $snapshots[$k]=$v;
             }
         }
         
