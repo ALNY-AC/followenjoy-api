@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class CubeController extends CommonController{
+class CubeController extends Controller{
     
     public function getHome(){
         
