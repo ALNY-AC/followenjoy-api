@@ -13,6 +13,11 @@ class ShortLinkController extends Controller{
 //长链生成短链
     public function shortLink(){
         $long_url = I('long_url','',false);
+        if(!$long_url){
+            $res['res'] = -1;
+            echo json_encode($res);
+            exit;
+        }
 //        $long_url='http://q.followenjoy.cn/#/goodsInfo?&goods_id=1545&shop_id=30997992&share_id=18221196274';
         $where['long_url'] = $long_url;
         $url = D('short_link')->where($where)->getField('sort_url');
