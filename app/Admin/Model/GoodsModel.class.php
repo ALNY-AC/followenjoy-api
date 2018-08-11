@@ -303,12 +303,12 @@ class GoodsModel extends Model {
             ->order('slot asc')
             ->field(
             [
-            // 'img_id',
-            // 'goods_id',
+            'img_id',
+            'goods_id',
             'src',
-            // 'slot',
-            // 'add_time',
-            // 'edit_time',
+            'slot',
+            'add_time',
+            'edit_time',
             ]
             )
             ->select();

@@ -46,7 +46,7 @@ class GoodsController extends CommonController{
         $goods_id=I('goods_id');
         
         if(I('map')){
-            $goods=$Goods->get($goods_id,I('map'),I(''));
+            $goods=$Goods->get($goods_id,I('map'));
         }else{
             $goods=$Goods->get($goods_id);
         }
