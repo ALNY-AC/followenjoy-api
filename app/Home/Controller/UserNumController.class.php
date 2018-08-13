@@ -17,6 +17,8 @@ class UserNumController extends Controller{
         $user_where['add_time'] = ['gt',$time];
         $data['users'] = D('user')->where($user_where)->count()+0;
 
+        $record['add_time'] = ['gt',$time];
+        $data['record'] = D('record')->where($record)->count()+0;
 
         $order_where['add_time'] = ['gt',$time];
         $order_where['state'] = 2;
