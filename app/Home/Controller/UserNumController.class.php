@@ -11,6 +11,9 @@ use Think\Controller;
 class UserNumController extends Controller{
     public function getUserNum(){
         $time = strtotime('2018-8-13 20:30:00');
+        
+        $data['usersTotal'] = D('user')->count()+0;
+        
         $user_where['add_time'] = ['gt',$time];
         $data['users'] = D('user')->where($user_where)->count()+0;
 
