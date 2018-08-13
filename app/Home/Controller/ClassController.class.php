@@ -1,4 +1,5 @@
 <?php
+
 /**
 * +----------------------------------------------------------------------
 * 创建日期：2018年2月6日10:46:01
@@ -35,12 +36,7 @@ class ClassController extends Controller{
         if($result){
             //总条数
             $result=toTime($result);
-            
-            
             $arr=[];
-            
-            
-            
             foreach ($result as $key => $value) {
                 
                 $add=[];
@@ -83,6 +79,7 @@ class ClassController extends Controller{
         $where=[];
         $where['super_id']=['EXP','is null'];
         $list=$Class
+        ->cache(true,1800)
         ->order(
         [
         'class_id',
@@ -114,6 +111,7 @@ class ClassController extends Controller{
         $where['super_id']=$super_id;
         
         $list=$Class
+        ->cache(true,1800)
         ->order(
         [
         'class_id',
@@ -148,6 +146,7 @@ class ClassController extends Controller{
         $where['goods_class']=$class_id;
         
         $goodsList=$Goods
+        ->cache(true,1800)
         ->where($where)
         ->field(
         [

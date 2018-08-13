@@ -29,6 +29,7 @@ class HelpController extends Controller{
         $where['is_show']=1;
         
         $result=$Help
+        ->cache(true,3600)
         ->where($where)
         ->limit(($page-1)*$limit,$limit)
         ->select();
@@ -50,7 +51,10 @@ class HelpController extends Controller{
         
         $Help=D('Help');
         $where=I('where');
-        $result=$Help->where($where)->find();
+        $result=$Help
+        ->cache(true,3600)
+        ->where($where)
+        ->find();
         $result=toTime([$result])[0];
         
         if($result){

@@ -37,6 +37,7 @@ class GoodsImgModel extends Model{
         $where['goods_id']=$goods_id;
         
         $img_list=$this
+        ->cache(true,60)
         ->where($where)
         ->order('slot asc')
         ->getField('src',true);
@@ -57,6 +58,7 @@ class GoodsImgModel extends Model{
         
         $img_list=$this
         ->limit(1)
+        ->cache(true,60)
         ->where($where)
         ->order('slot asc')
         ->getField('src',true);

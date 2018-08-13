@@ -73,6 +73,7 @@ class NavController extends Controller{
         
         $ids=$NavGoods
         ->distinct(true)
+        ->cache(true,60)
         ->table('c_nav_goods as t1,c_goods as t2')
         ->field('t1.goods_id,t1.nav_id,t2.goods_id,t2.is_up')
         ->where($where)
@@ -97,6 +98,7 @@ class NavController extends Controller{
         
         $goodsList=$Goods
         ->where($where)
+        ->cache(true,60)
         ->field(
         [
         'goods_id',
