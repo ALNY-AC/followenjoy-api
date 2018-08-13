@@ -38,6 +38,23 @@ class GoodsGroupController extends CommonController{
         echo json_encode($res);
     }
     
+    public function get(){
+        
+        $GoodsGroup=D('GoodsGroup');
+        $goods_group_id=I('goods_group_id');
+        $where=[];
+        $where['goods_group_id']=$goods_group_id;
+        $result=$GoodsGroup->where($where)->find();
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
+    }
     
     public function getList(){
         $GoodsGroup=D('GoodsGroup');
@@ -91,7 +108,7 @@ class GoodsGroupController extends CommonController{
         $where['goods_group_id']=$goods_group_id;
         $result=$GoodsGroup->where($where)->save($data);
         if($result!==false){
-            $res['res']=0;
+            $res['res']=1;
             $res['msg']=$result;
         }else{
             $res['res']=-1;
@@ -106,6 +123,13 @@ class GoodsGroupController extends CommonController{
         $where['goods_group_id']=['in',getIds($goods_group_id)];
         $GoodsGroup=D('GoodsGroup');
         $result=$GoodsGroup->where($where)->delete();
+        
+        // ===================================================================================
+        // 删除分组的商品
+        
+        $GoodsGroupLink=D('GoodsGroupLink');
+        $GoodsGroupLink->where($where)->delete();
+        
         if($result){
             $res['res']=1;
             $res['msg']=$result;
@@ -116,5 +140,22 @@ class GoodsGroupController extends CommonController{
         echo json_encode($res);
     }
     
+    public function copy(){
+        // ===================================================================================
+        // 复制组
+        $GoodsGroup=D('GoodsGroup');
+        $result=$GoodsGroup->copy(I('goods_group_id'));
+        
+        if($result){
+            $res['res']=count($result);
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        
+        echo json_encode($res);
+        
+    }
     
 }
