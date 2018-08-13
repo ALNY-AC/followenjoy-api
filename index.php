@@ -49,6 +49,7 @@ $allow_origin=[
 'http://q.followenjoy.com',
 'http://q.followenjoy.cn',
 
+'https://alny-ac.github.io',
 
 ];
 $is=in_array($origin, $allow_origin);

@@ -47,8 +47,10 @@ class GoodsModel extends Model {
             ];
         }
         
+        // dump(1);
+        // die;
         $list  =  $this
-        ->cache(true,5)
+        ->cache(true,3600)
         ->order('sort desc,add_time desc')
         ->where($where)
         ->field($field)
