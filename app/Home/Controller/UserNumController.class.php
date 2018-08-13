@@ -10,7 +10,8 @@ use Think\Controller;
 
 class UserNumController extends Controller{
     public function getUserNum(){
-        $time = strtotime('2018-8-13 20:30:00');
+        $time = I('time');
+        $time = strtotime($time);//'2018-8-12 20:30:00'
         
         $data['usersTotal'] = D('user')->count()+0;
         
