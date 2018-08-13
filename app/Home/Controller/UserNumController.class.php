@@ -26,6 +26,7 @@ class UserNumController extends Controller{
         $data['orders'] = $Order->where($order_where)->count()+0;
         $sql=$Order->_sql();
 
+        $PrePriceTotal['add_time'] = ['gt',$time];
         $PrePriceTotal['state'] = 1;
         $data['PrePriceTotal'] = $Order->where($PrePriceTotal)->count()+0;
 
