@@ -21,7 +21,6 @@ class UserNumController extends Controller{
     public function getUserNum(){
         $time =strtotime(I('time'));
         //所有用户量
-        
         $data['usersTotal'] = D('user')->count()+0;
         //新增户量
         $user_where['add_time'] = ['gt',$time];
