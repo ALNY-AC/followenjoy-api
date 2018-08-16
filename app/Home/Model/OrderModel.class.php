@@ -159,7 +159,6 @@ class OrderModel extends Model {
         $price+=$first_price;
         // 优惠后的订单总价=订单总价*打折
         
-        
         // ===================================================================================
         // 组装订单数据
         $orderData=[];//订单数据
@@ -238,7 +237,7 @@ class OrderModel extends Model {
             $pay_code=$User->where($where)->getField('pay_code');
             $user_money=$User->where($where)->getField('user_money');
             $balance_value=I('balance_value');
-            if($user_money<=0 || $user_money-$balance_value<=0){
+            if($user_money<=0 || $user_money-$balance_value<0){
                 //余额不能用，钱不够了
                 $res=[];
                 $res['res']=-50;

@@ -175,7 +175,7 @@ class OrderController extends CommonController{
         // 先取订单
         $orderList=$Order
         ->field('*')
-        ->order('state asc,edit_time desc')
+        ->order('add_time desc')
         ->where($where)
         ->limit(($page-1)*$page_size,$page_size)
         ->select();
