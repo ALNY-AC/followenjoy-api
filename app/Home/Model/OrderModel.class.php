@@ -174,7 +174,7 @@ class OrderModel extends Model {
         $user_super=$UserSuper->where($where)->getField('super_id');
         if($user_super){
             $where=[];
-            $where['user_super']=$user_super;
+            $where['user_id']=$user_super;
             $shop_id=$User->where($where)->getField('shop_id');
         }else{
             $shop_id='';

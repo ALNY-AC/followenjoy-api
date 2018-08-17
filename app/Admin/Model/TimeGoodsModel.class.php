@@ -95,7 +95,6 @@ class TimeGoodsModel extends Model {
         $goods_id=$this->where(['time_id'=>$time_id])->getField('goods_id',true);
         
         
-        
         if($goods_id){
             $data['where']['goods_id']=$goods_id;
             $list=$Goods->getAll($goods_id);
@@ -112,9 +111,7 @@ class TimeGoodsModel extends Model {
         return $this->where($where)->delete();
     }
     
-    
     public function getData($data){
-        
         
         $start_time=$data['time'];
         $end_time=strtotime("+1 month",$start_time);
@@ -123,9 +120,9 @@ class TimeGoodsModel extends Model {
         // dump(date('Y-m-d H:i:s',$end_time));
         
         // 大于time且小于time+1月
-        
         $where=[];
         $where['start_time'] = [['gt',$start_time],['lt',$end_time]];
+        
         $list=$this->where($where)->group('start_time')->getField('start_time',true);
         
         foreach ($list as $k => $v) {
@@ -134,9 +131,7 @@ class TimeGoodsModel extends Model {
             $item['time_value']=$v;
             
             // dump(date('Y-m-d H:i:s',strtotime("+1 day",$v)));
-            
             $item['goods_count']=$this->where(['start_time'=>$v])->count();
-            
             
             $list[$k]=$item;
         }

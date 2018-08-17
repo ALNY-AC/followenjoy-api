@@ -13,6 +13,7 @@ class TimeGoodsModel extends Model {
         $where=[];
         $where['start_time']=$start_time;
         $where['is_show']=1;
+        $where['type']=['NEQ','kill'];
         $goods_id=$this
         ->cache(true,50)
         ->where($where)
@@ -79,7 +80,6 @@ class TimeGoodsModel extends Model {
     }
     public function getData($data){
         
-        
         $start_time=mktime(0,0,0,date('m'),date('d'),date('Y'));
         $end_time=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
         
@@ -90,7 +90,7 @@ class TimeGoodsModel extends Model {
         // dump(date('Y-m-d H:i:s',$end_time));
         
         $where=[];
-        
+        $where['type']=['NEQ','kill'];
         $where['start_time'] = [['EGT',$start_time],['ELT',$end_time]];
         $list=$this->where($where)->group('start_time')->getField('start_time',true);
         
