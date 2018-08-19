@@ -901,10 +901,6 @@ class OrderModel extends Model {
         return true;
     }
     
-    
-    
-    
-    
     public function okOrder($order_id){
         
         // 1、待付款
@@ -933,6 +929,7 @@ class OrderModel extends Model {
         }else{
             return false;
         }
+        
     }
     
 }

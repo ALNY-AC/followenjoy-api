@@ -168,7 +168,7 @@ class LoginController extends Controller{
         
         $this->assign('isBinding',$isBinding);
         
-        $this->display();
+        $this->display('loginPage');
         
     }
     public function setPhone(){
@@ -176,7 +176,6 @@ class LoginController extends Controller{
         $unionid=I('unionid');
         $admin_pwd=I('admin_pwd');
         $qrcode_id=I('qrcode_id');
-        
         
         $Admin=D('Admin');
         

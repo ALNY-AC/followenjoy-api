@@ -486,11 +486,14 @@ class OrderController extends CommonController{
         $where=[];
         $where['order_id']=$order_id;
         
-        unset($data['add_time']);
+        // unset($data['add_time']);
         
         $data['edit_time']=time();
         $Order=D('Order');
         $result=$Order->where($where)->save($data);
+        $res['sql']=$Order->_sql();
+        $res['POST']=I();
+        $res['DATA']=$data;
         
         if($result!==false){
             $res['res']=1;
