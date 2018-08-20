@@ -22,8 +22,8 @@ class AdminModel extends Model {
     }
     
     
-    public function saveData($admin_id,$data){
-        
+    public function saveData($data){
+        $admin_id=$data['admin_id'];
         $where=[];
         $where['admin_id']=$admin_id;
         if($data['admin_pwd']){

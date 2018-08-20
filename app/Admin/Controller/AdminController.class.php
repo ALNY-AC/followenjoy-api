@@ -85,7 +85,7 @@ class AdminController extends CommonController{
     public function saveData(){
         
         $Admin=D('Admin');
-        $result=$Admin->saveData(I('admin_id'),I('data'));
+        $result=$Admin->saveData(I('data'));
         
         if($result!==false){
             $res['res']=1;

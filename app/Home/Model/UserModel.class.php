@@ -11,6 +11,7 @@ class userModel extends Model {
         $where=[];
         $where['is_up']=1;
         $upUsers=$this
+        ->cache(true,3600)
         ->field('user_id,user_head,user_name')
         ->order('add_time desc')
         ->where($where)
@@ -54,5 +55,7 @@ class userModel extends Model {
         $data['edit_time']=time();
         return $this->where(['user_id'=>$user_id])->save($data);
     }
+    
+    
     
 }

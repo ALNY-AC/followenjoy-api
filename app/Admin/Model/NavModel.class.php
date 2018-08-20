@@ -6,7 +6,7 @@ class NavModel extends Model {
     
     public function getList($data){
         $navList=$this
-        ->order('add_time asc')
+        ->order('sort asc,add_time asc')
         ->select();
         return $navList;
     }

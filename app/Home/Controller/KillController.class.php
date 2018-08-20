@@ -29,19 +29,22 @@ class KillController extends Controller
 //        $UserMsg = D('user_msg');//用户消息提醒模型
 //        $GoodsMsg = D('msg_push');//用户商品消息提醒模型
         $pageSize = 5;
-        $page = I('page',1,false);
+        $page = I('page')?I('page'):1;
 //        $user_id = session('user_id');
 //        $user_id = 10086;
 //        $msg_id = $UserMsg->where('`user_id` ='.$user_id)->getField('msg_id',true);
 //        $msg_id = implode(',',$msg_id);
 
         $h = date('H',time());
-        if($h>=10){
-            $time = mktime(10,0,0,date('m'),date('d')+1,date('Y'));
+        if($h>=11){
+            $time = mktime(11,0,0,date('m'),date('d')+1,date('Y'));
         }else{
-            $time = mktime(10,0,0,date('m'),date('d'),date('Y'));
+            $time = mktime(11,0,0,date('m'),date('d'),date('Y'));
         }
-        $goods_id = $TimGoods->where('`start_time` ='.$time)->limit(($page-1)*$pageSize,$pageSize)->getField('goods_id',true);
+
+        $where = ['start_time'=>$time,'type'=>'kill'];
+
+        $goods_id = $TimGoods->where($where)->limit(($page-1)*$pageSize,$pageSize)->getField('goods_id',true);
 
         $data = $this->getTitleById($goods_id);
         foreach ($data as $k => $v ){
@@ -115,12 +118,13 @@ class KillController extends Controller
     public function getTimeToGoodsId($page=null,$pageSize=null){
         $TimGoods = D('time_goods');//时间轴商品模型
         $h = date('H',time());
-        if($h>=10){
-            $time = mktime(10,0,0,date('m'),date('d'),date('Y'));
+        if($h>=11){
+            $time = mktime(11,0,0,date('m'),date('d'),date('Y'));
         }else{
-            $time = mktime(10,0,0,date('m'),date('d')-1,date('Y'));
+            $time = mktime(11,0,0,date('m'),date('d')-1,date('Y'));
         }
-        $goods_id = $TimGoods->where('`start_time` ='.$time)->limit(($page-1)*$pageSize,$pageSize)->getField('goods_id,end_time',true);
+        $where = ['start_time'=>$time,'type'=>'kill'];
+        $goods_id = $TimGoods->where($where)->limit(($page-1)*$pageSize,$pageSize)->getField('goods_id,end_time',true);
         return $goods_id;
     }
 
@@ -148,7 +152,7 @@ class KillController extends Controller
             $data[$k]['origin_price'] = $a;
             $data[$k]['price'] = $skus[0]['activity_price'];
             $data[$k]['stock_num'] = $skus[0]['stock_num'];
-            $data[$k]['stock_num_total'] = 100;
+            $data[$k]['stock_num_total'] = 1000;
             $data[$k]['end_time'] = $goods_time[$k];
             $data[$k]['time'] = time();
         }
@@ -212,6 +216,12 @@ class KillController extends Controller
             $res = $this->JsonReturn($data);
             echo json_encode($res);
         }
+    }
+
+    public function getInfo(){
+        $data = 1;
+        $res = $this->JsonReturn($data);
+        echo json_encode($res);
     }
 
 }

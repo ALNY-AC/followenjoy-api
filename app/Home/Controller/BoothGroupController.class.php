@@ -24,7 +24,10 @@ class BoothGroupController extends Controller{
         $where['booth_group_id']=$booth_group_id;
         
         $Booth=D('Booth');
-        $result= $Booth->where($where)->select();
+        $result= $Booth
+        ->cache(true,180)
+        ->where($where)
+        ->select();
         
         if($result){
             $res['res']=count($result);

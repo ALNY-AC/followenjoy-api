@@ -759,7 +759,7 @@ class VipPlus{
         
         if($ids){
             $this->subListIds=getIds($ids);
-            $userList= $this->User->where(['user_id'=>['in',$ids]])->select();
+            $userList= $this->User->order('add_time desc')->where(['user_id'=>['in',$ids]])->select();
             $this->subList=$userList;
         }
         

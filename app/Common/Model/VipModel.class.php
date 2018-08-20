@@ -24,6 +24,7 @@ class VipModel extends Model {
             $where=[];
             $where['snapshot_id']=$snapshot_id;
             $snapshot = $Snapshot->where($where)->find();//取出快照数据
+            $goodsCount=$snapshot['count'];//数量
             
             $earn_price=$snapshot['earn_price'];//佣金
             $user_id=$snapshot['user_id'];//买家id
@@ -49,9 +50,10 @@ class VipModel extends Model {
                     $conf['isDebug']=false;
                     $conf['isSave']=true;
                     $vip=new \VipPlus($conf);
-                    $vip->出货得佣金($earn_price);
+                    for ($i=1; $i <= $goodsCount ; $i++) {
+                        $vip->出货得佣金($earn_price);
+                    }
                 }
-                
             }else{
                 // 买家身份为会员
                 // 从自己开始得到佣金
@@ -61,7 +63,9 @@ class VipModel extends Model {
                 $conf['isDebug']=false;
                 $conf['isSave']=true;
                 $vip=new \VipPlus($conf);
-                $vip->出货得佣金($earn_price);
+                for ($i=1; $i <= $goodsCount ; $i++) {
+                    $vip->出货得佣金($earn_price);
+                }
             }
             
             

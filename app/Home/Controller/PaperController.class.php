@@ -19,7 +19,6 @@ use Think\Controller;
 class PaperController extends Controller{
     
     
-    
     public function getPacket(){
         
         $Carousel=D('Carousel');

@@ -34,6 +34,7 @@ class IndexController extends Controller{
         
         $this->info();
         
+        
         // $Coupon=D('Coupon');
         // $Coupon->派发新用户大礼包('13914896237');
         

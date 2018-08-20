@@ -49,7 +49,7 @@ class MsgController extends Controller {
         }
         echo json_encode($res);
     }
-
+    
     //消息未读提示
     public function unreadNum(){
         $data = M('user_msg')->join('LEFT JOIN c_user_msg.msg_id = c_msg_push.msg_id')->where(['user_id'=>session('user_id')])->find();

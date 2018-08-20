@@ -18,6 +18,7 @@ class DynamicModel extends Model {
         $where['release_time']= ['ELT',time()];//当前时间到达发布时间
         
         $dynamicList  =  $this
+        ->cache(true,1800)
         ->order('add_time desc')
         ->where($where)
         ->limit(($page-1)*$page_size,$page_size)
@@ -36,6 +37,7 @@ class DynamicModel extends Model {
             $where['dynamic_id']=$dynamic_id;
             $img_list=$Img
             // ->field('')
+            ->cache(true,1800)
             ->order('sort asc')
             ->where($where)
             ->select();
@@ -47,11 +49,13 @@ class DynamicModel extends Model {
             $where['goods_id']=$v['goods_id'];
             $goods=$Goods
             ->where($where)
+            ->cache(true,1800)
             ->field('goods_id,goods_title')
             ->find();
             // ===================================================================================
             // 找单图
             $img=$GoodsImg
+            ->cache(true,1800)
             ->where($where)
             ->order('slot asc')
             ->getField('src');
@@ -64,6 +68,7 @@ class DynamicModel extends Model {
             $where=[];
             $where['user_id']=$user_id;
             $user=$User
+            ->cache(true,1800)
             ->field('user_name,user_head,user_id')
             ->where($where)
             ->find();
@@ -155,7 +160,10 @@ class DynamicModel extends Model {
         $where['is_up']=1;
         $where['goods_id']=$goods_id;
         
-        $goods=$this->where($where)->find();
+        $goods=$this
+        ->cache(true,1800)
+        ->where($where)
+        ->find();
         
         $goods=getGoodsSku($goods,$map);
         $goods=toTime([$goods])[0];
@@ -164,7 +172,10 @@ class DynamicModel extends Model {
         $where=[];
         $where['goods_id']=$goods_id;
         $where['user_id']=session('user_id');
-        $collection=$model->where($where)->find();
+        $collection=$model
+        ->cache(true,1800)
+        ->where($where)
+        ->find();
         
         $goods['is_collection']=!($collection==null);
         
