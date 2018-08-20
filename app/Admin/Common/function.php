@@ -100,7 +100,7 @@ function create_xls($data,$filename='simple.xls'){
     
     foreach ($stringList as $k => $v) {
         $phpexcel->getActiveSheet()->getStyle($v)->getNumberFormat()
-        ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER);
+        ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
         $phpexcel->getActiveSheet()->getColumnDimension($v)->setAutoSize(true);
     }
     
