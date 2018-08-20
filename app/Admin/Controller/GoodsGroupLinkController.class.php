@@ -115,5 +115,33 @@ class GoodsGroupLinkController extends CommonController{
         
     }
     
+    public function saveData(){
+        
+        $goods_group_id=I('goods_group_id');
+        $goods_id=I('goods_id');
+        $data=I('data');
+        
+        $where=[];
+        $where['goods_group_id']=$goods_group_id;
+        $where['goods_id']=$goods_id;
+        
+        $GoodsGroupLink=D('GoodsGroupLink');
+        
+        $result=$GoodsGroupLink
+        ->where($where)
+        ->save($data);
+        
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        
+        echo json_encode($res);
+        
+    }
+    
     
 }

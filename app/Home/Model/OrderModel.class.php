@@ -159,7 +159,6 @@ class OrderModel extends Model {
         $price+=$first_price;
         // 优惠后的订单总价=订单总价*打折
         
-        
         // ===================================================================================
         // 组装订单数据
         $orderData=[];//订单数据
@@ -175,7 +174,7 @@ class OrderModel extends Model {
         $user_super=$UserSuper->where($where)->getField('super_id');
         if($user_super){
             $where=[];
-            $where['user_super']=$user_super;
+            $where['user_id']=$user_super;
             $shop_id=$User->where($where)->getField('shop_id');
         }else{
             $shop_id='';
@@ -238,7 +237,7 @@ class OrderModel extends Model {
             $pay_code=$User->where($where)->getField('pay_code');
             $user_money=$User->where($where)->getField('user_money');
             $balance_value=I('balance_value');
-            if($user_money<=0 || $user_money-$balance_value<=0){
+            if($user_money<=0 || $user_money-$balance_value<0){
                 //余额不能用，钱不够了
                 $res=[];
                 $res['res']=-50;
@@ -319,9 +318,6 @@ class OrderModel extends Model {
             }
             
         }
-        
-        
-        
         
         // ===================================================================================
         // 找地址信息
@@ -905,10 +901,6 @@ class OrderModel extends Model {
         return true;
     }
     
-    
-    
-    
-    
     public function okOrder($order_id){
         
         // 1、待付款
@@ -937,6 +929,7 @@ class OrderModel extends Model {
         }else{
             return false;
         }
+        
     }
     
 }

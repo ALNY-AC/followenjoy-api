@@ -47,8 +47,10 @@ class GoodsModel extends Model {
             ];
         }
         
+        // dump(1);
+        // die;
         $list  =  $this
-        ->cache(true,5)
+        ->cache(true,3600)
         ->order('sort desc,add_time desc')
         ->where($where)
         ->field($field)
@@ -95,6 +97,7 @@ class GoodsModel extends Model {
         }
         
         $list  =  $this
+        ->cache(true,60)
         ->order('sort desc,add_time desc')
         ->where($where)
         ->field($field)
@@ -160,6 +163,7 @@ class GoodsModel extends Model {
         $where['goods_id']=$goods_id;
         
         $goods=$this
+        ->cache(true,10)
         ->field($field)
         ->where($where)
         ->find();
@@ -176,6 +180,7 @@ class GoodsModel extends Model {
         $where['goods_id']=$goods_id;
         $where['user_id']=I('user_id');
         $collection=$Collection
+        ->cache(true,10)
         ->field()
         ->where($where)
         ->find();
@@ -184,8 +189,6 @@ class GoodsModel extends Model {
         
         //配置限时购商品
         $goods= $this->getTime($goods);
-        
-        
         // c_record 添加浏览记录
         $this->createRecord($goods_id);
         
@@ -388,6 +391,7 @@ class GoodsModel extends Model {
         if(in_array('img_list',$map)){
             $GoodsImg=D('goods_img');
             $img_list=$GoodsImg
+            ->cache(true,60)
             ->limit($limit['img_list'])
             ->where($where)
             ->order('slot asc')
@@ -411,6 +415,7 @@ class GoodsModel extends Model {
         if(in_array('sku',$map)){
             $Sku=D('sku');
             $skus= $Sku
+            ->cache(true,10)
             ->limit($limit['sku'])
             ->where($where)
             ->field(
@@ -445,6 +450,7 @@ class GoodsModel extends Model {
         if(in_array('tree',$map)){
             
             $tree= $this->SkuTree
+            ->cache(true,10)
             ->limit($limit['tree'])
             ->where($where)
             ->order('k_s asc')
@@ -465,6 +471,7 @@ class GoodsModel extends Model {
                 $where['sku_tree_id']=$sku_tree_id;
                 $s_v=$this
                 ->SkuTreeV
+                ->cache(true,10)
                 ->field(
                 [
                 'v_id',
@@ -491,13 +498,21 @@ class GoodsModel extends Model {
         if(in_array('class',$map)){
             $where=[];
             $where['class_id']=$goods['goods_class'];
-            $class= $this->Class->where($where)->find();
+            $class= $this
+            ->Class
+            ->cache(true,10)
+            ->where($where)
+            ->find();
             if($class['super_id']){
                 // ===================================================================================
                 // 有上级，找上级
                 $where=[];
                 $where['class_id']=$class['super_id'];
-                $super=$this->Class->where($where)->find();
+                $super=$this
+                ->Class
+                ->cache(true,10)
+                ->where($where)
+                ->find();
                 $class['super']=$super;
             }
             $goods['class']=$class;

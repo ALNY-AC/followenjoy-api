@@ -18,7 +18,6 @@ namespace Home\Controller;
 use Think\Controller;
 class GoodsGroupController extends Controller{
     
-    
     public function getList(){
         $GoodsGroupLink=D('GoodsGroupLink');
         
@@ -34,11 +33,12 @@ class GoodsGroupController extends Controller{
         $page_size=I('page_size');
         
         $goodsList=$GoodsGroupLink
+        ->cache(true,10)
         ->distinct(true)
         ->table('c_goods_group_link as t1,c_goods as t2')
         ->field('t1.*,t2.goods_id,t2.goods_title,t2.goods_banner,t2.sub_title,t2.sort,t2.add_time,t2.is_up')
         ->order('t2.sort desc,t2.add_time desc')
-        ->where("t1.goods_group_id='$goods_group_id' AND t1.goods_id = t2.goods_id AND t2.is_up = 1")
+        ->where("t1.goods_group_id='$goods_group_id' AND t1.goods_id = t2.goods_id AND t1.data_status = 1 AND t2.is_up = 1 ")
         ->limit(($page-1)*$page_size,$page_size)
         ->select();
         

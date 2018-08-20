@@ -21,6 +21,9 @@ $allow_origin=[
 'http://192.168.0.102:8081',
 'http://192.168.0.102:8080',
 
+'http://192.168.0.251:8080',
+'http://192.168.0.251:8081',
+
 'http://cosmetics.com',
 
 // 测试端
@@ -46,6 +49,7 @@ $allow_origin=[
 'http://q.followenjoy.com',
 'http://q.followenjoy.cn',
 
+'https://alny-ac.github.io',
 
 ];
 $is=in_array($origin, $allow_origin);

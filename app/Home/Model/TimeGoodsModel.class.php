@@ -13,7 +13,11 @@ class TimeGoodsModel extends Model {
         $where=[];
         $where['start_time']=$start_time;
         $where['is_show']=1;
-        $goods_id=$this->where($where)->getField('goods_id',true);
+        $where['type']=['NEQ','kill'];
+        $goods_id=$this
+        ->cache(true,50)
+        ->where($where)
+        ->getField('goods_id',true);
         
         if($goods_id){
             $where['goods_id']=['in',$goods_id];
@@ -29,7 +33,10 @@ class TimeGoodsModel extends Model {
             $where=[];
             $where['goods_id']=$v['goods_id'];
             $where['start_time']=$start_time;
-            $d=$this->where($where)->find();
+            $d=$this
+            ->cache(true,50)
+            ->where($where)
+            ->find();
             
             $is_show=$d['is_show'];
             $start_time=$d['start_time'];
@@ -51,7 +58,10 @@ class TimeGoodsModel extends Model {
         $Goods=D('Goods');
         $time_id=$data['time_id'];
         
-        $goods_id=$this->where(['time_id'=>$time_id])->getField('goods_id',true);
+        $goods_id=$this
+        ->cache(true,50)
+        ->where(['time_id'=>$time_id])
+        ->getField('goods_id',true);
         
         
         if($goods_id){
@@ -70,7 +80,6 @@ class TimeGoodsModel extends Model {
     }
     public function getData($data){
         
-        
         $start_time=mktime(0,0,0,date('m'),date('d'),date('Y'));
         $end_time=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
         
@@ -81,7 +90,7 @@ class TimeGoodsModel extends Model {
         // dump(date('Y-m-d H:i:s',$end_time));
         
         $where=[];
-        
+        $where['type']=['NEQ','kill'];
         $where['start_time'] = [['EGT',$start_time],['ELT',$end_time]];
         $list=$this->where($where)->group('start_time')->getField('start_time',true);
         
@@ -195,7 +204,11 @@ class TimeGoodsModel extends Model {
         $where=[];
         
         $where['start_time'] = [['EGT',$gt_time],['ELT',$end_time]];
-        $list=$this->where($where)->group('start_time')->getField('start_time',true);
+        $list=$this
+        ->cache(true,1800)
+        ->where($where)
+        ->group('start_time')
+        ->getField('start_time',true);
         
         
         foreach ($list as $k => $v) {
@@ -231,7 +244,10 @@ class TimeGoodsModel extends Model {
         $where=[];
         $where['is_show']=1;
         $where['start_time'] = [['EGT',$start_time],['ELT',$end_time]];
-        $goods_id=$this->where($where)->getField('goods_id',true);
+        $goods_id=$this
+        ->cache(true,1800)
+        ->where($where)
+        ->getField('goods_id',true);
         
         if($goods_id){
             $where['goods_id']=['in',$goods_id];
@@ -247,7 +263,10 @@ class TimeGoodsModel extends Model {
             $where=[];
             $where['goods_id']=$v['goods_id'];
             $where['start_time']=$start_time;
-            $d=$this->where($where)->find();
+            $d=$this
+            ->cache(true,1800)
+            ->where($where)
+            ->find();
             
             $is_show=$d['is_show'];
             $start_time=$d['start_time'];

@@ -191,7 +191,7 @@ class GoodsModel extends Model {
             'goods_title',
             'goods_banner',
             'sub_title',
-            // 'freight_id',
+            'freight_id',
             'is_up',
             'goods_class',
             'sort',
@@ -303,12 +303,12 @@ class GoodsModel extends Model {
             ->order('slot asc')
             ->field(
             [
-            // 'img_id',
-            // 'goods_id',
+            'img_id',
+            'goods_id',
             'src',
-            // 'slot',
-            // 'add_time',
-            // 'edit_time',
+            'slot',
+            'add_time',
+            'edit_time',
             ]
             )
             ->select();
@@ -333,13 +333,13 @@ class GoodsModel extends Model {
             's1',
             's2',
             's3',
-            // 'tax',
+            'tax',
             'stock_num',
             'purchase_price',
             'earn_price',
-            // 'supplier_id',
-            // 'shop_code',
-            // 'amount',
+            'supplier_id',
+            'shop_code',
+            'amount',
             'activity_price',
             'activity_earn_price',
             'sales_volume',
@@ -366,11 +366,11 @@ class GoodsModel extends Model {
             ->field(
             [
             'sku_tree_id',
-            // 'goods_id',
+            'goods_id',
             'k',
             'k_s',
-            // 'add_time',
-            // 'edit_time',
+            'add_time',
+            'edit_time',
             ]
             )
             ->select();
