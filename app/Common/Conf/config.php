@@ -74,7 +74,7 @@ return array(
 ),
 //短链接地址
 "sort_url"=>[
-"SORT_URL"=>"http://server.followenjoy.cn"
+"SORT_URL"=>"http://l.followenjoy.cn"
 ],
 
 );
