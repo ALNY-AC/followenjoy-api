@@ -89,5 +89,26 @@ class GoodsGroupController extends Controller{
         echo json_encode($res);
     }
     
+    public function info(){
+        
+        $GoodsGroup=D('GoodsGroup');
+        $goods_group_id=I('goods_group_id');
+        $where=[];
+        $where['goods_group_id']=$goods_group_id;
+        
+        $goodsGroup=$GoodsGroup->where($where)->find();
+        
+        if($goodsGroup){
+            $res['res']=1;
+            $res['msg']=$goodsGroup;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$goodsGroup;
+        }
+        
+        echo json_encode($res);
+        
+    }
+    
     
 }

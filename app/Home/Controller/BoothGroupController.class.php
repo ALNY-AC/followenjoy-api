@@ -25,7 +25,7 @@ class BoothGroupController extends Controller{
         
         $Booth=D('Booth');
         $result= $Booth
-        ->cache(true,180)
+        ->cache(true,0)
         ->where($where)
         ->select();
         
