@@ -46,6 +46,10 @@ class UserNumController extends Controller{
         $data['time'] =$time;
 //金额
         $data['price'] = D('order')->where($order_where)->sum('price')+0;
+//昨天新增人数
+        $beginYesterday=mktime(0,0,0,date('m'),date('d')-1,date('Y'));
+        $endYesterday=mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
+        $data['yesterday'] = D('user')->where("'add_time' > $beginYesterday AND 'add_time' < $endYesterday")->count();
         echo json_encode($data);
         exit();
     }
