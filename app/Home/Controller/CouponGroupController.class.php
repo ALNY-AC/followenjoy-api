@@ -79,16 +79,16 @@ class CouponGroupController extends CommonController{
             if(!$is_group){
                 throw new Exception('兑换券不存在','-4');
             }
-            //数量
-            if($is_group['stock'] <= 0){
-                throw new Exception('兑换券已用完','-3');
-            }
             //是否兑换过
             $has['user_id'] = $user_id;
             $has['coupon_group_id'] = $is_group['coupon_group_id'];
             $isOwn = D('coupon')->where($has)->find();
             if($isOwn){
                 throw new Exception('您已兑换','-2');
+            }
+            //数量
+            if($is_group['stock'] <= 0){
+                throw new Exception('兑换券已用完','-3');
             }
             $out = D('coupon_group')->where(['coupon_group_id'=>$is_group['coupon_group_id']])->setDec('stock',1); // 用户的积分减1
             if($out){
