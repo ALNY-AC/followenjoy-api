@@ -22,13 +22,19 @@ class CouponGroupViewController extends Controller{
     * 显示文案页面。
     * @author 徐开兵
     */
-    public function show(){}
+    public function show(){
+        $this->assign('coupon_group_id',I('coupon_group_id'));
+        $this->display();
+    }
     
     
     /**
     * 显示战略key页面
     * @author 吴杰
     */
-    public function code(){}
+    public function code(){
+        $coupon_group_id = I('coupon_group_id');
+        echo $coupon_group_id;
+    }
     
 }
