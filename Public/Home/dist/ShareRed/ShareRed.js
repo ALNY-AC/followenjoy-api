@@ -35,7 +35,7 @@
         },
         methods: {
             go() {
-                console.warn(1);
+                window.location.href = "http://q.followenjoy.cn/#/HomePage";
             }
         },
         computed: {},
@@ -200,11 +200,6 @@
 
                     }
                 });
-
-
-                let a =
-                    { "page": 1, "limit": 1 }
-
 
             }
         },
