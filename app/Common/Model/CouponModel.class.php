@@ -375,7 +375,7 @@ class CouponModel extends Model {
         return 0;
     }
     
-    public function groupToCode($coupon_group_id,$count){
+    public function groupToCode($coupon_group_id,$count,$user_id = ''){
         $CouponGroup=D('CouponGroup');
         
         $data=[];
@@ -388,7 +388,7 @@ class CouponModel extends Model {
             $item=[];
             $item['coupon_id']=getMd5('coupon'.$i);
             $item['coupon_group_id']=$coupon_group_id;
-            $item['user_id']='';
+            $item['user_id']=$user_id;
             $item['class_id']=$group['class_id'];
             $item['name']=$group['coupon_group_name'];
             $item['discount']=$group['discount'];
@@ -415,7 +415,7 @@ class CouponModel extends Model {
         
         // $coupon_group_id
         // 修改发放量
-        
+
         return $this->addAll($data);
         
     }
