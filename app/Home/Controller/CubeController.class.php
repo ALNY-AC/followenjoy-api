@@ -29,7 +29,7 @@ class CubeController extends Controller{
     public function getKill(){
         
         $res['res']=1;
-        $res['msg']='';
+        $res['msg']='1dfeb88b9077e26f862b6542fdc0a140';
         echo json_encode($res);
         
     }

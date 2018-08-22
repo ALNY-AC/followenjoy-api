@@ -43,6 +43,8 @@ class IndexController extends Controller{
         // dump($goods);
         
         echo("<hr>");
+        die;
+        
         
         
         // $SpecialGoods=D('SpecialGoods');
@@ -335,6 +337,20 @@ class IndexController extends Controller{
     }
     public function test(){
         die;
+        $Coupon=D('Coupon');
+        $coupon=[];
+        $couponArr=$Coupon->获得满减券(99,20,1,15,0,'','七夕券-通用-99-20');
+        $coupon=array_merge($coupon,$couponArr);
+        foreach ($coupon as $k => $v) {
+            $v['user_id']='15921193669';
+            $v['add_time']=time();
+            $v['edit_time']=time();
+            $coupon[$k]=$v;
+        }
+        $result=$Coupon->addAll($coupon);
+        dump($result);
+        die;
+        
         Vendor('VIP.VipPlus');
         
         $conf=[];

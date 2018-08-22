@@ -359,7 +359,7 @@ class OrderModel extends Model {
             foreach ($snapshots as $k => $v) {
                 $total2+=$v['count']*$v['price'];
             }
-            if($total2>=59){
+            if($total2>=70){
                 $total-=9.9;
             }
         }
