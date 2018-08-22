@@ -16,7 +16,9 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class CouponGroupController extends Controller{
+use Think\Exception;
+
+class CouponGroupController extends CommonController{
     // CouponGroup
     
     
