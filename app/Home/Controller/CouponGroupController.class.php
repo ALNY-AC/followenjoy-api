@@ -16,7 +16,7 @@
 */
 namespace Home\Controller;
 use Think\Controller;
-class CouponGroupController extends CommonController{
+class CouponGroupController extends Controller{
     // CouponGroup
     
     
@@ -66,8 +66,14 @@ class CouponGroupController extends CommonController{
         
         echo json_encode($res);
     }
-    
-    
-    
-    
+
+    public function show(){
+        $this->assign('coupon_group_id',I('coupon_group_id'));
+        $this->display();
+    }
+
+    public function code(){
+        $coupon_group_id = I('coupon_group_id');
+        echo $coupon_group_id;
+    }
 }
