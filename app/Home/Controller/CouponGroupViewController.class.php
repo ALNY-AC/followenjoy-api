@@ -33,8 +33,20 @@ class CouponGroupViewController extends Controller{
     * @author 吴杰
     */
     public function code(){
-        $coupon_group_id = I('coupon_group_id');
-        echo $coupon_group_id;
+        $coupon_group_id = I('coupon_group_id','','');
+        $where['coupon_group_id'] = $coupon_group_id;
+        $data = D('coupon_group')->where($where)->field('coupon_group_id,stock')->find();
+        $isEmpty=false;
+        if($data['stock'] <= 0){
+            $isEmpty = true;
+
+        }
+
+        $msg = $data['coupon_group_id'];
+        $this->assign('msg',$msg);
+        $this->assign('isEmpty',$isEmpty);
+
+        $this->display();
     }
     
 }
