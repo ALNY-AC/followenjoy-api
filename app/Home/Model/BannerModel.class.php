@@ -8,7 +8,9 @@ class BannerModel extends Model {
     public function get($id){
         $where=[];
         $where['banner_id']=$id;
-        $data=$this->where($where)->find();
+        $data=$this
+        ->where($where)
+        ->find();
         $data=$this->bulider([$data])[0];
         return $data;
     }
@@ -19,6 +21,7 @@ class BannerModel extends Model {
         $where  =   $data['where']?$data['where']:[];
         $field  =   $data['field']?$data['field']:[];
         $list  =  $this
+        ->cache(true,60)
         ->order('add_time desc')
         ->where($where)
         ->field($field)
@@ -32,6 +35,7 @@ class BannerModel extends Model {
         $where  =   $data['where']?$data['where']:[];
         $field  =   $data['field']?$data['field']:[];
         $list  =  $this
+        ->cache(true,60)
         ->order('add_time desc')
         ->where($where)
         ->field($field)
@@ -43,10 +47,8 @@ class BannerModel extends Model {
     
     public function bulider($list){
         
-        foreach ($list as $k => $v) {
-            
-            
-        }
+        // foreach ($list as $k => $v) {
+        // }
         
         $list=toTime($list);
         return $list;

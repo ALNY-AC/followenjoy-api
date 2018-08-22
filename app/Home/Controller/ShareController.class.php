@@ -61,7 +61,7 @@ class ShareController extends Controller{
     //     echo json_encode($res);
     
     // }
-
+    
     /**
     * curl 提交数据
     *
@@ -94,13 +94,8 @@ class ShareController extends Controller{
         curl_close($ch);
         return $result;
     }
-
+    
     public function getGoodsImage(){
-        
-        dump(I());
-        curl('http://img.followenjoy.cn/index.php/Home/Share/getGoodsImage');
-        
-        die;
         
         $goods_id=I('goods_id');
         $user_id=I('user_id');

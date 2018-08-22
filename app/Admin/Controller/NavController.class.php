@@ -34,8 +34,28 @@ class NavController extends CommonController{
         
     }
     
+    public function create(){
+        
+        $nav_id=getMd5('nav');
+        $Nav=D('Nav');
+        $data=I('data');
+        $data['nav_id']=$nav_id;
+        $data['add_time']=time();
+        $data['edit_time']=time();
+        $result= $Nav->add($data);
+        
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
     public function add(){
-        $nav_id=getMd5('anv');
+        $nav_id=getMd5('nav');
         $Nav=D('Nav');
         $add=I('add');
         $add['nav_id']=$nav_id;
@@ -87,7 +107,6 @@ class NavController extends CommonController{
         $NavSpecial=D('NavSpecial');
         
         $NavGoods->where($where)->delete();
-        $NavSpecial->where($where)->delete();
         $result=$Nav->where($where)->delete();
         
         if($result){
@@ -106,7 +125,24 @@ class NavController extends CommonController{
         $where=I('where');
         $save=I('save');
         $result=$Nav->where($where)->save($save);
-        
+        if($result){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+    }
+    
+    public function saveData(){
+        $Nav=D('Nav');
+        $where=[];
+        $where['nav_id']=I('nav_id');
+        $data=I('data');
+        unset($data['add_time']);
+        $data['edit_time']=time();
+        $result=$Nav->where($where)->save($data);
         if($result){
             $res['res']=1;
             $res['msg']=$result;

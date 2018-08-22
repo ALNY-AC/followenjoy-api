@@ -51,6 +51,7 @@ class SkuModel extends Model {
         $where=[];
         $where['goods_id']=$goods_id;
         $skus= $this
+        ->cache(true,20)
         ->where($where)
         ->field(
         [
@@ -83,10 +84,10 @@ class SkuModel extends Model {
     * 取一个sku，价格最低的
     */
     public function getOne($goods_id){
-        
         $where=[];
         $where['goods_id']=$goods_id;
         $sku= $this
+        ->cache(true,20)
         ->where($where)
         ->field(
         [

@@ -21,12 +21,19 @@ $allow_origin=[
 'http://192.168.0.102:8081',
 'http://192.168.0.102:8080',
 
+'http://192.168.0.251:8080',
+'http://192.168.0.251:8081',
+
 'http://cosmetics.com',
 
 // 测试端
 'http://test.q.followenjoy.cn',
 'http://test.admin.followenjoy.cn',
 'http://test.server.followenjoy.cn',
+
+'http://dev.server.followenjoy.cn',
+'http://dev.admin.followenjoy.cn',
+'http://dev.q.followenjoy.cn',
 
 // 正式运营
 "http://cuelyine.cn",
@@ -42,6 +49,7 @@ $allow_origin=[
 'http://q.followenjoy.com',
 'http://q.followenjoy.cn',
 
+'https://alny-ac.github.io',
 
 ];
 $is=in_array($origin, $allow_origin);

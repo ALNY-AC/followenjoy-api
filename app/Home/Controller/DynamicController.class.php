@@ -112,7 +112,9 @@ class DynamicController extends Controller{
         $data=I();
         
         $result=$Dynamic->getList($data);
-        $res['count']=$Dynamic->where($data['where']?$data['where']:[])->count()+0;
+        $res['count']=$Dynamic
+        ->where($data['where']?$data['where']:[])
+        ->count()+0;
         
         if($result!==false){
             $res['res']=count($result);

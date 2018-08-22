@@ -23,7 +23,6 @@ class OrderController extends CommonController{
         
         // isToAppShop
         
-        
         $Address=D('Address');
         $snapshot_id=I('snapshot_id');
         
@@ -82,12 +81,20 @@ class OrderController extends CommonController{
                 $addBagData['goods_id']='1469';
                 $addBagData['count']=1;
                 $addBagData['sku_id']=$v['sku_id'];
+                // snapshot_id
+                $where=[];
+                $where['snapshot_id']=$v['snapshot_id'];
+                $save=[];
+                $save['count']=1;
+                $Snapshot->where($where)->save($save);
+                $v['count']=1;
                 // ===================================================================================
                 // 是一元特殊商品
                 $isToAppShop='1';
                 if(count($snapshots)<=1){
                     $couponList=[];
                 }
+                $snapshots[$k]=$v;
             }
         }
         

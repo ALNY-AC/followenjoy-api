@@ -191,7 +191,7 @@ class GoodsModel extends Model {
             'goods_title',
             'goods_banner',
             'sub_title',
-            // 'freight_id',
+            'freight_id',
             'is_up',
             'goods_class',
             'sort',
@@ -303,12 +303,12 @@ class GoodsModel extends Model {
             ->order('slot asc')
             ->field(
             [
-            // 'img_id',
-            // 'goods_id',
+            'img_id',
+            'goods_id',
             'src',
-            // 'slot',
-            // 'add_time',
-            // 'edit_time',
+            'slot',
+            'add_time',
+            'edit_time',
             ]
             )
             ->select();
@@ -333,13 +333,13 @@ class GoodsModel extends Model {
             's1',
             's2',
             's3',
-            // 'tax',
+            'tax',
             'stock_num',
             'purchase_price',
             'earn_price',
-            // 'supplier_id',
-            // 'shop_code',
-            // 'amount',
+            'supplier_id',
+            'shop_code',
+            'amount',
             'activity_price',
             'activity_earn_price',
             'sales_volume',
@@ -366,11 +366,11 @@ class GoodsModel extends Model {
             ->field(
             [
             'sku_tree_id',
-            // 'goods_id',
+            'goods_id',
             'k',
             'k_s',
-            // 'add_time',
-            // 'edit_time',
+            'add_time',
+            'edit_time',
             ]
             )
             ->select();
@@ -401,7 +401,7 @@ class GoodsModel extends Model {
         
         // ===================================================================================
         // 找分类信息
-        
+        $class_info='';
         if(in_array('class',$map)){
             $Class=D('Class');
             $where=[];
@@ -409,6 +409,7 @@ class GoodsModel extends Model {
             $class=$Class
             ->where($where)
             ->find();
+            $class_info=$class['class_title'];
             if($class['super_id']){
                 // ===================================================================================
                 // 有上级，找上级
@@ -416,9 +417,13 @@ class GoodsModel extends Model {
                 $where['class_id']=$class['super_id'];
                 $super=$Class->where($where)->find();
                 $class['super']=$super;
+                $class_info=$super['class_title'].' <i class="el-icon-arrow-right"></i> '.$class['class_title'];
+                
             }
             $goods['class']=$class;
         }
+        
+        $goods['class_info']=$class_info;
         
         
         // $label=[];

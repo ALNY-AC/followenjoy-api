@@ -114,7 +114,6 @@ class OrderModel extends Model {
         
         $freight_id=$goods['freight_id'];
         $freight=$Freight->get($freight_id);
-        
         // 取得物流价格
         $first_price = $this->getFirstPrice($freight,$address);
         
@@ -160,7 +159,6 @@ class OrderModel extends Model {
         $price+=$first_price;
         // 优惠后的订单总价=订单总价*打折
         
-        
         // ===================================================================================
         // 组装订单数据
         $orderData=[];//订单数据
@@ -176,7 +174,7 @@ class OrderModel extends Model {
         $user_super=$UserSuper->where($where)->getField('super_id');
         if($user_super){
             $where=[];
-            $where['user_super']=$user_super;
+            $where['user_id']=$user_super;
             $shop_id=$User->where($where)->getField('shop_id');
         }else{
             $shop_id='';
@@ -239,7 +237,7 @@ class OrderModel extends Model {
             $pay_code=$User->where($where)->getField('pay_code');
             $user_money=$User->where($where)->getField('user_money');
             $balance_value=I('balance_value');
-            if($user_money<=0 || $user_money-$balance_value<=0){
+            if($user_money<=0 || $user_money-$balance_value<0){
                 //余额不能用，钱不够了
                 $res=[];
                 $res['res']=-50;
@@ -308,9 +306,17 @@ class OrderModel extends Model {
         $where['snapshot_id']=['in',$snapshot_ids];
         $snapshots=$Snapshot->where($where)->select();
         
+        $isToAppShop='-1';
+        
         foreach ($snapshots as $k => $v) {
             $v=$Snapshot->getTime($v);
             $snapshots[$k]=$v;
+            if($v['goods_id']=='1469'){
+                $isToAppShop='1';
+                $v['count']=1;
+                $snapshots[$k]=$v;
+            }
+            
         }
         
         // ===================================================================================
@@ -348,6 +354,15 @@ class OrderModel extends Model {
             $total=0;
         }
         
+        if($isToAppShop=='1'){
+            $total2=0;
+            foreach ($snapshots as $k => $v) {
+                $total2+=$v['count']*$v['price'];
+            }
+            if($total2>=59){
+                $total-=9.9;
+            }
+        }
         
         if($isBalance){
             // ===================================================================================
@@ -886,10 +901,6 @@ class OrderModel extends Model {
         return true;
     }
     
-    
-    
-    
-    
     public function okOrder($order_id){
         
         // 1、待付款
@@ -918,6 +929,7 @@ class OrderModel extends Model {
         }else{
             return false;
         }
+        
     }
     
 }

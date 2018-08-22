@@ -46,7 +46,7 @@ class GoodsController extends CommonController{
         $goods_id=I('goods_id');
         
         if(I('map')){
-            $goods=$Goods->get($goods_id,I('map'),I(''));
+            $goods=$Goods->get($goods_id,I('map'));
         }else{
             $goods=$Goods->get($goods_id);
         }
@@ -236,7 +236,7 @@ class GoodsController extends CommonController{
         echo json_encode($res);
     }
     
-    public function getPreview(){   
+    public function getPreview(){
         $Goods=D('Goods');
         $goods_id=I('goods_id');
         $where=[];
@@ -255,14 +255,16 @@ class GoodsController extends CommonController{
         ->where($where)
         ->find();
         
-        
+        $goods['add_time']=date('Y-m-d H:i:s',$goods['add_time']);
+        $goods['edit_time']=date('Y-m-d H:i:s',$goods['edit_time']);
         // ===================================================================================
         // 找图片
         $goods['img_list']=D('GoodsImg')->where($where)->getField('src',true);
         
         // ===================================================================================
         // 找sku
-        $goods['sku']=D('Sku')->where($where)->select();
+        $skus=D('Sku')->where($where)->select();
+        $goods['sku']=$skus;
         
         if($goods){
             $res['res']=1;

@@ -5,7 +5,7 @@ class SpecialPaperModel extends Model {
     
     
     public function getList($data){
-
+        
         $page   =   $data['page']?$data['page']:1;
         $limit  =   $data['page_size']?$data['page_size']:10;
         $where  =   $data['where']?$data['where']:[];
@@ -24,6 +24,7 @@ class SpecialPaperModel extends Model {
         
         $list  =  $this
         ->order('add_time desc')
+        ->cache(true,180)
         ->field($field)
         ->where($where)
         ->limit(($page-1)*$limit,$limit)

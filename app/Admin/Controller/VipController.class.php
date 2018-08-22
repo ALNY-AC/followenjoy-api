@@ -48,4 +48,10 @@ class VipController extends CommonController{
         echo json_encode($res);
     }
     
+    
+    
+    public function getAll(){
+        
+    }
+    
 }

@@ -1,8 +1,8 @@
 <?php
 /**
 * +----------------------------------------------------------------------
-* 创建日期：2018年4月28日13:06:02
-* 最新修改时间：2018年4月28日13:06:02
+* 创建日期：2018年8月10日20:40:38
+* 最新修改时间：2018年8月10日20:40:38
 * +----------------------------------------------------------------------
 * https：//github.com/ALNY-AC
 * +----------------------------------------------------------------------
@@ -10,29 +10,28 @@
 * +----------------------------------------------------------------------
 * QQ:1173197065
 * +----------------------------------------------------------------------
-* #####物流信息控制器#####
+* #####魔方控制器#####
 * @author 代码狮
 *
 */
-namespace Admin\Controller;
+namespace Home\Controller;
 use Think\Controller;
-class LogisticsController extends CommonController{
+class CubeController extends Controller{
     
-    public function saveData(){
-        $Logistics=D('Logistics');
-        $result=$Logistics->saveData(I('order_id'),I('save','',false));
+    public function getHome(){
         
-        if($result!==false){
-            $res['res']=1;
-            $res['msg']=$result;
-        }else{
-            $res['res']=-1;
-            $res['msg']=$result;
-        }
+        $res['res']=1;
+        $res['msg']='4a9ab6c2e3f83e3abff73978d69936dc';
         echo json_encode($res);
+        
     }
     
-    
-    
+    public function getKill(){
+        
+        $res['res']=1;
+        $res['msg']='';
+        echo json_encode($res);
+        
+    }
     
 }
