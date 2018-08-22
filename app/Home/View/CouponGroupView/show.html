@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>领取优惠券</title>
+    <style>
+        /* 在此写样式 */
+        html,body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        body{
+            background-image: url("__PUBLIC__/CouponGroup/img/index_bg.png");
+        }
+        .wrap {
+            width: 100%;
+        }
+        .bg>img{
+            width: 100%;
+        }
+        .coupon-box{
+            width: 100%;
+            margin-bottom: 14px;
+            margin-top: 27px;
+        }
+        .coupon-box>img{
+            display: block;
+            width: 75%;
+            margin: 0 auto;
+        }
+        .receive-box{
+            width: 100%;
+        }
+        .receive-box>a{
+            display: block;
+        }
+        .receive-box img{
+            display: block;
+            width: 75%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrap">
+    <div class="bg">
+        <img src="__PUBLIC__/CouponGroup/img/index_img_title.png" alt="">
+    </div>
+    <div class="coupon-box">
+        <img src="__PUBLIC__/CouponGroup/img/index_img_voucher.png" alt="">
+    </div>
+    <div class="receive-box">
+        <a href="__CONTROLLER__/code?coupon_group_id={$coupon_group_id}" class="receive-btn">
+            <img src="__PUBLIC__/CouponGroup/img/index_btn_receive.png" alt="">
+        </a>
+    </div>
+</div>
+</body>
+
+</html>
