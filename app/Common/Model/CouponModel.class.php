@@ -36,45 +36,38 @@ class CouponModel extends Model {
         // 满,减,数量,有效时长,生效时间,分区
         $coupon=[];
         // 新会员券-通用-49-5
-        $couponArr=$this->获得满减券(49,5,2,15,0,'','新会员券-通用-49-5');
+        $couponArr=$this->获得满减券(49,10,3,5,0,'','新会员券-通用-49-10');
         $coupon=array_merge($coupon,$couponArr);
         
-        $couponArr=$this->获得满减券(49,5,3,15,15,'','新会员券-通用-49-5');
+        $couponArr=$this->获得满减券(99,20,3,5,0,'','新会员券-通用-99-20');
         $coupon=array_merge($coupon,$couponArr);
         
-        $couponArr=$this->获得满减券(99,10,2,30,0,'','新会员券-通用-99-10');
+        $couponArr=$this->获得满减券(150,30,2,5,0,'','新会员券-通用-150-30');
         $coupon=array_merge($coupon,$couponArr);
         
-        $couponArr=$this->获得满减券(99,10,1,15,30,'','新会员券-通用-99-10');
+        $couponArr=$this->获得满减券(300,50,1,5,0,'','新会员券-通用-300-50');
         $coupon=array_merge($coupon,$couponArr);
         
-        $couponArr=$this->获得满减券(199,25,1,15,0,'','新会员券-通用-199-25');
+        $couponArr=$this->获得满减券(500,80,1,5,0,'','新会员券-通用-500-80');
         $coupon=array_merge($coupon,$couponArr);
         
-        $couponArr=$this->获得满减券(199,25,1,30,16,'','新会员券-通用-199-25');
-        $coupon=array_merge($coupon,$couponArr);
-        
-        // ===================================================================================
-        // 个人护理
-        $couponArr=$this->获得满减券(399,50,1,30,0,'caf6f8f64d8b0d7af81299d0efeee3bb','新会员券-个人护理-399-50');
-        $coupon=array_merge($coupon,$couponArr);
-        
-        $couponArr=$this->获得满减券(599,50,1,30+15,15,'caf6f8f64d8b0d7af81299d0efeee3bb','新会员券-个人护理-599-50');
+        $couponArr=$this->获得满减券(800,100,1,5,16,'','新会员券-通用-800-100');
         $coupon=array_merge($coupon,$couponArr);
         
         // ===================================================================================
-        // 彩妆
-        $couponArr=$this->获得满减券(299,35,1,30,0,'9385e03d64efa66b36b46be25a7a9e3c','新会员券-彩妆-299-35');
+        //
+        $couponArr=$this->获得满减券(49,10,1,7,5,'','新会员券-通用-49-10');
         $coupon=array_merge($coupon,$couponArr);
         
-        
-        $couponArr=$this->获得满减券(499,70,1,30,15,'9385e03d64efa66b36b46be25a7a9e3c','新会员券-彩妆-499-70');
+        $couponArr=$this->获得满减券(99,10,2,7,5,'','新会员券-通用-99-10');
         $coupon=array_merge($coupon,$couponArr);
         
-        // ===================================================================================
-        // 轻奢配饰
-        $couponArr=$this->获得满减券(899,150,1,30+15,0,'a24ff192de2abbb8b6c5d5a43f1f1176','新会员券-轻奢配饰-899-150');
+        $couponArr=$this->获得满减券(150,20,2,7,5,'','新会员券-通用-150-20');
         $coupon=array_merge($coupon,$couponArr);
+        
+        $couponArr=$this->获得满减券(300,50,1,7,5,'','新会员券-通用-300-50');
+        $coupon=array_merge($coupon,$couponArr);
+        
         
         foreach ($coupon as $k => $v) {
             $v['user_id']=$user_id;
@@ -109,40 +102,21 @@ class CouponModel extends Model {
         }
         $coupon=[];
         
-        // // ===================================================================================
-        // // 新大礼包
-        // $couponArr=$this->获得满减券(49,10,1,15,0,'','七夕券-通用-49-10');
-        // $coupon=array_merge($coupon,$couponArr);
-        // $couponArr=$this->获得满减券(99,20,2,15,0,'','七夕券-通用-99-20');
-        // $coupon=array_merge($coupon,$couponArr);
-        
-        // foreach ($coupon as $k => $v) {
-        //     $v['user_id']=$user_id;
-        //     $coupon[$k]=$v;
-        // }
-        // return $coupon;
-        
-        // // ===================================================================================
-        // // 全场通用
-        
-        $couponArr=$this->获得满减券(49,5,2,30,0,'','新人券-通用-49-5');
+        // ===================================================================================
+        // 新大礼包100元大礼包
+        $couponArr=$this->获得满减券(49,10,2,3,0,'','新人券-通用-49-10');
         $coupon=array_merge($coupon,$couponArr);
         
-        $couponArr=$this->获得满减券(49,5,2,30,15,'','新人券-通用-49-5');
+        $couponArr=$this->获得满减券(99,20,2,3,0,'','新人券-通用-99-20');
         $coupon=array_merge($coupon,$couponArr);
         
-        $couponArr=$this->获得满减券(99,10,1,15,0,'','新人券-通用-99-10');
+        // ===================================================================================
+        // 几天后生效
+        
+        $couponArr=$this->获得满减券(49,10,2,2,3,'','新人券-通用-49-10');
         $coupon=array_merge($coupon,$couponArr);
         
-        // // ===================================================================================
-        // // 个人护理
-        
-        $couponArr=$this->获得满减券(150,10,1,30+15,0,'caf6f8f64d8b0d7af81299d0efeee3bb','新人券-通用-150-10');
-        $coupon=array_merge($coupon,$couponArr);
-        
-        // // ===================================================================================
-        // // 彩妆
-        $couponArr=$this->获得满减券(150,10,1,30+15,0,'9385e03d64efa66b36b46be25a7a9e3c','新人券-通用-150-10');
+        $couponArr=$this->获得满减券(99,20,1,2,3,'','新人券-通用-99-20');
         $coupon=array_merge($coupon,$couponArr);
         
         foreach ($coupon as $k => $v) {
@@ -150,6 +124,35 @@ class CouponModel extends Model {
             $coupon[$k]=$v;
         }
         return $coupon;
+        
+        // // ===================================================================================
+        // // 全场通用
+        
+        // $couponArr=$this->获得满减券(49,5,2,30,0,'','新人券-通用-49-5');
+        // $coupon=array_merge($coupon,$couponArr);
+        
+        // $couponArr=$this->获得满减券(49,5,2,30,15,'','新人券-通用-49-5');
+        // $coupon=array_merge($coupon,$couponArr);
+        
+        // $couponArr=$this->获得满减券(99,10,1,15,0,'','新人券-通用-99-10');
+        // $coupon=array_merge($coupon,$couponArr);
+        
+        // // // ===================================================================================
+        // // // 个人护理
+        
+        // $couponArr=$this->获得满减券(150,10,1,30+15,0,'caf6f8f64d8b0d7af81299d0efeee3bb','新人券-通用-150-10');
+        // $coupon=array_merge($coupon,$couponArr);
+        
+        // // // ===================================================================================
+        // // // 彩妆
+        // $couponArr=$this->获得满减券(150,10,1,30+15,0,'9385e03d64efa66b36b46be25a7a9e3c','新人券-通用-150-10');
+        // $coupon=array_merge($coupon,$couponArr);
+        
+        // foreach ($coupon as $k => $v) {
+        //     $v['user_id']=$user_id;
+        //     $coupon[$k]=$v;
+        // }
+        // return $coupon;
     }
     
     /**
@@ -399,8 +402,8 @@ class CouponModel extends Model {
             // 从领取时间为开始时间，领取时间就直接time()
             // 结束时间就是当前时间加上具体天数的时间戳
             
-            $start_at=time();
-            $end_at=mktime(0,0,0,date('m'),date('d')+$group['date'],date('Y'));
+            $start_at=mktime(0,0,0,date('m'),date('d'),date('Y'));
+            $end_at=mktime(23,59,59,date('m'),date('d')+$group['date'],date('Y'));
             
             $item['start_at']=$start_at;
             $item['end_at']=$end_at;
@@ -412,10 +415,11 @@ class CouponModel extends Model {
             $data[]=$item;
             
         }
-        
         // $coupon_group_id
         // 修改发放量
-
+        $where=[];
+        $where['coupon_group_id']=$coupon_group_id;
+        $CouponGroup->where($where)->setDec('stock',$count);
         return $this->addAll($data);
         
     }

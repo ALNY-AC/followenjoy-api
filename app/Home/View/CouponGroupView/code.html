@@ -30,13 +30,11 @@
 			}
 			.copyTextStyle{
 				margin-top: 0.15rem;
-				background: #F7CB73;
-				color: #EF3537;
+				color: #fff;
 				text-align: center;
 				border-radius: 0.1rem;
 				font-size: 0.3rem;
 				padding:0.18rem 0 ;
-				font-weight: 600;
 			}
 			.empty{
 				background-color: #777777;
@@ -74,10 +72,10 @@
 			<div id="mainBox">
 				<if condition="$isEmpty == true">
 					<div id="text" class="text">优惠券已兑换完</div>
-					<div class="copyText copyTextStyle empty" >复制兑换码</div>
+					<!-- <div class="copyText copyTextStyle empty" >复制兑换码</div> -->
 					<else />
 					<div id="text" class="text">{$msg}</div>
-					<div class="copyText copyTextStyle" onclick="copyText()">复制兑换码</div>
+					<div class="copyText copyTextStyle" onclick="copyText()">复制编号去APP中搜索领券</div>
 				</if>
 			</div>
 		</div>
@@ -85,7 +83,9 @@
 			<img src="__PUBLIC__/Assets/codeimg/code_img_guide.png" />
 		</div>
 		<div class="bottom-btn">
-			<img src="__PUBLIC__/Assets/codeimg/code_btn_download.png" />
+			<a href="http://sj.qq.com/myapp/detail.htm?apkName=com.zeqiao.followenjoy">
+				<img src="__PUBLIC__/Assets/codeimg/code_btn_download.png" />
+			</a>
 		</div>
 	</body>
 

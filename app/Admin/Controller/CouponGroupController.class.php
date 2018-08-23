@@ -32,6 +32,7 @@ class CouponGroupController extends CommonController{
     }
     
     public function saveData(){
+        
         $CouponGroup=D('CouponGroup');
         $result=$CouponGroup->saveData(I('id'),I('data'));
         if($result!==false){
@@ -41,8 +42,8 @@ class CouponGroupController extends CommonController{
             $res['res']=-1;
             $res['msg']=$result;
         }
-        
         echo json_encode($res);
+        
     }
     
     public function getList(){

@@ -34,6 +34,11 @@ class IndexController extends Controller{
         
         $this->info();
         
+        for ($i=1; $i <= 10; $i++) {
+            ec(createKey());
+            
+            // ec(getNonceStr(10));
+        }
         
         // $Coupon=D('Coupon');
         // $Coupon->派发新用户大礼包('13914896237');

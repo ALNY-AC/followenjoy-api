@@ -124,6 +124,7 @@ class OrderController extends CommonController{
                     
                     $v['goods_info']['freight']=$freight;
                     $snapshots[$k]=$v;
+                    
                 }
             }
         }

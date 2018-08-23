@@ -8,6 +8,8 @@ class CouponGroupModel extends Model {
     
     public function creat($data){
         $data['coupon_group_id']=getMd5('coupon_group');
+        // coupon_group_key
+        $data['coupon_group_key']=createKey();
         $data['add_time']=time();
         $data['edit_time']=time();
         return $this->add($data);
