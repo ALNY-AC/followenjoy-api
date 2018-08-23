@@ -68,7 +68,6 @@ class CouponModel extends Model {
         $couponArr=$this->获得满减券(300,50,1,7,5,'','新会员券-通用-300-50');
         $coupon=array_merge($coupon,$couponArr);
         
-        
         foreach ($coupon as $k => $v) {
             $v['user_id']=$user_id;
             $coupon[$k]=$v;
