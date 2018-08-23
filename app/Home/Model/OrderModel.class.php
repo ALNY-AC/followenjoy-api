@@ -289,17 +289,6 @@ class OrderModel extends Model {
         // share_id
         
         
-        // 测试环境
-        if($isDebug){
-            // $OrderAddress->where('1=1')->delete();
-            // $save=[];
-            // $save['order_id']=null;
-            // $Snapshot->where('1=1')->save($save);
-            // $Order->where('1=1')->delete();
-            // $Logistics->where('1=1')->delete();
-            // $Pay->where('1=1')->delete();
-            // $OrderCoupon->where('1=1')->delete();
-        }
         // ===================================================================================
         // 找到所有的快照数据
         $where=[];
@@ -307,11 +296,13 @@ class OrderModel extends Model {
         $snapshots=$Snapshot->where($where)->select();
         
         $isToAppShop='-1';
+        $OneGoods=D('OneGoods');
         
         foreach ($snapshots as $k => $v) {
             $v=$Snapshot->getTime($v);
             $snapshots[$k]=$v;
-            if($v['goods_id']=='1469'){
+            $is=$OneGoods->is($v['goods_id']);
+            if($is){
                 $isToAppShop='1';
                 $v['count']=1;
                 $snapshots[$k]=$v;

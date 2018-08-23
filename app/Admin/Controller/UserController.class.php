@@ -20,7 +20,6 @@ class UserController extends CommonController{
     
     public function getList(){
         
-        
         $User=D('User');
         
         $data=I();
@@ -242,6 +241,5 @@ class UserController extends CommonController{
         }
         echo json_encode($res);
     }
-    
     
 }

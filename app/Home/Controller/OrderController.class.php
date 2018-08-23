@@ -72,15 +72,21 @@ class OrderController extends CommonController{
         $couponList= $Coupon->getUserList(['time'=>false]);
         
         $isToAppShop='-1';
-        
+        $OneGoods=D('OneGoods');
         foreach ($snapshots as $k => $v) {
             // ===================================================================================
             // 1元特殊商品
-            if($v['goods_id']=='1469'){
+            
+            // ===================================================================================
+            // 到一元商品表里面查询是否存在
+            
+            $is=$OneGoods->is($v['goods_id']);
+            
+            if($is){
                 
-                $addBagData['goods_id']='1469';
-                $addBagData['count']=1;
-                $addBagData['sku_id']=$v['sku_id'];
+                // $addBagData['goods_id']='1469';
+                // $addBagData['count']=1;
+                // $addBagData['sku_id']=$v['sku_id'];
                 // snapshot_id
                 $where=[];
                 $where['snapshot_id']=$v['snapshot_id'];
@@ -107,7 +113,7 @@ class OrderController extends CommonController{
                 $total+=$v['count']*$v['price'];
             }
             // $res['total']=$total;
-            if($total>=59){
+            if($total>=60){
                 // ===================================================================================
                 // 满包邮，修改运费为0元
                 foreach ($snapshots as $k => $v) {
@@ -128,10 +134,6 @@ class OrderController extends CommonController{
                 }
             }
         }
-        
-        
-        // $addBagData[]
-        $res['addBagData']=$addBagData;
         
         if($snapshots){
             $res['res']=count($snapshots);

@@ -22,8 +22,10 @@ class IndexController extends Controller{
         echo "<h1>Hello World,I'm Followenjoy Ctos</h1>";
         $time=time();
         $date=date('Y-m-d H:i:s',time());
+        $h=C('DB_HOST');
         echo "<p>当前时间戳：$time</p>";
         echo "<p>当前时间：$date</p>";
+        echo "<p>$h</p>";
         echo "<hr/>";
         echo "<p>输出：</p>";
         dump(I());
