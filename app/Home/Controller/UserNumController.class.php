@@ -47,7 +47,7 @@ class UserNumController extends Controller{
 //昨天新增人数
         $beginYesterday=mktime(0,0,0,date('m'),date('d')-1,date('Y'));
         $endYesterday=mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
-        $data['yesterday'] = D('user')->where("'add_time' > $beginYesterday AND 'add_time' < $endYesterday")->count();
+        $data['yesterday'] = D('user')->where("add_time > $beginYesterday AND add_time < $endYesterday")->count();
 
         //金额
        
