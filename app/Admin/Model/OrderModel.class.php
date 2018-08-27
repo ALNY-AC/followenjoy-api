@@ -292,6 +292,7 @@ class OrderModel extends Model {
             unset($value['address_id']);
             unset($value['supplier_id']);
             $list[$key]=$value;
+            $list[$key]['order_id'] = $list[$key]['order_id'].' ';
         }
         
         // dump($list);
