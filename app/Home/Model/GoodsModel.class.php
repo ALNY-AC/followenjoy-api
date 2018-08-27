@@ -359,20 +359,7 @@ class GoodsModel extends Model {
         return $goods;
     }
     
-    public function search(){
-        $keys=I('key');
-        //先根据空格分割为数组
-        
-        foreach ($keys as $key => $value) {
-            $keys[$key]='%'.$value.'%';
-        }
-        $where=[];
-        $where['goods_title']=['like',$keys,'AND'];
-        
-        $list=  $this->getList(I(),$where);
-        return $list===null ? []:$list;
-        
-    }
+    
     
     public function getGoodsSku($goods,$map=['img_list','sku','tree','class','freight'],$limit=[]){
         $goods['goods_head']='';
@@ -538,6 +525,21 @@ class GoodsModel extends Model {
         }
         
         return $goods;
+    }
+    
+    public function search(){
+        $keys=I('key');
+        //先根据空格分割为数组
+        
+        foreach ($keys as $key => $value) {
+            $keys[$key]='%'.$value.'%';
+        }
+        $where=[];
+        $where['goods_title']=['like',$keys,'AND'];
+        
+        $list=  $this->getList(I(),$where);
+        return $list===null ? []:$list;
+        
     }
     
 }

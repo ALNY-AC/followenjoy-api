@@ -24,7 +24,7 @@ class CouponModel extends Model {
         //     dump($coupon);
         // }
         
-        $this->addAll($coupon);
+        return $this->addAll($coupon);
     }
     
     public function 取得新499会员大礼包($user_id){

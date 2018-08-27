@@ -19,7 +19,7 @@ class DynamicModel extends Model {
         
         $dynamicList  =  $this
         ->cache(true,1800)
-        ->order('add_time desc')
+        ->order('release_time desc,add_time desc')
         ->where($where)
         ->limit(($page-1)*$page_size,$page_size)
         ->select();

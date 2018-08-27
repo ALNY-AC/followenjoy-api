@@ -148,11 +148,12 @@ class KillController extends Controller
             
             //取出商品对应的sku
             $skus = $Sku->where($where)->field(['price', 'stock_num', 'activity_price'])->select();
+            $stock_num_total=$Sku->where($where)->sum('stock_num_total');
             $a = $skus[0]['price'];
             $data[$k]['origin_price'] = $a;
             $data[$k]['price'] = $skus[0]['activity_price'];
             $data[$k]['stock_num'] = $skus[0]['stock_num'];
-            $data[$k]['stock_num_total'] = 1000;
+            $data[$k]['stock_num_total'] =$stock_num_total;
             $data[$k]['end_time'] = $goods_time[$k];
             $data[$k]['time'] = time();
         }

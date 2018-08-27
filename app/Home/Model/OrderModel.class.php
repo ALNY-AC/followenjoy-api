@@ -301,13 +301,12 @@ class OrderModel extends Model {
         foreach ($snapshots as $k => $v) {
             $v=$Snapshot->getTime($v);
             $snapshots[$k]=$v;
-            $is=$OneGoods->is($v['goods_id']);
+            $is=$OneGoods->isGoods($v['goods_id']);
             if($is){
                 $isToAppShop='1';
                 $v['count']=1;
                 $snapshots[$k]=$v;
             }
-            
         }
         
         // ===================================================================================
@@ -387,11 +386,25 @@ class OrderModel extends Model {
         // ===================================================================================
         // 判断是否是0元
         if($total<=0){
-            
             $payData['state']=1;//支付状态,0：未支付，1：已支付
             foreach ($orderDatas as $k => $v) {
                 $v['state']=2;
                 $orderDatas[$k]=$v;
+            }
+            
+            $OneGoodsUser=D('OneGoodsUser');
+            $OneGoods=D('OneGoods');
+            foreach ($snapshots as $k => $v) {
+                $is=$OneGoods->isGoods($v['goods_id']);
+                if($is){
+                    // ===================================================================================
+                    // 是一元商品，需要加入到表中
+                    $data=[];
+                    $data['user_id']=$user_id;
+                    $data['goods_id']=$v['goods_id'];
+                    $OneGoodsUser->add($data);
+                }
+                
             }
             
         }
@@ -709,7 +722,6 @@ class OrderModel extends Model {
         $Logistics->where($where)->save($save);
         // 让订单完成，同时有分润
         $this->okOrder($order_id);
-        
     }
     
     

@@ -29,6 +29,7 @@ class IndexController extends Controller{
         echo "<hr/>";
         echo "<p>输出：</p>";
         dump(I());
+        dump(APP_DEBUG);
         echo "<hr/>";
     }
     
@@ -36,9 +37,8 @@ class IndexController extends Controller{
         
         $this->info();
         
-        for ($i=1; $i <= 10; $i++) {
+        for ($i=1; $i <= 3; $i++) {
             ec(createKey());
-            
             // ec(getNonceStr(10));
         }
         
@@ -49,9 +49,10 @@ class IndexController extends Controller{
         // $goods=$Goods->find();
         // dump($goods);
         
+        
+        
         echo("<hr>");
         die;
-        
         
         
         // $SpecialGoods=D('SpecialGoods');
@@ -339,22 +340,16 @@ class IndexController extends Controller{
             
         }
         
-        
-        
     }
     public function test(){
-        die;
-        $Coupon=D('Coupon');
-        $coupon=[];
-        $couponArr=$Coupon->获得满减券(99,20,1,15,0,'','七夕券-通用-99-20');
-        $coupon=array_merge($coupon,$couponArr);
-        foreach ($coupon as $k => $v) {
-            $v['user_id']='15921193669';
-            $v['add_time']=time();
-            $v['edit_time']=time();
-            $coupon[$k]=$v;
+        
+        if(!I('user_id')){
+            dump("12138");
+            die;
         }
-        $result=$Coupon->addAll($coupon);
+        $Coupon=D('Coupon');
+        $result=$Coupon->派发给新499会员大礼包(I('user_id'));
+        // $Coupon->派发给新499会员大礼包(18904660977);
         dump($result);
         die;
         

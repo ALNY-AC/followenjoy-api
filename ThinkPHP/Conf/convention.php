@@ -61,7 +61,7 @@ return  array(
 'DB_PORT'               =>  '',        // 端口
 'DB_PREFIX'             =>  '',    // 数据库表前缀
 'DB_PARAMS'          	=>  array(), // 数据库连接参数
-'DB_DEBUG'  			=>  TRUE, // 数据库调试模式 开启后可以记录SQL日志
+'DB_DEBUG'  			=>  false, // 数据库调试模式 开启后可以记录SQL日志
 'DB_FIELDS_CACHE'       =>  true,        // 启用字段缓存
 'DB_CHARSET'            =>  'utf8',      // 数据库编码默认采用utf8
 'DB_DEPLOY_TYPE'        =>  0, // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
@@ -87,7 +87,7 @@ return  array(
 'TRACE_MAX_RECORD'      =>  100,    // 每个级别的错误信息 最大记录数
 
 /* 日志设置 */
-'LOG_RECORD'            =>  true,   // 默认不记录日志
+'LOG_RECORD'            =>  false,   // 默认不记录日志
 'LOG_TYPE'              =>  'File', // 日志记录类型 默认为文件方式
 'LOG_LEVEL'             =>  'EMERG,ALERT,CRIT,ERR,WARN',// 允许记录的日志级别
 'LOG_FILE_SIZE'         =>  2097152,	// 日志文件大小限制

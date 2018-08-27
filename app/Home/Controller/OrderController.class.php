@@ -72,17 +72,36 @@ class OrderController extends CommonController{
         $couponList= $Coupon->getUserList(['time'=>false]);
         
         $isToAppShop='-1';
+        $isNoCoupon=false;
+        $isNoCouponInfo='';
         $OneGoods=D('OneGoods');
+        $OneGoodsUser=D('OneGoodsUser');
+        $Kill=D('Kill');
         foreach ($snapshots as $k => $v) {
             // ===================================================================================
             // 1元特殊商品
             
             // ===================================================================================
             // 到一元商品表里面查询是否存在
+            // ===================================================================================
+            // $isGoodsUser=$OneGoodsUser->is(session('user_id'),$v['goods_id']);
             
-            $is=$OneGoods->is($v['goods_id']);
+            // ===================================================================================
+            // 是一元商品，去掉快照
+            // unset($snapshots[$k]);
+            $is=$OneGoods->isGoods($v['goods_id']);
+            
+            $isNoCoupon=($Kill->is($v['goods_id'])!=null);
+            if($isNoCoupon){
+                $isNoCouponInfo='秒杀商品不可使用优惠券！';
+            }
             
             if($is){
+                // 如果是一元商品，并且快照表中有这个商品，并且快照有order_id，并且这个order_id已支付，就不能买了
+                
+                // ===================================================================================
+                // 判断
+                
                 
                 // $addBagData['goods_id']='1469';
                 // $addBagData['count']=1;
@@ -98,9 +117,19 @@ class OrderController extends CommonController{
                 // 是一元特殊商品
                 $isToAppShop='1';
                 if(count($snapshots)<=1){
-                    $couponList=[];
+                    $isNoCoupon=true;
+                    $isNoCouponInfo='一元商品不可使用优惠券！';
                 }
                 $snapshots[$k]=$v;
+            }
+        }
+        
+        // ===================================================================================
+        // 是否不回传优惠券
+        if($isNoCoupon){
+            foreach ($couponList as $k => $v) {
+                $v['reason']=$isNoCouponInfo;
+                $couponList[$k]=$v;
             }
         }
         
@@ -189,6 +218,27 @@ class OrderController extends CommonController{
     public function create(){
         
         $post=I('','',false);
+        
+        
+        // ===================================================================================
+        // 限制一元商品
+        $OneGoods=D('OneGoods');
+        $OneGoodsUser=D('OneGoodsUser');
+        $snapshot_ids=I('snapshot_id');
+        
+        $Snapshot=D('Snapshot');
+        $snapshots=$Snapshot->getList($snapshot_ids);
+        
+        foreach ($snapshots as $k => $v) {
+            $isGoodsUser=$OneGoodsUser->is(session('user_id'),$v['goods_id']);
+            if($isGoodsUser){
+                $res['res']=-2;
+                $res['msg']='您已购买过一元商品！';
+                echo json_encode($res);
+                die;
+            }
+        }
+        
         //根据sku组成订单详情表
         $Order=D('order');
         $pay_id=$Order->create($post);

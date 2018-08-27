@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<link rel="stylesheet" href="css/index.css" />
+
+</head>
+
+<body>
+	<h1 class="text-center">Big screen</h1>
+	<div class="count text-center"></div>
+	<div id="box">
+		<ul>
+			<li>
+				<div>
+					<div class="icon-box">
+						<img class="icon" src="img/usersTotal.png" />
+						<div class="usersTotal Num"></div>
+					</div>
+				</div>
+				<div>User Total</div>
+			</li>
+			<li>
+				<div>
+					<div class="icon-box">
+						<img class="icon" src="img/users.png" />
+						<div class="users Num"></div>
+					</div>
+				</div>
+				<div>Newly Increased</div>
+			</li>
+			<li>
+				<div>
+					<div class="icon-box">
+						<img class="icon" src="img/orders.png" />
+						<div class="orders Num"></div>
+					</div>
+				</div>
+				<div>Order Total</div>
+			</li>
+			<li>
+				<div>
+					<div class="icon-box">
+						<img class="icon" src="img/price.png" />
+						<div class="pre-price Num"></div>
+					</div>
+				</div>
+				<div>Pre Order Total</div>
+			</li>
+			<li>
+				<div>
+					<div class="icon-box">
+						<img class="icon" src="img/price.png" />
+						<div class="price Num"></div>
+					</div>
+				</div>
+				<div>Price Total</div>
+			</li>
+			<li>
+				<div>
+					<div class="icon-box">
+						<img class="icon" src="img/price.png" />
+						<div class="record Num"></div>
+					</div>
+				</div>
+				<div>Record</div>
+			</li>
+		</ul>
+
+		<h1 class="time"></h1>
+	</div>
+
+	<div class="canvas">
+		<canvas id="q" width="0" height="0"></canvas>
+	</div>
+
+</body>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src='js/index.js'></script>
+
+
+<script>
+	/*
+	11     ① 用setInterval(draw, 33)设定刷新间隔
+	12
+	13     ② 用String.fromCharCode(1e2+Math.random()*33)随机生成字母
+	14
+	15     ③ 用ctx.fillStyle=’rgba(0,0,0,.05)’; ctx.fillRect(0,0,width,height); ctx.fillStyle=’#0F0′; 反复生成opacity为0.5的半透明黑色背景
+	16
+	17     ④ 用x = (index * 10)+10;和yPositions[index] = y + 10;顺序确定显示字母的位置
+	18
+	19     ⑤ 用fillText(text, x, y); 在指定位置显示一个字母 以上步骤循环进行，就会产生《黑客帝国》的片头效果。
+	20 */
+	$(document).ready(function () {
+		//设备宽度
+		var s = window.screen;
+		var width = q.width = s.width;
+
+		var height = q.height;
+		var yPositions = Array(300).join(0).split('');
+		var ctx = q.getContext('2d');
+		var draw = function () {
+			ctx.fillStyle = 'rgba(0,0,0,.05)';
+			ctx.fillRect(0, 0, width, height);
+			ctx.fillStyle = 'green';/*代码颜色*/
+			ctx.font = '10pt Georgia';
+			yPositions.map(function (y, index) {
+				text = String.fromCharCode(1e2 + Math.random() * 330);
+				x = (index * 10) + 10;
+				q.getContext('2d').fillText(text, x, y);
+				if (y > Math.random() * 1e4) {
+					yPositions[index] = 0;
+				} else {
+					yPositions[index] = y + 10;
+				}
+			});
+		};
+		RunMatrix();
+		function RunMatrix() {
+			Game_Interval = setInterval(draw, 30);
+		}
+	});
+</script>
+
+</html>
