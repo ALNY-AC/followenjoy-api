@@ -483,7 +483,7 @@ class CouponModel extends Model {
         $list  =  $this
         ->order('add_time desc')
         ->where($where)
-        ->limit(($page-1)*$pageSize,$pageSize)
+        // ->limit(($page-1)*$pageSize,$pageSize)
         ->select();
         
         foreach ($list as $k => $v) {

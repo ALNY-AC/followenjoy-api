@@ -204,6 +204,7 @@ class TimeGoodsModel extends Model {
         $where=[];
         
         $where['start_time'] = [['EGT',$gt_time],['ELT',$end_time]];
+        $where['type']=['NEQ','kill'];
         $list=$this
         ->cache(true,1800)
         ->where($where)
@@ -244,6 +245,7 @@ class TimeGoodsModel extends Model {
         $where=[];
         $where['is_show']=1;
         $where['start_time'] = [['EGT',$start_time],['ELT',$end_time]];
+        $where['type']=['NEQ','kill'];
         $goods_id=$this
         ->cache(true,1800)
         ->where($where)
