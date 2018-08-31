@@ -30,6 +30,7 @@ class IndexController extends Controller{
         echo "<p>输出：</p>";
         dump(I());
         dump(APP_DEBUG);
+        dump(uniqid());
         echo "<hr/>";
     }
     
@@ -194,7 +195,7 @@ class IndexController extends Controller{
     
     
     public function test2(){
-        
+        die;
         $TimeGoods=D('TimeGoods');
         $list=$TimeGoods->select();
         
@@ -341,7 +342,10 @@ class IndexController extends Controller{
         }
         
     }
+    
+    
     public function test(){
+        
         
         if(!I('user_id')){
             dump("12138");

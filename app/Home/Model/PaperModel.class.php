@@ -6,7 +6,6 @@ class PaperModel extends Model {
     
     public function getList($where=[]){
         
-        
         $page=I('page')?I('page'):1;
         $limit=I('limit')?I('limit'):10;
         $where=I('where')?I('where'):[];
@@ -23,6 +22,7 @@ class PaperModel extends Model {
         $papers=$this
         ->cache(true,3600)
         // ->field($field)
+        ->order('sort asc')
         ->where($where)
         ->limit(($page-1)*$limit,$limit)
         ->select();

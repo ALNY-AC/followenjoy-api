@@ -184,7 +184,6 @@ class OrderModel extends Model {
             array_insert($value,$offset+1,['state_label'=>$state_label]);
             
             
-            
             // ===================================================================================
             // 获得供货商信息
             $supplier_id=$value['supplier_id'];
@@ -292,8 +291,13 @@ class OrderModel extends Model {
             unset($value['address_id']);
             unset($value['supplier_id']);
             $list[$key]=$value;
-            $list[$key]['order_id'] = $list[$key]['order_id'].' ';
+            foreach ($list[$key] as $x => $z) {
+                $list[$key][$x] = $list[$key][$x].' ';
+            }
+            
         }
+        
+        
         
         // dump($list);
         // die;

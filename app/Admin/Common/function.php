@@ -93,6 +93,17 @@ function create_xls($data,$filename='simple.xls'){
     "X",
     "Y",
     "Z",
+    "AA",
+    "AB",
+    "AC",
+    "AD",
+    "AE",
+    "AF",
+    "AG",
+    "AH",
+    "AI",
+    "AJ",
+    "AK",
     ];
     $phpexcel->getActiveSheet()->fromArray($data);
     $phpexcel->getActiveSheet()->setTitle('Sheet1');

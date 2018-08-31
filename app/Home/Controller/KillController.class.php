@@ -131,7 +131,7 @@ class KillController extends Controller
     //获取商品信息
     public function getTitleById($goods_id=[],$goods_time=[]){
         $goods = D('goods');//商品时间模型
-        $Sku=D('sku');//商品sku模型
+        $Sku=D('Sku');//商品sku模型
         
         $where = [];
         $where['goods_id'] = ['in',getIds($goods_id)];
@@ -142,17 +142,34 @@ class KillController extends Controller
         'sub_title',
         ];
         $data = $goods->where($where)->order('sort DESC,add_time DESC')->field($field)->select();
+        $Notice=D('Notice');
         foreach ($data as $k => $v ){
             $where = [];
             $where['goods_id'] = $v['goods_id'];
             
             //取出商品对应的sku
-            $skus = $Sku->where($where)->field(['price', 'stock_num', 'activity_price'])->select();
+            $skus = $Sku->order('activity_price asc')->where($where)->field(['price', 'stock_num', 'activity_price'])->select();
+            // dump($skus);
+            // die;
             $stock_num_total=$Sku->where($where)->sum('stock_num_total');
+            $stock_num=$Sku->where($where)->sum('stock_num');
             $a = $skus[0]['price'];
             $data[$k]['origin_price'] = $a;
             $data[$k]['price'] = $skus[0]['activity_price'];
-            $data[$k]['stock_num'] = $skus[0]['stock_num'];
+            if((($stock_num_total-$stock_num)<0)){
+                $Notice->send(
+                'root',
+                '12138',
+                '【秒杀库存负值警告】',
+                '负库存警告！',
+                '商品：'.$v['goods_title']." 出现负库存！，现已将剩余库存自动等于总库存",
+                '/goods/edit',
+                $v['goods_id'],
+                4
+                );
+                $stock_num=$stock_num_total;
+            }
+            $data[$k]['stock_num'] = $stock_num;
             $data[$k]['stock_num_total'] =$stock_num_total;
             $data[$k]['end_time'] = $goods_time[$k];
             $data[$k]['time'] = time();

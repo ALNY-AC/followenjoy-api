@@ -156,6 +156,28 @@ class OrderModel extends Model {
         // ===================================================================================
         // 计算价格
         $price=($snapshot['price']*$snapshot['count']);
+        
+        
+        $Notice=D('Notice');
+        // ===================================================================================
+        // 负值警告
+        if(($snapshot['count']<0)){
+            $Notice->send(
+            'root',
+            '12138',
+            '【用户订单负值警告】',
+            '订单商品负值警告！',
+            "用户在提交订单时，检测出商品数量为负值！订单总价也为负值！此订单请勿处理！订单号：$order_id ，支付单号：$pay_id ，用户ID：$user_id",
+            '/order/info',
+            $order_id,
+            4
+            );
+        }
+        
+        if($price<=0){
+            $price=0;
+        }
+        
         $price+=$first_price;
         // 优惠后的订单总价=订单总价*打折
         
@@ -209,6 +231,7 @@ class OrderModel extends Model {
     }
     
     public function create($data){
+        
         // ===================================================================================
         // 创建模型
         $Sku=M('Sku');//sku模型
@@ -223,6 +246,16 @@ class OrderModel extends Model {
         $Logistics=M('Logistics');//物流信息表模型
         $OrderCoupon=D('OrderCoupon');//优惠券订单关联表
         $User=D('User');//优惠券订单关联表
+        
+        
+        // ===================================================================================
+        // 新人下单得50元
+        $user_id=session('user_id');
+        if(!F('CouponNewUser'.$user_id)){
+            $Coupon->派发新人下单大礼包(session('user_id'));
+        }
+        F('CouponNewUser'.$user_id,true);
+        
         
         
         // ===================================================================================

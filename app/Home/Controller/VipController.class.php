@@ -20,26 +20,38 @@ class VipController extends CommonController{
     
     public function getSubList(){
         
-        Vendor('VIP.VIP');
-        //初始化vip对象
-        $conf=[];
-        $conf['userId']=session('user_id');
-        $vip=new \VIP($conf);
-        $vip->setDebug(false);
-        $vip->setWriteDatabase(false);
-        $vip->initSubList();
-        $subList=  $vip->getSubList();
-        $subList=  toTime($subList);
+        $UserSuper=D('UserSuper');
+        $where=[];
+        $where['super_id']=session('user_id');
+        $ids=$UserSuper->where($where)->getField('user_id',true);
         
-        if($subList!==false){
-            $res['res']=count($subList);
-            $res['msg']=$subList;
+        $User=D('User');
+        
+        $where=[];
+        $where['user_id']=['in',getIds($ids)];
+        $field=[
+        'user_id',
+        'user_name',
+        'user_head',
+        'user_vip_level',
+        'add_time',
+        ];
+        
+        $userList= $User->field($field)->order('add_time desc')->where($where)->select();
+        
+        $userList=toTime($userList);
+        
+        if($userList!==false){
+            $res['res']=count($userList);
+            $res['msg']=$userList;
         }else{
             $res['res']=-1;
-            $res['msg']=$subList;
+            $res['msg']=$userList;
         }
         
         echo json_encode($res);
+        
+        
     }
     
     public function buliderShopCode(){

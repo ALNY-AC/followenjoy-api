@@ -166,6 +166,7 @@ class AlipayController extends Controller{
             if($trade_status=='TRADE_SUCCESS'){
                 if($payData['state']!=1){
                     
+                    $Pay->setPayType($out_trade_no,1);
                     // 支付成功
                     $Pay->setState($out_trade_no,1);
                     // 0：未支付

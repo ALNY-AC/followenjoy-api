@@ -38,7 +38,16 @@ class PayModel extends Model {
         return $is1 && $is2;
     }
     
-    
+    public function setPayType($pay_id,$pay_type){
+        $Pay=D('Pay');
+        $data=[];
+        $data['pay_type']=$pay_type;
+        $where=[];
+        $where['pay_id']=$pay_id;
+        
+        $Pay->where($where)->save($data);
+        
+    }
     
     public function getList(){
         

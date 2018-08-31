@@ -154,6 +154,46 @@ class CouponModel extends Model {
         // return $coupon;
     }
     
+    public function 取得新人下单大礼包($user_id){
+        if(!$user_id){
+            return;
+        }
+        $coupon=[];
+        
+        // ===================================================================================
+        // 新大礼包100元大礼包
+        $couponArr=$this->获得满减券(59,10,1,3,0,'','新人订单券-通用-59-10');
+        $coupon=array_merge($coupon,$couponArr);
+        
+        $couponArr=$this->获得满减券(99,20,2,3,0,'','新人订单券-通用-99-20');
+        $coupon=array_merge($coupon,$couponArr);
+        
+        
+        foreach ($coupon as $k => $v) {
+            $v['user_id']=$user_id;
+            $coupon[$k]=$v;
+        }
+        return $coupon;
+    }
+    public function 派发新人下单大礼包($user_id){
+        if(!$user_id){
+            return;
+        }
+        $coupon=$this->取得新人下单大礼包($user_id);
+        
+        foreach ($coupon as $k => $v) {
+            $v['add_time']=time();
+            $v['edit_time']=time();
+            $coupon[$k]=$v;
+        }
+        // if(false){
+        //     $this->where('1=1')->delete();
+        //     dump($coupon);
+        // }
+        $this->addAll($coupon);
+    }
+    
+    
     /**
     * 生效时间:0为当天生效，30为30天后生效
     */
@@ -177,7 +217,7 @@ class CouponModel extends Model {
             // ===================================================================================
             // 有效时间
             $start_at=mktime(0,0,0,date('m'),date('d')+$生效时间,date('Y'));//优惠券生效时间
-            $end_at=mktime(0,0,0,date('m'),date('d')+$生效时间+$有效时长,date('Y'));//优惠券失效时间
+            $end_at=mktime(23,59,59,date('m'),(date('d')-1)+$生效时间+$有效时长,date('Y'));//优惠券失效时间
             $coupon['start_at']=$start_at;
             $coupon['end_at']=$end_at;
             
@@ -279,7 +319,7 @@ class CouponModel extends Model {
                     // 有满减门槛
                     // 判断当前订单满减门槛是否满足
                     
-                    if ($total > $coupon['origin_condition'] ) {
+                    if ($total >= $coupon['origin_condition'] ) {
                         // 计算满减数据
                         // 返回满减的值
                         

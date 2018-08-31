@@ -114,5 +114,31 @@ class CouponController extends CommonController{
         echo json_encode($res);
     }
     
+    public function hair(){
+        
+        $type=I('type');
+        
+        $Coupon=D('Coupon');
+        
+        if($type=="发新人券"){
+            $result=$Coupon->派发新用户大礼包(I('user_id'));
+        }
+        
+        if($type=="发新会员券"){
+            $result=$Coupon->派发给新499会员大礼包(I('user_id'));
+        }
+        
+        if($result!==false){
+            $res['res']=1;
+            $res['msg']=$result;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$result;
+        }
+        echo json_encode($res);
+        
+        
+    }
+    
     
 }

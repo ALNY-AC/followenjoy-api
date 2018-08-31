@@ -200,6 +200,11 @@ class WeiXinPayController extends Controller
                 if ($payData['state'] != 1) {
                     // 如果已经支付成功，就不能再支付成功
                     
+                    // ===================================================================================
+                    // 设置支付方式
+                    
+                    $Pay->setPayType($out_trade_no,2);
+                    
                     $Pay->setState($out_trade_no, 1);
                     // 0：未支付
                     // 1：已支付
@@ -319,7 +324,7 @@ class WeiXinPayController extends Controller
                 // 支付成功
                 if ($payData['state'] != 1) {
                     // 如果已经支付成功，就不能再支付成功
-                    
+                    $Pay->setPayType($out_trade_no,2);
                     $Pay->setState($out_trade_no, 1);
                     
                     //                    // 一元商品

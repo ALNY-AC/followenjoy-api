@@ -27,7 +27,7 @@ class SpecialPaperModel extends Model {
         $list  =  $this
         ->order('add_time desc')
         ->where($where)
-        ->limit(($page-1)*$limit,$limit)
+        // ->limit(($page-1)*$limit,$limit)
         ->select();
         
         $list=toTime($list);
