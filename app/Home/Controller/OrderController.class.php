@@ -197,8 +197,6 @@ class OrderController extends CommonController{
     }
     
     
-    
-    
     public function get(){
         
         $Order=D('Order');

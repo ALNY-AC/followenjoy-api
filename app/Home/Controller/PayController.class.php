@@ -45,7 +45,7 @@ class PayController extends CommonController {
         }
         echo json_encode($res);
     }
-
+    
     //待支付消息数量提示
     public function getPayInfoNum(){
         $where['user_id'] = session('user_id');
@@ -57,7 +57,7 @@ class PayController extends CommonController {
         }else{
             $res['res']=-1;
         }
-
+        
         echo json_encode($res);
     }
     

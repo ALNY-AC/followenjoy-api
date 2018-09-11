@@ -312,7 +312,6 @@ class OrderModel extends Model {
         $limit  =   $data['limit']?$data['limit']:10;
         $where  =   $data['where']?$data['where']:[];
         
-        
         // ===================================================================================
         // 创建模型
         $Snapshot=D('Snapshot');
@@ -383,7 +382,6 @@ class OrderModel extends Model {
         $where=[];
         $where['logistics_id']=$logistics_id;
         $logistics=$Logistics->where($where)->find();
-        
         if(!$logistics['state']){
             
             $where=[];

@@ -11,7 +11,7 @@ class userModel extends Model {
         $where=[];
         $where['is_up']=1;
         $upUsers=$this
-        ->cache(true,3600)
+        // ->cache(true,3600)
         ->field('user_id,user_head,user_name')
         ->order('add_time desc')
         ->where($where)

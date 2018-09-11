@@ -53,7 +53,6 @@ class TimeGoodsModel extends Model {
         $goods_id=$this->where(['start_time'=>$start_time])->getField('goods_id',true);
         
         
-        
         if($goods_id){
             $data['where']['goods_id']=['in',$goods_id];
             $list=$Goods->getList($data);

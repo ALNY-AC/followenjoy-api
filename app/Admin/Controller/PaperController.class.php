@@ -44,7 +44,9 @@ class PaperController extends CommonController{
         
         
         $res['count']=$Paper->where($where)->count()+0;
-        $papers=$Paper->where($where)->limit(($page-1)*$limit,$limit)->select();
+        $papers=$Paper
+        ->order('sort desc,add_time desc')
+        ->where($where)->limit(($page-1)*$limit,$limit)->select();
         
         $papers=toTime($papers);
         

@@ -22,16 +22,14 @@ setInterval(() => {
 }, 1000);
 
 function update(data) {
-    count++;
-    $(".users").text(data.users);
-    $(".orders").text(data.orders);
-    $(".price").text(data.price);
-    $(".usersTotal").text(data.usersTotal);
-    $(".pre-price").text(data.PrePriceTotal);
-    $(".record").text(data.record);
-    $(".count").text(count);
-    console.warn(data);
-    $(".yesterday").text(data.yesterday);
+    // $(".users").text(data.users);
+    console.log(data.orders)
+    $(".orders").text(num(data.orders));
+    $(".price").text(num(data.price));
+    $(".usersTotal").text(num(data.usersTotal));
+    $(".pre-price").text(num(data.PrePriceTotal));
+    $(".record").text(num(data.record));
+    $(".yesterday").text(num(data.yesterday));
 }
 $.ajax({
     type: "get",
@@ -66,3 +64,41 @@ setInterval(() => {
     });
 
 }, 10000)
+
+upSize();
+function upSize() {
+    function up() {
+        document.getElementsByTagName("html")[0].style.fontSize =
+            window.innerWidth / 10 + "px";
+    }
+    up();
+    window.addEventListener("resize", () => {
+        up();
+    });
+}
+
+function num(num){
+    var allSrt=num.toString();
+    var alllength=allSrt.length
+    var index = allSrt.indexOf(".");
+    var decimalPoint= allSrt.substring(index,alllength);
+    if(decimalPoint.indexOf("+")>0){
+        return num
+    }
+
+
+    var theNum=0;
+    var pickNum=parseInt(num) 
+    var length=pickNum.toString().length
+    var unit="";
+    if(length>9){
+        theNum=(pickNum/100000000)
+        unit="e";
+    }else if(length>4){
+        theNum=(pickNum/10000)
+        unit="w";
+    }else{
+        return num
+    }
+    return theNum.toFixed(2) +unit
+}

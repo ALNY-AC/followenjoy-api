@@ -1214,13 +1214,6 @@ function randomFloat($min = 0, $max = 1) {
     return $min + mt_rand() / mt_getrandmax() * ($max - $min);
 }
 
-
-
-
-
-
-
-
 /**
 * 分享图片生成
 * @param $gData  商品数据，array

@@ -25,7 +25,7 @@ class SpecialPaperModel extends Model {
         $where['release_time']= ['ELT',time()];//当前时间到达发布时间
         $list  =  $this
         ->order('release_time desc,add_time desc')
-        ->cache(true,180)
+        // ->cache(true,180)
         ->field($field)
         ->where($where)
         ->limit(($page-1)*$limit,$limit)

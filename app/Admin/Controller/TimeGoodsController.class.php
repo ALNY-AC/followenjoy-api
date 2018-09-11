@@ -135,4 +135,56 @@ class TimeGoodsController extends CommonController{
         dump($list);
         
     }
+    
+    
+    public function getListPlus(){
+        
+        $start_time=I('start_time');
+        $page=I('page');
+        $page_size=I('page_size');
+        
+        $TimeGoods=D('TimeGoods');
+        $Goods=D('Goods');
+        
+        
+        $goodsList=$TimeGoods
+        ->distinct(true)
+        ->table('c_time_goods as t1,c_goods as t2')
+        ->field('t1.*,t2.goods_id,t2.goods_title,t2.goods_banner,t2.sub_title,t2.sort,t2.add_time,t2.is_up')
+        ->order('t2.sort desc,t2.add_time desc')
+        ->where("t1.start_time='$start_time' AND t1.goods_id = t2.goods_id")
+        ->limit(($page-1)*$page_size,$page_size)
+        ->select();
+        
+        
+        $where=[];
+        $where['start_time']=$start_time;
+        $res['count']=$TimeGoods
+        ->where($where)
+        ->count()+0;
+        
+        $GoodsImg=D('GoodsImg');
+        $Sku=D('sku');
+        
+        foreach ($goodsList as $k => $v) {
+            $where=[];
+            $where['goods_id']=$v['goods_id'];
+            $v['goods_head']=$GoodsImg->order('slot asc')->where($where)->getField('src');
+            $v['price']=$Sku->where($where)->getField('price');
+            $v['stock_num']=$Sku->where($where)->sum('stock_num');
+            $v['priceList']=$Sku->where($where)->field('price,activity_price')->select();
+            $goodsList[$k]=$v;
+        }
+        
+        if($goodsList!==false){
+            $res['res']=count($goodsList);
+            $res['msg']=$goodsList;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$goodsList;
+        }
+        echo json_encode($res);
+        
+    }
+    
 }

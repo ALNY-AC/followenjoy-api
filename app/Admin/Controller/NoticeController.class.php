@@ -35,7 +35,7 @@ class NoticeController extends CommonController{
         ->order('add_time desc')
         ->where($where)
         ->field($field)
-        ->limit(($page-1)*$limit,$page_size)
+        ->limit(($page-1)*$page_size,$page_size)
         ->select();
         
         $noticeList=toTime($noticeList,'Y-m-d H:i:s',['edit_time']);

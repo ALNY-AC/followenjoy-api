@@ -231,7 +231,6 @@ class OrderModel extends Model {
     }
     
     public function create($data){
-        
         // ===================================================================================
         // 创建模型
         $Sku=M('Sku');//sku模型
@@ -255,7 +254,6 @@ class OrderModel extends Model {
             $Coupon->派发新人下单大礼包(session('user_id'));
         }
         F('CouponNewUser'.$user_id,true);
-        
         
         
         // ===================================================================================
@@ -314,7 +312,7 @@ class OrderModel extends Model {
         
         // ===================================================================================
         // 获得基本数据
-        $pay_type=$data['pay_type'];//支付方式
+        $pay_type=-1;//支付方式
         $address_id=$data['address_id'];//地址id
         $snapshot_ids=$data['snapshot_id'];//快照id数组
         $coupon_id=$data['coupon_id'];//优惠券
@@ -383,7 +381,7 @@ class OrderModel extends Model {
                 $total2+=$v['count']*$v['price'];
             }
             if($total2>=60){
-                $total-=9.9;
+                $total-=8;
             }
         }
         
@@ -401,7 +399,6 @@ class OrderModel extends Model {
             $where=[];
             $where['user_id']=$user_id;
             $User->where($where)->setDec('user_money',$balance_value);
-            
         }
         
         // ===================================================================================
@@ -500,11 +497,11 @@ class OrderModel extends Model {
         // die;
         
         //创建完成，删除购物车数据
-        if(!$isDebug){
-            $where=[];
-            $where['snapshot_id']=['in',$snapshot_ids];
-            $Bag->where($where)->delete();
-        }
+        // if(!$isDebug){
+        //     $where=[];
+        //     $where['snapshot_id']=['in',$snapshot_ids];
+        //     $Bag->where($where)->delete();
+        // }
         
         return $pay_id;  // 返回 pay_id
         

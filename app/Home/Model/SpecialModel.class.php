@@ -19,6 +19,7 @@ class SpecialModel extends Model {
         'content_type',
         'color',
         'sort',
+        'link_id'
         ];
         
         $list=$this

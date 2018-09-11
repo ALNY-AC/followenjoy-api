@@ -9,7 +9,7 @@ class NavModel extends Model {
         $navList=$this
         ->order('sort asc,add_time asc')
         ->where('is_show = 1')
-        ->cache(true,120)
+        // ->cache(true,120)
         ->select();
         return $navList;
     }
@@ -24,7 +24,7 @@ class NavModel extends Model {
         $where=[];
         $where['nav_id']=$nav_id;
         $navs=$NavGoods
-        ->cache(true,120)
+        // ->cache(true,120)
         ->where($where)
         ->select();
         $ids=[];

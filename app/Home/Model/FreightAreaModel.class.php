@@ -11,7 +11,7 @@ class FreightAreaModel extends Model {
         $where['freight_id']=$freight_id;
         $list=$this
         ->where($where)
-        ->cache(true,10)
+        // ->cache(true,10)
         ->order('')
         ->select();
         $list=toTime($list);

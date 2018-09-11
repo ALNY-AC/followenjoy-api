@@ -169,6 +169,8 @@ class AlipayController extends Controller{
                     $Pay->setPayType($out_trade_no,1);
                     // 支付成功
                     $Pay->setState($out_trade_no,1);
+                    $Pay->setPayTime($out_trade_no);
+                    
                     // 0：未支付
                     // 1：已支付
                     // 2：已取消

@@ -57,7 +57,6 @@ class SnapshotModel extends Model {
         //==================================================================
         //如果添加过就不用再次添加，需要更新数据
         if(!$snapshot){
-            
             //未添加
             //==================================================================
             //取得sku
@@ -112,7 +111,7 @@ class SnapshotModel extends Model {
             //已添加，返回已添加的id，并且追加数量，需要更新数据
             
             $snapshot=$this->updateGoods($snapshot);
-            
+                
             $snapshot_id=$snapshot['snapshot_id'];
             $where=[];
             $where['snapshot_id']=$snapshot_id;

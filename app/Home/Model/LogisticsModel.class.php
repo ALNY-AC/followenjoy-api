@@ -43,12 +43,12 @@ class LogisticsModel extends Model {
         [
         "time" =>  "",
         "ftime" =>  "",
-        "context" =>  "订单正在处理",
+        "context" =>  "物流已揽件，请您耐心等待。",
         ],
         [
         "time" =>  "",
         "ftime" =>  "",
-        "context" =>  "物流已揽件，请您耐心等待发货",
+        "context" =>  "订单正在处理。",
         ],
         ];
         $data['data']=array_merge(  $data['data'],$info);

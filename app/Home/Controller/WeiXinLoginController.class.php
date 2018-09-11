@@ -23,7 +23,7 @@ class WeiXinLoginController extends Controller{
     * 统一微信登录接口（跳转页面）
     */
     public function login(){
-        Vendor('Weixin.WeiXinLogin');
+        
         
         $shop_id=I('shop_id');
         $goIndex=I('goIndex','',true);

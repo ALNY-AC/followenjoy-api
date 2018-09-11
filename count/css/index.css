@@ -1,69 +1,46 @@
-* {
-  margin: 0;
-  padding: 0; }
+#box {
+    padding: 15px 0;
+}
 
 html,
 body {
-  color: #fff;
-  height: 100vh;
-  overflow: hidden; }
+    background-color: #fafafa;
+}
 
-#box {
-  padding: 20px; }
+.count-box {
+    font-size: 70px;
+    color: #777;
+    white-space: nowrap;
+    max-width: 100%;
+}
 
-.time {
-  color: #f0ad4e;
-  text-align: center;
-  margin-top: 100px; }
+.count-box i {
+    font-size: 30px;
+}
 
-h1 {
-  color: green; }
+.text-muted {}
 
-ul {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #f0ad4e;
-  cursor: pointer;
-  user-select: none; }
+.text-primary {
+    color: #337ab7;
+}
 
-.count {
-  color: green; }
+.text-success {
+    color: #5cb85c;
+}
 
-ul li {
-  padding: 40px 0;
-  list-style: none;
-  text-align: center;
-  flex: 1; }
+.text-info {
+    color: #5bc0de;
+}
 
-ul li .Num {
-  margin: 10px 0;
-  font-size: 80px; }
+.text-warning {
+    color: #f0ad4e;
+}
 
-ul li .icon-box {
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto; }
+.text-danger {
+    color: #d9534f;
+}
 
-ul li .icon {
-  display: none;
-  width: 100%;
-  margin-right: 10px; }
-
-ul li:nth-last-child(1) {
-  border-right: 0; }
-
-.text-center {
-  text-align: center; }
-
-.canvas {
-  position: fixed;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  bottom: 0; }
-
-/*# sourceMappingURL=index.css.map */
+.data-name {
+    font-size: 20px;
+    display: block;
+}

@@ -48,7 +48,6 @@ class WeiXinPayController extends Controller
         $orderList = $Order->where($where)->getField('order_id', true);
         // 将订单id取出
         
-        
         // ===================================================================================
         // 根据订单取出快照
         $where = [];
@@ -204,8 +203,11 @@ class WeiXinPayController extends Controller
                     // 设置支付方式
                     
                     $Pay->setPayType($out_trade_no,2);
-                    
                     $Pay->setState($out_trade_no, 1);
+                    
+                    // ===================================================================================
+                    // 设置支付时间
+                    $Pay->setPayTime($out_trade_no);
                     // 0：未支付
                     // 1：已支付
                     // 2：已取消
@@ -326,6 +328,7 @@ class WeiXinPayController extends Controller
                     // 如果已经支付成功，就不能再支付成功
                     $Pay->setPayType($out_trade_no,2);
                     $Pay->setState($out_trade_no, 1);
+                    $Pay->setPayTime($out_trade_no);
                     
                     //                    // 一元商品
                     $where=[];

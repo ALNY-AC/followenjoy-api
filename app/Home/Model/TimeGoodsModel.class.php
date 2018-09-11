@@ -15,7 +15,7 @@ class TimeGoodsModel extends Model {
         $where['is_show']=1;
         $where['type']=['NEQ','kill'];
         $goods_id=$this
-        ->cache(true,50)
+        // ->cache(true,50)
         ->where($where)
         ->getField('goods_id',true);
         
@@ -34,7 +34,7 @@ class TimeGoodsModel extends Model {
             $where['goods_id']=$v['goods_id'];
             $where['start_time']=$start_time;
             $d=$this
-            ->cache(true,50)
+            // ->cache(true,50)
             ->where($where)
             ->find();
             
@@ -59,7 +59,7 @@ class TimeGoodsModel extends Model {
         $time_id=$data['time_id'];
         
         $goods_id=$this
-        ->cache(true,50)
+        // ->cache(true,50)
         ->where(['time_id'=>$time_id])
         ->getField('goods_id',true);
         
@@ -110,6 +110,7 @@ class TimeGoodsModel extends Model {
         // dump($list);
         return $list? $list:[];
     }
+    
     public function saveData($goods_id,$start_time,$data){
         $where=[];
         $where['start_time']=$start_time;
@@ -119,6 +120,7 @@ class TimeGoodsModel extends Model {
         $data['edit_time']=time();
         $this->where($where)->save($data);
     }
+    
     public function get($data){
         
         $goods_id=$data['goods_id'];
@@ -192,7 +194,9 @@ class TimeGoodsModel extends Model {
     // 取明天的时刻表
     public function getTomorrow($data){
         
-        $gt_time=$data['gt_time'];//客户端出来的要大于哪一天的时间戳
+        // $gt_time=$data['gt_time'];//客户端出来的要大于哪一天的时间戳
+        
+        $gt_time=mktime(0,0,0,date('m'),date('d')+1,date('Y'));//当天0点
         
         $end_time=strtotime("+1 day",$gt_time);//后台计算24小时后的时间戳，用户限制，一般只取当天的时间
         
@@ -206,7 +210,7 @@ class TimeGoodsModel extends Model {
         $where['start_time'] = [['EGT',$gt_time],['ELT',$end_time]];
         $where['type']=['NEQ','kill'];
         $list=$this
-        ->cache(true,1800)
+        // ->cache(true,0)
         ->where($where)
         ->group('start_time')
         ->getField('start_time',true);
@@ -218,7 +222,6 @@ class TimeGoodsModel extends Model {
             $item['time_value']=$v;
             // dump(date('Y-m-d H:i:s',strtotime("+1 day",$v)));
             $item['goods_count']=$this->where(['start_time'=>$v])->count()+0;
-            
             $list[$k]=$item;
         }
         
@@ -247,7 +250,7 @@ class TimeGoodsModel extends Model {
         $where['start_time'] = [['EGT',$start_time],['ELT',$end_time]];
         $where['type']=['NEQ','kill'];
         $goods_id=$this
-        ->cache(true,1800)
+        // ->cache(true,1800)
         ->where($where)
         ->getField('goods_id',true);
         
@@ -266,7 +269,7 @@ class TimeGoodsModel extends Model {
             $where['goods_id']=$v['goods_id'];
             $where['start_time']=$start_time;
             $d=$this
-            ->cache(true,1800)
+            // ->cache(true,1800)
             ->where($where)
             ->find();
             

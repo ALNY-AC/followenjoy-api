@@ -284,7 +284,9 @@ class OrderController extends CommonController{
                 // 拼回支付信息
                 foreach ($payList as $x => $z) {
                     if($z['pay_id']==$v['pay_id']){
-                        $z['pay_time']=date('Y-m-d H:i:s',$z['pay_time']);
+                        if($z['pay_time']){
+                            $z['pay_time']=date('Y-m-d H:i:s',$z['pay_time']);
+                        }
                         $v['payInfo']=$z;
                     }
                 }
@@ -304,20 +306,22 @@ class OrderController extends CommonController{
                         $v['userInfo']=$z;
                     }
                 }
+                
+                
                 // ===================================================================================
                 // 拼回物流信息
-                
                 foreach ($logisticsList as $x => $z) {
                     if($z['order_id']==$v['order_id']){
                         $v['logisticsInfo']=$z;
+                        if($v['state']==3){
+                            // 3、待收货
+                            $this->isLogistics($v['order_id'], $z['logistics_id']);
+                        }
                     }
                 }
-                
                 $orderList[$k]=$v;
-                
             }
         }
-        
         
         
         // ===================================================================================
@@ -331,6 +335,50 @@ class OrderController extends CommonController{
         }
         echo json_encode($res);
     }
+    
+    public function isLogistics($order_id,$logistics_id){
+        $Logistics=D('Logistics');//物流信息表模型，包括运费
+        $where=[];
+        $where['logistics_id']=$logistics_id;
+        $logistics=$Logistics->where($where)->find();
+        if(!$logistics['state']){
+            
+            $where=[];
+            $where['com']=$logistics['logistics_name'];
+            $where['num']=$logistics['logistics_number'];
+            $info=$Logistics->getInfo($where);
+            
+            if($info['state']=='3'){
+                // 快递已签收
+                // ===================================================================================
+                // 取出签收时间
+                
+                $logisticsTime=$info['data'][0]['ftime'];
+                
+                $logisticsTime=strtotime($logisticsTime);//这是收货时间的时间戳
+                $toTime=time();//这是今天的时间戳
+                
+                // 公式为：
+                // 此时此刻的时间>=收货日期+15天
+                $time15=strtotime('+15 day',$logisticsTime);//这是确认收货15天后的时间戳
+                
+                if($toTime>=$time15){
+                    // 自动确认收货
+                    D('Order')->okLogistics($order_id,$logistics_id);
+                    return true;
+                }else{
+                    return false;
+                }
+                // $testTime=date('Y-m-d H:i:s',$time15);
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+        
+    }
+    
     
     /**
     * 组装sku信息

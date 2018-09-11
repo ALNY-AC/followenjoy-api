@@ -11,7 +11,6 @@ class PaperModel extends Model {
         $where=I('where')?I('where'):[];
         
         $res['count']=$this
-        
         ->where($where)
         ->count()+0;
         
@@ -20,9 +19,9 @@ class PaperModel extends Model {
         ];
         
         $papers=$this
-        ->cache(true,3600)
-        // ->field($field)
-        ->order('sort asc')
+        // ->cache(true,3600)
+        ->field($field)
+        ->order('sort desc,add_time desc')
         ->where($where)
         ->limit(($page-1)*$limit,$limit)
         ->select();

@@ -27,7 +27,6 @@ class CouponGroupViewController extends Controller{
         $this->display();
     }
     
-    
     /**
     * 显示战略key页面
     * @author 吴杰

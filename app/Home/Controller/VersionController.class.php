@@ -14,7 +14,7 @@
 * @author 代码狮
 *
 */
-namespace Admin\Controller;
+namespace Home\Controller;
 use Think\Controller;
 class VersionController extends CommonController{
     

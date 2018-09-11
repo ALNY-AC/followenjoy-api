@@ -96,7 +96,7 @@ class GoodsController extends Controller{
         $TimeGoods=D('time_goods');
         $goods=$Goods->get($goods_id);
         $TimeGoods = $TimeGoods
-        ->cache(true,10)
+        // ->cache(true,10)
         ->where('goods_id ='.$goods_id. ' AND start_time<'.time() . ' AND end_time>'.time())
         ->getField('end_time');
         if($goods){
