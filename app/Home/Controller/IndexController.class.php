@@ -40,6 +40,7 @@ class IndexController extends Controller{
         
         echo "<hr/>";
         
+        
         ec (date('Y-m-d H:i:s',I('time')));
         
         echo "<hr/>";
@@ -52,11 +53,11 @@ class IndexController extends Controller{
         $this->info();
         
         $data[]='1536202800';
-        $data[]='1536116400';
         
         foreach ($data as $k => $v) {
             ec (date('Y-m-d H:i:s',$v));
         }
+        echo 1;
         
         
     }
