@@ -69,13 +69,16 @@ class ShoutPriceController extends CommonController
             //房主已购买状态
             //房间订单表
             $data = $c_shout_price_room
-                ->field('c_shout_price_room.room_id,c_shout_price_order.state')
+                ->field('c_shout_price_room.room_id,c_shout_price_order.state,c_shout_price_room.share_img')
                 ->join('left join c_shout_price_order on c_shout_price_room.room_id = c_shout_price_order.room_id')
                 ->where($where)
                 ->order('c_shout_price_room.add_time desc')
                 ->find();
             if ($data && $data['state'] == '' || $data['state'] == 1) {
-                echo json_encode(['res' => 1, 'room_id' => $data['room_id']]);
+                $share_info['room_id'] = $data['room_id'];
+                $share_info['share_img'] = $data['share_img'];
+                $share_info['share_shout_price'] = C('share_shout_price');
+                echo json_encode(['res' => 1, 'data' => $share_info]);
                 exit;
             }
             //房间未过期、（支付状态待支付或为空的）返回已有房间号
@@ -112,7 +115,10 @@ class ShoutPriceController extends CommonController
             if (!$room_id) {
                 throw new Exception('房间号创建失败！', '-1');
             }
-            echo json_encode(['res' => 1, 'room_id' => $room_id]);
+            $share_info['share_img'] = $goods_info['share_img'];
+            $share_info['room_id'] = $room_id;
+            $share_info['share_shout_price'] = C('share_shout_price');
+            echo json_encode(['res' => 1, 'data' => $share_info]);
         } catch (Exception $e) {
             echo json_encode(['msg' => $e->getMessage(), 'res' => $e->getCode()]);
         }

@@ -77,4 +77,6 @@ return array(
     ],
 //图片域名地址
     'img_url' => 'http://server.followenjoy.cn/',
+
+    'share_shout_price' => '快帮我喊一下！喊出抄底价，咱俩一起买！',
 );
