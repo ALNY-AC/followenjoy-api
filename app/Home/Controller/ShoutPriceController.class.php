@@ -10,7 +10,7 @@ namespace Home\Controller;
 
 use Think\Exception;
 
-class ShoutPriceController extends CommonController
+class ShoutPriceController //extends CommonController
 {
     const PAGE_SIZE = 10;//默认每页展示数量
     // 1、待付款
@@ -33,7 +33,7 @@ class ShoutPriceController extends CommonController
             $shout_price_goods = D('shout_price_goods');
             $where['c_goods_img.slot'] = 0;
             $data = $shout_price_goods
-                ->field('goods_title,s1,s2,s3,origin_price price,min_price,c_goods.goods_id,src')
+                ->field('goods_title,s1,s2,s3,origin_price price,min_price,c_goods.goods_id,src,stock')
                 ->join('left join c_goods on c_shout_price_goods.goods_id = c_goods.goods_id')
                 ->join('left join c_sku on c_goods.goods_id = c_sku.goods_id')
                 ->join('left join c_goods_img on c_goods.goods_id = c_goods_img.goods_id')
@@ -42,6 +42,7 @@ class ShoutPriceController extends CommonController
                 ->order('c_shout_price_goods.sort desc')
                 ->limit(($page - 1) * self::PAGE_SIZE, self::PAGE_SIZE)
                 ->select();
+                dump($data);die;
             foreach ($data as $key => $val) {
                 $data[$key]['src'] = $this->img_url($data[$key]['src']);
                 $data[$key]['sku_info'] = $data[$key]['s1'] . '--' . $data[$key]['s2'] . '--' . $data[$key]['s3'] . '--随享季';
