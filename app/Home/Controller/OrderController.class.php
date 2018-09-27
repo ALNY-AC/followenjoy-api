@@ -228,7 +228,7 @@ class OrderController extends CommonController
 
         $post = I('', '', false);
         
-        
+
         // ===================================================================================
         // 限制一元商品
         $OneGoods = D('OneGoods');
@@ -239,6 +239,15 @@ class OrderController extends CommonController
         $snapshots = $Snapshot->getList($snapshot_ids);
 
         foreach ($snapshots as $k => $v) {
+              // ===================================================================================
+        // 判断负值
+            if ($v['count'] <= 0) {
+                $res = [];
+                $res['res'] = -250;
+                echo json_encode($res);
+                die;
+            }
+
             $isGoodsUser = $OneGoodsUser->is(session('user_id'), $v['goods_id']);
             if ($isGoodsUser) {
                 $res['res'] = -2;
