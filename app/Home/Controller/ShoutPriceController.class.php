@@ -42,7 +42,6 @@ class ShoutPriceController extends CommonController
                 ->order('c_shout_price_goods.sort desc')
                 ->limit(($page - 1) * self::PAGE_SIZE, self::PAGE_SIZE)
                 ->select();
-                dump($data);die;
             foreach ($data as $key => $val) {
                 $data[$key]['src'] = $this->img_url($data[$key]['src']);
                 $data[$key]['sku_info'] = $data[$key]['s1'] . '--' . $data[$key]['s2'] . '--' . $data[$key]['s3'] . '--随享季';
