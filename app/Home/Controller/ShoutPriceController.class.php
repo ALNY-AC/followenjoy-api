@@ -10,7 +10,7 @@ namespace Home\Controller;
 
 use Think\Exception;
 
-class ShoutPriceController //extends CommonController
+class ShoutPriceController extends CommonController
 {
     const PAGE_SIZE = 10;//默认每页展示数量
     // 1、待付款
