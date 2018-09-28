@@ -129,7 +129,7 @@ class KillController extends Controller
             $time = mktime(11, 0, 0, date('m'), date('d') - 1, date('Y'));
         }
         $where = ['start_time' => $time, 'type' => 'kill'];
-        $goods_id = $TimGoods->order('sort desc')->where($where)->limit(($page - 1) * $pageSize, $pageSize)->getField('goods_id,end_time', true);
+        $goods_id = $TimGoods->where($where)->limit(($page - 1) * $pageSize, $pageSize)->getField('goods_id,end_time', true);
         return $goods_id;
     }
     

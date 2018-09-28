@@ -163,7 +163,7 @@ class TimeGoodsController extends CommonController
             ->distinct(true)
             ->table('c_time_goods as t1,c_goods as t2')
             ->field('t1.*,t1.sort as time_goods_sort,t2.goods_id,t2.goods_title,t2.goods_banner,t2.sub_title,t2.sort,t2.add_time,t2.is_up')
-            ->order('t2.sort desc,t2.add_time desc')
+            ->order('time_goods_sort desc,t2.add_time desc')
             ->where("t1.start_time='$start_time' AND t1.goods_id = t2.goods_id")
             ->limit(($page - 1) * $page_size, $page_size)
             ->select();
