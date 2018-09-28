@@ -33,7 +33,7 @@ class ShoutPriceController extends CommonController
             $shout_price_goods = D('shout_price_goods');
             $where['c_goods_img.slot'] = 0;
             $data = $shout_price_goods
-                ->field('goods_title,s1,s2,s3,origin_price price,min_price,c_goods.goods_id,src')
+                ->field('goods_title,s1,s2,s3,origin_price price,min_price,c_goods.goods_id,src,stock')
                 ->join('left join c_goods on c_shout_price_goods.goods_id = c_goods.goods_id')
                 ->join('left join c_sku on c_goods.goods_id = c_sku.goods_id')
                 ->join('left join c_goods_img on c_goods.goods_id = c_goods_img.goods_id')
