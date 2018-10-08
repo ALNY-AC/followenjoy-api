@@ -22,169 +22,49 @@ class IndexController extends Controller{
         echo "<h1>Hello World,I'm Followenjoy Ctos</h1>";
         $time=time();
         $date=date('Y-m-d H:i:s',time());
+        $h=C('DB_HOST');
         echo "<p>当前时间戳：$time</p>";
         echo "<p>当前时间：$date</p>";
+        echo "<p>$h</p>";
         echo "<hr/>";
         echo "<p>输出：</p>";
         dump(I());
+        dump(APP_DEBUG);
+        dump(uniqid());
         echo "<hr/>";
+        
+        for ($i=1; $i <= 3; $i++) {
+            ec(createKey());
+            // ec(getNonceStr(10));
+        }
+        
+        echo "<hr/>";
+        
+        
+        ec (date('Y-m-d H:i:s',I('time')));
+        
+        echo "<hr/>";
+        
+        
     }
     
     public function index(){
         
         $this->info();
         
+        $data[]='1536202800';
         
-        // $Coupon=D('Coupon');
-        // $Coupon->派发新用户大礼包('13914896237');
-        
-        // $Goods=D('Goods');
-        // $goods=$Goods->find();
-        // dump($goods);
-        
-        echo("<hr>");
-        
-        
-        // $SpecialGoods=D('SpecialGoods');
-        // // $list=$SpecialGoods->distinct(true)->select();
-        // // $SpecialGoods->where('1=1')->delete();
-        // // $SpecialGoods->addAll($list);
-        // $list=$SpecialGoods->select();
-        // dump($list);
-        
-        
-        die;
-        import('Org.Util.Origin.Order.Order');
-        
-        $pay = new \Pay();
-        
-        $order1 = new \Order();
-        $order2 = new \Order();
-        
-        $goods1 = new \Goods();
-        $goods2 = new \Goods();
-        
-        $order1->setGoods($goods1);
-        $order2->setGoods($goods2);
-        
-        $goods1->setPrice(10);
-        $goods1->setNum(1);
-        $goods1->setTitle('商品1');
-        $goods2->setPrice(20);
-        $goods2->setNum(1);
-        $goods2->setTitle('商品2');
-        
-        $time = new \Time();
-        
-        
-        $goods1->addComponent($time);
-        
-        $pay->addOrder($order1);
-        $pay->addOrder($order2);
-        
-        
-        
-        $coupon = new \Coupon();
-        $pay->addComponent($coupon);
-        
-        $price=$pay->valuation();
-        
-        
-        // ===================================================================================
-        // 使用优惠券的场景
-        
-        
-        dump($price);
-        
-        
-        // ===================================================================================
-        // 模拟订单流程
-        
-        
-        
-        // 1532047122
-        
-        // $where=[];
-        // $where['unionid']=$unionid;
-        // $User=D('User');
-        // $user=$User->where($where)->find();
-        // if(!$user){
-        //     // 没有创建新用户
-        //     $data=[];
-        //     $data['user_id']=$unionid;
-        //     $data['user_name']=$nickname;
-        //     $data['user_head']=$headimgurl;
-        //     $data['unionid']=$unionid;
-        //     $data['user_vip_level']=0;
-        //     $data['user_money']=0;
-        //     $data['add_time']=time();
-        //     $data['edit_time']=time();
-        //     $User->add($data);
-        //     $user=$User->where($where)->find();
-        // }else{
-        //     // 绑定 unionid
-        //     $save=[];
-        //     $save['unionid']=$unionid;
-        //     $User->where($where)->save($save);
-        // }
-        
-        
-        // ===================================================================================
-        // 检测用户id是否存在
-        // 如果用户id不存在，就需要绑定，或者，如果用户id和unionid一样，也需要绑定（这一点是为了修复之前的问题）
-        
-        // $host='http://q.followenjoy.cn/#/';
-        // $host='http://192.168.1.251/#/';
-        
-        // if($user['user_id'] && $user['user_id'] != $user['unionid']){
-        //     // 用户id存在，可以直接登录，绑定 unionid
-        //     $user_id=$user['user_id'];
-        //     $token=createToken($user_id);
-        //     $url=$host."HomePage?user_id=$user_id&token=$token&backUrl=$backUrl&shop_id=$shop_id";
-        
-        //     if($shop_id){
-        //         // 需要绑定上级
-        //         // ===================================================================================
-        //         // 绑定 shopID
-        //         // 先看看有没有绑定，已经绑定过了就不要再绑定
-        //         $UserSuper=D('UserSuper');
-        
-        //         $where=[];
-        //         $where['user_id']=$user['user_id'];
-        //         $isSuper=$UserSuper->where($where)->find();
-        //         if(!$isSuper){
-        //             // 不存在才添加
-        //             $where=[];
-        //             $where['shop_id']=$shop_id;
-        //             $shopUser=$User->where($where)->find();
-        //             if($shopUser){
-        //                 // shop用户存在
-        //                 // 绑定
-        //                 $data=[];
-        //                 $data['user_id']=$user['user_id'];
-        //                 $data['super_id']=$shopUser['user_id'];
-        //                 $data['add_time']=time();
-        //                 $data['edit_time']=time();
-        
-        //                 $UserSuper->add($data);
-        
-        //             }
-        
-        //         }
-        
-        //     }
-        
-        // }else{
-        //     // 用户id不存在,需要绑定手机号
-        //     $url=$host."WeiXinLogin?unionid=$unionid&backUrl=$backUrl&shop_id=$shop_id";
-        // }
+        foreach ($data as $k => $v) {
+            ec (date('Y-m-d H:i:s',$v));
+        }
+        echo 1;
         
         
     }
     
     
     public function test2(){
-        
+        die;
         $TimeGoods=D('TimeGoods');
         $list=$TimeGoods->select();
         
@@ -330,11 +210,22 @@ class IndexController extends Controller{
             
         }
         
-        
-        
     }
+    
+    
     public function test(){
+        
+        
+        if(!I('user_id')){
+            dump("12138");
+            die;
+        }
+        $Coupon=D('Coupon');
+        $result=$Coupon->派发给新499会员大礼包(I('user_id'));
+        // $Coupon->派发给新499会员大礼包(18904660977);
+        dump($result);
         die;
+        
         Vendor('VIP.VipPlus');
         
         $conf=[];

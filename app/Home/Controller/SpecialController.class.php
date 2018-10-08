@@ -69,7 +69,7 @@ class SpecialController extends Controller{
         $where=[];
         $where['special_id']=$special_id;
         $result=$Special
-        ->cache(true,60)
+        // ->cache(true,60)
         ->where($where)
         ->find();
         if($result){
@@ -107,7 +107,7 @@ class SpecialController extends Controller{
         
         $list=$SpecialGoods
         ->distinct(true)
-        ->cache(true,60)
+        // ->cache(true,60)
         ->table('c_special_goods as t1,c_goods as t2')
         ->field('t1.*,t2.goods_id,t2.goods_title,t2.goods_banner,t2.sub_title,t2.sort,t2.add_time')
         ->order('t2.sort desc,t2.add_time desc')

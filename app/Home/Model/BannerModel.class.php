@@ -21,8 +21,8 @@ class BannerModel extends Model {
         $where  =   $data['where']?$data['where']:[];
         $field  =   $data['field']?$data['field']:[];
         $list  =  $this
-        ->cache(true,60)
-        ->order('add_time desc')
+        // ->cache(true,60)
+        ->order('sort asc,add_time desc')
         ->where($where)
         ->field($field)
         ->limit(($page-1)*$limit,$limit)
@@ -35,8 +35,8 @@ class BannerModel extends Model {
         $where  =   $data['where']?$data['where']:[];
         $field  =   $data['field']?$data['field']:[];
         $list  =  $this
-        ->cache(true,60)
-        ->order('add_time desc')
+        // ->cache(true,60)
+        ->order('sort asc,add_time desc')
         ->where($where)
         ->field($field)
         ->select();

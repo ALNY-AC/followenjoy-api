@@ -7,8 +7,9 @@ class NavModel extends Model {
     public function getList($data){
         
         $navList=$this
-        ->order('add_time asc')
+        ->order('sort asc,add_time asc')
         ->where('is_show = 1')
+        // ->cache(true,120)
         ->select();
         return $navList;
     }
@@ -19,16 +20,17 @@ class NavModel extends Model {
         $page   =   $data['page']?$data['page']:1;
         $limit  =   $data['limit']?$data['limit']:10;
         
-        
         $NavGoods=D('NavGoods');
         $where=[];
         $where['nav_id']=$nav_id;
-        $navs=$NavGoods->where($where)->select();
+        $navs=$NavGoods
+        // ->cache(true,120)
+        ->where($where)
+        ->select();
         $ids=[];
         foreach ($navs as $k => $v) {
             $ids[]=$v['goods_id'];
         }
-        
         $where=[];
         $where['goods_id']=['in',$ids];
         $Goods=D('Goods');

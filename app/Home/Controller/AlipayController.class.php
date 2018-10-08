@@ -166,38 +166,50 @@ class AlipayController extends Controller{
             if($trade_status=='TRADE_SUCCESS'){
                 if($payData['state']!=1){
                     
+                    $Pay->setPayType($out_trade_no,1);
                     // 支付成功
                     $Pay->setState($out_trade_no,1);
+                    $Pay->setPayTime($out_trade_no);
+                    
                     // 0：未支付
                     // 1：已支付
                     // 2：已取消
                     
-//                    // 减库存
-//                    $where=[];
-//                    $where['pay_id']=$out_trade_no;
-//                    $Order=D('Order');
-//                    $order=$Order->where($where)->select();
-//                    $orderIds=[];
-//                    foreach ($order as $k => $v) {
-//                        $orderIds[]=$v['order_id'];
-//                    }
+                    //                    // 一元商品
+                    $where=[];
+                    $where['pay_id']=$out_trade_no;
+                    $Order=D('Order');
+                    $order=$Order->where($where)->select();
+                    $orderIds=[];
+                    foreach ($order as $k => $v) {
+                        $orderIds[]=$v['order_id'];
+                    }
                     
-//                    $Snapshot=D('Snapshot');
-//
-//                    $where=[];
-//                    $where['order_id']=['in',$orderIds];
+                    $Snapshot=D('Snapshot');
                     
-//                    $snapshot=$Snapshot->where($where)->select();
+                    $where=[];
+                    $where['order_id']=['in',$orderIds];
                     
-//                    $Sku=D('Sku');
-//
-//                    foreach ($snapshot as $k => $v) {
-//                        $count=$v['count'];
-//                        $sku_id=$v['sku_id'];
-//                        $where=[];
-//                        $where['sku_id']=$sku_id;
-//                        $Sku->where($where)->setDec('stock_num',$count);
-//                    }
+                    $snapshot=$Snapshot->where($where)->select();
+                    
+                    $OneGoodsUser=D('OneGoodsUser');
+                    
+                    $OneGoods=D('OneGoods');
+                    $is=$OneGoods->isGoods($v['goods_id']);
+                    
+                    foreach ($snapshot as $k => $v) {
+                        $is=$OneGoods->isGoods($v['goods_id']);
+                        
+                        if($is){
+                            // ===================================================================================
+                            // 是一元商品，需要加入到表中
+                            $data=[];
+                            $data['user_id']=$user_id;
+                            $data['goods_id']=$v['goods_id'];
+                            $OneGoodsUser->add($data);
+                        }
+                        
+                    }
                     
                 }
                 

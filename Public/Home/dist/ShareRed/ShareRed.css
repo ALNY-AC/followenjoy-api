@@ -1,10 +1,8 @@
 @charset "UTF-8";
 body {
-  background-color: #1a2a35;
+  background-color: #fec81e;
   background-size: 100%;
   background-repeat: no-repeat; }
-  body img {
-    max-width: 100%; }
 
 .header {
   position: relative;
@@ -45,6 +43,8 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   margin: 0 13px;
   border-radius: 4px; }
+  .coupon-panel.coupon-header {
+    margin-top: -3.5rem; }
   .coupon-panel .coupon-panel-body {
     padding: 20px 13px; }
 
@@ -251,56 +251,5 @@ body {
     margin: .5rem auto 0;
     border-radius: 4px;
     text-align: center; }
-
-.red-card-panel {
-  position: relative; }
-  .red-card-panel .red-head {
-    position: relative; }
-    .red-card-panel .red-head img {
-      z-index: 1;
-      position: relative; }
-    .red-card-panel .red-head .red-head-info {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      z-index: 2;
-      overflow: hidden; }
-      .red-card-panel .red-head .red-head-info .red-head-info-box {
-        position: absolute;
-        text-align: center;
-        z-index: 2;
-        top: 40%;
-        right: 0;
-        bottom: 0;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0); }
-        .red-card-panel .red-head .red-head-info .red-head-info-box .title {
-          font-size: 16px;
-          color: #e92b37; }
-        .red-card-panel .red-head .red-head-info .red-head-info-box .price {
-          font-size: 50px;
-          color: #e92b37; }
-          .red-card-panel .red-head .red-head-info .red-head-info-box .price .price-icon {
-            font-size: 14px; }
-        .red-card-panel .red-head .red-head-info .red-head-info-box .time {
-          white-space: nowrap;
-          color: #666;
-          font-size: 12px; }
-  .red-card-panel .red-body {
-    text-align: center;
-    background-color: #e5182e;
-    padding: 10px 0;
-    color: #fff; }
-    .red-card-panel .red-body .phone {
-      color: #fcc81d; }
-    .red-card-panel .red-body p {
-      line-height: 1; }
-  .red-card-panel .red-footer {
-    padding: 10px;
-    background-color: #e5182e; }
-    .red-card-panel .red-footer a img {
-      display: block; }
 
 /*# sourceMappingURL=ShareRed.css.map */

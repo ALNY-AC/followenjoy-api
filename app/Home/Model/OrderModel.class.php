@@ -156,6 +156,28 @@ class OrderModel extends Model {
         // ===================================================================================
         // 计算价格
         $price=($snapshot['price']*$snapshot['count']);
+        
+        
+        $Notice=D('Notice');
+        // ===================================================================================
+        // 负值警告
+        if(($snapshot['count']<0)){
+            $Notice->send(
+            'root',
+            '12138',
+            '【用户订单负值警告】',
+            '订单商品负值警告！',
+            "用户在提交订单时，检测出商品数量为负值！订单总价也为负值！此订单请勿处理！订单号：$order_id ，支付单号：$pay_id ，用户ID：$user_id",
+            '/order/info',
+            $order_id,
+            4
+            );
+        }
+        
+        if($price<=0){
+            $price=0;
+        }
+        
         $price+=$first_price;
         // 优惠后的订单总价=订单总价*打折
         
@@ -226,6 +248,15 @@ class OrderModel extends Model {
         
         
         // ===================================================================================
+        // 新人下单得50元
+        $user_id=session('user_id');
+        if(!F('CouponNewUser'.$user_id)){
+            $Coupon->派发新人下单大礼包(session('user_id'));
+        }
+        F('CouponNewUser'.$user_id,true);
+        
+        
+        // ===================================================================================
         // 验证余额抵扣
         $balance_pwd=I('balance_pwd');
         
@@ -281,7 +312,7 @@ class OrderModel extends Model {
         
         // ===================================================================================
         // 获得基本数据
-        $pay_type=$data['pay_type'];//支付方式
+        $pay_type=-1;//支付方式
         $address_id=$data['address_id'];//地址id
         $snapshot_ids=$data['snapshot_id'];//快照id数组
         $coupon_id=$data['coupon_id'];//优惠券
@@ -289,17 +320,6 @@ class OrderModel extends Model {
         // share_id
         
         
-        // 测试环境
-        if($isDebug){
-            // $OrderAddress->where('1=1')->delete();
-            // $save=[];
-            // $save['order_id']=null;
-            // $Snapshot->where('1=1')->save($save);
-            // $Order->where('1=1')->delete();
-            // $Logistics->where('1=1')->delete();
-            // $Pay->where('1=1')->delete();
-            // $OrderCoupon->where('1=1')->delete();
-        }
         // ===================================================================================
         // 找到所有的快照数据
         $where=[];
@@ -307,16 +327,17 @@ class OrderModel extends Model {
         $snapshots=$Snapshot->where($where)->select();
         
         $isToAppShop='-1';
+        $OneGoods=D('OneGoods');
         
         foreach ($snapshots as $k => $v) {
             $v=$Snapshot->getTime($v);
             $snapshots[$k]=$v;
-            if($v['goods_id']=='1469'){
+            $is=$OneGoods->isGoods($v['goods_id']);
+            if($is){
                 $isToAppShop='1';
                 $v['count']=1;
                 $snapshots[$k]=$v;
             }
-            
         }
         
         // ===================================================================================
@@ -359,8 +380,8 @@ class OrderModel extends Model {
             foreach ($snapshots as $k => $v) {
                 $total2+=$v['count']*$v['price'];
             }
-            if($total2>=59){
-                $total-=9.9;
+            if($total2>=60){
+                $total-=8;
             }
         }
         
@@ -378,7 +399,6 @@ class OrderModel extends Model {
             $where=[];
             $where['user_id']=$user_id;
             $User->where($where)->setDec('user_money',$balance_value);
-            
         }
         
         // ===================================================================================
@@ -396,11 +416,25 @@ class OrderModel extends Model {
         // ===================================================================================
         // 判断是否是0元
         if($total<=0){
-            
             $payData['state']=1;//支付状态,0：未支付，1：已支付
             foreach ($orderDatas as $k => $v) {
                 $v['state']=2;
                 $orderDatas[$k]=$v;
+            }
+            
+            $OneGoodsUser=D('OneGoodsUser');
+            $OneGoods=D('OneGoods');
+            foreach ($snapshots as $k => $v) {
+                $is=$OneGoods->isGoods($v['goods_id']);
+                if($is){
+                    // ===================================================================================
+                    // 是一元商品，需要加入到表中
+                    $data=[];
+                    $data['user_id']=$user_id;
+                    $data['goods_id']=$v['goods_id'];
+                    $OneGoodsUser->add($data);
+                }
+                
             }
             
         }
@@ -463,11 +497,11 @@ class OrderModel extends Model {
         // die;
         
         //创建完成，删除购物车数据
-        if(!$isDebug){
-            $where=[];
-            $where['snapshot_id']=['in',$snapshot_ids];
-            $Bag->where($where)->delete();
-        }
+        // if(!$isDebug){
+        //     $where=[];
+        //     $where['snapshot_id']=['in',$snapshot_ids];
+        //     $Bag->where($where)->delete();
+        // }
         
         return $pay_id;  // 返回 pay_id
         
@@ -718,7 +752,6 @@ class OrderModel extends Model {
         $Logistics->where($where)->save($save);
         // 让订单完成，同时有分润
         $this->okOrder($order_id);
-        
     }
     
     

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<style>
+			*{margin: 0;padding: 0;}
+			body{
+				background-image: url(__PUBLIC__/Assets/codeimg/code_bg.png);
+				background-repeat: repeat;
+			}
+			.banner{width: 100%;}
+			#box{
+				background: #203037;
+			}
+			#mainBox{
+				width: 75%;
+				margin: 0 auto;
+				padding-bottom: 0.27rem;
+			}
+			.text{
+				color: #FFF;
+				text-align: center;
+				background: #16242A;
+				border-radius: 0.1rem;
+				padding: 0.4rem 0;
+				font-size: 0.45rem;
+				font-weight: 600;
+			}
+			.copyTextStyle{
+				margin-top: 0.15rem;
+				color: #fff;
+				text-align: center;
+				border-radius: 0.1rem;
+				font-size: 0.3rem;
+				padding:0.18rem 0 ;
+			}
+			.empty{
+				background-color: #777777;
+				color: white;
+			}
+			.bottom-btn{
+				width: 75%;
+				margin: 0 auto;
+			}
+			img{
+				width: 100%;
+			}
+			.className{
+				background: #000;
+				color: #FFF;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				width: 1.8rem;
+				height: 0.8rem;
+				line-height: 0.8rem;
+				text-align: center;
+				margin-left: -0.9rem;
+				margin-top: -0.4rem;
+				font-size: 0.24rem;
+				font-weight: 600;
+				opacity: 0.6;
+				border-radius: 0.06rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img class="banner" src="__PUBLIC__/Assets/codeimg/code_img_title.png" alt="" />
+			<div id="mainBox">
+				<if condition="$isEmpty == true">
+					<div id="text" class="text">优惠券已兑换完</div>
+					<!-- <div class="copyText copyTextStyle empty" >复制兑换码</div> -->
+					<else />
+					<div id="text" class="text">{$msg}</div>
+					<div class="copyText copyTextStyle" onclick="copyText()">复制编号去APP中搜索领券</div>
+				</if>
+			</div>
+		</div>
+		<div>
+			<img src="__PUBLIC__/Assets/codeimg/code_img_guide.png" />
+		</div>
+		<div class="bottom-btn">
+			<a href="http://sj.qq.com/myapp/detail.htm?apkName=com.zeqiao.followenjoy">
+				<img src="__PUBLIC__/Assets/codeimg/code_btn_download.png" />
+			</a>
+		</div>
+	</body>
+
+	<script>
+		
+		window.onload = function () {
+	      //响应式布局
+	      document.documentElement.style.fontSize = document.documentElement.clientWidth / 6.21 + "px";
+	      window.addEventListener("resize", function () {
+	        document.documentElement.style.fontSize = document.documentElement.clientWidth / 6.21 + "px"
+	      })
+	    }
+		
+		
+		function copyText(){
+			var input = document.createElement('input');
+			input.value = document.getElementById("text").innerText;
+			document.body.appendChild(input);
+			input.select(); // 选择对象
+			document.execCommand("Copy"); // 执行浏览器复制命令
+			input.parentNode.removeChild(input);
+			
+			//弹窗
+			var layer = document.createElement('div');
+			document.body.appendChild(layer);
+			layer.innerHTML = "复制成功";
+			layer.className = "className";
+			layer.style.opacity=1;
+   			hidden(layer,1,-0.001);
+		}
+		
+		function hidden(o,i,s){
+		  t=setInterval(function(){  
+			  	i+=s;
+			  	o.style.opacity=i;
+			
+				if(i<=0.7){ s = -0.01}
+			  	if(i<0){window.clearInterval(t); }
+		  },1);  
+		};
+
+	</script>
+</html>

@@ -10,16 +10,16 @@ use Think\Controller;
 
 class ShortLinkController extends Controller{
     const STAR_URL = '/followenjoy/';
-//    /Home/ShortLink/shortLink
-//长链生成短链
+    //    /Home/ShortLink/shortLink
+    //长链生成短链
     public function shortLink(){
-        
         $long_url = I('long_url','',false);
         
-        $res['res'] = 1;
-        $res['msg'] =$long_url;
-        echo json_encode($res);
-        exit;
+        // $res['res'] = 1;
+        // $res['msg'] =$long_url;
+        // echo json_encode($res);
+        // exit;
+        
         if(!$long_url){
             $res['res'] = -1;
             echo json_encode($res);
@@ -31,6 +31,7 @@ class ShortLinkController extends Controller{
         if($url){
             $res['res'] = 1;
             $res['msg'] = C('sort_url.SORT_URL').$url;
+            $res['url'] = C('sort_url.SORT_URL');
             echo json_encode($res);
             exit;
         }
@@ -53,19 +54,17 @@ class ShortLinkController extends Controller{
     //    /Home/ShortLink/getUrl
     //跳转原始地址
     public function getUrl(){
-        $a = '/aaaa/';
-
-        $count = strpos($a,"/");  //strpos(string,find,start)返回所筛选的字符串出现的位置 参数start可选
-
-        $a = substr_replace($a,"",$count,2);//substr_replace(string,replacement,start,length)参数length可选
-
-echo $a;//输出acdfigcd
-die;
-        $long_url = I('SXJ','',false);
+        $data = self::STAR_URL;
+        
+        $data = substr($data,1);
+        $data = substr($data, 0, -1);
+        
+        $long_url = I($data,'',false);
         $where['sort_url'] = self::STAR_URL.$long_url;
         $res = D('short_link')->where($where)->getField('long_url');
-        if(!$res){
-
+        if(!$res){//找不到分享链接
+            echo "<h1>页面找不到啦<h1>";
+            die;
         }
         header("Location: $res");
     }

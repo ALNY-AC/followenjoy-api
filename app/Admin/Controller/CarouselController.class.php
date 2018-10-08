@@ -44,7 +44,6 @@ class CarouselController extends CommonController{
         echo json_encode($res);
         
         
-        
     }
     
     

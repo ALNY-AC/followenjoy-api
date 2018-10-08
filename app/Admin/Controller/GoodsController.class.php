@@ -278,4 +278,47 @@ class GoodsController extends CommonController{
     }
     
     
+    public function getCount(){
+        
+        
+        // ===================================================================================
+        // 访问量
+        
+        $Model=D();
+        
+        
+        $page_size=I('page_size');
+        $page=I('page');
+        $page=($page-1)*$page_size;
+        
+        $data=$Model->query("
+        SELECT
+        c_goods.goods_title,
+        c_record.goods_id,
+        COUNT(
+        DISTINCT user_id,
+        c_record.goods_id
+        ) AS count
+        FROM
+        c_record
+        LEFT JOIN c_goods ON c_record.goods_id = c_goods.goods_id
+        GROUP BY
+        c_record.goods_id
+        ORDER BY
+        count DESC
+        limit
+        $page,$page_size
+        ");
+        
+        
+        $total=D('goods')->count()+0;
+        
+        $res=[];
+        $res['msg']=$data;
+        $res['total']=$total;
+        echo json_encode($res);
+        
+        
+    }
+    
 }

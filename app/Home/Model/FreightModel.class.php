@@ -21,7 +21,7 @@ class FreightModel extends Model {
         
         $list  =  $this
         ->order('add_time desc')
-        ->cache(true,10)
+        // ->cache(true,10)
         ->where($where)
         ->limit(($page-1)*$limit,$limit)
         ->select();
@@ -51,7 +51,7 @@ class FreightModel extends Model {
         
         $list  =  $this
         ->order('add_time desc')
-        ->cache(true,10)
+        // ->cache(true,10)
         ->where($where)
         ->select();
         $list=toTime($list);
@@ -79,7 +79,7 @@ class FreightModel extends Model {
         $where=[];
         $where['freight_id']=$freight_id;
         $freight=$this
-        ->cache(true,10)
+        // ->cache(true,10)
         ->where($where)
         ->find();
         

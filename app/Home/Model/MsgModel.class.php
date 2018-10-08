@@ -7,7 +7,7 @@ class MsgModel extends Model {
     public function getList($data){
         $where=$data['where'];
         $msgs=$this
-        ->cache(true,1800)
+        // ->cache(true,1800)
         ->order('add_time desc')
         ->field(
         [
@@ -31,7 +31,7 @@ class MsgModel extends Model {
         $where=[];
         $where['msg_id']=$msg_id;
         $data=$this
-        ->cache(true,1800)
+        // ->cache(true,1800)
         ->where($where)
         ->find();
         

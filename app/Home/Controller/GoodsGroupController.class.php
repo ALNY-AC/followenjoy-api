@@ -20,8 +20,8 @@ class GoodsGroupController extends Controller{
     
     public function getList(){
         $GoodsGroupLink=D('GoodsGroupLink');
-        
         $goods_group_id=I('goods_group_id');
+        
         $where=[];
         $where['goods_group_link_id']=$goods_group_id;
         
@@ -33,7 +33,7 @@ class GoodsGroupController extends Controller{
         $page_size=I('page_size');
         
         $goodsList=$GoodsGroupLink
-        ->cache(true,10)
+        // ->cache(true,10)
         ->distinct(true)
         ->table('c_goods_group_link as t1,c_goods as t2')
         ->field('t1.*,t2.goods_id,t2.goods_title,t2.goods_banner,t2.sub_title,t2.sort,t2.add_time,t2.is_up')
@@ -76,6 +76,10 @@ class GoodsGroupController extends Controller{
             $goodsList[$k]=$v;
             // ===================================================================================
             // 计算库存总量
+            
+            // ===================================================================================
+            // 重置活动价
+            
         }
         
         
@@ -87,6 +91,27 @@ class GoodsGroupController extends Controller{
             $res['msg']=$goodsList;
         }
         echo json_encode($res);
+    }
+    
+    public function info(){
+        
+        $GoodsGroup=D('GoodsGroup');
+        $goods_group_id=I('goods_group_id');
+        $where=[];
+        $where['goods_group_id']=$goods_group_id;
+        
+        $goodsGroup=$GoodsGroup->where($where)->find();
+        
+        if($goodsGroup){
+            $res['res']=1;
+            $res['msg']=$goodsGroup;
+        }else{
+            $res['res']=-1;
+            $res['msg']=$goodsGroup;
+        }
+        
+        echo json_encode($res);
+        
     }
     
     

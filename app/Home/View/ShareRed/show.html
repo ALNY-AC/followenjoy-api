@@ -11,56 +11,30 @@
     <link rel="stylesheet" type="text/css" href="__HDIST__/ShareRed/ShareRed.css" />
 
     <style>
+        .coupon-card {
+            background-image: url(__ASSETS__/images/card-bg.png)
+        }
     </style>
 </head>
 
 <body>
 
+
     <div class="header">
         <div class="img-mask"></div>
-        <img class="header-bg" src="__ASSETS__/images/red/share_img_title.png" alt="">
+        <img class="header-bg" src="__ASSETS__/images/fx_bg.png" alt="">
     </div>
 
-    <div class="red-card-panel hide">
-
-        <div class="red-head">
-            <img src="__ASSETS__/images/red/share_bg_money1.png" alt="">
-            <div class="red-head-info">
-                <div class="red-head-info-box">
-                    <div class="title">拼手气红包</div>
-                    <div class="price">0.63
-                        <span class="price-icon">元</span>
-                    </div>
-                    <div class="time">红包有效期至：2018.08.08</div>
-                </div>
-            </div>
-        </div>
-        <div class="red-body">
-            <p>红包已放至账户
-                <span class="phone">13914896237</span>
-            </p>
-            <p>登录App即可使用</p>
-            <p>下载App即可使用50元新人红包</p>
-        </div>
-        <div class="red-footer">
-            <a href="">
-                <img src="__ASSETS__/images/red/share_btn_openapp.png" alt="">
-            </a>
-        </div>
-
-    </div>
-
-
-
-    <div id="App" class="hside">
+    <div id="App">
         <div class="app-body" :style="[{opacity:opacity}]">
 
             <div class="input-panel" v-if="!isLogin()">
+
                 <input type="tel" v-model="user_phone" placeholder="请输入您的手机号" class="input">
                 <div class="login-btn" @click="setPhone()">立即领取</div>
             </div>
 
-            <div class="coupon-panel coupon-header hide" v-if="isLogin()">
+            <div class="coupon-panel coupon-header" v-if="isLogin()">
                 <div class="coupon-panel-header">
                 </div>
                 <div class="coupon-panel-body">
@@ -76,34 +50,19 @@
                 <div class="coupon-panel-footer"></div>
             </div>
 
-
-            <div class="red-card-panel" v-if="isLogin()">
-
-                <div class="red-head">
-                    <img src="__ASSETS__/images/red/share_bg_money1.png" alt="">
-                    <div class="red-head-info">
-                        <div class="red-head-info-box">
-                            <div class="title">拼手气红包</div>
-                            <div class="price">{{myRecord.price}}
-                                <span class="price-icon">元</span>
-                            </div>
-                            <div class="time">红包有效期至：{{myRecord.time}}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="red-body">
-                    <p>红包已放至账户
+            <div class="coupon-bottom-info-box" v-if="isLogin()">
+                <div class="coupon-bottom-info">
+                    <div>红包已放至账户
                         <span class="phone" @click="clearPhone()">{{phone}}</span>
-                    </p>
-                    <p>登录App即可使用</p>
-                    <p>下载App即可使用50元新人红包</p>
+                    </div>
+                    <div>登录App即可使用</div>
+                    <div>下载App即可使用50元新人红包</div>
                 </div>
-                <div class="red-footer">
-                    <a href="">
-                        <img src="__ASSETS__/images/red/share_btn_openapp.png" alt="">
-                    </a>
-                </div>
-
+                <a href="http://sj.qq.com/myapp/detail.htm?apkName=com.zeqiao.followenjoy" class="big-btn">
+                    <div>
+                        <img class="icon" src="__ASSETS__/images/logo.png" alt=""> 打开随享季
+                    </div>
+                </a>
             </div>
 
             <div class="high-title red" v-if="isLogin()">
@@ -141,9 +100,12 @@
                         </div>
                     </div>
                     <div class="coupon-btn-box">
-                        <div class="coupon-btn" @click.stop="go()">
-                            立即使用
-                        </div>
+                        <a href="http://q.followenjoy.cn/#/HomePage">
+                                <div class="coupon-btn" >
+                                        立即使用
+                                    </div>
+                        </a>
+                 
                     </div>
                 </div>
             </div>

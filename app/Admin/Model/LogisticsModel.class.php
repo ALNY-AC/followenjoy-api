@@ -18,9 +18,8 @@ class LogisticsModel extends Model {
         $post_data["sign"] = md5($post_data["param"].$key.$post_data["customer"]);
         $post_data["sign"] = strtoupper($post_data["sign"]);
         $o="";
-        foreach ($post_data as $k=>$v)
-        {
-            $o.= "$k=".urlencode($v)."&";		//默认UTF-8编码格式
+        foreach ($post_data as $k=>$v){
+            $o.= "$k=".urlencode($v)."&"; //默认UTF-8编码格式
         }
         $post_data=substr($o,0,-1);
         $ch = curl_init();
@@ -33,6 +32,26 @@ class LogisticsModel extends Model {
         
         $data = str_replace("\"",'"',$result );
         $data = json_decode($data,true);
+        
+        if(isset($data['data'])){
+        }else{
+            $data['data']=[];
+        }
+        
+        $info=[
+        [
+        "time" =>  "",
+        "ftime" =>  "",
+        "context" =>  "订单正在处理",
+        ],
+        [
+        "time" =>  "",
+        "ftime" =>  "",
+        "context" =>  "物流已揽件，请您耐心等待发货",
+        ],
+        ];
+        $data['data']=array_merge(  $data['data'],$info);
+        
         return $data;
     }
     

@@ -11,7 +11,7 @@ class LogisticsModel extends Model {
         
         $param=[];
         $param['com']=$data['com'];
-        $param['num']=$data['num'];
+        $param['num']=$data['num'].'';
         
         $post_data["param"] =json_encode($param);
         $url='http://poll.kuaidi100.com/poll/query.do';
@@ -33,6 +33,26 @@ class LogisticsModel extends Model {
         
         $data = str_replace("\"",'"',$result );
         $data = json_decode($data,true);
+        
+        if(isset($data['data'])){
+        }else{
+            $data['data']=[];
+        }
+        
+        $info=[
+        [
+        "time" =>  "",
+        "ftime" =>  "",
+        "context" =>  "物流已揽件，请您耐心等待。",
+        ],
+        [
+        "time" =>  "",
+        "ftime" =>  "",
+        "context" =>  "订单正在处理。",
+        ],
+        ];
+        $data['data']=array_merge(  $data['data'],$info);
+        
         return $data;
     }
     

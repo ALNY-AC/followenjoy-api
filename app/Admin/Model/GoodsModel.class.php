@@ -343,6 +343,7 @@ class GoodsModel extends Model {
             'activity_price',
             'activity_earn_price',
             'sales_volume',
+            'stock_num_total'
             ]
             )
             ->order('price asc,stock_num desc')

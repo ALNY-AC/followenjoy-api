@@ -1,0 +1,49 @@
+#box {
+    padding: 15px 0;
+}
+
+html,
+body {
+    background-color: #fafafa;
+}
+
+.count-box {
+    font-size: 70px;
+    color: #777;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.show-row{
+    
+}
+.count-box i {
+    font-size: 30px;
+}
+
+.text-muted {}
+
+.text-primary {
+    color: #337ab7;
+}
+
+.text-success {
+    color: #5cb85c;
+}
+
+.text-info {
+    color: #5bc0de;
+}
+
+.text-warning {
+    color: #f0ad4e;
+}
+
+.text-danger {
+    color: #d9534f;
+}
+
+.data-name {
+    font-size: 20px;
+    display: block;
+}

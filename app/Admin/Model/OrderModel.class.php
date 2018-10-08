@@ -184,7 +184,6 @@ class OrderModel extends Model {
             array_insert($value,$offset+1,['state_label'=>$state_label]);
             
             
-            
             // ===================================================================================
             // 获得供货商信息
             $supplier_id=$value['supplier_id'];
@@ -292,7 +291,13 @@ class OrderModel extends Model {
             unset($value['address_id']);
             unset($value['supplier_id']);
             $list[$key]=$value;
+            foreach ($list[$key] as $x => $z) {
+                $list[$key][$x] = $list[$key][$x].' ';
+            }
+            
         }
+        
+        
         
         // dump($list);
         // die;
@@ -306,7 +311,6 @@ class OrderModel extends Model {
         $page   =   $data['page']?$data['page']:1;
         $limit  =   $data['limit']?$data['limit']:10;
         $where  =   $data['where']?$data['where']:[];
-        
         
         // ===================================================================================
         // 创建模型
@@ -378,7 +382,6 @@ class OrderModel extends Model {
         $where=[];
         $where['logistics_id']=$logistics_id;
         $logistics=$Logistics->where($where)->find();
-        
         if(!$logistics['state']){
             
             $where=[];

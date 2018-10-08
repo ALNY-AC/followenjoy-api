@@ -38,6 +38,7 @@ class PHPExcel_Cell_DataType
     /* Data types */
     const TYPE_STRING2  = 'str';
     const TYPE_STRING   = 's';
+    const FORMAT_TEXT	 = '@';
     const TYPE_FORMULA  = 'f';
     const TYPE_NUMERIC  = 'n';
     const TYPE_BOOL     = 'b';
