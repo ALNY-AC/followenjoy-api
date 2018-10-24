@@ -27,6 +27,7 @@ $allow_origin = [
     'http://192.168.0.252:8081',
 
     'http://cosmetics.com',
+    'http://localhost:8081',
 
 // 测试端
     'http://test.q.followenjoy.cn',

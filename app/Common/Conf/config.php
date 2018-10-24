@@ -44,14 +44,14 @@ return array(
     // 'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
 
 // 正式数据库——外网
-    // 'DB_TYPE' => 'mysql', // 数据库类型
-    // 'DB_HOST' => '47.99.132.196', // 服务器地址
-    // 'DB_NAME' => 'followenjoy', // 数据库名
-    // 'DB_USER' => 'followenjoy', // 用户名
-    // 'DB_PWD' => 'FollowenjoY8787', // 密码
-    // 'DB_PORT' => '3306', // 端口
-    // 'DB_PREFIX' => 'c_', // 数据库表前缀
-    // 'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
+    'DB_TYPE' => 'mysql', // 数据库类型
+    'DB_HOST' => '47.99.132.196', // 服务器地址
+    'DB_NAME' => 'followenjoy', // 数据库名
+    'DB_USER' => 'followenjoy', // 用户名
+    'DB_PWD' => 'FollowenjoY8787', // 密码
+    'DB_PORT' => '3306', // 端口
+    'DB_PREFIX' => 'c_', // 数据库表前缀
+    'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
 
 
 // ===================================================================================
@@ -67,14 +67,14 @@ return array(
 
 
 // 测试数据库java
-    'DB_TYPE' => 'mysql', // 数据库类型
-    'DB_HOST' => '101.132.182.102', // 服务器地址
-    'DB_NAME' => 'followenjoy_db', // 数据库名
-    'DB_USER' => 'root', // 用户名
-    'DB_PWD' => 'followenjoy8787', // 密码
-    'DB_PORT' => '3306', // 端口
-    'DB_PREFIX' => 'c_', // 数据库表前缀
-    'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
+    // 'DB_TYPE' => 'mysql', // 数据库类型
+    // 'DB_HOST' => '101.132.182.102', // 服务器地址
+    // 'DB_NAME' => 'followenjoy_db', // 数据库名
+    // 'DB_USER' => 'root', // 用户名
+    // 'DB_PWD' => 'followenjoy8787', // 密码
+    // 'DB_PORT' => '3306', // 端口
+    // 'DB_PREFIX' => 'c_', // 数据库表前缀
+    // 'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
 
     "weixin" => array(
         "APPID" => "wx8c3b0269e9e2c724",
