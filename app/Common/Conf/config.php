@@ -45,10 +45,10 @@ return array(
 
 // 正式数据库——外网
     'DB_TYPE' => 'mysql', // 数据库类型
-    'DB_HOST' => '47.99.132.196', // 服务器地址
-    'DB_NAME' => 'followenjoy', // 数据库名
-    'DB_USER' => 'followenjoy', // 用户名
-    'DB_PWD' => 'FollowenjoY8787', // 密码
+    'DB_HOST' => '47.103.129.128', // 服务器地址
+    'DB_NAME' => 'follow', // 数据库名
+    'DB_USER' => 'root', // 用户名
+    'DB_PWD' => 'yh12138..', // 密码
     'DB_PORT' => '3306', // 端口
     'DB_PREFIX' => 'c_', // 数据库表前缀
     'DB_PARAMS' => array(\PDO::ATTR_CASE => \PDO::CASE_NATURAL),
